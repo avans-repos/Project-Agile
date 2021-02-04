@@ -6,8 +6,7 @@ updates:
     interval: daily
     timezone: Europe/Amsterdam
 - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      timezone: Europe/Amsterdam
-      interval: "daily"
-
+  directory: "/"
+  schedule:
+    timezone: Europe/Amsterdam
+    interval: "daily"
