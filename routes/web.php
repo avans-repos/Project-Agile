@@ -10,7 +10,6 @@ Route::get('/test', function ()
 
 
 Route::get('/callback', function () {
-    if(!isset($_SESSION["accessToken"])) return redirect("/");
     $oauth = new OAuth($_ENV["AVANS_KEY"], $_ENV["AVANS_SECRET"],OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_FORM);
     $oauth->disableSSLChecks();
     $oauth->setToken($_REQUEST['oauth_token'], $_SESSION["tokenInfo"]["oauth_token_secret"]);
