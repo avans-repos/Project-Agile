@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::view('/welcome','welcome');
+
 Route::get('/', [LoginController::class, 'Index']);
 
 // Login routes
