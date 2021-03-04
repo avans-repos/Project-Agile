@@ -10,7 +10,7 @@ Route::get('/test', function ()
 
 Route::get('/callback', function () {
     $query = http_build_query([
-        'client_id' => 393, // Replace with Client ID
+        'client_id' => $_ENV["AVANS_ID"], // Replace with Client ID
         'redirect_uri' => 'http://localhost/callback',
         'response_type' => 'code',
         'scope' => ''
@@ -21,26 +21,17 @@ Route::get('/callback', function () {
 
 Route::get('/', function (Request $request) {
 
-    $oauth = new OAuth('b5738c6f8dfb59239cd7345cc4fbf5130e4e2632', '4de0f811d7c7d9db45cfb2513519921130fa2c85',OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_FORM);
+    $oauth = new OAuth($_ENV["AVANS_KEY"], $_ENV["AVANS_SECRET"],OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_FORM);
     $oauth->disableSSLChecks();
-    $requestTokenInfo = $oauth->getRequestToken("https://publicapi.avans.nl/oauth/request_token", "https://google.nl");
-    Die(json_encode($requestTokenInfo));
+    $requestTokenInfo = $oauth->getRequestToken("https://publicapi.avans.nl/oauth/request_token", "http://localhost:63342/Project-Agile/server.php");
+
+    $_SESSION["tokenInfo"] = $requestTokenInfo;
+    return redirect("https://publicapi.avans.nl/oauth/saml.php?oauth_token=".$requestTokenInfo["oauth_token"]);
 
 
-    $response = (new GuzzleHttp\Client)->get('https://publicapi.avans.nl/oauth/request_token?oauth_callback=http://%s/callback', [
-        'form_params' => [
-            'grant_type' => 'authorization_code',
-            'client_id' => 393, // Replace with Client ID
-            'secret' => '4de0f811d7c7d9db45cfb2513519921130fa2c85', // Replace with client secret
-            'oauth_consumer_key' => 'b5738c6f8dfb59239cd7345cc4fbf5130e4e2632',
-            'callback_uri' => 'http://localhost/callback',
-            'code' => $request->code,
-        ]
-    ]);
+   // session()->put('token', json_decode((string) $response->getBody(), true));
 
-    session()->put('token', json_decode((string) $response->getBody(), true));
 
-    return redirect('/lol');
 });
 
 Route::get('/todos', function () {
