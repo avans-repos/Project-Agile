@@ -37,5 +37,5 @@ Route::get('/datafetch', function () {
 
     $oauth->fetch("https://publicapi.avans.nl/oauth/people/@me?format=json");
     $data = $oauth->getLastResponse();
-    die(json_encode($data));
+    die($data);
 });
