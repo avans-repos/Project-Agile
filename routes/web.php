@@ -10,6 +10,7 @@ Route::get('/test', function ()
 
 
 Route::get('/callback', function () {
+    if(!isset($_SESSION["accessToken"])) return redirect("/");
     $oauth = new OAuth($_ENV["AVANS_KEY"], $_ENV["AVANS_SECRET"],OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_FORM);
     $oauth->disableSSLChecks();
     $oauth->setToken($_REQUEST['oauth_token'], $_SESSION["tokenInfo"]["oauth_token_secret"]);
@@ -30,11 +31,12 @@ Route::get('/', function (Request $request) {
 });
 
 Route::get('/datafetch', function () {
+    if(!isset($_SESSION["accessToken"])) return redirect("/");
     $oauth = new OAuth($_ENV["AVANS_KEY"], $_ENV["AVANS_SECRET"],OAUTH_SIG_METHOD_HMACSHA1);
     $oauth->setToken($_SESSION["accessToken"]["oauth_token"],$_SESSION["accessToken"]["oauth_token_secret"]);
     $oauth->disableSSLChecks();
 
-    $oauth->fetch("https://publicapi.avans.nl/oauth/api/user?format=json");
+    $oauth->fetch("https://publicapi.avans.nl/oauth/people/@me?format=json");
     $data = $oauth->getLastResponse();
     die(json_encode($data));
 });
