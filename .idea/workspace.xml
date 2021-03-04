@@ -149,6 +149,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1o1FG4U11inQDAvhvk5gZZ6kBuz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
