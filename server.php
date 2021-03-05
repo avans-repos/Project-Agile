@@ -1,4 +1,6 @@
 <?php
+// Not sure if this is bad practise
+session_start();
 
 /**
  * Laravel - A PHP Framework For Web Artisans
