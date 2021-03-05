@@ -3,6 +3,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/authentication/callback', function () {
+    if(!isset($_REQUEST['oauth_token'])) return redirect("/authentication");
+
     $oauth = new OAuth($_ENV["AVANS_KEY"], $_ENV["AVANS_SECRET"],OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_FORM);
     $oauth->disableSSLChecks();
     $oauth->setToken($_REQUEST['oauth_token'], $_SESSION["tokenInfo"]["oauth_token_secret"]);
@@ -24,6 +26,7 @@ Route::get('/authentication', function (Request $request) {
 
 Route::get('/authentication/datafetch', function () {
     if(!isset($_SESSION["accessToken"])) return redirect("/authentication");
+
     $oauth = new OAuth($_ENV["AVANS_KEY"], $_ENV["AVANS_SECRET"],OAUTH_SIG_METHOD_HMACSHA1);
     $oauth->setToken($_SESSION["accessToken"]["oauth_token"],$_SESSION["accessToken"]["oauth_token_secret"]);
     $oauth->disableSSLChecks();
