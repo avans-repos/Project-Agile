@@ -1,5 +1,6 @@
 <?php
-
+// Not sure if this is bad practise
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Create The Application
