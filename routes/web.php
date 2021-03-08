@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
-
 // Import authentication handler
-require __DIR__.'/authentication.php';
+require __DIR__ . '/authentication.php';

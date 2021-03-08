@@ -1,0 +1,7 @@
+node_modules/
+dist/
+vendor/
+.github/
+.idea/
+database/migrations/
+storage/
