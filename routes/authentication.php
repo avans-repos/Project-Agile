@@ -15,7 +15,7 @@ Route::get('/authentication/callback', function (Request $request) {
   $request->session()->put('accessToken', $accessTokenInfo);
   $request->session()->forget('tokenInfo'); //Its work is done
 
-  return redirect('/authentication/datafetch');
+  return redirect('/');
 });
 
 Route::get('/authentication', function (Request $request) {
@@ -30,16 +30,7 @@ Route::get('/authentication', function (Request $request) {
   return redirect($_ENV['AVANS_ENDPOINT'] . '/saml.php?oauth_token=' . $requestTokenInfo['oauth_token']);
 });
 
-Route::get('/authentication/datafetch', function (Request $request) {
-  if (!$request->session()->has('accessToken')) {
-    return redirect('/authentication');
-  }
-
-  $oauth = new OAuth($_ENV['AVANS_KEY'], $_ENV['AVANS_SECRET'], OAUTH_SIG_METHOD_HMACSHA1);
-  $oauth->setToken($request->session()->get('accessToken')['oauth_token'], $request->session()->get('accessToken')['oauth_token_secret']);
-  $oauth->disableSSLChecks();
-
-  $oauth->fetch($_ENV['AVANS_ENDPOINT'] . '/people/gbjsaris?format=json');
-  $data = $oauth->getLastResponse();
-  die($data);
+Route::get('/authentication/logout', function (Request $request) {
+  $request->session()->flush();
+  return redirect('/');
 });

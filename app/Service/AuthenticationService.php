@@ -14,14 +14,19 @@ namespace App\Service {
      * @return string
      * @throws OAuthException
      */
-    public function fetch(Request $request, string $endpoint): string
+    public static function fetch(string $endpoint): object
     {
+      $session = request()->session();
       $oauth = new OAuth($_ENV['AVANS_KEY'], $_ENV['AVANS_SECRET'], OAUTH_SIG_METHOD_HMACSHA1);
-      $oauth->setToken($request->session()->get('accessToken')['oauth_token'], $request->session()->get('accessToken')['oauth_token_secret']);
+      $oauth->setToken($session->get('accessToken')['oauth_token'], $session->get('accessToken')['oauth_token_secret']);
       $oauth->disableSSLChecks();
 
-      $oauth->fetch($_ENV['AVANS_ENDPOINT'] . $endpoint);
-      return $oauth->getLastResponse();
+      $oauth->fetch($_ENV['AVANS_ENDPOINT'] . $endpoint . '?format=json');
+      return json_decode($oauth->getLastResponse());
+    }
+
+    public static function isLoggedIn(): bool {
+      return request()->session()->has('accessToken');
     }
   }
 }
