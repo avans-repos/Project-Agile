@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Service {
-
   use Illuminate\Http\Request;
   use OAuth;
   use OAuthException;

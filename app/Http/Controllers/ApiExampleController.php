@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use App\Service\AuthenticationService;
@@ -10,7 +9,8 @@ class ApiExampleController extends Controller
 {
   private $AuthenticationService;
 
-  public function __construct(AuthenticationService $authenticationService){
+  public function __construct(AuthenticationService $authenticationService)
+  {
     $this->AuthenticationService = $authenticationService;
   }
 
