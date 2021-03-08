@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/authentication/callback', function (Request $request) {
   if (!isset($_REQUEST['oauth_token'])) {
     return redirect('/authentication');
