@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\ApiExampleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,7 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('/test', [TestController::class, 'index']);
+Route::get('/api-example', [ApiExampleController::class, 'index']);
 
 // Import authentication handler
 require __DIR__ . '/authentication.php';
