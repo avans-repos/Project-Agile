@@ -25,3 +25,4 @@ Route::resource('contact', ContactController::class);
 
 // Import authentication handler
 require __DIR__ . '/authentication.php';
+Route::resource('company',\App\Http\Controllers\CompanyController::class);
