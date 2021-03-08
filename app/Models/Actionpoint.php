@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Actionpoint extends Model
 {
+    use HasFactory;
+
+    public $timestamps = false;     // removes the 'created_at' & 'updated_at' properties
+
     protected  $fillable = [
         'Deadline',
-        'Titel',
+        'Title',
         'Description',
         'Finished',
-        'ReminderDate'
+        'ReminderDate',
+        'Creator'
     ];
 }

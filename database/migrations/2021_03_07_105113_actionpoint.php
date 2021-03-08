@@ -15,11 +15,12 @@ class Actionpoint extends Migration
     {
         Schema::create('Actionpoints', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('Deadline');
-            $table->string('Titel');
+            $table->DateTime('Deadline');
+            $table->string('Title');
             $table->text('Description');
-            $table->timestamp('Finished');
-            $table->timestamp('ReminderDate');
+            $table->DateTime('Finished')->nullable();
+            $table->DateTime('ReminderDate')->nullable();
+            $table->string('Creator');
         });
     }
 

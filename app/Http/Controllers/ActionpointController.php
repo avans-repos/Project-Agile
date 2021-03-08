@@ -14,10 +14,14 @@ class ActionpointController extends Controller
      */
     public function index()
     {
-        $actionpoints = Actionpoint::latest()->paginate(5);
+        /**
+         * This page shows the action points you have created
+         *
+         */
 
-        return view('actionpoints.index', compact('actionpoints'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $actionPoints = Actionpoint::all();
+
+        return view('actionPoints.index', compact('actionPoints'));
     }
 
     /**
@@ -27,7 +31,7 @@ class ActionpointController extends Controller
      */
     public function create()
     {
-        //
+        return view('actionPoints.create');
     }
 
     /**
@@ -38,7 +42,17 @@ class ActionpointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $creator = 'Marijn';
+
+        $validated = $request->validate([
+            'Deadline' => 'required',
+            'Title' => 'required',
+            'Description' => 'required'
+        ]);
+
+        Actionpoint::create(array_merge($validated, ['Creator' => $creator]));
+
+        return redirect()->route('actionpoints.index');
     }
 
     /**
@@ -49,7 +63,7 @@ class ActionpointController extends Controller
      */
     public function show(Actionpoint $actionpoint)
     {
-        //
+        return view('actionPoints.show', compact('actionpoint'));
     }
 
     /**
@@ -60,7 +74,7 @@ class ActionpointController extends Controller
      */
     public function edit(Actionpoint $actionpoint)
     {
-        //
+        return view('actionPoints.edit', compact('actionpoint'));
     }
 
     /**
@@ -72,7 +86,17 @@ class ActionpointController extends Controller
      */
     public function update(Request $request, Actionpoint $actionpoint)
     {
-        //
+        $creator = 'Marijn';
+
+        $validated = $request->validate([
+            'Deadline' => 'required',
+            'Title' => 'required',
+            'Description' => 'required'
+        ]);
+
+        $actionpoint->update(array_merge($validated, ['Creator' => $creator]));
+
+        return redirect()->route('actionpoints.index');
     }
 
     /**
@@ -83,6 +107,8 @@ class ActionpointController extends Controller
      */
     public function destroy(Actionpoint $actionpoint)
     {
-        //
+        $actionpoint->delete();
+
+        return redirect()->route('actionpoints.index');
     }
 }
