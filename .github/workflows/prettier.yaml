@@ -1,0 +1,35 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Prettier
+
+on:
+  push:
+    branches: [ master, development ]
+  pull_request:
+    branches: [ development ]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    name: "Check formatting"
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Install yarn
+      - name: Install Prettier
+        run: npm install --global prettier @prettier/plugin-php
+
+      - name: Check formatting
+        run: npm run format:check
