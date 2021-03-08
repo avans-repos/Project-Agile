@@ -3,7 +3,8 @@
 
 namespace App\Http\Controllers;
 
-use Service\AuthenticationService;
+use App\Service\AuthenticationService;
+use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
@@ -13,7 +14,7 @@ class TestController extends Controller
     $this->AuthenticationService = $authenticationService;
   }
 
-  public function index(){
-   die( $this->AuthenticationService->fetch());
+  public function index(Request $request){
+   die( $this->AuthenticationService->fetch($request, '/people/gbjsaris?format=json'));
   }
 }
