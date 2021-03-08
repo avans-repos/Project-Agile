@@ -32,7 +32,6 @@ Route::get('/authentication', function (Request $request) {
 
 Route::get('/authentication/datafetch', function (Request $request) {
   if (!$request->session()->has('accessToken')) {
-    die(json_encode($request->session()->has('accessToken')));
     return redirect('/authentication');
   }
 
