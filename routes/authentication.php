@@ -2,7 +2,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/authentication/callback', function (Request $request) {
   if (!isset($_REQUEST['oauth_token'])) {
     return redirect('/authentication');
@@ -39,7 +38,7 @@ Route::get('/authentication/datafetch', function (Request $request) {
   $oauth->setToken($request->session()->get('accessToken')['oauth_token'], $request->session()->get('accessToken')['oauth_token_secret']);
   $oauth->disableSSLChecks();
 
-  $oauth->fetch($_ENV['AVANS_ENDPOINT'] . '/people/gbjsaris?format=json');
+  $oauth->fetch($_ENV['AVANS_ENDPOINT'] . '/people/gbjsaris');
   $data = $oauth->getLastResponse();
   die($data);
 });

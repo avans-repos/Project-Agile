@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Service {
-
   use Illuminate\Http\Request;
   use OAuth;
   use OAuthException;
@@ -20,8 +19,8 @@ namespace App\Service {
       $oauth->setToken($request->session()->get('accessToken')['oauth_token'], $request->session()->get('accessToken')['oauth_token_secret']);
       $oauth->disableSSLChecks();
 
-      $oauth->fetch($_ENV['AVANS_ENDPOINT'] . $endpoint);
-      return $oauth->getLastResponse();
+      $oauth->fetch($_ENV['AVANS_ENDPOINT'] . $endpoint . '?format=json');
+      return json_decode($oauth->getLastResponse());
     }
   }
 }
