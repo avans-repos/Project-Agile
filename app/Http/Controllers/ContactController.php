@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Models\ContactType;
+use App\Models\Gender;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -12,9 +15,12 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $contacts = Contact::all();
+        return view('contact.index')
+            ->with('contacts',$contacts);
     }
 
     /**
@@ -24,7 +30,14 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        $genders = Gender::all();
+        $contactTypes = ContactType::all();
+        $contact = new Contact();
+        return view('contact.manage')
+            ->with('genders',$genders)
+            ->with('contactTypes',$contactTypes)
+            ->with('contact',$contact)
+            ->with('action','store');
     }
 
     /**
@@ -33,9 +46,11 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        //
+        $request->validated();
+        Contact::create($request->all());
+        return redirect()->route('contact.index');
     }
 
     /**
@@ -46,7 +61,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('contact.show',)
+            ->with('contact',$contact);
     }
 
     /**
@@ -57,7 +73,13 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        $genders = Gender::all();
+        $contactTypes = ContactType::all();
+        return view('contact.manage')
+            ->with('genders',$genders)
+            ->with('contactTypes',$contactTypes)
+            ->with('contact',$contact)
+            ->with('action','update');
     }
 
     /**
@@ -67,9 +89,11 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(ContactRequest $request, Contact $contact)
     {
-        //
+        $request->validated();
+        $contact->update($request->all());
+        return redirect()->route('contact.index');
     }
 
     /**
@@ -80,6 +104,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('contact.index');
     }
 }
