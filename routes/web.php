@@ -18,6 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('contact', ContactController::class)->parameters([
-    'contact' => 'lastname',
-]);
+Route::resource('contact', ContactController::class);
