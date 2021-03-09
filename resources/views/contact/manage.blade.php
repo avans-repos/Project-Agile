@@ -10,7 +10,10 @@
         }
 
     ?>
-    <div class="container my-5">
+    <div class="container mb-5">
+        <div class="w-auto mt-3">
+            <a class="btn btn-primary" href="{{route('contact.index')}}">Terug naar overzicht</a>
+        </div>
         <div class="d-flex justify-content-between">
             <h1>Contactpersoon {{$actionViewName}}</h1>
         </div>

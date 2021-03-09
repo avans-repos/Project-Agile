@@ -8,18 +8,18 @@
         <div class="mb-1">
             <div class="mb-1 row d-sm-flex">
                 <div class="col-sm-3">
-                    <label for="initials" class="form-label">Initialen</label>
+                    <label for="initials" class="form-label">Initialen *</label>
                     <input name="initials" value="{{old('initials',$contact->initials)}}" type="text"
                            class="form-control"
                            id="initials"
-                           placeholder="JDV">
+                           placeholder="JDV" maxlength="10" required>
 
                 </div>
                 <div class="col-sm-9">
-                    <label for="firstname" class="form-label">Voornaam</label>
+                    <label for="firstname" class="form-label">Voornaam *</label>
                     <input name="firstname" value="{{old('firstname',$contact->firstname)}}" type="text"
                            class="form-control"
-                           id="firstname" placeholder="John">
+                           id="firstname" placeholder="John" maxlength="50" required>
 
                 </div>
             </div>
@@ -38,14 +38,14 @@
                     <label for="insertion" class="form-label">Tussenvoegsel</label>
                     <input name="insertion" value="{{old('insertion',$contact->insertion)}}" type="text"
                            class="form-control"
-                           id="insertion" placeholder="van der">
+                           id="insertion" placeholder="van der" maxlength="10">
 
                 </div>
                 <div class="col-sm-8">
-                    <label for="lastname" class="form-label">achernaam</label>
+                    <label for="lastname" class="form-label">Achternaam *</label>
                     <input name="lastname" value="{{old('lastname',$contact->lastname)}}" type="text"
                            class="form-control" id="lastname"
-                           placeholder="Doe">
+                           placeholder="Doe" maxlength="50" required>
                 </div>
             </div>
             <div class="col">
@@ -59,7 +59,7 @@
         </div>
         <div class="mb-1">
             <label for="gender" class="form-label">Geslacht</label>
-            <select class="form-control" name="gender" id="gender">
+            <select class="form-control" name="gender" id="gender" required>
                 <option disabled selected>Selecter geslacht</option>
                 @foreach ($genders as $gender)
                     <option
@@ -82,7 +82,7 @@
                 <label for="email" class="form-label">E-mail</label>
                 <input name="email" value="{{old('email',$contact->email)}}" type="email" class="form-control"
                        id="email"
-                       placeholder="JohnDoe@domain.com">
+                       placeholder="JohnDoe@domain.com" maxlength="320" required>
 
             </div>
             <div class="col">
@@ -96,7 +96,7 @@
                 <label for="phonenumber" class="form-label">Telefoonnummer</label>
                 <input name="phonenumber" value="{{old('phonenumber',$contact->phonenumber)}}" type="tel"
                        class="form-control"
-                       id="phonenumber" placeholder="06-12345678">
+                       id="phonenumber" placeholder="06-12345678" maxlength="15" required>
 
             </div>
             <div class="col">
@@ -108,7 +108,7 @@
         <div>
             <div class="mb-1">
                 <label for="contactType" class="form-label">Contactsoort</label>
-                <select class="form-control" name="type" id="contactType">
+                <select class="form-control" name="type" id="contactType" required>
                     <option disabled selected>Selecteer contactsoort</option>
                     @foreach ($contactTypes as $contactType)
                         <option
