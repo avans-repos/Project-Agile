@@ -4,7 +4,6 @@
 
 @section('content')
     <?php
-        $action =;
         $actionViewName = "";
         if($action == 'store') {
             $actionViewName = "toevoegen";
