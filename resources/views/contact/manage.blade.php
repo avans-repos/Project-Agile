@@ -1,7 +1,10 @@
 @extends('layouts.layout')
 
+
+
 @section('content')
     <?php
+        $action =;
         $actionViewName = "";
         if($action == 'store') {
             $actionViewName = "toevoegen";
@@ -10,6 +13,7 @@
         }
 
     ?>
+@section('title','Contactpersoon '.$actionViewName)
     <div class="container mb-5">
         <div class="w-auto mt-3">
             <a class="btn btn-primary" href="{{route('contact.index')}}">Terug naar overzicht</a>

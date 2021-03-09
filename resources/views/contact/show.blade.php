@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title','Contactpersoon bekijken')
+
 @section('content')
     <div class="container">
         <div class="w-auto mt-3">
@@ -85,3 +87,4 @@
             </div>
         </div>
     </div>
+@endsection
