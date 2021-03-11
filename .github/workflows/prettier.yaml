@@ -21,15 +21,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-
-      # Install yarn
+          
       - name: Install Prettier
-        run: npm install --global prettier @prettier/plugin-php
+        run: npm install
 
       - name: Check formatting
         run: npm run format:check
