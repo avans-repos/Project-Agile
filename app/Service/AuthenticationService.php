@@ -24,8 +24,11 @@ namespace App\Service {
       return json_decode($oauth->getLastResponse());
     }
 
-    public static function isLoggedIn(): bool {
-      return request()->session()->has('accessToken');
+    public static function isLoggedIn(): bool
+    {
+      return request()
+        ->session()
+        ->has('accessToken');
     }
   }
 }

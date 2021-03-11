@@ -7,21 +7,21 @@ use Illuminate\Support\Facades\DB;
 
 class GenderSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        DB::table('genders')->insert([
-            'type' => 'man'
-        ]);
-        DB::table('genders')->insert([
-            'type' => 'vrouw'
-        ]);
-        DB::table('genders')->insert([
-            'type' => 'anders'
-        ]);
-    }
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    DB::table('genders')->insert([
+      'type' => 'man',
+    ]);
+    DB::table('genders')->insert([
+      'type' => 'vrouw',
+    ]);
+    DB::table('genders')->insert([
+      'type' => 'anders',
+    ]);
+  }
 }

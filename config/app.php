@@ -80,7 +80,7 @@ return [
     */
 
   'locale' => 'NL',
-  
+
   /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -173,10 +173,9 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
 
-
     /*
-    * Collective Providers
-    */
+     * Collective Providers
+     */
     Collective\Html\HtmlServiceProvider::class,
 
     /*

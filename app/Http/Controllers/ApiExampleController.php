@@ -14,7 +14,8 @@ class ApiExampleController extends Controller
     $this->AuthenticationService = $authenticationService;
   }
 
-  public function index(Request $request){
-   die(json_encode($this->AuthenticationService->fetch('/people/gbjsaris')));
+  public function index(Request $request)
+  {
+    die(json_encode($this->AuthenticationService->fetch('/people/gbjsaris')));
   }
 }
