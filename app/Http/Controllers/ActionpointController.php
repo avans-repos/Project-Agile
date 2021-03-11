@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ActionpointRequest;
 use App\Models\Actionpoint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,8 +34,11 @@ class ActionpointController extends Controller
     {
 
         $teachers = array('Ger','Eric','Jurgen');
-
-        return view('actionPoints.create')->with('teachers',$teachers);
+        $actionpoint = new Actionpoint();
+        return view('actionPoints.manage')
+            ->with('teachers',$teachers)
+            ->with('actionpoint',$actionpoint)
+            ->with('action','store');
     }
 
     /**
@@ -43,17 +47,13 @@ class ActionpointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ActionpointRequest $request)
     {
         $creator = 'Marijn';
 
-        $validated = $request->validate([
-            'deadline' => 'required',
-            'title' => 'required',
-            'description' => 'required'
-        ]);
+        $request->validated();
 
-        $actionpoint = Actionpoint::create(array_merge($validated, ['creator' => $creator]));
+        $actionpoint = Actionpoint::create(array_merge($request->all(), ['creator' => $creator]));
         $id = $actionpoint->id;
         foreach($request->assigned as $assigned) {
             DB::insert('INSERT INTO teacher_has_actionpoints (user,actionpointid) VALUES (?,?)',[$assigned,$id]);
@@ -81,7 +81,10 @@ class ActionpointController extends Controller
      */
     public function edit(Actionpoint $actionpoint)
     {
-        return view('actionPoints.edit', compact('actionpoint'));
+        $teachers = array('Ger','Eric','Jurgen');
+        return view('actionPoints.manage', compact('actionpoint'))
+            ->with('teachers',$teachers)
+            ->with('action','update');
     }
 
     /**
@@ -91,17 +94,13 @@ class ActionpointController extends Controller
      * @param  \App\Models\Actionpoint  $actionpoint
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Actionpoint $actionpoint)
+    public function update(ActionpointRequest $request, Actionpoint $actionpoint)
     {
         $creator = 'Marijn';
 
-        $validated = $request->validate([
-            'Deadline' => 'required',
-            'Title' => 'required',
-            'Description' => 'required'
-        ]);
+        $request->validated();
 
-        $actionpoint->update(array_merge($validated, ['Creator' => $creator]));
+        $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
 
         return redirect()->route('actionpoints.index');
     }
