@@ -4,13 +4,12 @@
 
 @section('content')
     <?php
-        $actionViewName = "";
-        if($action == 'store') {
-            $actionViewName = "toevoegen";
-        } else {
-            $actionViewName = "aanpassen";
-        }
-
+    $actionViewName = '';
+    if ($action == 'store') {
+      $actionViewName = 'toevoegen';
+    } else {
+      $actionViewName = 'aanpassen';
+    }
     ?>
 @section('title','Contactpersoon '.$actionViewName)
     <div class="container mb-5">

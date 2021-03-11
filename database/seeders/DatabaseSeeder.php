@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $this->call(GenderSeeder::class);
-        $this->call(ContactTypeSeeder::class);
-        $this->call(ContactSeeder::class);
-    }
+  /**
+   * Seed the application's database.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    $this->call(GenderSeeder::class);
+    $this->call(ContactTypeSeeder::class);
+    $this->call(ContactSeeder::class);
+  }
 }
