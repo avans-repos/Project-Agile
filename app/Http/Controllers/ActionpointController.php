@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actionpoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ActionpointController extends Controller
 {
@@ -20,7 +21,6 @@ class ActionpointController extends Controller
          */
 
         $actionPoints = Actionpoint::all();
-
         return view('actionPoints.index', compact('actionPoints'));
     }
 
@@ -31,7 +31,10 @@ class ActionpointController extends Controller
      */
     public function create()
     {
-        return view('actionPoints.create');
+
+        $teachers = array('Ger','Eric','Jurgen');
+
+        return view('actionPoints.create')->with('teachers',$teachers);
     }
 
     /**
@@ -45,12 +48,16 @@ class ActionpointController extends Controller
         $creator = 'Marijn';
 
         $validated = $request->validate([
-            'Deadline' => 'required',
-            'Title' => 'required',
-            'Description' => 'required'
+            'deadline' => 'required',
+            'title' => 'required',
+            'description' => 'required'
         ]);
 
-        Actionpoint::create(array_merge($validated, ['Creator' => $creator]));
+        $actionpoint = Actionpoint::create(array_merge($validated, ['creator' => $creator]));
+        $id = $actionpoint->id;
+        foreach($request->assigned as $assigned) {
+            DB::insert('INSERT INTO teacher_has_actionpoints (user,actionpointid) VALUES (?,?)',[$assigned,$id]);
+        }
 
         return redirect()->route('actionpoints.index');
     }

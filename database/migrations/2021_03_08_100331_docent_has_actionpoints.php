@@ -13,11 +13,11 @@ class DocentHasActionpoints extends Migration
      */
     public function up()
     {
-        Schema::create('DocentHasActionpoints', function (Blueprint $table) {
-            $table->string('User');
-            $table->unsignedBigInteger('ActionpointId');
-            $table->primary(['User', 'ActionpointId']);
-            $table->foreign('ActionpointId')->references('id')->on('actionpoints');
+        Schema::create('teacher_has_actionpoints', function (Blueprint $table) {
+            $table->string('user');
+            $table->unsignedBigInteger('actionpointid');
+            $table->primary(['user', 'actionpointid']);
+            $table->foreign('actionpointid')->references('id')->on('actionpoints');
         });
     }
 

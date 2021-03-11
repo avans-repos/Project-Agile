@@ -12,11 +12,11 @@ class Actionpoint extends Model
     public $timestamps = false;     // removes the 'created_at' & 'updated_at' properties
 
     protected  $fillable = [
-        'Deadline',
-        'Title',
-        'Description',
-        'Finished',
-        'ReminderDate',
-        'Creator'
+        'deadline',
+        'title',
+        'description',
+        'finished',
+        'reminderdate',
+        'creator'
     ];
 }
