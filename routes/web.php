@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiExampleController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/api-example', [ApiExampleController::class, 'index']);
+
+Route::resource('contact', ContactController::class);
 
 // Import authentication handler
 require __DIR__ . '/authentication.php';
