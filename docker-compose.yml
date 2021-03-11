@@ -5,7 +5,7 @@ services:
             context: .
             dockerfile: Laravel.Dockerfile
         ports:
-            - '${APP_PORT:-80}:80'
+            - '${APP_PORT:-8080}:8080'
         volumes:
             - '.:/var/www/html'
         networks:
