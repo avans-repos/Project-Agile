@@ -51,7 +51,7 @@
             <div class="form-group">
               <strong>Toegekend aan:</strong>
               @foreach($assigned as $teacher)
-                {{$teacher->user}}
+                {{$teacher->name}}
               @endforeach
             </div>
           </div>

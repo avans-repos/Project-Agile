@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\ApiExampleController;
-use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+    return view('welcome');
 });
 
-Route::get('/api-example', [ApiExampleController::class, 'index']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::resource('contact', ContactController::class);
+Route::resource('actionpoints', \App\Http\Controllers\ActionpointController::class);
 
-// Import authentication handler
-require __DIR__ . '/authentication.php';
+require __DIR__.'/auth.php';

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ActionpointRequest;
 use App\Models\Actionpoint;
+use App\Models\User;
 use App\Service\AuthenticationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ActionpointController extends Controller
@@ -29,7 +31,7 @@ class ActionpointController extends Controller
          *
          */
 
-        $name = $this->AuthenticationService->fetch('/people/@me')->nickname;
+        $name = Auth::user()->name;
 
         $actionPoints = Actionpoint::where('creator', $name)->get();
         return view('actionPoints.index', compact('actionPoints'));
@@ -42,7 +44,7 @@ class ActionpointController extends Controller
      */
     public function create()
     {
-        $teachers = array('Ger','Eric','Jurgen');
+        $teachers = json_decode(User::all('id', 'name'));
 
         $actionpoint = new Actionpoint();
 
@@ -61,14 +63,14 @@ class ActionpointController extends Controller
     public function store(ActionpointRequest $request)
     {
         // sets creator to the value of the nickname property of the current user
-        $creator = $this->AuthenticationService->fetch('/people/@me')->nickname;
+        $creator = Auth::user()->name;
 
         $request->validated();
 
         $id = Actionpoint::create(array_merge($request->all(), ['creator' => $creator]))->id;
 
         foreach($request->assigned as $assigned) {
-            DB::insert('INSERT INTO teacher_has_actionpoints (user,actionpointid) VALUES (?,?)',[$assigned,$id]);
+            DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)',[$assigned,$id]);
         }
 
         return redirect()->route('actionpoints.index');
@@ -84,7 +86,8 @@ class ActionpointController extends Controller
     {
         $assigned = DB::table('teacher_has_actionpoints')
                   ->where('actionpointid', '=', $actionpoint->id)
-                  ->get('user');
+                  ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
+                  ->get('users.name');
         //die(json_encode($assigned));
 
         return view('actionPoints.show')
@@ -100,10 +103,19 @@ class ActionpointController extends Controller
      */
     public function edit(Actionpoint $actionpoint)
     {
-        $teachers = array('Ger','Eric','Jurgen');
+      $assigned = DB::table('teacher_has_actionpoints')
+        ->where('actionpointid', '=', $actionpoint->id)
+        ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
+        ->get('users.id');
 
+      $assigned = array_map(function($teacher) {
+        return $teacher->id;
+      }, json_decode($assigned));
+
+      $teachers = json_decode(User::all('id', 'name'));
         return view('actionPoints.manage', compact('actionpoint'))
             ->with('teachers',$teachers)
+            ->with('assigned', $assigned)
             ->with('action','update');
     }
 
@@ -116,9 +128,25 @@ class ActionpointController extends Controller
      */
     public function update(ActionpointRequest $request, Actionpoint $actionpoint)
     {
-        $creator = $this->AuthenticationService->fetch('/people/@me')->nickname;
+        $creator = Auth::user()->name;
 
         $request->validated();
+
+      foreach($request->assigned as $assigned) {
+        if (!DB::table('teacher_has_actionpoints')
+          ->where('userid', $assigned)
+          ->where('actionpointid', $actionpoint->id)->exists()){
+          DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)',[$assigned,$actionpoint->id]);
+        }
+        foreach(DB::table('teacher_has_actionpoints')
+          ->where('actionpointid', $actionpoint->id)->get() as $dbvalue)
+        {
+          if(!in_array($dbvalue->userid, $request->assigned)){
+            DB::delete('DELETE FROM teacher_has_actionpoints WHERE userid = ? AND actionpointid = ?',[$dbvalue->userid,$dbvalue->actionpointid]);
+          }
+        }
+
+      }
 
         $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
 
