@@ -23,4 +23,6 @@ Route::get('/dashboard', function () {
 
 Route::resource('actionpoints', \App\Http\Controllers\ActionpointController::class);
 
+Route::resource('myOwnActions', \App\Http\Controllers\MyOwnActionController::class);
+
 require __DIR__.'/auth.php';
