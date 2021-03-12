@@ -43,7 +43,10 @@
 
                 <div class="d-flex flex-column">
                     @foreach($teachers as $teacher)
-                        <label class="radio-inline"><input {{ is_array(old("assigned")) ? (in_array(strval($teacher), old("assigned")) ? 'checked' : null ) : null }} type="checkbox" name="assigned[]" value="{{$teacher}}">{{$teacher}}</label>
+                        <label class="radio-inline">
+
+                          <input {{ is_array(old("assigned")) ? (in_array(strval($teacher), old("assigned")) ? 'checked' : null ) : null }} type="checkbox" name="assigned[]" value="{{$teacher}}">{{$teacher}}
+                        </label>
                     @endforeach
                 </div>
             </div>

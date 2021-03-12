@@ -6,12 +6,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 margin-tb">
+            <div class="col-sm-12">
                 <div class="pull-left">
                     <h2>Actiepunten:</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('actionpoints.index') }}"> Terug</a>
+                    <a class="btn btn-primary" href="{{ route('actionpoints.index') }}">Terug</a>
                 </div>
             </div>
         </div>
@@ -20,33 +20,40 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Deadline:</strong>
-                    {{ $actionpoint->Deadline }}
+                    {{ $actionpoint->deadline }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Titel:</strong>
-                    {{ $actionpoint->Title }}
+                    {{ $actionpoint->title }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Omschrijving:</strong>
-                    {{ $actionpoint->Description }}
+                    {{ $actionpoint->description }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Reminder datum:</strong>
-                    {{ $actionpoint->ReminderDate }}
+                    {{ $actionpoint->reminderDate }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Toegekend door:</strong>
-                    {{ $actionpoint->Creator }}
+                    {{ $actionpoint->creator }}
                 </div>
             </div>
-
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+              <strong>Toegekend aan:</strong>
+              @foreach($assigned as $teacher)
+                {{$teacher->user}}
+              @endforeach
+            </div>
+          </div>
         </div>
     </div>

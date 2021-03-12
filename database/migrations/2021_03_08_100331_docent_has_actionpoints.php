@@ -17,7 +17,10 @@ class DocentHasActionpoints extends Migration
             $table->string('user');
             $table->unsignedBigInteger('actionpointid');
             $table->primary(['user', 'actionpointid']);
-            $table->foreign('actionpointid')->references('id')->on('actionpoints');
+            $table->foreign('actionpointid')
+              ->references('id')
+              ->on('actionpoints')
+              ->onDelete('cascade');
         });
     }
 
