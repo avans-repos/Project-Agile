@@ -16,11 +16,9 @@
 
             <thead>
             <tr>
-                <td>Id</td>
                 <td>Naam</td>
                 <td>Telefoonnummer</td>
                 <td>E-mail</td>
-                <td>Aantal medewerkers</td>
                 <td>Website</td>
                 <td>Acties</td>
             </tr>
@@ -28,16 +26,33 @@
             <tbody>
             @foreach($companies as $company)
                 <tr>
-                    <td>{{$company->id}}</td>
                     <td>{{$company->name}}</td>
                     <td>{{$company->phonenumber}}</td>
                     <td>{{$company->email}}</td>
-                    <td>{{$company->size}}</td>
                     <td>{{$company->website}}</td>
                     <td>
-                        <a class="btn btn-info" href="{{route('company.show',$company->id)}}">Show</a>
-                        <a class="btn btn-primary" href="{{route('company.edit',$company->id)}}">Edit</a>
-                        <a class="btn btn-danger" href="{{route('company.destroy',$company->id)}}">Delete</a>
+                      <div class="d-md-flex align-items-center">
+                        <div class="m-1 d-flex justify-content-center align-items-center">
+                          <div>
+                            <a class="btn btn-primary" href="{{route('company.show',$company)}}">Details</a>
+                          </div>
+                        </div>
+                        <div class="m-1 d-flex justify-content-center align-items-center">
+                          <div>
+                            <a class="btn btn-secondary"
+                               href="{{route('company.edit',$company)}}">Aanpassen</a>
+                          </div>
+                        </div>
+                        <div class="m-1">
+                          <form method="POST" action="{{ route('company.destroy', $company) }}">
+                            {{ method_field('DELETE') }}
+                            {{ csrf_field() }}
+                            <div class="d-flex justify-content-center align-items-center">
+                              <input type="submit" value="Verwijderen" class="btn btn-danger">
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                     </td>
                 </tr>
             @endforeach
