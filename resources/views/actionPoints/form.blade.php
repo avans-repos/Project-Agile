@@ -46,7 +46,11 @@
                         <label class="radio-inline">
 
 {{--                          <input {{ (is_array(old("assigned")) ? (in_array(strval($teacher), "assigned") ? 'checked' : null )  : null }} type="checkbox" name="assigned[]" value="{{$teacher->id}}">{{$teacher->name}}--}}
-                          <input {{ in_array($teacher->id, $assigned) ? 'checked' : null }} type="checkbox" name="assigned[]" value="{{$teacher->id}}">{{$teacher->name}}
+                          <input
+                            {{ (is_array(old("assigned",$assigned))) ?
+                                    (in_array($teacher->id, old("assigned", $assigned))) ? 'checked' : null
+                                 : null
+                            }} type="checkbox" name="assigned[]" value="{{$teacher->id}}">{{$teacher->name}}
                         </label>
                     @endforeach
                 </div>

@@ -47,11 +47,12 @@ class ActionpointController extends Controller
         $teachers = json_decode(User::all('id', 'name'));
 
         $actionpoint = new Actionpoint();
-
+        $assigned = null;
         return view('actionPoints.manage')
             ->with('teachers',$teachers)
             ->with('actionpoint',$actionpoint)
-            ->with('action','store');
+            ->with('action','store')
+            ->with('assigned',$assigned);
     }
 
     /**
