@@ -18,7 +18,7 @@
         </div>
         <div class="d-flex justify-content-between align-items-center w-100">
         <span class="d-block">{{$actionpoint->description}}</span>
-          <a style="text-decoration: none;" href="#">Voltooien</a>
+          <a style="text-decoration: none;"  href="{{route('generated::ERCiC7TgGULZqwVb',$actionpoint->id)}}">Voltooien</a>
         </div>
         <a style="text-decoration: none;" href="{{route('actionpoints.show',$actionpoint->id)}}">Details ></a>
       </div>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ActionpointController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MyOwnActionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +24,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('actionpoints', \App\Http\Controllers\ActionpointController::class);
+Route::resource('actionpoints', ActionpointController::class);
+Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete']);
 
-Route::resource('myOwnActions', \App\Http\Controllers\MyOwnActionController::class);
+Route::resource('myOwnActions', MyOwnActionController::class);
 
-Route::resource('home', \App\Http\Controllers\HomeController::class);
+Route::resource('home', HomeController::class);
 
 require __DIR__.'/auth.php';
