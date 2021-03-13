@@ -21,6 +21,7 @@ class CompanySeeder extends Seeder
             'size' => 1,
             'website' => 'https://vizova.nl',
             'visiting_address' => 1,
+            'mailing_address' => 1
         ]);
     }
 }

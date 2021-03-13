@@ -22,6 +22,7 @@ class CreateAddressesTable extends Migration
             $table->string('city',100);
             $table->string('country',50);
             $table->timestamps();
+            $table->unique(array('zipcode', 'number','city'));
         });
     }
 
