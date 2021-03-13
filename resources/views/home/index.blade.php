@@ -20,7 +20,7 @@
         <span class="d-block">{{$actionpoint->description}}</span>
           <a style="text-decoration: none;" href="#">Voltooien</a>
         </div>
-        <a style="text-decoration: none;" href="#">Details ></a>
+        <a style="text-decoration: none;" href="{{route('actionpoints.show',$actionpoint->id)}}">Details ></a>
       </div>
     </div>
     @endforeach
