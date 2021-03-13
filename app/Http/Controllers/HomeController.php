@@ -14,7 +14,8 @@ class HomeController  extends Controller
     $userid = Auth::user()->id;
 
     $actionPoints = DB::table('teacher_has_actionpoints')
-      ->where('userid', $userid)
+      ->where('userid', $userid, 'and')
+      ->where('finished', null)
       ->join('actionpoints','teacher_has_actionpoints.actionpointid', '=', 'actionpoints.id')
       ->orderBy('actionpoints.deadline')
       ->get();
