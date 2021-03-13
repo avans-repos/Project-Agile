@@ -147,7 +147,8 @@
       </div>
     </div>
     <label for="address_same" class="form-label">
-      <input type="checkbox" name="address_same" id="address_same" checked> Postadres is hetzelfde als het bezoekadres
+      <input type='hidden' value='1' name='address_same'>
+      <input type="checkbox" name="address_same" value="0" id="address_same" {{($address2->id == $address1->id && old("address_same") == 0) ? 'checked' : null}}> Postadres is hetzelfde als het bezoekadres
     </label>
     <input name="country1" type="hidden" value="Nederland">
   </fieldset>
@@ -159,7 +160,7 @@
         <input name="streetname2" value="{{old('streetname2',$address2->streetname)}}" type="text"
                class="form-control"
                id="streetname2"
-               placeholder="Sintjanstraat" maxlength="100" required>
+               placeholder="Sintjanstraat" maxlength="100">
 
       </div>
 
@@ -175,7 +176,7 @@
           <label for="number2" class="form-label">Huisnummer *</label>
           <input name="number2" value="{{old('housenumber2',$address2->number)}}" type="number"
                  class="form-control"
-                 id="number2" placeholder="123" maxlength="11" min="0" required>
+                 id="number2" placeholder="123" maxlength="11" min="0">
 
         </div>
         <div class="col-sm-4">
@@ -201,7 +202,7 @@
           <label for="zipcode2" class="form-label">Postcode *</label>
           <input name="zipcode2" value="{{old('zipcode2',$address2->zipcode)}}" type="text"
                  class="form-control"
-                 id="zipcode2" placeholder="1234 AB" maxlength="10" required>
+                 id="zipcode2" placeholder="1234 AB" maxlength="10">
 
         </div>
         <div class="col-sm-6">
@@ -227,8 +228,12 @@
 </form>
 <script>
   var div = document.getElementById("mailing_address");
-  var checkbox = document.querySelector("input[name=address_same]");
-  div.style.display = "none";
+  var checkbox = document.getElementById("address_same");
+  if(checkbox.checked) {
+    div.style.display = "none";
+  } else {
+    div.style.display = "block";
+  }
   checkbox.addEventListener("change", function(){
     if(this.checked) {
       div.style.display = "none";
