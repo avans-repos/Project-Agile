@@ -25,4 +25,6 @@ Route::resource('actionpoints', \App\Http\Controllers\ActionpointController::cla
 
 Route::resource('myOwnActions', \App\Http\Controllers\MyOwnActionController::class);
 
+Route::resource('home', \App\Http\Controllers\HomeController::class);
+
 require __DIR__.'/auth.php';
