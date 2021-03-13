@@ -23,10 +23,18 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @if(App\Service\AuthenticationService::isLoggedIn())
-                        <a href="{{ url('/authentication/logout') }}" class="text-sm text-gray-700 underline">Logout</a>
+                    @if(Auth::check())
+                    <form method="POST" action="{{ route('logout') }}">
+                      @csrf
+
+                      <x-dropdown-link :href="route('logout')"
+                                       onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                        {{ __('Log out') }}
+                      </x-dropdown-link>
+                    </form>
                     @else
-                        <a href="{{ url('/authentication') }}" class="text-sm text-gray-700 underline">Login</a>
+                        <a href="{{ url('/login') }}" class="text-sm text-gray-700 underline">Login</a>
                     @endif
                 </div>
 
