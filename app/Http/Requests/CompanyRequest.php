@@ -47,12 +47,13 @@ class CompanyRequest extends FormRequest
   public function withValidator($validator)
   {
     $validator->after(function ($validator) {
+      if($this->address_same == 1) {
+        $zipcodeNumberCity1 = $this->zipcode1 . $this->number1 . $this->city1;
+        $zipcodeNumberCity2 = $this->zipcode2 . $this->number2 . $this->city2;
 
-      $zipcodeNumberCity1 = $this->zipcode1 . $this->number1 . $this->city1;
-      $zipcodeNumberCity2 = $this->zipcode2 . $this->number2 . $this->city2;
-
-      if ($zipcodeNumberCity1 == $zipcodeNumberCity2) {
-        $validator->errors()->add('zipcode2', 'De postadres postcode is hetzelfde als de bezoekadres postcode');
+        if ($zipcodeNumberCity1 == $zipcodeNumberCity2) {
+          $validator->errors()->add('zipcode2', 'De postadres postcode is hetzelfde als de bezoekadres postcode');
+        }
       }
     });
   }
