@@ -20,7 +20,11 @@ class Actionpoint extends Migration
             $table->text('description');
             $table->boolean('finished')->nullable();
             $table->DateTime('reminderdate')->nullable();
-            $table->string('creator');
+            $table->unsignedBigInteger('creator');
+            $table->foreign('creator')
+              ->references('id')
+              ->on('users')
+              ->onDelete('cascade');
         });
     }
 

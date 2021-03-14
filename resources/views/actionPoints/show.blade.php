@@ -44,7 +44,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Toegekend door:</strong>
-                    {{ $actionpoint->creator }}
+                    {{ $creatorName }}
                 </div>
             </div>
           <div class="col-xs-12 col-sm-12 col-md-12">

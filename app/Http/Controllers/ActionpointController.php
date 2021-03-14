@@ -31,9 +31,13 @@ class ActionpointController extends Controller
          *
          */
 
-        $name = Auth::user()->name;
+        $currentUserId = Auth::user()->id;
 
-        $actionPoints = Actionpoint::where('creator', $name)->get();
+        $actionPoints = Actionpoint::where('creator', $currentUserId)
+          ->join('users', 'actionpoints.creator', '=', 'users.id')->get();
+
+        //die($actionPoints);
+
         return view('actionPoints.index', compact('actionPoints'));
     }
 
@@ -64,7 +68,7 @@ class ActionpointController extends Controller
     public function store(ActionpointRequest $request)
     {
         // sets creator to the value of the nickname property of the current user
-        $creator = Auth::user()->name;
+        $creator = Auth::user()->id;
 
         $request->validated();
 
@@ -93,9 +97,12 @@ class ActionpointController extends Controller
                   ->get('users.name') ?? [];
         //die(json_encode($assigned));
 
+        $creator = DB::table('users')->where('id', '=', $actionpoint->creator)->first();
+
         return view('actionPoints.show')
           ->with('actionpoint', $actionpoint)
-          ->with('assigned',$assigned);
+          ->with('assigned',$assigned)
+          ->with('creatorName', $creator->name);
     }
 
     /**
@@ -131,7 +138,7 @@ class ActionpointController extends Controller
      */
     public function update(ActionpointRequest $request, Actionpoint $actionpoint)
     {
-        $creator = Auth::user()->name;
+        $creator = Auth::user()->id;
 
         $request->validated();
 

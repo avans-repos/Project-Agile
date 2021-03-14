@@ -23,8 +23,5 @@ Route::get('/', [HomeController::class, 'index'])->middleware(['auth'])->name('d
 Route::resource('actionpoints', ActionpointController::class)->middleware(['auth']);
 Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete'])->middleware(['auth'])->name('actionpoints.complete');
 
-Route::resource('myOwnActions', MyOwnActionController::class)->middleware(['auth']);
-
 Route::resource('contact', ContactController::class)->middleware(['auth']);
-
 require __DIR__.'/auth.php';

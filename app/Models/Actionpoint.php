@@ -15,7 +15,7 @@ use PhpParser\Builder;
  * @property string $description
  * @property string|null $finished
  * @property string|null $reminderdate
- * @property string $creator
+ * @property int $creator
  * @mixin \Eloquent
  */
 class Actionpoint extends Model

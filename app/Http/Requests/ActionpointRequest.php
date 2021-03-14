@@ -24,9 +24,10 @@ class ActionpointRequest extends FormRequest
     public function rules()
     {
         return [
-            'deadline' => 'required',
+            'deadline' => 'required|after:tomorrow',
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'reminderdate' => 'after:tomorrow'
         ];
     }
 
@@ -36,6 +37,7 @@ class ActionpointRequest extends FormRequest
             'deadline'=>'deadline',
             'title'=>'titel',
             'description'=>'beschrijving',
+            'reminderdate' => 'Herinneringsdatum'
         ];
     }
 }
