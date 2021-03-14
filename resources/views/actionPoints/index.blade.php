@@ -5,12 +5,12 @@
 @section('content')
   <main role="main" class="container">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 mt-3">
                 <h1 class="display-3">Actiepunten</h1>
-                <div class="pull-right">
+                <div class="pull-right mt-3">
                     <a class="btn btn-success" href="{{ route('actionpoints.create') }}">Nieuwe actiepunt aanmaken</a>
                 </div>
-                <table class="table table-striped">
+                <table class="table table-striped mt-3">
                     <thead>
                       <tr>
                           <td>Deadline</td>
