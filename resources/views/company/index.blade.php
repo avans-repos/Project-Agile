@@ -43,7 +43,7 @@
                                href="{{route('company.edit',$company)}}">Aanpassen</a>
                           </div>
                         </div>
-                        <div class="m-1" style="display: none">
+                        <div class="m-1">
                           <form method="POST" action="{{ route('company.destroy', $company) }}">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}

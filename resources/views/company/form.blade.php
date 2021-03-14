@@ -133,7 +133,7 @@
           <label for="city1" class="form-label">Plaatsnaam *</label>
           <input name="city1" value="{{old('city1',$address1->city)}}" type="text"
                  class="form-control"
-                 id="city1" placeholder="Amsterdam" maxlength="5">
+                 id="city1" placeholder="Amsterdam" maxlength="100">
 
         </div>
       </div>
@@ -209,7 +209,7 @@
           <label for="city2" class="form-label">Plaatsnaam *</label>
           <input name="city2" value="{{old('city2',$address2->city)}}" type="text"
                  class="form-control"
-                 id="city2" placeholder="Amsterdam" maxlength="5">
+                 id="city2" placeholder="Amsterdam" maxlength="100">
 
         </div>
       </div>
