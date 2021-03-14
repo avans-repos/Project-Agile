@@ -35,6 +35,7 @@ class ActionpointController extends Controller
 
     $actionPoints = Actionpoint::where('creator', $currentUserId)
       ->join('users', 'actionpoints.creator', '=', 'users.id')
+      ->select('actionpoints.*', 'users.name')
       ->get();
 
     //die($actionPoints);
