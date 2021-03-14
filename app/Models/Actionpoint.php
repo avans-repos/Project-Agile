@@ -20,16 +20,9 @@ use PhpParser\Builder;
  */
 class Actionpoint extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public $timestamps = false;     // removes the 'created_at' & 'updated_at' properties
+  public $timestamps = false; // removes the 'created_at' & 'updated_at' properties
 
-    protected $fillable = [
-        'deadline',
-        'title',
-        'description',
-        'finished',
-        'reminderdate',
-        'creator'
-    ];
+  protected $fillable = ['deadline', 'title', 'description', 'finished', 'reminderdate', 'creator'];
 }

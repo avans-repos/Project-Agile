@@ -18,171 +18,181 @@ class ActionpointController extends Controller
   {
     $this->AuthenticationService = $authenticationService;
   }
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   */
+
+  public function index()
+  {
     /**
-     * Display a listing of the resource.
+     * This page shows the action points you have created
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
 
-    public function index()
-    {
-        /**
-         * This page shows the action points you have created
-         *
-         */
+    $currentUserId = Auth::user()->id;
 
-        $currentUserId = Auth::user()->id;
+    $actionPoints = Actionpoint::where('creator', $currentUserId)
+      ->join('users', 'actionpoints.creator', '=', 'users.id')
+      ->get();
 
-        $actionPoints = Actionpoint::where('creator', $currentUserId)
-          ->join('users', 'actionpoints.creator', '=', 'users.id')->get();
+    //die($actionPoints);
 
-        //die($actionPoints);
+    return view('actionPoints.index', compact('actionPoints'));
+  }
 
-        return view('actionPoints.index', compact('actionPoints'));
-    }
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   */
+  public function create()
+  {
+    $teachers = json_decode(User::all('id', 'name'));
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $teachers = json_decode(User::all('id', 'name'));
+    $actionpoint = new Actionpoint();
+    $assigned = null;
+    return view('actionPoints.manage')
+      ->with('teachers', $teachers)
+      ->with('actionpoint', $actionpoint)
+      ->with('action', 'store')
+      ->with('assigned', $assigned);
+  }
 
-        $actionpoint = new Actionpoint();
-        $assigned = null;
-        return view('actionPoints.manage')
-            ->with('teachers',$teachers)
-            ->with('actionpoint',$actionpoint)
-            ->with('action','store')
-            ->with('assigned',$assigned);
-    }
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function store(ActionpointRequest $request)
+  {
+    // sets creator to the value of the nickname property of the current user
+    $creator = Auth::user()->id;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(ActionpointRequest $request)
-    {
-        // sets creator to the value of the nickname property of the current user
-        $creator = Auth::user()->id;
+    $request->validated();
 
-        $request->validated();
+    $id = Actionpoint::create(array_merge($request->all(), ['creator' => $creator]))->id;
 
-        $id = Actionpoint::create(array_merge($request->all(), ['creator' => $creator]))->id;
-
-      if(isset($request->assigned)) {
-        foreach ($request->assigned as $assigned) {
-          DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $id]);
-        }
+    if (isset($request->assigned)) {
+      foreach ($request->assigned as $assigned) {
+        DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $id]);
       }
-
-        return redirect()->route('actionpoints.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Actionpoint  $actionpoint
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
-     */
-    public function show(Actionpoint $actionpoint)
-    {
-        $assigned = DB::table('teacher_has_actionpoints')
-                  ->where('actionpointid', '=', $actionpoint->id)
-                  ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
-                  ->get('users.name') ?? [];
-        //die(json_encode($assigned));
+    return redirect()->route('actionpoints.index');
+  }
 
-        $creator = DB::table('users')->where('id', '=', $actionpoint->creator)->first();
+  /**
+   * Display the specified resource.
+   *
+   * @param  \App\Models\Actionpoint  $actionpoint
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   */
+  public function show(Actionpoint $actionpoint)
+  {
+    $assigned =
+      DB::table('teacher_has_actionpoints')
+        ->where('actionpointid', '=', $actionpoint->id)
+        ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
+        ->get('users.name') ?? [];
+    //die(json_encode($assigned));
 
-        return view('actionPoints.show')
-          ->with('actionpoint', $actionpoint)
-          ->with('assigned',$assigned)
-          ->with('creatorName', $creator->name);
-    }
+    $creator = DB::table('users')
+      ->where('id', '=', $actionpoint->creator)
+      ->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Actionpoint  $actionpoint
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
-     */
-    public function edit(Actionpoint $actionpoint)
-    {
-      $assigned = DB::table('teacher_has_actionpoints')
+    return view('actionPoints.show')
+      ->with('actionpoint', $actionpoint)
+      ->with('assigned', $assigned)
+      ->with('creatorName', $creator->name);
+  }
+
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  \App\Models\Actionpoint  $actionpoint
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   */
+  public function edit(Actionpoint $actionpoint)
+  {
+    $assigned =
+      DB::table('teacher_has_actionpoints')
         ->where('actionpointid', '=', $actionpoint->id)
         ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
         ->get('users.id') ?? [];
 
-      $assigned = array_map(function($teacher) {
-        return $teacher->id;
-      }, json_decode($assigned));
+    $assigned = array_map(function ($teacher) {
+      return $teacher->id;
+    }, json_decode($assigned));
 
-      $teachers = json_decode(User::all('id', 'name'));
-        return view('actionPoints.manage', compact('actionpoint'))
-            ->with('teachers',$teachers)
-            ->with('assigned', $assigned)
-            ->with('action','update');
+    $teachers = json_decode(User::all('id', 'name'));
+    return view('actionPoints.manage', compact('actionpoint'))
+      ->with('teachers', $teachers)
+      ->with('assigned', $assigned)
+      ->with('action', 'update');
+  }
+
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Models\Actionpoint  $actionpoint
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function update(ActionpointRequest $request, Actionpoint $actionpoint)
+  {
+    $creator = Auth::user()->id;
+
+    $request->validated();
+
+    if (!isset($request->assigned)) {
+      $request->assigned = [];
+    }
+    foreach ($request->assigned as $assigned) {
+      if (
+        !DB::table('teacher_has_actionpoints')
+          ->where('userid', $assigned)
+          ->where('actionpointid', $actionpoint->id)
+          ->exists()
+      ) {
+        DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $actionpoint->id]);
+      }
+    }
+    foreach (
+      DB::table('teacher_has_actionpoints')
+        ->where('actionpointid', $actionpoint->id)
+        ->get()
+      as $dbvalue
+    ) {
+      if (!in_array($dbvalue->userid, $request->assigned)) {
+        DB::delete('DELETE FROM teacher_has_actionpoints WHERE userid = ? AND actionpointid = ?', [$dbvalue->userid, $dbvalue->actionpointid]);
+      }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Actionpoint  $actionpoint
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(ActionpointRequest $request, Actionpoint $actionpoint)
-    {
-        $creator = Auth::user()->id;
+    $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
 
-        $request->validated();
+    return redirect()->route('actionpoints.index');
+  }
 
-        if(!isset($request->assigned)) {
-          $request->assigned = [];
-        }
-          foreach ($request->assigned as $assigned) {
-            if (!DB::table('teacher_has_actionpoints')
-              ->where('userid', $assigned)
-              ->where('actionpointid', $actionpoint->id)->exists()) {
-              DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $actionpoint->id]);
-            }
-          }
-            foreach (DB::table('teacher_has_actionpoints')
-                       ->where('actionpointid', $actionpoint->id)->get() as $dbvalue) {
-              if (!in_array($dbvalue->userid, $request->assigned)) {
-                DB::delete('DELETE FROM teacher_has_actionpoints WHERE userid = ? AND actionpointid = ?', [$dbvalue->userid, $dbvalue->actionpointid]);
-              }
-            }
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  \App\Models\Actionpoint  $actionpoint
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function destroy(Actionpoint $actionpoint)
+  {
+    $actionpoint->delete();
 
+    return redirect()->route('actionpoints.index');
+  }
 
-
-
-        $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
-
-        return redirect()->route('actionpoints.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Actionpoint  $actionpoint
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy(Actionpoint $actionpoint)
-    {
-        $actionpoint->delete();
-
-        return redirect()->route('actionpoints.index');
-    }
-
-    public function complete(Actionpoint $actionpoint){
-      $actionpoint->finished = true;
-      $actionpoint->save();
-      return redirect()->route('home.index');
-    }
+  public function complete(Actionpoint $actionpoint)
+  {
+    $actionpoint->finished = true;
+    $actionpoint->save();
+    return redirect()->route('home.index');
+  }
 }
