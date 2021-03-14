@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('actionpoints', ActionpointController::class);
-Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete']);
+Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete'])->name('actionpoints.complete');
 
 Route::resource('myOwnActions', MyOwnActionController::class);
 
