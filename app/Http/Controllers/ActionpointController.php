@@ -70,9 +70,11 @@ class ActionpointController extends Controller
 
         $id = Actionpoint::create(array_merge($request->all(), ['creator' => $creator]))->id;
 
-        foreach($request->assigned as $assigned) {
-            DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)',[$assigned,$id]);
+      if(isset($assigned)) {
+        foreach ($request->assigned as $assigned) {
+          DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $id]);
         }
+      }
 
         return redirect()->route('actionpoints.index');
     }
@@ -88,7 +90,7 @@ class ActionpointController extends Controller
         $assigned = DB::table('teacher_has_actionpoints')
                   ->where('actionpointid', '=', $actionpoint->id)
                   ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
-                  ->get('users.name');
+                  ->get('users.name') ?? [];
         //die(json_encode($assigned));
 
         return view('actionPoints.show')
@@ -107,7 +109,7 @@ class ActionpointController extends Controller
       $assigned = DB::table('teacher_has_actionpoints')
         ->where('actionpointid', '=', $actionpoint->id)
         ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
-        ->get('users.id');
+        ->get('users.id') ?? [];
 
       $assigned = array_map(function($teacher) {
         return $teacher->id;
@@ -133,21 +135,23 @@ class ActionpointController extends Controller
 
         $request->validated();
 
-      foreach($request->assigned as $assigned) {
-        if (!DB::table('teacher_has_actionpoints')
-          ->where('userid', $assigned)
-          ->where('actionpointid', $actionpoint->id)->exists()){
-          DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)',[$assigned,$actionpoint->id]);
-        }
-        foreach(DB::table('teacher_has_actionpoints')
-          ->where('actionpointid', $actionpoint->id)->get() as $dbvalue)
-        {
-          if(!in_array($dbvalue->userid, $request->assigned)){
-            DB::delete('DELETE FROM teacher_has_actionpoints WHERE userid = ? AND actionpointid = ?',[$dbvalue->userid,$dbvalue->actionpointid]);
+        if(isset($assigned)) {
+
+          foreach ($request->assigned as $assigned) {
+            if (!DB::table('teacher_has_actionpoints')
+              ->where('userid', $assigned)
+              ->where('actionpointid', $actionpoint->id)->exists()) {
+              DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $actionpoint->id]);
+            }
+            foreach (DB::table('teacher_has_actionpoints')
+                       ->where('actionpointid', $actionpoint->id)->get() as $dbvalue) {
+              if (!in_array($dbvalue->userid, $request->assigned)) {
+                DB::delete('DELETE FROM teacher_has_actionpoints WHERE userid = ? AND actionpointid = ?', [$dbvalue->userid, $dbvalue->actionpointid]);
+              }
+            }
+
           }
         }
-
-      }
 
         $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
 
