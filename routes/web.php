@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActionpointController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyOwnActionController;
 use Illuminate\Support\Facades\Route;
@@ -30,5 +31,7 @@ Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class
 Route::resource('myOwnActions', MyOwnActionController::class);
 
 Route::resource('home', HomeController::class);
+
+Route::resource('contact', ContactController::class);
 
 require __DIR__.'/auth.php';

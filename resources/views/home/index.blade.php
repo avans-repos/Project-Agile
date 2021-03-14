@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title','Home')
 
@@ -6,8 +6,8 @@
   <main role="main" class="container">
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div class="d-flex justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
-    <h6 class="">Actiepunten | {{count($actionpoints)}}</h6>
-      <a type="button" class="btn btn-primary" href="{{route('actionpoints.index')}}">Bekijk alle actiepunten ></a>
+    <h6 class="">Mijn Actiepunten | {{count($actionpoints)}}</h6>
+      <a type="button" class="btn btn-primary" href="{{route('actionpoints.index')}}">Actiepunt aanmaken ></a>
     </div>
     @foreach($actionpoints as $actionpoint)
     <div class="media text-muted pt-3">
@@ -26,3 +26,4 @@
     @endforeach
   </div>
   </main>
+  @stop
