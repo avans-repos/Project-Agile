@@ -28,7 +28,7 @@
                               <td>{{$actionPoint->deadline}}</td>
                               <td>{{$actionPoint->title}}</td>
                               <td>{{$actionPoint->description}}</td>
-                              <td>{{$actionPoint->finished}}</td>
+                              <td>{{$actionPoint->finished == 1 ? 'Ja' : 'Nee'}}</td>
                               <td>{{$actionPoint->reminderdate}}</td>
                               <td>{{$actionPoint->name}}</td>
                               <td>
