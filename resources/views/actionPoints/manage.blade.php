@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 
 
@@ -13,12 +13,13 @@
 
     ?>
 @section('title','Actiepunt '.$actionViewName)
+<main role="main" class="container">
 <div class="container mb-5">
     <div class="w-auto mt-3">
         <a class="btn btn-primary" href="{{route('actionpoints.index')}}">Terug naar overzicht</a>
     </div>
     <div class="d-flex justify-content-between">
-        <h1>Actiepunt {{$actionViewName}}</h1>
+        <h1 class="fs-1">Actiepunt {{$actionViewName}}</h1>
     </div>
     @if($errors->any())
         <div class="alert alert-danger">
@@ -34,4 +35,5 @@
         @include('actionPoints.form',array('formAction'=>$action,'formActionViewName'=>$actionViewName))
     </div>
 </div>
+</main>
 @endsection

@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,8 +27,6 @@ Route::resource('actionpoints', ActionpointController::class);
 Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete']);
 
 Route::resource('myOwnActions', MyOwnActionController::class);
-
-Route::resource('home', HomeController::class);
 
 Route::resource('contact', ContactController::class);
 

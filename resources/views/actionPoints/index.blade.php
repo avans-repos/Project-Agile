@@ -1,10 +1,9 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
-@section('title','Mijn Actiepunten')
+@section('title','Mijn actiepunten')
 
 @section('content')
-
-    <div class="container">
+  <main role="main" class="container">
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="display-3">Actiepunten</h1>
@@ -63,4 +62,5 @@
             </div>
         </div>
     </div>
+  </main>
 @endsection

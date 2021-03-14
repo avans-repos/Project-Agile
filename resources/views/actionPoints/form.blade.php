@@ -50,7 +50,7 @@
                             {{ (is_array(old("assigned",$assigned))) ?
                                     (in_array($teacher->id, old("assigned", $assigned))) ? 'checked' : null
                                  : null
-                            }} type="checkbox" name="assigned[]" value="{{$teacher->id}}">{{$teacher->name}}
+                            }} type="checkbox" name="assigned[]" value="{{$teacher->id}}" ><span class="ms-2">{{$teacher->name}}</span>
                         </label>
                     @endforeach
                 </div>

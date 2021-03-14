@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title','Actiepunt bekijken')
 
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="pull-left">
-                    <h2>Actiepunten:</h2>
+                    <h2 class="fs-2">Actiepunten:</h2>
                 </div>
                 <div class="pull-right">
                     <a class="btn btn-primary" href="{{ route('actionpoints.index') }}">Terug</a>
