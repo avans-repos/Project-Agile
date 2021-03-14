@@ -1,3 +1,27 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.btn-danger{
+  background-color: rgb(198, 0, 42) !important;
+  border-color:  rgb(198, 0, 42) !important;
+}
+
+.bg-avans-rood{
+  background-color: rgb(198, 0, 42);
+}
+.avans-white{
+  color: rgb(256,256,256);
+}
+
+.avans-white:hover, .avans-white:focus{
+  color: rgb(193, 185, 185);
+}
+
+
+.avans-gray{
+  color: rgb(242,242,242);
+}
+.avans-black{
+  color: rgb(0,0,0);
+}

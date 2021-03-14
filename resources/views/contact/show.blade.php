@@ -7,7 +7,7 @@
         <div class="w-auto mt-3">
             <a class="btn btn-primary" href="{{route('contact.index')}}">Terug naar overzicht</a>
         </div>
-        <div class="d-md-flex justify-content-between">
+        <div class="d-md-flex justify-content-between mt-3">
             <h1>Contactpersoon weergeven</h1>
             <div class="align-self-center">
                 <a class="btn btn-secondary" href="{{route('contact.edit',$contact)}}">Contactpersoon aanpassen</a>

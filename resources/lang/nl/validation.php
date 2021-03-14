@@ -128,8 +128,8 @@ return [
     */
   'custom' => [
     'attribute-name' => [
-      'rule-name' => 'custom-message',
-    ],
+      'rule-name' => 'custom-message'
+    ]
   ],
   /*
     |--------------------------------------------------------------------------
@@ -141,6 +141,7 @@ return [
     | of "email". This simply helps us make messages a little cleaner.
     |
     */
+
   'attributes' => [
     'address' => 'adres',
     'age' => 'leeftijd',

@@ -26,11 +26,6 @@ class UsersSeeder extends Seeder
         'password' => bcrypt('marijn@avans.nl')
       ]);
     DB::table('users')->insert([
-        'name' => 'Marijn Kieboom',
-        'email' => 'marijn@avans.nl',
-        'password' => bcrypt('marijn@avans.nl')
-      ]);
-    DB::table('users')->insert([
       'name' => 'Tom Cornelissen',
       'email' => 'tom@avans.nl',
       'password' => bcrypt('tom@avans.nl')
