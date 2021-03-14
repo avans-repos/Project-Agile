@@ -31,7 +31,7 @@
                               <td>{{$actionPoint->description}}</td>
                               <td>{{$actionPoint->finished}}</td>
                               <td>{{$actionPoint->reminderdate}}</td>
-                              <td>{{$actionPoint->creator}}</td>
+                              <td>{{$actionPoint->name}}</td>
                               <td>
                                   <div class="d-md-flex align-items-center">
                                       <div class="m-1 d-flex justify-content-center align-items-center">
