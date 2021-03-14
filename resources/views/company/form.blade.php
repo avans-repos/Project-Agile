@@ -98,7 +98,7 @@
       <div class="mb-1 row d-sm-flex">
         <div class="col-sm-4">
           <label for="number1" class="form-label">Huisnummer *</label>
-          <input name="number1" value="{{old('housenumber1',$address1->number)}}" type="number"
+          <input name="number1" value="{{old('number1',$address1->number)}}" type="number"
                  class="form-control"
                  id="number1" placeholder="123" maxlength="11" min="0" required>
 
@@ -174,7 +174,7 @@
       <div class="mb-1 row d-sm-flex">
         <div class="col-sm-4">
           <label for="number2" class="form-label">Huisnummer *</label>
-          <input name="number2" value="{{old('housenumber2',$address2->number)}}" type="number"
+          <input name="number2" value="{{old('number2',$address2->number)}}" type="number"
                  class="form-control"
                  id="number2" placeholder="123" maxlength="11" min="0">
 
