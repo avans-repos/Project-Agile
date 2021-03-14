@@ -176,6 +176,6 @@ class ActionpointController extends Controller
     public function complete(Actionpoint $actionpoint){
       $actionpoint->finished = true;
       $actionpoint->save();
-      return redirect()->route('actionpoints.index');
+      return redirect()->route('home.index');
     }
 }
