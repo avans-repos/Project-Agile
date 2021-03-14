@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActionpointController;
+use App\Http\Controllers\ApiExampleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyOwnActionController;
@@ -28,3 +29,9 @@ Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class
 
 Route::resource('contact', ContactController::class)->middleware(['auth']);
 require __DIR__ . '/auth.php';
+
+// API Example controller using the avans API
+
+Route::get('/api-example', [ApiExampleController::class, 'index']);
+
+require __DIR__ . '/authentication.php';

@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ActionpointController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActionpointController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/actionPoints/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/actionPoints/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiExampleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiExampleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,14 +190,6 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
-    <configuration name="Laravel.Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="sourceFilePath" value="Laravel.Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -226,6 +218,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="format:check" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="format:check" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -239,10 +241,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.format" />
+        <item itemvalue="npm.format:check" />
         <item itemvalue="npm.watch" />
         <item itemvalue="npm.dev" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.Laravel.Dockerfile" />
       </list>
     </recent_temporary>
   </component>
