@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-      <title>CommunicatieApplicatie - @yield('title')</title>
+      <title>AD Communicatie - @yield('title')</title>
       <meta name="author" content="Avans groep B">
 
         <!-- Fonts -->

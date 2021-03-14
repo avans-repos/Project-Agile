@@ -17,17 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
-Route::resource('actionpoints', ActionpointController::class);
-Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete'])->name('actionpoints.complete');
+Route::resource('actionpoints', ActionpointController::class)->middleware(['auth']);
+Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete'])->middleware(['auth'])->name('actionpoints.complete');
 
-Route::resource('myOwnActions', MyOwnActionController::class);
+Route::resource('myOwnActions', MyOwnActionController::class)->middleware(['auth']);
 
-Route::resource('contact', ContactController::class);
+Route::resource('contact', ContactController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';
