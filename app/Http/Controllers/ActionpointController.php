@@ -70,7 +70,7 @@ class ActionpointController extends Controller
 
         $id = Actionpoint::create(array_merge($request->all(), ['creator' => $creator]))->id;
 
-      if(isset($assigned)) {
+      if(isset($request->assigned)) {
         foreach ($request->assigned as $assigned) {
           DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $id]);
         }
@@ -135,14 +135,16 @@ class ActionpointController extends Controller
 
         $request->validated();
 
-        if(isset($assigned)) {
-
+        if(!isset($request->assigned)) {
+          $request->assigned = [];
+        }
           foreach ($request->assigned as $assigned) {
             if (!DB::table('teacher_has_actionpoints')
               ->where('userid', $assigned)
               ->where('actionpointid', $actionpoint->id)->exists()) {
               DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $actionpoint->id]);
             }
+          }
             foreach (DB::table('teacher_has_actionpoints')
                        ->where('actionpointid', $actionpoint->id)->get() as $dbvalue) {
               if (!in_array($dbvalue->userid, $request->assigned)) {
@@ -150,8 +152,8 @@ class ActionpointController extends Controller
               }
             }
 
-          }
-        }
+
+
 
         $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
 
