@@ -7,7 +7,7 @@
         <div class="row">
             <div class="mb-1">
                 <label for="deadline" class="form-label">Deadline</label>
-                <input type="datetime-local" id="deadline" value="{{old('deadline',$actionpoint->deadline,date('Y-m-d'))}}" required name="deadline" class="form-control">
+                <input type="datetime-local" id="deadline" value="{{old('deadline',isset($actionpoint->deadline) ? date('Y-m-d\TH:i', strtotime($actionpoint->deadline)) : null)}}" required name="deadline" class="form-control">
             </div>
             <div class="col">
                 @error('deadline')
@@ -30,7 +30,7 @@
             </div>
             <div class="mb-1">
                 <label for="reminderdate" class="form-label">Herinneringsdatum</label>
-                <input type="datetime-local" id="reminderdate" value="{{old('reminderdate',$actionpoint->reminderdate)}}" name="reminderdate" class="form-control">
+                <input type="datetime-local" id="reminderdate" value="{{old('reminderdate', isset($actionpoint->reminderdate) ? date('Y-m-d\TH:i', strtotime($actionpoint->reminderdate)) : null)}}" name="reminderdate" class="form-control">
             </div>
             <div class="col">
                 @error('reminderdate')
