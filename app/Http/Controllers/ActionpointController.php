@@ -6,7 +6,11 @@ use App\Http\Requests\ActionpointRequest;
 use App\Models\Actionpoint;
 use App\Models\User;
 use App\Service\AuthenticationService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +25,7 @@ class ActionpointController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   * @return Application|Factory|View|Response
    */
 
   public function index()
@@ -46,7 +50,7 @@ class ActionpointController extends Controller
   /**
    * Show the form for creating a new resource.
    *
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   * @return Application|Factory|View|Response
    */
   public function create()
   {
@@ -89,7 +93,7 @@ class ActionpointController extends Controller
    * Display the specified resource.
    *
    * @param  \App\Models\Actionpoint  $actionpoint
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   * @return Application|Factory|View|Response
    */
   public function show(Actionpoint $actionpoint)
   {
@@ -114,7 +118,7 @@ class ActionpointController extends Controller
    * Show the form for editing the specified resource.
    *
    * @param  \App\Models\Actionpoint  $actionpoint
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   * @return Application|Factory|View|Response
    */
   public function edit(Actionpoint $actionpoint)
   {
@@ -194,6 +198,6 @@ class ActionpointController extends Controller
   {
     $actionpoint->finished = true;
     $actionpoint->save();
-    return redirect()->route('home.index');
+    return redirect()->route('dashboard');
   }
 }
