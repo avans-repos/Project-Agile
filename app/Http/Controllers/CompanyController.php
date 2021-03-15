@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Address;
 use App\Models\contact\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -56,8 +57,8 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
-      'visiting_address' => $addressIds{0},
-      'mailing_address' => $addressIds{1},
+      'visiting_address' => $addressIds[0],
+      'mailing_address' => $addressIds[1],
     ]);
     return redirect()->route('company.index');
   }
@@ -75,10 +76,14 @@ class CompanyController extends Controller
     if ($company->visiting_address != $company->mailing_address) {
       $address2 = Address::find($company->mailing_address);
     }
+
+    $contacts = DB::select("SELECT * FROM company_has_contacts NATURAL JOIN contacts WHERE companyid = " . $company->id);
+
     return view('company.show',)
       ->with('company', $company)
       ->with('address1', $address1)
-      ->with('address2', $address2);
+      ->with('address2', $address2)
+      ->with('contacts', $contacts);
   }
 
   /**

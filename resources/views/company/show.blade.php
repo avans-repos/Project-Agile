@@ -149,17 +149,33 @@
         @endif
       </fieldset>
     </div>
-    <fieldset class="col-sm-6" id="companyDetails">
+    <fieldset class="col-sm-6 mt-4" id="companyDetails">
       <legend>Contactpersonen</legend>
 
+      @foreach($contacts as $contact)
       <div class="row">
-        <div class="col-6">
-          Contactpersoon 1
+        <div>
+          <b>{{$contact->firstname}} {{$contact->lastname}}</b>
         </div>
-        <div class="col-6">
-          Hamster Kwak
+
+        <div>
+          {{ $contact->gender }}
+        </div>
+
+        <div>
+          <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
+        </div>
+
+        <div>
+          {{ $contact->phonenumber }}
+        </div>
+
+        <div>
+          {{ $contact->type }}
         </div>
       </div>
+      @endforeach
+
     </fieldset>
   </div>
 
