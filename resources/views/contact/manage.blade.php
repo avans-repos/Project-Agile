@@ -17,7 +17,7 @@
             <a class="btn btn-primary" href="{{route('contact.index')}}">Terug naar overzicht</a>
         </div>
         <div class="d-flex justify-content-between">
-            <h1>Contactpersoon {{$actionViewName}}</h1>
+            <h1 class="fs-1">Contactpersoon {{$actionViewName}}</h1>
         </div>
         @if($errors->any())
             <div class="alert alert-danger">

@@ -16,7 +16,7 @@ class CompanySeeder extends Seeder
   {
     DB::table('companies')->insert([
       'name' => 'Vizova',
-      'email' => 'martijn@vizova.n;',
+      'email' => 'martijn@vizova.nl',
       'phonenumber' => '0657305857',
       'size' => 1,
       'website' => 'https://vizova.nl',

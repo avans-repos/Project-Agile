@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-avans-rood border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="container">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -18,6 +18,9 @@
                     </x-nav-link>
                   <x-nav-link :href="route('contact.index')" class="avans-white"  :active="request()->routeIs('contact')">
                     {{ __('Contacten') }}
+                  </x-nav-link>
+                  <x-nav-link :href="route('company.index')" class="avans-white"  :active="request()->routeIs('company')">
+                    {{ __('Bedrijven') }}
                   </x-nav-link>
                 </div>
             </div>

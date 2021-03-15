@@ -27,7 +27,7 @@ class ActionpointRequest extends FormRequest
       'deadline' => 'required|after:tomorrow',
       'title' => 'required',
       'description' => 'required',
-      'reminderdate' => 'after:tomorrow',
+      'reminderdate' => 'nullable|after:tomorrow',
     ];
   }
 

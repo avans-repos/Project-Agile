@@ -1,18 +1,18 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title','Bedrijven')
 
 @section('content')
     <div class="container mt-5">
-        <div class="d-flex justify-content-between">
-            <h1>Alle bedrijven</h1>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="fs-1">Alle bedrijven</h1>
             <div class="align-self-center">
                 <a class="btn btn-primary" href="{{route('company.create')}}">Bedrijf toevoegen</a>
             </div>
         </div>
 
         <div class="table-responsive">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped">
 
             <thead>
             <tr>
