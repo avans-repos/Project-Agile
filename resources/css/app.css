@@ -28,7 +28,7 @@
 
 .form-control {
   border: 1px solid #000;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .form-control:focus {
@@ -37,7 +37,7 @@
 }
 
 #login_form {
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 #login_logo {
