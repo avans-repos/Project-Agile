@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title','Bedrijf details')
 
@@ -8,7 +8,7 @@
       <a class="btn btn-primary" href="{{route('company.index')}}">Terug naar overzicht</a>
     </div>
     <div class="d-md-flex justify-content-between">
-      <h1>{{$company->name}}</h1>
+      <h1 class="fs-1">{{$company->name}}</h1>
       <div class="align-self-center">
         <a class="btn btn-secondary" href="{{route('company.edit',$company)}}">Bedrijf aanpassen</a>
       </div>
