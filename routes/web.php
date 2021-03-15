@@ -34,5 +34,3 @@ Route::resource('company', \App\Http\Controllers\CompanyController::class);
 // API Example controller using the avans API
 
 Route::get('/api-example', [ApiExampleController::class, 'index']);
-
-require __DIR__ . '/authentication.php';
