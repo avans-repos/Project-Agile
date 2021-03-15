@@ -56,8 +56,8 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
-      'visiting_address' => $addressIds{0},
-      'mailing_address' => $addressIds{1},
+      'visiting_address' => $addressIds[0],
+      'mailing_address' => $addressIds[1],
     ]);
     return redirect()->route('company.index');
   }
@@ -75,7 +75,7 @@ class CompanyController extends Controller
     if ($company->visiting_address != $company->mailing_address) {
       $address2 = Address::find($company->mailing_address);
     }
-    return view('company.show',)
+    return view('company.show')
       ->with('company', $company)
       ->with('address1', $address1)
       ->with('address2', $address2);
@@ -145,17 +145,14 @@ class CompanyController extends Controller
    */
   protected function createAddressesAndReturnIds($request)
   {
-
-
     $address1 = new Address([
       'streetname' => $request->input('streetname1'),
       'number' => $request->input('number1'),
       'addition' => $request->input('addition1'),
       'zipcode' => $request->input('zipcode1'),
       'city' => $request->input('city1'),
-      'country' => $request->input('country1')
+      'country' => $request->input('country1'),
     ]);
-
 
     $address1Id = self::createAddressAndReturnId($address1);
 
@@ -168,7 +165,7 @@ class CompanyController extends Controller
         'addition' => $request->input('addition2'),
         'zipcode' => $request->input('zipcode2'),
         'city' => $request->input('city2'),
-        'country' => $request->input('country2')
+        'country' => $request->input('country2'),
       ]);
       $address2Id = self::createAddressAndReturnId($address2);
     } else {
@@ -177,7 +174,6 @@ class CompanyController extends Controller
 
     return [$address1Id, $address2Id];
   }
-
 
   /**
    * Create address if not exist and return address id of database
@@ -189,10 +185,10 @@ class CompanyController extends Controller
   {
     $returnId = null;
 
-    $existing = Address::
-    where('zipcode', $address->zipcode)
+    $existing = Address::where('zipcode', $address->zipcode)
       ->where('number', $address->number)
-      ->where('city', $address->city)->first();
+      ->where('city', $address->city)
+      ->first();
 
     if ($existing != null) {
       $existing->update($address->toArray());
