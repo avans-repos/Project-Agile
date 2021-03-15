@@ -23,4 +23,6 @@ Route::get('/dashboard', function () {
 
 Route::resource('actionpoints', \App\Http\Controllers\ActionpointController::class);
 
+// Import authentication handler
 require __DIR__.'/auth.php';
+Route::resource('company',\App\Http\Controllers\CompanyController::class);
