@@ -1,4 +1,4 @@
-<form action="{{route('projectgroup.'.$formAction, ['group' => $group])}}" method="POST">
+<form action="{{route('projectgroup.'.$formAction, ['projectgroup' => $projectgroup])}}" method="POST">
   @csrf
   @if($formAction == "update")
     @method('PATCH')
@@ -8,7 +8,7 @@
     <div class="mb-1">
       <div class="col">
         <label for="name" class="form-label">Naam *</label>
-        <input name="name" value="{{old('name',$group->name)}}" type="text"
+        <input name="name" value="{{old('name',$projectgroup->name)}}" type="text"
                class="form-control"
                id="name" placeholder="Projectgroup 1" maxlength="100" required>
 

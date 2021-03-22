@@ -29,9 +29,9 @@ class ProjectgroupController extends Controller
      */
     public function create()
     {
-      $group = new Projectgroup();
+      $projectgroup = new Projectgroup();
       return view('projectgroup.manage')
-        ->with('group', $group)
+        ->with('projectgroup', $projectgroup)
         ->with('action', 'store');
     }
 
@@ -67,19 +67,23 @@ class ProjectgroupController extends Controller
      */
     public function edit(Projectgroup $projectgroup)
     {
-        //
+      return view('projectgroup.manage')
+        ->with('projectgroup', $projectgroup)
+        ->with('action', 'update');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Projectgroup  $projectgroup
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Projectgroup $projectgroup)
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param ProjectgroupRequest $request
+   * @param Projectgroup $group
+   * @return \Illuminate\Http\Response
+   */
+    public function update(ProjectgroupRequest $request, Projectgroup $projectgroup)
     {
-        //
+      $request->validated();
+      $projectgroup->update($request->all());
+      return redirect()->route('projectgroup.index');
     }
 
     /**
@@ -90,6 +94,7 @@ class ProjectgroupController extends Controller
      */
     public function destroy(Projectgroup $projectgroup)
     {
-        //
+      $projectgroup->delete();
+      return redirect()->route('projectgroup.index');
     }
 }
