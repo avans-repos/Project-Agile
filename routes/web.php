@@ -33,10 +33,10 @@ require __DIR__ . '/auth.php';
 
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
 
-Route::get('/notes/{contact}', [NoteController::class, 'create'])
+Route::get('/notes/create/{contact}', [NoteController::class, 'create'])
   ->middleware(['auth'])
   ->name('notes.create');
-Route::post('/notes/{contact}', [NoteController::class, 'insert'])
+Route::post('/notes/insert/{contact}', [NoteController::class, 'insert'])
   ->middleware(['auth'])
   ->name('notes.insert');
 
