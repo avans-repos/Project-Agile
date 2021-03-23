@@ -22,12 +22,6 @@ class NoteController extends Controller
   }
   public function insert(Contact $contact, NoteRequest $note){
     Note::create(['description' => $note->input('description'), 'creator' => Auth::user()->id, 'contact' =>  $contact->id]);
-//    $newNote = new Note();
-//    $newNote->description = $note->input('description');
-//    $newNote->creator = Auth::user()->id;
-//    $newNote->contact = $contact->id;
-//
-//    $newNote->save();
 
     return redirect()->route('contact.show', $contact);
   }
