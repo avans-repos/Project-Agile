@@ -10,4 +10,5 @@ class Note extends Model
     use HasFactory;
 
   protected $fillable = ['creation', 'description', 'creator', 'contact'];
+  public $timestamps = false;
 }

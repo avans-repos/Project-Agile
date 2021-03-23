@@ -5,6 +5,7 @@ use App\Http\Controllers\ApiExampleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyOwnActionController;
+use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,14 @@ Route::resource('contact', ContactController::class)->middleware(['auth']);
 require __DIR__ . '/auth.php';
 
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
+
+Route::get('/notes/{contact}', [NoteController::class, 'create'])
+  ->middleware(['auth'])
+  ->name('notes.create');
+Route::post('/notes/{contact}', [NoteController::class, 'insert'])
+  ->middleware(['auth'])
+  ->name('notes.insert');
+
 // API Example controller using the avans API
 
 Route::get('/api-example', [ApiExampleController::class, 'index']);
