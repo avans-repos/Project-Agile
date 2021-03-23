@@ -7,6 +7,7 @@ use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -60,7 +61,8 @@ class ContactController extends Controller
    */
   public function show(Contact $contact)
   {
-    return view('contact.show')->with('contact', $contact);
+    $notes = DB::Table('notes')->where('contact', '=', $contact->id)->join('users', 'notes.creator', '=', 'users.id')->select( 'notes.id', 'notes.creation', 'notes.description','users.name')->get() ?? [];
+    return view('contact.show')->with('contact', $contact)->with('notes', $notes);
   }
 
   /**
