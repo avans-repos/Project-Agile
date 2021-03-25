@@ -8,15 +8,15 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^7.3",
-    "ext-oauth": "*",
+    "php": "^7.3|^8",
     "fideloper/proxy": "^4.4",
     "fruitcake/laravel-cors": "^2.0",
     "guzzlehttp/guzzle": "^7.0.1",
     "laravel/framework": "^8.12",
     "laravel/tinker": "^2.5",
-    "lusitanian/oauth": "^0.8.11",
     "laravelcollective/html": "^6.2",
+    "lusitanian/oauth": "^0.8.11",
+    "spatie/laravel-permission": "^4.0",
     "spatie/laravel-view-models": "^1.3"
   },
   "require-dev": {
