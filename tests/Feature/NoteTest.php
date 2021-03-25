@@ -42,16 +42,18 @@ class NoteTest extends TestCase
 
   public function test_notes_create_screen_can_be_rendered()
   {
+    $id = Contact::all()->first()->id;
     $this->assertAuthenticated();
-    $response = $this->get('/notes/create/1');
+    $response = $this->get('/notes/create/' .  $id);
     $response->assertStatus(200);
   }
 
   public function test_notes_create_fails_no_description()
   {
+    $id = Contact::all()->first()->id;
     $this->assertAuthenticated();
     $response = $this
-      ->post('/notes/insert/1', [
+      ->post('/notes/insert/' . $id, [
         'description' => ''
       ]);
     $response->assertStatus(302);
