@@ -41,4 +41,10 @@ class NoteController extends Controller
       ->with('contact', $contact)
       ->with('action', 'update');
   }
+
+  public function delete(Note $note){
+    $contact = Contact::whereId($note->contact)->first();
+    $note->delete();
+    return redirect()->route('contact.show', $contact);
+  }
 }

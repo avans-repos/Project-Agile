@@ -101,6 +101,11 @@
               </div>
               <div class="d-flex justify-content-between align-items-center w-100">
                 <span class="d-block">{{$note->description}}</span>
+                <form method="POST" action="{{ route('notes.delete', $note->id) }}">
+                  {{ method_field('DELETE') }}
+                  {{ csrf_field() }}
+                    <input type="submit" value="Verwijderen >" style="background-color: transparent !important;">
+                </form>
               </div>
             </div>
           </div>

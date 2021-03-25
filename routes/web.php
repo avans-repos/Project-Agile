@@ -45,6 +45,10 @@ Route::get('/notes/edit/{note}', [NoteController::class, 'edit'])
 Route::patch('/notes/update/{note}', [NoteController::class, 'update'])
   ->middleware(['auth'])
   ->name('notes.update');
+Route::delete('/notes/delete/{note}', [NoteController::class, 'delete'])
+  ->middleware(['auth'])
+  ->name('notes.delete');
+
 
 
 // API Example controller using the avans API
