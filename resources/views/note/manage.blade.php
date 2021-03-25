@@ -17,7 +17,7 @@
     <a class="btn btn-primary" href="{{route('contact.show', $contact)}}">Terug naar contact</a>
   </div>
   <div class="d-flex justify-content-between">
-    <h1 class="fs-1">Notitie aanmaken voor {{$contact->firstname}} {{$contact->lastname}}</h1>
+    <h1 class="fs-1">Notitie {{$action}} voor {{$contact->firstname}} {{$contact->lastname}}</h1>
   </div>
   @if($errors->any())
     <div class="alert alert-danger">

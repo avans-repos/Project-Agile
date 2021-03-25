@@ -97,6 +97,7 @@
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-gray-dark">Gemaakt door: {{$note->name}} op {{date('d-m-Y H:i:s', strtotime($note->creation))}}</strong>
+                <a style="text-decoration: none;" href="{{route('notes.edit',$note->id)}}">Bewerken ></a>
               </div>
               <div class="d-flex justify-content-between align-items-center w-100">
                 <span class="d-block">{{$note->description}}</span>

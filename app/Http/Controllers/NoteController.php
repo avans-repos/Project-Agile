@@ -25,4 +25,20 @@ class NoteController extends Controller
 
     return redirect()->route('contact.show', $contact);
   }
+
+  public function update(Note $note, NoteRequest $noteRequest){
+  $note->description = $noteRequest->input('description');
+  $note->update($noteRequest->all());
+
+  $contact = Contact::whereId($note->contact)->first();
+  return redirect()->route('contact.show', $contact);
+  }
+
+  public function edit(Note $note){
+    $contact = Contact::whereId($note->contact)->first();
+    return view('note.manage')
+      ->with('note', $note)
+      ->with('contact', $contact)
+      ->with('action', 'update');
+  }
 }

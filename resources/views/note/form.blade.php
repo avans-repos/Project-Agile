@@ -1,16 +1,17 @@
-<form action="{{route('notes.insert', ['contact' => $contact])}}" method="POST">
-  @csrf
   @if($formAction == "update")
-    @method('PATCH')
+    <form action="{{route('notes.update', ['note' => $note])}}" method="POST">
+      @method('PATCH')
+  @else
+    <form action="{{route('notes.insert', ['contact' => $contact])}}" method="POST">
   @endif
+      @csrf
   <fieldset class="mb-3">
     <div class="mb-1">
       <div class="col">
         <label for="description" class="form-label">Notitie *</label>
-        <textarea  name="description" value="{{old('description',$note->description)}}" type="text"
+        <textarea name="description"  type="text"
                class="form-control"
-                   id="description" placeholder="Notitie hier" rows="5" required></textarea>
-
+                   id="description" placeholder="Notitie hier" rows="5" required>{{old('description',$note->description)}}</textarea>
       </div>
       <div class="col">
         @error('description')

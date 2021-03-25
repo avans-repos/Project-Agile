@@ -39,6 +39,13 @@ Route::get('/notes/create/{contact}', [NoteController::class, 'create'])
 Route::post('/notes/insert/{contact}', [NoteController::class, 'insert'])
   ->middleware(['auth'])
   ->name('notes.insert');
+Route::get('/notes/edit/{note}', [NoteController::class, 'edit'])
+  ->middleware(['auth'])
+  ->name('notes.edit');
+Route::patch('/notes/update/{note}', [NoteController::class, 'update'])
+  ->middleware(['auth'])
+  ->name('notes.update');
+
 
 // API Example controller using the avans API
 
