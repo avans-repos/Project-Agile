@@ -31,6 +31,8 @@ Route::resource('contact', ContactController::class)->middleware(['auth']);
 require __DIR__ . '/auth.php';
 
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
+
+Route::resource('project', \App\Http\Controllers\ProjectController::class);
 // API Example controller using the avans API
 
 Route::get('/api-example', [ApiExampleController::class, 'index']);
