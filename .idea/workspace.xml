@@ -14,6 +14,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/Project-Agile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project-Agile.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,6 +311,7 @@
       <workItem from="1616696129445" duration="3909000" />
       <workItem from="1615911456897" duration="846000" />
       <workItem from="1616436347099" duration="8197000" />
+      <workItem from="1616694406520" duration="6199000" />
     </task>
     <servers />
   </component>
