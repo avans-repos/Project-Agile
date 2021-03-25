@@ -20,5 +20,5 @@
       </div>
     </div>
   </fieldset>
-  <input class="btn btn-primary" type="submit" value="Notitie aanmaken">
+  <input class="btn btn-primary" type="submit" value="Notitie {{$actionViewName}}">
 </form>
