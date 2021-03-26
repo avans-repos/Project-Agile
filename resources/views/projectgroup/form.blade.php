@@ -10,7 +10,7 @@
         <label for="name" class="form-label">Naam *</label>
         <input name="name" value="{{old('name',$projectgroup->name)}}" type="text"
                class="form-control"
-               id="name" placeholder="Projectgroup 1" maxlength="100" required>
+               id="name" placeholder="Projectgroep 1" maxlength="100" required>
 
       </div>
       <div class="col">

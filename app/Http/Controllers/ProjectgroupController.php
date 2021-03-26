@@ -55,9 +55,6 @@ class ProjectgroupController extends Controller
   {
     $projectgroup = new Projectgroup();
 
-
-    // When roles are availabe this will be
-    // edited to split students from teachers by their role.
     $students = User::role('student')->get();
     $teachers = User::role('teacher')->get();
 

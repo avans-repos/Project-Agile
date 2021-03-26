@@ -4,9 +4,13 @@ namespace Tests\Feature;
 
 use App\Http\Requests\ProjectgroupRequest;
 use App\Models\User;
+use Database\Seeders\ProjectgroupSeeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\UsersSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class ProjectgroupCreateTest extends TestCase
@@ -21,12 +25,16 @@ class ProjectgroupCreateTest extends TestCase
   public function setUp() : void
   {
     parent::setUp();
+    $this->seed(RoleSeeder::class);
+    $this->seed(UsersSeeder::class);
+    $this->seed(ProjectgroupSeeder::class);
     $this->rules     = (new ProjectgroupRequest())->rules();
     $this->validator = $this->app['validator'];
     $user = new User([
       'id' => 1,
       'name' => 'test'
     ]);
+
     $this->be($user);
   }
 
