@@ -25,15 +25,15 @@
         <tbody>
         @foreach($groups as $group)
           <tr>
-            <td class="w-25">{{$group->name}}</td>
+            <td class="w-25">{{$group['group']['name']}}</td>
             <td class="w-25">
-              @foreach($assigned_to_group->where('projectgroupid',$group->id) as $assignee)
-                {{$assignee->name}}<br>
+              @foreach($group['teachers'] as $assignee)
+                {{$assignee['name']}}<br>
               @endforeach
             </td>
             <td class="w-25">
-              @foreach($assigned_to_group->where('projectgroupid',$group->id) as $assignee)
-                {{$assignee->name}}<br>
+              @foreach($group['students'] as $assignee)
+                {{$assignee['name']}}<br>
               @endforeach
             </td>
             <td>
@@ -41,11 +41,11 @@
                 <div class="m-1 d-flex justify-content-center align-items-center">
                   <div>
                     <a class="btn btn-secondary"
-                       href="{{route('projectgroup.edit',$group)}}">Aanpassen</a>
+                       href="{{route('projectgroup.edit',$group['group'])}}">Aanpassen</a>
                   </div>
                 </div>
                 <div class="m-1">
-                  <form method="POST" action="{{ route('projectgroup.destroy', $group) }}">
+                  <form method="POST" action="{{ route('projectgroup.destroy', $group['group']) }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
