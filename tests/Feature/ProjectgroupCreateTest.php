@@ -18,6 +18,7 @@ class ProjectgroupCreateTest extends TestCase
 {
   use CreatesApplication, RefreshDatabase;
 
+  protected $seed = true;
 
   public function setUp() : void
   {
