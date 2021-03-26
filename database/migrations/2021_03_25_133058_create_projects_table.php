@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('name',45);
             $table->string('description',400);
             $table->DateTime('deadline');
-            $table->string('notes', 999);
+            $table->text('notes');
             $table->timestamps();
         });
     }

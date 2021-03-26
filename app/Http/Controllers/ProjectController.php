@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -22,18 +23,11 @@ class ProjectController extends Controller
       ->with('action', 'store');
   }
 
-  public function store(CompanyRequest $request)
+  public function store(ProjectRequest $request)
   {
     $request->validated();
 
-    $addressIds = self::createAddressesAndReturnIds($request);
-
-    Project::create([
-      'name' => $request->input('name'),
-      'description' => $request->input('description'),
-      'deadline' => $request->input('deadline'),
-      'notes' => $request->input('notes'),
-    ]);
+    Project::create($request->all());
     return redirect()->route('project.index');
   }
 

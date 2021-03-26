@@ -49,9 +49,9 @@
     <div>
       <div class="mb-1">
         <label for="notes" class="form-label">Notities</label>
-        <input name="notes" value="{{old('notes',$project->notes)}}" type="text"
+        <textarea name="notes"
                class="form-control"
-               id="notes" placeholder="notities" maxlength="500" step="1" required>
+               id="notes" placeholder="notities" step="1" required>{{old('notes',$project->notes)}}</textarea>
 
       </div>
       <div class="col">
@@ -63,19 +63,4 @@
   </fieldset>
   <input class="btn btn-primary" type="submit" value="Project {{$formActionViewName}}">
 </form>
-<script>
-  var div = document.getElementById("mailing_address");
-  var checkbox = document.getElementById("address_same");
-  if(checkbox.checked) {
-    div.style.display = "none";
-  } else {
-    div.style.display = "block";
-  }
-  checkbox.addEventListener("change", function(){
-    if(this.checked) {
-      div.style.display = "none";
-    } else {
-      div.style.display = "block";
-    }
-  });
-</script>
+
