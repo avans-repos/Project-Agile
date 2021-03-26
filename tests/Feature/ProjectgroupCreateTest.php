@@ -11,15 +11,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
+use Tests\CreatesApplication;
 use Tests\TestCase;
 
 class ProjectgroupCreateTest extends TestCase
 {
-
-
-
-
-  use RefreshDatabase;
+  use CreatesApplication, RefreshDatabase;
 
 
   public function setUp() : void
@@ -28,7 +25,7 @@ class ProjectgroupCreateTest extends TestCase
     $this->seed(RoleSeeder::class);
     $this->seed(UsersSeeder::class);
     $this->seed(ProjectgroupSeeder::class);
-    $this->rules     = (new ProjectgroupRequest())->rules();
+    $this->rules = (new ProjectgroupRequest())->rules();
     $this->validator = $this->app['validator'];
     $user = new User([
       'id' => 1,
