@@ -51,7 +51,7 @@
         <label for="notes" class="form-label">Notities</label>
         <textarea name="notes"
                class="form-control"
-               id="notes" placeholder="notities" step="1" required>{{old('notes',$project->notes)}}</textarea>
+               id="notes" placeholder="notities" step="1">{{old('notes',$project->notes)}}</textarea>
 
       </div>
       <div class="col">

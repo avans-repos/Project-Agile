@@ -24,7 +24,17 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:45',
+            'description' => 'required|string|max:255',
+            'deadline' => 'required|date|after:tomorrow',
+            'notes' => 'nullable|string'
         ];
+    }
+
+    public function messages()
+    {
+      return [
+            'deadline.after' => 'De deadline moet minstens een dag in de toekomst liggen'
+      ];
     }
 }
