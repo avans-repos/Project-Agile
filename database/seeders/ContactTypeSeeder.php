@@ -19,5 +19,8 @@ class ContactTypeSeeder extends Seeder
     DB::table('contact_types')->insert([
       'name' => 'warm',
     ]);
+    DB::table('contact_types')->insert([
+      'name' => 'potentieel',
+    ]);
   }
 }
