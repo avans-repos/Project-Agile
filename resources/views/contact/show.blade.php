@@ -18,7 +18,7 @@
                 <legend>Persoonlijke informatie</legend>
                 <div class="row">
                     <div class="col-6">
-                        Voorletters
+                      Initialen
                     </div>
                     <div class="col-6">
                         {{$contact->initials}}
