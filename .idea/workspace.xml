@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ContactRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ContactRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/contact/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/contact/Contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_08_132920_create_contacts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_08_132920_create_contacts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contact/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/contact/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -296,7 +292,7 @@
       <workItem from="1616659031839" duration="5814000" />
       <workItem from="1616749629720" duration="1139000" />
       <workItem from="1616835810640" duration="475000" />
-      <workItem from="1616836319205" duration="2807000" />
+      <workItem from="1616836319205" duration="2933000" />
     </task>
     <servers />
   </component>

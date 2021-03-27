@@ -65,7 +65,7 @@
                         E-mail
                     </div>
                     <div class="col-6">
-                        {{$contact->email ?? "Onbekend"}}
+                        {{$contact->email ?? "n.v.t."}}
                     </div>
                 </div>
                 <div class="row">
@@ -73,7 +73,7 @@
                         Telefoonnummer
                     </div>
                     <div class="col-6">
-                        {{$contact->phonenumber ?? "Onbekend"}}
+                        {{$contact->phonenumber ?? "n.v.t."}}
                     </div>
                 </div>
                 <fieldset class="row">
@@ -81,7 +81,7 @@
                         Contactsoort
                     </div>
                     <div class="col-6">
-                        {{ucfirst($contact->type  ?? "Onbekend")}}
+                        {{isset($contact->type) ? ucfirst($contact->type) : "n.v.t."}}
                     </div>
                 </fieldset>
             </div>
