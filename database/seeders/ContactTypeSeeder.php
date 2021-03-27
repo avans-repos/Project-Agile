@@ -22,5 +22,8 @@ class ContactTypeSeeder extends Seeder
     DB::table('contact_types')->insert([
       'name' => 'potentieel',
     ]);
+    DB::table('contact_types')->insert([
+      'name' => 'n.v.t.',
+    ]);
   }
 }
