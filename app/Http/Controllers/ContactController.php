@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use App\Models\Company;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
@@ -33,10 +34,12 @@ class ContactController extends Controller
     $genders = Gender::all();
     $contactTypes = ContactType::all();
     $contact = new Contact();
+    $companies = Company::all();
     return view('contact.manage')
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
       ->with('contact', $contact)
+      ->with('companies', $companies)
       ->with('action', 'store');
   }
 
@@ -75,10 +78,12 @@ class ContactController extends Controller
   {
     $genders = Gender::all();
     $contactTypes = ContactType::all();
+    $companies = Company::all();
     return view('contact.manage')
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
       ->with('contact', $contact)
+      ->with('companies', $companies)
       ->with('action', 'update');
   }
 

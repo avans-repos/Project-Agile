@@ -125,5 +125,48 @@
             </div>
         </div>
     </fieldset>
+
+  <fieldset class="mb-3">
+    <legend>Contacttype per bedrijf</legend>
+    <div>
+      <div class="mb-1">
+        <label for="company" class="form-label">Bedrijf</label>
+        <select class="form-control" name="type" id="contactType">
+          <option disabled selected>Selecteer Bedrijf</option>
+          @foreach ($companies as $company)
+            <option
+              {{ ($company->name == old('type',$company->name) ? "selected":"") }} value="{{ $company->name }}">
+              {{ ucfirst(trans($company->name)) }}
+            </option>
+          @endforeach
+        </select>
+      </div>
+      <div class="col">
+        @error('type')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+    <div>
+      <div class="mb-1">
+        <label for="contactType" class="form-label">Contactsoort</label>
+        <select class="form-control" name="type" id="contactType">
+          <option disabled selected>Selecteer contactsoort</option>
+          @foreach ($contactTypes as $contactType)
+            <option
+              {{ ($contactType->name == old('type',$contact->type) ? "selected":"") }} value="{{ $contactType->name }}">
+              {{ ucfirst(trans($contactType->name)) }}
+            </option>
+          @endforeach
+        </select>
+      </div>
+      <div class="col">
+        @error('type')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+  </fieldset>
+
     <input class="btn btn-primary" type="submit" value="Contact {{$formActionViewName}}">
 </form>
