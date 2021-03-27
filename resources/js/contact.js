@@ -5,12 +5,14 @@ window.AddContactType = function(){
   document.getElementById('companies').appendChild(clone);
 
   clone = document.getElementById(`company-${highestCompany}`);
+  
   let companySelector =  clone.querySelector(`#companySelector-1`);
   companySelector.id = `companySelector-${highestCompany}`;
-  companySelector.name = companySelector.id
+  companySelector.name = companySelector.id;
+
   let contactTypeSelector = clone.querySelector(`#contactTypeSelector-1`);
   contactTypeSelector.id = `contactTypeSelector-${highestCompany}`;
-  contactTypeSelector.name = contactTypeSelector.id
-  return false;
+  contactTypeSelector.name = contactTypeSelector.id;
+
 }
 let highestCompany = 1;

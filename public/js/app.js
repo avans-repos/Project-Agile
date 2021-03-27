@@ -3856,7 +3856,6 @@ window.AddContactType = function () {
   var contactTypeSelector = clone.querySelector("#contactTypeSelector-1");
   contactTypeSelector.id = "contactTypeSelector-".concat(highestCompany);
   contactTypeSelector.name = contactTypeSelector.id;
-  return false;
 };
 
 var highestCompany = 1;
