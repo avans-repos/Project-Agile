@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $insertion
  * @property string $lastname
  * @property string $gender
- * @property string $email
- * @property string $phonenumber
- * @property string $type
+ * @property string|null $email
+ * @property string|null $phonenumber
+ * @property string|null $type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Contact newModelQuery()

@@ -82,7 +82,7 @@
                 <label for="email" class="form-label">E-mail</label>
                 <input name="email" value="{{old('email',$contact->email)}}" type="email" class="form-control"
                        id="email"
-                       placeholder="JohnDoe@domain.com" maxlength="320" required>
+                       placeholder="JohnDoe@domain.com" maxlength="320">
 
             </div>
             <div class="col">
@@ -96,7 +96,7 @@
                 <label for="phonenumber" class="form-label">Telefoonnummer</label>
                 <input name="phonenumber" value="{{old('phonenumber',$contact->phonenumber)}}" type="tel"
                        class="form-control"
-                       id="phonenumber" placeholder="06-12345678" maxlength="15" required>
+                       id="phonenumber" placeholder="06-12345678" maxlength="15">
 
             </div>
             <div class="col">
@@ -108,7 +108,7 @@
         <div>
             <div class="mb-1">
                 <label for="contactType" class="form-label">Contactsoort</label>
-                <select class="form-control" name="type" id="contactType" required>
+                <select class="form-control" name="type" id="contactType">
                     <option disabled selected>Selecteer contactsoort</option>
                     @foreach ($contactTypes as $contactType)
                         <option
