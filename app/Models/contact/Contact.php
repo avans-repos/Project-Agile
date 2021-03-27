@@ -40,4 +40,15 @@ class Contact extends Model
   use HasFactory;
 
   protected $fillable = ['initials', 'firstname', 'insertion', 'lastname', 'gender', 'email', 'phonenumber', 'type'];
+
+  public function getName(): string
+  {
+    $fullname = $this->firstname . ' ';
+    if(isset($this->insertion)){
+      $fullname .= $this->insertion . ' ';
+    }
+    $fullname .= $this->lastname;
+
+    return $fullname;
+  }
 }

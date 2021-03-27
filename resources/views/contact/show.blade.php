@@ -99,13 +99,12 @@
                 <strong class="text-gray-dark">Gemaakt door: {{$note->name}} op {{date('d-m-Y H:i:s', strtotime($note->creation))}}</strong>
                 <a style="text-decoration: none;" href="{{route('notes.edit',$note->id)}}">Bewerken ></a>
               </div>
-              <div class="d-flex justify-content-between align-items-center w-100">
+              <div class="d-flex justify-content-between align-items-center w-100 mt-2">
+                <span></span>
+                <a type="submit" href="{{route('notes.delete', $note->id)}}" style="background-color: transparent !important;">Verwijderen ></a>
+              </div>
+              <div class="d-flex justify-content-between align-items-center w-100 mt-2">
                 <span class="d-block">{{$note->description}}</span>
-                <form method="POST" action="{{ route('notes.delete', $note->id) }}">
-                  {{ method_field('DELETE') }}
-                  {{ csrf_field() }}
-                    <input type="submit" value="Verwijderen >" style="background-color: transparent !important;">
-                </form>
               </div>
             </div>
           </div>
