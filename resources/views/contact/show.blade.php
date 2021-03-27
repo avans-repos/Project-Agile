@@ -53,7 +53,7 @@
                         Geslacht
                     </div>
                     <div class="col-6">
-                        {{$contact->gender}}
+                        {{ucfirst($contact->gender)}}
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                         Contactsoort
                     </div>
                     <div class="col-6">
-                        {{$contact->type}}
+                        {{ucfirst($contact->type)}}
                     </div>
                 </fieldset>
             </div>
