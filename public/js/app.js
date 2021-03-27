@@ -3849,6 +3849,13 @@ window.AddContactType = function () {
 
   clone.id = "company-".concat(++highestCompany);
   document.getElementById('companies').appendChild(clone);
+  clone = document.getElementById("company-".concat(highestCompany));
+  var companySelector = clone.querySelector("#companySelector-1");
+  companySelector.id = "companySelector-".concat(highestCompany);
+  companySelector.name = companySelector.id;
+  var contactTypeSelector = clone.querySelector("#contactTypeSelector-1");
+  contactTypeSelector.id = "contactTypeSelector-".concat(highestCompany);
+  contactTypeSelector.name = contactTypeSelector.id;
   return false;
 };
 

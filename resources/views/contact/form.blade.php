@@ -114,7 +114,7 @@
     <div>
       <div class="mb-1">
         <label for="company" class="form-label">Bedrijf</label>
-        <select class="form-control" name="type" id="contactType">
+        <select class="form-control" name="company-1" id="companySelector-1">
           <option disabled selected>Selecteer Bedrijf</option>
           @foreach ($companies as $company)
             <option
@@ -133,7 +133,7 @@
     <div>
       <div class="mb-1">
         <label for="contactType" class="form-label">Contactsoort</label>
-        <select class="form-control" name="type" id="contactType">
+        <select class="form-control" name="contacttype-1" id="contactTypeSelector-1">
           <option disabled selected>Selecteer contactsoort</option>
           @foreach ($contactTypes as $contactType)
             <option
