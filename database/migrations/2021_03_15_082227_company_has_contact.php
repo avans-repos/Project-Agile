@@ -14,17 +14,9 @@ class CompanyHasContact extends Migration
     public function up()
     {
         Schema::create('company_has_contacts', function (Blueprint $table) {
-            $table->unsignedBigInteger('companyid');
-            $table->unsignedBigInteger('contactid');
+            $table->foreignId('companyid')->constrained('companies');
+            $table->foreignId('contactid')->constrained('contacts');
             $table->primary(['companyid', 'contactid']);
-            $table->foreign('contactid')
-              ->references('id')
-              ->on('contacts')
-              ->onDelete('cascade');
-            /*$table->foreign('companyid')
-              ->references('id')
-              ->on('companies')
-              ->onDelete('cascade');*/
         });
     }
 
