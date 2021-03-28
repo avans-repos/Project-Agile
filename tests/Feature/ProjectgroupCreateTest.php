@@ -23,9 +23,9 @@ class ProjectgroupCreateTest extends TestCase
   public function setUp() : void
   {
     parent::setUp();
-    $this->seed(RoleSeeder::class);
-    $this->seed(UsersSeeder::class);
-    $this->seed(ProjectgroupSeeder::class);
+
+    $this->artisan('migrate:fresh --seed');
+
     $this->rules = (new ProjectgroupRequest())->rules();
     $this->validator = $this->app['validator'];
     $user = new User([
