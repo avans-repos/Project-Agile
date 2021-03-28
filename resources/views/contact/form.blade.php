@@ -110,7 +110,7 @@
   <fieldset class="mb-3">
     <legend>Contacttype per bedrijf</legend>
     <div id="companies">
-      @if(!isset($contactTypesAssigned))
+      @if(!isset($contactTypesAssigned) || count($contactTypesAssigned) == 0)
     <div id="company-1" class="mt-3.5">
     <div>
       <div class="mb-1">
@@ -193,7 +193,6 @@
             @enderror
           </div>
         </div>
-      </div>
       </div>
     @endfor
     <a href="#" class="btn btn-primary mt-3" onclick="AddContactType()">Contacttype toevoegen</a>

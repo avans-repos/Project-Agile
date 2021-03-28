@@ -40,6 +40,7 @@ class ContactController extends Controller
       ->with('contactTypes', $contactTypes)
       ->with('contact', $contact)
       ->with('companies', $companies)
+      ->with('contactTypesAssigned', [])
       ->with('action', 'store');
   }
 
@@ -112,6 +113,19 @@ class ContactController extends Controller
   public function update(ContactRequest $request, Contact $contact)
   {
     $data = $request->all();
+
+    DB::table('contact_has_contacttypes')->where('contact', $contact->id)->delete();
+
+    $data= $request->all();
+    foreach(array_keys($request->all()) as $key){
+      if(starts_with($key,'company-')){
+        $id = explode('-',$key)[1];
+        if(isset($data['contacttype-' . $id]) &&  $data['contacttype-' . $id] != "n.v.t."){
+          $company =  DB::table('companies')->where('name', '=', $data[$key])->get('id')->first();
+          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [$contact->id,$company->id, $data['contacttype-' . $id]]);
+        }
+      }
+    }
 
     $request->validated();
     $contact->update($request->all());
