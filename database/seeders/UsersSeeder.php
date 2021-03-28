@@ -15,7 +15,7 @@ class UsersSeeder extends Seeder
       'email' => 'jaap@avans.nl',
       'password' => bcrypt('jaap@avans.nl'),
     ]);
-    $jaap->assignRole('teacher');
+    $jaap->assignRole('Teacher');
     $jaap->save($jaap->toArray());
 
     $jeroen = new User([
@@ -23,7 +23,7 @@ class UsersSeeder extends Seeder
       'email' => 'jeroen@avans.nl',
       'password' => bcrypt('jeroen@avans.nl'),
     ]);
-    $jeroen->assignRole('teacher');
+    $jeroen->assignRole('Teacher');
     $jeroen->save($jeroen->toArray());
 
     $marijn = new User([
@@ -31,7 +31,7 @@ class UsersSeeder extends Seeder
       'email' => 'marijn@avans.nl',
       'password' => bcrypt('marijn@avans.nl'),
     ]);
-    $marijn->assignRole('teacher');
+    $marijn->assignRole('Teacher');
     $marijn->save($marijn->toArray());
 
 
@@ -40,7 +40,7 @@ class UsersSeeder extends Seeder
       'email' => 'tom@avans.nl',
       'password' => bcrypt('tom@avans.nl'),
     ]);
-    $tom->assignRole('student');
+    $tom->assignRole('Student');
     $tom->save($tom->toArray());
 
     $job = new User([
@@ -48,7 +48,7 @@ class UsersSeeder extends Seeder
       'email' => 'job@avans.nl',
       'password' => bcrypt('job@avans.nl'),
     ]);
-    $job->assignRole('student');
+    $job->assignRole('Student');
     $job->save($job->toArray());
 
 
@@ -57,7 +57,7 @@ class UsersSeeder extends Seeder
       'email' => 'martijn@avans.nl',
       'password' => bcrypt('martijn@avans.nl'),
     ]);
-    $martijn->assignRole('student');
+    $martijn->assignRole('Student');
     $martijn->save($martijn->toArray());
   }
 }
