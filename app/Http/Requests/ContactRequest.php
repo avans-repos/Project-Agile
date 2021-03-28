@@ -32,6 +32,8 @@ class ContactRequest extends FormRequest
       'email' => 'nullable|email|max:320',
       'phonenumber' => 'nullable|string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
       'type' => 'nullable',
+      'company-*' => 'nullable|string',
+      'contactTypeSelector-*' => 'nullable|string',
     ];
   }
 
@@ -46,6 +48,8 @@ class ContactRequest extends FormRequest
       'email' => 'e-mail',
       'phonenumber' => 'telefoonnummer',
       'type' => 'contactsoort',
+      'company-*' => 'bedrijf',
+      'contactTypeSelector-*' => 'contactType',
     ];
   }
 }

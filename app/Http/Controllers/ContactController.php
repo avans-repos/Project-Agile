@@ -96,6 +96,15 @@ class ContactController extends Controller
    */
   public function update(ContactRequest $request, Contact $contact)
   {
+    $data = $request->all();
+  foreach(array_keys($request->all()) as $key){
+    if(starts_with($key,'company-')){
+      $id = explode('-',$key)[1];
+      if(isset($data['contacttype-' . $id])){
+        die($data[$key] . $data['contacttype-' . $id]);
+      }
+    }
+  }
     $request->validated();
     $contact->update($request->all());
     return redirect()->route('contact.index');
@@ -112,4 +121,8 @@ class ContactController extends Controller
     $contact->delete();
     return redirect()->route('contact.index');
   }
+}
+
+function starts_with($haystack, $needle) {
+  return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
 }

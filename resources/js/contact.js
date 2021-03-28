@@ -5,7 +5,7 @@ window.AddContactType = function(){
   document.getElementById('companies').appendChild(clone);
 
   clone = document.getElementById(`company-${highestCompany}`);
-  
+
   let companySelector =  clone.querySelector(`#companySelector-1`);
   companySelector.id = `companySelector-${highestCompany}`;
   companySelector.name = companySelector.id;
