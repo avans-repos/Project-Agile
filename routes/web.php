@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActionpointController;
 use App\Http\Controllers\ApiExampleController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactpointController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyOwnActionController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,10 @@ Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class
   ->name('actionpoints.complete');
 
 Route::resource('contact', ContactController::class)->middleware(['auth']);
+require __DIR__ . '/auth.php';
+
+Route::resource('contactpoint', ContactpointController::class)->except(['create'])->middleware(['auth']);
+Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create');
 require __DIR__ . '/auth.php';
 
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
