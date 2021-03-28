@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/project/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/RegistrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/RegistrationTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/RoleSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Project-Agile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project-Agile.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/RegistrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/RegistrationTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,64 +210,8 @@
         </PhpTestInterpreterSettings>
       </CommandLine>
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" directory="$PROJECT_DIR$/tests" />
-  <component name="RunManager" selected="PHPUnit.ProjectTest">
-    <configuration name="ProjectTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ProjectTest" file="$PROJECT_DIR$/tests/Feature/ProjectTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
-      <method v="2" />
-    </configuration>
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="format" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="format" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="format:check" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="format:check" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="watch" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="PHPUnit.ProjectTest" />
-        <item itemvalue="npm.watch" />
-        <item itemvalue="npm.format:check" />
-        <item itemvalue="npm.format" />
-        <item itemvalue="npm.dev" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -322,6 +257,7 @@
       <workItem from="1616785840891" duration="2536000" />
       <workItem from="1616791176796" duration="614000" />
       <workItem from="1616934132380" duration="3549000" />
+      <workItem from="1616946327487" duration="2000" />
     </task>
     <servers />
   </component>
