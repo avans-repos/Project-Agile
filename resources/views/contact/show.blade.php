@@ -76,14 +76,17 @@
                         {{$contact->phonenumber ?? "N.v.t."}}
                     </div>
                 </div>
+              <legend>Contact Types</legend>
+              @foreach($contactTypes as $contactType)
                 <fieldset class="row">
                     <div class="col-6">
-                        Contactsoort
+                        {{$contactType->name}}
                     </div>
                     <div class="col-6">
-                        {{ucfirst($contact->type ?? "N.v.t") }}
+                        {{ucfirst($contactType->contacttype) }}
                     </div>
                 </fieldset>
+              @endforeach
             </div>
         </div>
 
