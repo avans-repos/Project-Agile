@@ -25,7 +25,7 @@ class ContactpointRequest extends FormRequest
     {
         return [
             'dateOfContact' => 'required|before:tomorrow',
-            'description' =>  'required'
+            'description' =>  'required|string|min:3|max:5000'
         ];
     }
 
