@@ -7,6 +7,7 @@ use App\Models\User;
 use Database\Seeders\ProjectgroupSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UsersSeeder;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
@@ -16,14 +17,10 @@ use Tests\TestCase;
 
 class ProjectgroupCreateTest extends TestCase
 {
-  use CreatesApplication, RefreshDatabase;
-
-  protected $seed = true;
-
+  use CreatesApplication,DatabaseTransactions;
   public function setUp() : void
   {
     parent::setUp();
-
     $this->artisan('migrate:fresh --seed');
 
     $this->rules = (new ProjectgroupRequest())->rules();
