@@ -86,5 +86,9 @@
                 </fieldset>
             </div>
         </div>
+
+        <div class="col-6">
+          @include('contactpoint.index',['contactpoints'=>$contactpoints, 'contact'=>$contact])
+        </div>
     </div>
 @endsection
