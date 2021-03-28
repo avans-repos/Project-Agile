@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ActionpointRequest;
 use App\Http\Requests\ContactpointRequest;
 use App\Models\contact\Contact;
 use App\Models\Contactpoint;

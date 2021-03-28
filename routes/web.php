@@ -46,6 +46,10 @@ Route::resource('contactpoint', ContactpointController::class)->except(['create'
 Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create');
 require __DIR__ . '/auth.php';
 
+Route::resource('contactpoint', ContactpointController::class)->except(['create'])->middleware(['auth']);
+Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create');
+require __DIR__ . '/auth.php';
+
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
 // API Example controller using the avans API
 
