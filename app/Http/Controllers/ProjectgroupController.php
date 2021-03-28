@@ -55,8 +55,8 @@ class ProjectgroupController extends Controller
   {
     $projectgroup = new Projectgroup();
 
-    $students = User::role('student')->get();
-    $teachers = User::role('teacher')->get();
+    $students = User::role('Student')->get();
+    $teachers = User::role('Teacher')->get();
 
     $assigned = null;
     return view('projectgroup.manage')

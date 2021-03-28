@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ProjectgroupCreateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ProjectgroupCreateTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +298,7 @@
       <workItem from="1616696129445" duration="3909000" />
       <workItem from="1616785840891" duration="2536000" />
       <workItem from="1616791176796" duration="614000" />
-      <workItem from="1616934132380" duration="1709000" />
+      <workItem from="1616934132380" duration="1895000" />
     </task>
     <servers />
   </component>
