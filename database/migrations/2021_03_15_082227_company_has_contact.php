@@ -21,10 +21,10 @@ class CompanyHasContact extends Migration
               ->references('id')
               ->on('contacts')
               ->onDelete('cascade');
-            $table->foreign('companyid')
+            /*$table->foreign('companyid')
               ->references('id')
               ->on('companies')
-              ->onDelete('cascade');
+              ->onDelete('cascade');*/
         });
     }
 
