@@ -176,8 +176,55 @@
       </div>
       @endforeach
 
+      <button onClick="showTable()" class="btn btn-primary mt-4">Contactpersoon toevoegen</button>
+
+      <table class="table mt-4 d-none" id="add-contact-table">
+        <tr>
+          <th>Naam</th>
+          <th>E-mail</th>
+          <th>Telefoonnummer</th>
+          <th></th>
+        </tr>
+      @foreach($newContacts as $contact)
+      <tr>
+        <td>
+          <b>{{$contact->firstname}} {{$contact->lastname}}</b>
+        </td>
+
+        <td>
+          <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
+        </td>
+
+        <td>
+          {{ $contact->phonenumber }}
+        </td>
+
+        <td>
+          <a href="{{$company->id}}/addcontact/{{ $contact->id }}" class="btn btn-secondary">Toevoegen</a>
+        </td>
+      </tr>
+      @endforeach
+      </table>
     </fieldset>
   </div>
 
+  <script>
+    let table = document.getElementById("add-contact-table");
 
+    function showTable()
+    {
+      if (table.classList.contains("d-none"))
+      {
+        table.classList.remove("d-none");
+      }
+      else
+      {
+        table.classList.add("d-none");
+      }
+      // if (table.style.display != "none")
+      //   table.style.display = "none";
+      // else
+      //   table.style.display = "block";
+    }
+  </script>
 @endsection

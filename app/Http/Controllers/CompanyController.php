@@ -77,13 +77,25 @@ class CompanyController extends Controller
       $address2 = Address::find($company->mailing_address);
     }
 
-    $contacts = DB::select("SELECT * FROM company_has_contacts NATURAL JOIN contacts WHERE companyid = " . $company->id);
+    $contacts = DB::select("SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = " . $company->id);
+    $newContacts = DB::select("SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != " . $company->id);
 
     return view('company.show')
       ->with('company', $company)
       ->with('address1', $address1)
       ->with('address2', $address2)
-      ->with('contacts', $contacts);
+      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts);
+  }
+
+  public function addcontact($companyid, $contactid)
+  {
+    DB::table('company_has_contacts')->insert([
+      'companyid' => $companyid,
+      'contactid' => $contactid
+    ]);
+
+    return redirect()->route('company.show', [$companyid]);
   }
 
   /**
