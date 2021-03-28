@@ -33,7 +33,7 @@ class RegistrationTest extends TestCase
     ]);
 
     $this->be($user);
-    
+
     $response = $this->post('/register', [
       'name' => 'Test User',
       'email' => 'test@example.com',
