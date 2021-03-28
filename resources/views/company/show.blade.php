@@ -155,7 +155,8 @@
       @foreach($contacts as $contact)
       <div class="row">
         <div>
-          <b>{{$contact->firstname}} {{$contact->lastname}}</b>
+          <b>{{$contact->firstname}} {{$contact->lastname}}</b> 
+          <a class="ml-1" href="{{$company->id}}/removecontact/{{ $contact->id }}">x</a>
         </div>
 
         <div>
@@ -221,10 +222,6 @@
       {
         table.classList.add("d-none");
       }
-      // if (table.style.display != "none")
-      //   table.style.display = "none";
-      // else
-      //   table.style.display = "block";
     }
   </script>
 @endsection

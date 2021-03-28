@@ -98,6 +98,13 @@ class CompanyController extends Controller
     return redirect()->route('company.show', [$companyid]);
   }
 
+  public function removecontact($companyid, $contactid)
+  {
+    DB::table('company_has_contacts')->where('companyid', $companyid)->where('contactid', $contactid)->delete();
+
+    return redirect()->route('company.show', [$companyid]);
+  }
+
   /**
    * Show the form for editing the specified resource.
    *
