@@ -13,7 +13,7 @@ class CreateContactpointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contactpoint', function (Blueprint $table) {
+        Schema::create('contactpoints', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('contactPerson');
