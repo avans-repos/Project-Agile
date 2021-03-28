@@ -1,8 +1,6 @@
 <?php
 
 namespace Tests\Feature;
-
-use App\Http\Requests\ProjectgroupRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
