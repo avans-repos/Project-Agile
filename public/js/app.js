@@ -3851,10 +3851,10 @@ window.AddContactType = function () {
   document.getElementById('companies').appendChild(clone);
   clone = document.getElementById("company-".concat(highestCompany));
   var companySelector = clone.querySelector("#companySelector-1");
-  companySelector.id = "companySelector-".concat(highestCompany);
+  companySelector.id = "company-".concat(highestCompany);
   companySelector.name = companySelector.id;
   var contactTypeSelector = clone.querySelector("#contactTypeSelector-1");
-  contactTypeSelector.id = "contactTypeSelector-".concat(highestCompany);
+  contactTypeSelector.id = "contacttype-".concat(highestCompany);
   contactTypeSelector.name = contactTypeSelector.id;
 };
 

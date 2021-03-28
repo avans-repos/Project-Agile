@@ -7,11 +7,11 @@ window.AddContactType = function(){
   clone = document.getElementById(`company-${highestCompany}`);
 
   let companySelector =  clone.querySelector(`#companySelector-1`);
-  companySelector.id = `companySelector-${highestCompany}`;
+  companySelector.id = `company-${highestCompany}`;
   companySelector.name = companySelector.id;
 
   let contactTypeSelector = clone.querySelector(`#contactTypeSelector-1`);
-  contactTypeSelector.id = `contactTypeSelector-${highestCompany}`;
+  contactTypeSelector.id = `contacttype-${highestCompany}`;
   contactTypeSelector.name = contactTypeSelector.id;
 
 }
