@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ActionpointRequest;
+use App\Http\Requests\ContactpointRequest;
 use App\Models\contact\Contact;
 use App\Models\Contactpoint;
 use App\Models\User;
@@ -39,9 +40,11 @@ class ContactpointController extends Controller
       ->with('action', 'store');
   }
 
-  public function store(Request $request)
+  public function store(ContactpointRequest $request)
   {
     $contact = Contact::find($request->contactid);
+
+    $request->validated();
 
     Contactpoint::create([
       'contactPerson' => $request->contactid,
@@ -72,8 +75,10 @@ class ContactpointController extends Controller
       ->with('action', 'update');
   }
 
-  public function update(Request $request, Contactpoint $contactpoint)
+  public function update(ContactpointRequest $request, Contactpoint $contactpoint)
   {
+    $request->validated();
+
     $contact = Contact::find($contactpoint->contactPerson);
 
     $contactpoint->update($request->all());
