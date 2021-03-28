@@ -92,11 +92,13 @@ class ContactController extends Controller
     $genders = Gender::all();
     $contactTypes = ContactType::all();
     $companies = Company::all();
+    $contactTypesAssigned = DB::Table('contact_has_contacttypes')->where('contact', '=', $contact->id)->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')->select('contact_has_contacttypes.contacttype', 'companies.name')->get() ?? [];
     return view('contact.manage')
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
       ->with('contact', $contact)
       ->with('companies', $companies)
+      ->with('contactTypesAssigned', $contactTypesAssigned)
       ->with('action', 'update');
   }
 

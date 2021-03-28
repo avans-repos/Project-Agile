@@ -110,6 +110,7 @@
   <fieldset class="mb-3">
     <legend>Contacttype per bedrijf</legend>
     <div id="companies">
+      @if(!isset($contactTypesAssigned))
     <div id="company-1" class="mt-3.5">
     <div>
       <div class="mb-1">
@@ -151,6 +152,50 @@
     </div>
     </div>
     </div>
+    @endif
+    @for($i = 0; $i < count($contactTypesAssigned); $i++)
+      <div id="company-{{$i + 1}}" class="mt-3.5">
+        <div>
+          <div class="mb-1">
+            <label for="company" class="form-label">Bedrijf</label>
+            <select class="form-control" name="company-{{$i + 1}}" id="companySelector-1">
+              <option disabled selected>Selecteer Bedrijf</option>
+              @foreach ($companies as $company)
+                <option
+                  {{ ($company->name == $contactTypesAssigned[$i]->name ? "selected":"") }} value="{{ $company->name }}">
+                  {{ ucfirst(trans($company->name)) }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col">
+            @error('type')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+          </div>
+        </div>
+        <div>
+          <div class="mb-1">
+            <label for="contactType" class="form-label">Contactsoort</label>
+            <select class="form-control" name="contacttype-{{$i + 1}}" id="contactTypeSelector-1">
+              <option disabled selected>Selecteer contactsoort</option>
+              @foreach ($contactTypes as $contactType)
+                <option
+                  {{ ($contactType->name == $contactTypesAssigned[$i]->contacttype ? "selected":"") }} value="{{ $contactType->name }}">
+                  {{ ucfirst(trans($contactType->name)) }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col">
+            @error('type')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+          </div>
+        </div>
+      </div>
+      </div>
+    @endfor
     <a href="#" class="btn btn-primary mt-3" onclick="AddContactType()">Contacttype toevoegen</a>
   </fieldset>
 
