@@ -24,7 +24,7 @@
         <label for="description" class="form-label">Omschrijving</label>
         <input name="description" value="{{old('description',$project->description)}}" type="text"
                class="form-control"
-               id="description" placeholder="" maxlength="400" required>
+               id="description" placeholder="" maxlength="255" required>
       </div>
       <div class="col">
         @error('description')
