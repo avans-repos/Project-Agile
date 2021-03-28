@@ -17,12 +17,11 @@ use Tests\TestCase;
 
 class ProjectgroupCreateTest extends TestCase
 {
-  use CreatesApplication,DatabaseTransactions;
+  use CreatesApplication,RefreshDatabase;
   public function setUp() : void
   {
     parent::setUp();
     $this->artisan('migrate:fresh --seed');
-
     $this->rules = (new ProjectgroupRequest())->rules();
     $this->validator = $this->app['validator'];
     $user = new User([
