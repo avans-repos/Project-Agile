@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/resources/views/project/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/RegistrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/RegistrationTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeders/RoleSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Project-Agile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project-Agile.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
@@ -177,7 +183,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Requests" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/project" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -191,6 +197,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\Project-Agile\resources\views\project" />
       <recent name="D:\xampp\agile\Project-Agile\app\Http\Requests" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
       <recent name="C:\Users\Job\Github\Project-Agile" />
@@ -213,6 +220,13 @@
         </PhpTestInterpreterSettings>
       </CommandLine>
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" coverage_engine="PHPDBG" directory="$PROJECT_DIR$/tests" />
+  <component name="RunManager" selected="PHPUnit.ProjectTest">
+    <configuration name="ProjectTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ProjectTest" file="$PROJECT_DIR$/tests/Feature/ProjectTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -257,7 +271,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.ProjectTest" />
         <item itemvalue="npm.watch" />
         <item itemvalue="npm.format:check" />
         <item itemvalue="npm.format" />
@@ -297,6 +311,14 @@
       <workItem from="1615563394306" duration="744000" />
       <workItem from="1615710813043" duration="1540000" />
       <workItem from="1615793986073" duration="1205000" />
+      <workItem from="1616409438150" duration="1178000" />
+      <workItem from="1616415745525" duration="920000" />
+      <workItem from="1616601861694" duration="748000" />
+      <workItem from="1616678111588" duration="6863000" />
+      <workItem from="1616751078139" duration="3700000" />
+      <workItem from="1616857379184" duration="656000" />
+      <workItem from="1616924506722" duration="7046000" />
+      <workItem from="1616924506722" duration="6014000" />
       <workItem from="1616696129445" duration="3909000" />
       <workItem from="1616785840891" duration="2536000" />
       <workItem from="1616791176796" duration="614000" />

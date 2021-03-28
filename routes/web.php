@@ -35,8 +35,12 @@ Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class
 Route::resource('contact', ContactController::class)
   ->middleware(['auth']);
 
+Route::resource('project', \App\Http\Controllers\ProjectController::class)
+  ->middleware(['auth']);
+
 Route::resource('company', CompanyController::class)
   ->middleware(['auth']);
+
 
 Route::resource('role', RoleController::class)
   ->middleware(['auth']);
