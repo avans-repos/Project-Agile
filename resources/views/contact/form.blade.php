@@ -195,8 +195,9 @@
         </div>
       </div>
     @endfor
-    <a href="#" class="btn btn-primary mt-3" onclick="AddContactType()">Contacttype toevoegen</a>
   </fieldset>
-
+  <div class="mt-3 mb-3">
+    <a href="#" class="btn btn-primary" onclick="AddContactType()">Contacttype toevoegen</a>
+  </div>
     <input class="btn btn-primary" type="submit" value="Contact {{$formActionViewName}}">
 </form>
