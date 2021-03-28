@@ -8,8 +8,7 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^7.3",
-    "ext-oauth": "*",
+    "php": "^7.3|^8",
     "fakerphp/faker": "^1.13",
     "fideloper/proxy": "^4.4",
     "fruitcake/laravel-cors": "^2.0",
@@ -18,6 +17,7 @@
     "laravel/tinker": "^2.5",
     "laravelcollective/html": "^6.2",
     "lusitanian/oauth": "^0.8.11",
+    "spatie/laravel-permission": "^4.0",
     "spatie/laravel-view-models": "^1.3"
   },
   "require-dev": {

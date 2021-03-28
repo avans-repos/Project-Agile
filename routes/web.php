@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\ActionpointController;
 use App\Http\Controllers\ApiExampleController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyOwnActionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,14 +25,18 @@ Route::get('/', [HomeController::class, 'index'])
   ->middleware(['auth'])
   ->name('dashboard');
 
-Route::resource('actionpoints', ActionpointController::class)->middleware(['auth']);
+Route::resource('actionpoints', ActionpointController::class)
+  ->middleware(['auth']);
+
 Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete'])
   ->middleware(['auth'])
   ->name('actionpoints.complete');
 
-Route::resource('contact', ContactController::class)->middleware(['auth']);
-require __DIR__ . '/auth.php';
+Route::resource('contact', ContactController::class)
+  ->middleware(['auth']);
 
+Route::resource('project', \App\Http\Controllers\ProjectController::class)
+  ->middleware(['auth']);
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
 
 Route::get('/notes/create/{contact}', [NoteController::class, 'create'])
@@ -56,4 +62,11 @@ Route::get('/notes/delete/{note}', [NoteController::class, 'delete'])
 
 // API Example controller using the avans API
 
-Route::get('/api-example', [ApiExampleController::class, 'index']);
+Route::resource('company', CompanyController::class)
+  ->middleware(['auth']);
+
+
+Route::resource('role', RoleController::class)
+  ->middleware(['auth']);
+
+require __DIR__ . '/auth.php';
