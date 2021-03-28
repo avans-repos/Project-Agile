@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 
 
@@ -17,7 +17,7 @@
             <a class="btn btn-primary" href="{{route('company.index')}}">Terug naar overzicht</a>
         </div>
         <div class="d-flex justify-content-between">
-            <h1>Bedrijf {{$actionViewName}}</h1>
+            <h1 class="fs-1">Bedrijf {{$actionViewName}}</h1>
         </div>
         @if($errors->any())
             <div class="alert alert-danger">

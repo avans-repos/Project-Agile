@@ -25,7 +25,7 @@ class CompanyRequest extends FormRequest
   {
     return [
       'name' => 'required|string|max:50',
-      'phonenumber' => 'required|string|max:15',
+      'phonenumber' => 'required|string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
       'email' => 'required|email|max:320',
       'size' => 'required|numeric|min:0',
       'website' => 'required|url|max:255',
@@ -47,7 +47,7 @@ class CompanyRequest extends FormRequest
   public function withValidator($validator)
   {
     $validator->after(function ($validator) {
-      if($this->address_same == 1) {
+      if ($this->address_same == 1) {
         $zipcodeNumberCity1 = $this->zipcode1 . $this->number1 . $this->city1;
         $zipcodeNumberCity2 = $this->zipcode2 . $this->number2 . $this->city2;
 

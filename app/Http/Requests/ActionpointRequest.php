@@ -6,38 +6,38 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ActionpointRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+  /**
+   * Determine if the user is authorized to make this request.
+   *
+   * @return bool
+   */
+  public function authorize()
+  {
+    return true;
+  }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            'deadline' => 'required|after:tomorrow',
-            'title' => 'required',
-            'description' => 'required',
-            'reminderdate' => 'after:tomorrow'
-        ];
-    }
+  /**
+   * Get the validation rules that apply to the request.
+   *
+   * @return array
+   */
+  public function rules()
+  {
+    return [
+      'deadline' => 'required|after:tomorrow',
+      'title' => 'required',
+      'description' => 'required',
+      'reminderdate' => 'nullable|after:tomorrow',
+    ];
+  }
 
-    public function attributes()
-    {
-        return [
-            'deadline'=>'deadline',
-            'title'=>'titel',
-            'description'=>'beschrijving',
-            'reminderdate' => 'Herinneringsdatum'
-        ];
-    }
+  public function attributes()
+  {
+    return [
+      'deadline' => 'deadline',
+      'title' => 'titel',
+      'description' => 'beschrijving',
+      'reminderdate' => 'Herinneringsdatum',
+    ];
+  }
 }

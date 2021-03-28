@@ -114,7 +114,8 @@ return [
   'timezone' => ':Attribute moet een geldige tijdzone zijn.',
   'unique' => ':Attribute is al in gebruik.',
   'uploaded' => 'Het uploaden van :attribute is mislukt.',
-  'url' => ':Attribute moet een geldige URL zijn. De link moet `http` of `https` bevatten, mag geen `!@$^*)(;` bevatten en mag niet eindigen met een punt of komma',
+  'url' =>
+    ':Attribute moet een geldige URL zijn. De link moet `http` of `https` bevatten, mag geen `!@$^*)(;` bevatten en mag niet eindigen met een punt of komma',
   'uuid' => ':Attribute moet een geldig UUID zijn.',
   /*
     |--------------------------------------------------------------------------
@@ -141,6 +142,7 @@ return [
     | of "email". This simply helps us make messages a little cleaner.
     |
     */
+
   'attributes' => [
     'address' => 'adres',
     'age' => 'leeftijd',

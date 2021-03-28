@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\ActionpointController;
+use App\Http\Controllers\ApiExampleController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MyOwnActionController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProjectgroupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +21,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])
+  ->middleware(['auth'])
+  ->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::resource('actionpoints', ActionpointController::class)
+  ->middleware(['auth']);
 
-Route::resource('actionpoints', \App\Http\Controllers\ActionpointController::class);
+Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete'])
+  ->middleware(['auth'])
+  ->name('actionpoints.complete');
 
-// Import authentication handler
-require __DIR__.'/auth.php';
-Route::resource('company',\App\Http\Controllers\CompanyController::class);
+Route::resource('contact', ContactController::class)
+  ->middleware(['auth']);
+
+Route::resource('project', \App\Http\Controllers\ProjectController::class)
+  ->middleware(['auth']);
+
+Route::resource('company', CompanyController::class)
+  ->middleware(['auth']);
+
+
+Route::resource('role', RoleController::class)
+  ->middleware(['auth']);
+
+require __DIR__ . '/auth.php';
+Route::resource('projectgroup', ProjectgroupController::class)
+  ->middleware(['auth']);
