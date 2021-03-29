@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/Feature/NoteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/NoteTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/form.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +259,7 @@
       <workItem from="1616791176796" duration="614000" />
       <workItem from="1616934132380" duration="3549000" />
       <workItem from="1616946327487" duration="2000" />
-      <workItem from="1617005035015" duration="1386000" />
+      <workItem from="1617005035015" duration="2042000" />
     </task>
     <servers />
   </component>
