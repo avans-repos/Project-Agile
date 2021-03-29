@@ -22,7 +22,21 @@ class NoteTest extends TestCase
       'id' => 1,
       'name' => 'test'
     ]);
-    $this->artisan('migrate:fresh --seed');
+    DB::table('genders')->insert([
+      'type' => 'man',
+    ]);
+    DB::table('contact_types')->insert([
+      'name' => 'warm',
+    ]);
+    DB::table('contacts')->insert([
+      'initials' => 'MBM',
+      'firstname' => 'Martijn',
+      'lastname' => 'Ambagtsheer',
+      'gender' => 'man',
+      'email' => 'ambagtsheer.m@gmail.com',
+      'phonenumber' => '0657305857',
+      'type' => 'warm'
+    ]);
     $this->be($user);
   }
 
