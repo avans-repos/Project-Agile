@@ -90,7 +90,7 @@
             </div>
         </div>
 
-      <div class="my-3 p-3 bg-white rounded shadow-sm col-sm ms-5">
+      <div class="my-3 p-3 bg-white rounded shadow-sm col-sm">
         <div class="d-flex justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
           <h6 class="">Notities |  {{count($notes)}}</h6>
           <a type="button" class="btn btn-primary" href="{{route('notes.create', $contact)}}">Notitie aanmaken ></a>
