@@ -1,21 +1,26 @@
 <?php
 
 namespace Tests\Feature;
+use App\Http\Requests\ContactpointRequest;
 use App\Models\Contactpoint;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use Tests\CreatesApplication;
 use Tests\TestCase;
 
 class ContactpointTest extends TestCase
 {
-  use RefreshDatabase;
+  use CreatesApplication,RefreshDatabase;
 
   public function setUp() : void
   {
     parent::setUp();
     $this->artisan('migrate:fresh --seed');
+    $this->rules = (new ContactpointRequest())->rules();
+    $this->validator = $this->app['validator'];
     $user = new User([
       'id' => 1,
       'name' => 'test'
@@ -74,15 +79,23 @@ Fusce feugiat nec libero ut eleifend. Etiam non pulvinar leo. Suspendisse ut neq
     ]);
   }
 
-  public function test_create_contactpoint_succes()
+  public function test_create_contactpoint_success()
   {
-    $testDescription = Str::random(250);
+    $testDescription = Str::random(100);
 
     $response = $this
       ->post(route('contactpoint.store'), [
-        'dateOfContact' => date('Y-m-d'),
+        'contactid' => 1,
+        'dateOfContact' => date('Y-m-d', strtotime('-1 days')),
         'description' => $testDescription
       ]);
+
     $response->assertSessionDoesntHaveErrors();
+
+    $this->assertDatabaseHas('contactpoints', [
+      'contactid' => 1,
+      'dateOfContact' => date('Y-m-d', strtotime('-1 days')),
+      'description' => $testDescription
+    ]);
   }
 }
