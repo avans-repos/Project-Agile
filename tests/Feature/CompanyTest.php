@@ -61,8 +61,10 @@ class CompanyTest extends TestCase
     public function test_company_details_screen_can_be_rendered()
     {
         $this->assertAuthenticated();
-        $response = $this->get('/company/1');
-
+        $response = $this->get(route('company.show', [
+            'company' => 1,
+        ]));
+        
         $response->assertStatus(200);
     }
 }
