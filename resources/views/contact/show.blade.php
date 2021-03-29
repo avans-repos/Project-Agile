@@ -107,7 +107,7 @@
                 <a type="submit" href="{{route('notes.delete', $note->id)}}" style="background-color: transparent !important;">Verwijderen ></a>
               </div>
               <div class="d-flex justify-content-between align-items-center w-100 mt-2">
-                <span class="d-block">{{$note->description}}</span>
+                <span class="d-block break-words">{{$note->description}}</span>
               </div>
             </div>
           </div>
