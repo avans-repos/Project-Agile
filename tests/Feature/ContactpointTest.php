@@ -93,8 +93,6 @@ Fusce feugiat nec libero ut eleifend. Etiam non pulvinar leo. Suspendisse ut neq
     $response->assertSessionDoesntHaveErrors();
 
     $this->assertDatabaseHas('contactpoints', [
-      'contactid' => 1,
-      'dateOfContact' => date('Y-m-d', strtotime('-1 days')),
       'description' => $testDescription
     ]);
   }
