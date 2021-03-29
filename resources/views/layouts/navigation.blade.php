@@ -22,6 +22,9 @@
                   <x-nav-link :href="route('company.index')" class="avans-white"  :active="request()->routeIs('company')">
                     {{ __('Bedrijven') }}
                   </x-nav-link>
+                  <x-nav-link :href="route('projectgroup.index')" class="avans-white"  :active="request()->routeIs('projectgroup')">
+                    {{ __('Projectgroepen') }}
+                    </x-nav-link>
                   <x-nav-link :href="route('project.index')" class="avans-white"  :active="request()->routeIs('project')">
                     {{ __('Projecten') }}
                   </x-nav-link>
