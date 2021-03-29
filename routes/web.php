@@ -38,8 +38,8 @@ Route::resource('contact', ContactController::class)
 Route::resource('project', \App\Http\Controllers\ProjectController::class)
   ->middleware(['auth']);
 
-Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, "addcontact"]);
-Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, "removecontact"]);
+Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, "addcontact"])->middleware(['auth']);
+Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, "removecontact"])->middleware(['auth']);
 Route::resource('company', CompanyController::class)
   ->middleware(['auth']);
 
