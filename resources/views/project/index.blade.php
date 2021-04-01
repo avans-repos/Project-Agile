@@ -31,17 +31,17 @@
             <td>{{$project->notes}}</td>
             <td>
               <div class="d-md-flex align-items-center">
-                <div class="m-1 d-flex justify-content-center align-items-center">
-                  <div>
-                    <a class="btn btn-primary" href="{{route('project.show',$project)}}">Details</a>
-                  </div>
-                </div>
-                <div class="m-1 d-flex justify-content-center align-items-center">
-                  <div>
-                    <a class="btn btn-secondary"
-                       href="{{route('project.edit',$project)}}">Aanpassen</a>
-                  </div>
-                </div>
+{{--                <div class="m-1 d-flex justify-content-center align-items-center">--}}
+{{--                  <div>--}}
+{{--                    <a class="btn btn-primary" href="{{route('project.show',$project)}}">Details</a>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--                <div class="m-1 d-flex justify-content-center align-items-center">--}}
+{{--                  <div>--}}
+{{--                    <a class="btn btn-secondary"--}}
+{{--                       href="{{route('project.edit',$project)}}">Aanpassen</a>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
                 <div class="m-1">
                   <form method="POST" action="{{ route('project.destroy', $project) }}">
                     {{ method_field('DELETE') }}

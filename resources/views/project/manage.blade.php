@@ -11,7 +11,7 @@
     $actionViewName = 'aanpassen';
   }
   ?>
-@section('title','Contactpersoon '.$actionViewName)
+@section('title','Project '.$actionViewName)
 <div class="container mb-5">
   <div class="w-auto mt-3">
     <a class="btn btn-primary" href="{{route('project.index')}}">Terug naar overzicht</a>
