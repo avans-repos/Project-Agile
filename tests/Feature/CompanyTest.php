@@ -19,9 +19,14 @@ use Tests\TestCase;
 class CompanyTest extends TestCase
 {
     use RefreshDatabase;
+    protected $seed = true;
+
     public function setUp() : void
     {
         parent::setUp();
+
+        $this->validator = $this->app['validator'];
+
         DB::table('addresses')->insertOrIgnore([
             'id' => '1',
             'streetname' => 'Bermershof',
@@ -60,26 +65,6 @@ class CompanyTest extends TestCase
 
     public function test_company_details_screen_can_be_rendered()
     {
-        DB::table('addresses')->insertOrIgnore([
-            'id' => '1',
-            'streetname' => 'Bermershof',
-            'number' => '831',
-            'zipcode' => '5403WP',
-            'city' => 'Uden',
-            'country' => 'The Netherlands'
-        ]);
-
-        DB::table('companies')->insertOrIgnore([
-            'id' => '1',
-            'name' => 'Vizova',
-            'email' => 'martijn@vizova.nl',
-            'phonenumber' => '0657305857',
-            'size' => 1,
-            'website' => 'https://vizova.nl',
-            'visiting_address' => 1,
-            'mailing_address' => 1
-        ]);
-        
         $this->assertAuthenticated();
         $response = $this->get(route('company.show', [
             'company' => 1,
