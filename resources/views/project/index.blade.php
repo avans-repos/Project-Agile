@@ -43,11 +43,11 @@
 {{--                  </div>--}}
 {{--                </div>--}}
                 <div class="m-1">
-                  <form method="POST" action="{{ route('project.destroy', $project) }}">
+                  <form method="POST" id="delete-product-form-39" action="{{ route('project.destroy', $project) }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
-                      <input type="submit" value="Verwijderen" class="btn btn-danger">
+                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-39')">Verwijderen </a>
                     </div>
                   </form>
                 </div>
