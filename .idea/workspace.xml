@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/note/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/note/form.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +160,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/brianium/paratest" />
     </include_path>
   </component>
   <component name="ProjectId" id="1o1FG4U11inQDAvhvk5gZZ6kBuz" />
@@ -198,7 +201,7 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.tests">
+  <component name="RunManager" selected="PHPUnit.phpunit.xml">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
@@ -258,6 +261,7 @@
       <workItem from="1616791176796" duration="614000" />
       <workItem from="1616934132380" duration="3549000" />
       <workItem from="1616946327487" duration="2000" />
+      <workItem from="1617005035015" duration="2279000" />
     </task>
     <servers />
   </component>
