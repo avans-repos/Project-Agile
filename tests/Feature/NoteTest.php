@@ -16,26 +16,12 @@ class NoteTest extends TestCase
   public function setUp() : void
   {
     parent::setUp();
+    $this->artisan('migrate:fresh --seed');
     $this->rules     = (new NoteRequest())->rules();
     $this->validator = $this->app['validator'];
     $user = new User([
       'id' => 1,
       'name' => 'test'
-    ]);
-    DB::table('genders')->insert([
-      'type' => 'man',
-    ]);
-    DB::table('contact_types')->insert([
-      'name' => 'warm',
-    ]);
-    DB::table('contacts')->insert([
-      'initials' => 'MBM',
-      'firstname' => 'Martijn',
-      'lastname' => 'Ambagtsheer',
-      'gender' => 'man',
-      'email' => 'ambagtsheer.m@gmail.com',
-      'phonenumber' => '0657305857',
-      'type' => 'warm'
     ]);
     $this->be($user);
   }
