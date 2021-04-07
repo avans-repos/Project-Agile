@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Requests\ProjectRequest;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
@@ -97,5 +98,27 @@ class ProjectTest extends TestCase
       ]);
     $response->assertSessionHasErrors();
 
+  }
+
+  public function test_can_delete_project()
+  {
+    $name = 'Test Project';
+    $description = 'This is a test';
+    $deadline = new \DateTime('10/10/2032');
+    $notes = 'This is a test';
+
+    $response = $this
+      ->post(route('project.store'), [
+        'name' => $name,
+        'description' => $description,
+        'deadline'  => $deadline,
+        'notes' => $notes
+      ]);
+
+    $project = Project::first();
+    $this->assertCount(1,Project::all());
+    $project->delete();
+    $this->assertCount(0,Project::all());
+    $response->assertSessionHasNoErrors();
   }
 }

@@ -52,7 +52,6 @@
         <textarea name="notes"
                class="form-control"
                id="notes" placeholder="notities" step="1">{{old('notes',$project->notes)}}</textarea>
-
       </div>
       <div class="col">
         @error('notes')
