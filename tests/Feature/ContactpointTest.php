@@ -18,7 +18,7 @@ class ContactpointTest extends TestCase
   public function setUp() : void
   {
     parent::setUp();
-    $this->artisan('migrate:fresh --seed');
+    $this->artisan('db:seed');
     $this->rules = (new ContactpointRequest())->rules();
     $this->validator = $this->app['validator'];
     $user = new User([
