@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     $this->call(RoleSeeder::class);
     $this->call(UserSeeder::class);
     $this->call(GenderSeeder::class);
-    $this->call(ContactTypeSeeder::class);
-    $this->call(ContactSeeder::class);
     $this->call(AddressSeeder::class);
     $this->call(CompanySeeder::class);
     $this->call(ProjectSeeder::class);
+    $this->call(ContactTypeSeeder::class);
+    $this->call(ContactSeeder::class);
     $this->call(NotesSeeder::class);
     $this->call(ProjectgroupSeeder::class);
   }
