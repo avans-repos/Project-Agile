@@ -18,7 +18,7 @@
                 <legend>Persoonlijke informatie</legend>
                 <div class="row">
                     <div class="col-6">
-                        Voorletters
+                      Initialen
                     </div>
                     <div class="col-6">
                         {{$contact->initials}}
@@ -53,7 +53,7 @@
                         Geslacht
                     </div>
                     <div class="col-6">
-                        {{$contact->gender}}
+                        {{ucfirst($contact->gender)}}
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
                         E-mail
                     </div>
                     <div class="col-6">
-                        {{$contact->email}}
+                        {{$contact->email ?? "N.v.t."}}
                     </div>
                 </div>
                 <div class="row">
@@ -73,22 +73,46 @@
                         Telefoonnummer
                     </div>
                     <div class="col-6">
-                        {{$contact->phonenumber}}
+                        {{$contact->phonenumber ?? "N.v.t."}}
                     </div>
                 </div>
+              <legend>Contact Types</legend>
+              @foreach($contactTypes as $contactType)
                 <fieldset class="row">
                     <div class="col-6">
-                        Contactsoort
+                        {{$contactType->name}}
                     </div>
                     <div class="col-6">
-                        {{$contact->type}}
+                        {{ucfirst($contactType->contacttype) }}
                     </div>
                 </fieldset>
+              @endforeach
             </div>
         </div>
 
-        <div class="col-6">
-          @include('contactpoint.index',['contactpoints'=>$contactpoints, 'contact'=>$contact])
+      <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7">
+        <div class="d-flex justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
+          <h6 class="">Notities |  {{count($notes)}}</h6>
+          <a type="button" class="btn btn-primary" href="{{route('notes.create', $contact)}}">Notitie aanmaken ></a>
         </div>
+        @foreach($notes as $note)
+          <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <strong class="text-gray-dark">Gemaakt door: {{$note->name}} op {{date('d-m-Y H:i:s', strtotime($note->creation))}}</strong>
+                <a style="text-decoration: none;" href="{{route('notes.edit',$note->id)}}">Bewerken ></a>
+              </div>
+              <div class="d-flex justify-content-between align-items-center w-100 mt-2">
+                <span></span>
+                <a type="submit" href="{{route('notes.delete', $note->id)}}" style="background-color: transparent !important;">Verwijderen ></a>
+              </div>
+              <div class="d-flex justify-content-between align-items-center w-100 mt-2">
+                <span class="d-block text-break">{{$note->description}}</span>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+
     </div>
 @endsection

@@ -328,7 +328,7 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.tests">
+  <component name="RunManager" selected="PHPUnit.phpunit.xml">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
@@ -388,6 +388,7 @@
       <workItem from="1616791176796" duration="614000" />
       <workItem from="1616934132380" duration="3549000" />
       <workItem from="1616946327487" duration="2000" />
+      <workItem from="1617005035015" duration="2279000" />
     </task>
     <servers />
   </component>

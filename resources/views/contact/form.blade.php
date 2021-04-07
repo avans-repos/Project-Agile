@@ -82,7 +82,7 @@
                 <label for="email" class="form-label">E-mail</label>
                 <input name="email" value="{{old('email',$contact->email)}}" type="email" class="form-control"
                        id="email"
-                       placeholder="JohnDoe@domain.com" maxlength="320" required>
+                       placeholder="JohnDoe@domain.com" maxlength="320">
 
             </div>
             <div class="col">
@@ -96,7 +96,7 @@
                 <label for="phonenumber" class="form-label">Telefoonnummer</label>
                 <input name="phonenumber" value="{{old('phonenumber',$contact->phonenumber)}}" type="tel"
                        class="form-control"
-                       id="phonenumber" placeholder="06-12345678" maxlength="15" required>
+                       id="phonenumber" placeholder="06-12345678" maxlength="15">
 
             </div>
             <div class="col">
@@ -105,25 +105,99 @@
                 @enderror
             </div>
         </div>
-        <div>
-            <div class="mb-1">
-                <label for="contactType" class="form-label">Contactsoort</label>
-                <select class="form-control" name="type" id="contactType" required>
-                    <option disabled selected>Selecteer contactsoort</option>
-                    @foreach ($contactTypes as $contactType)
-                        <option
-                            {{ ($contactType->name == old('type',$contact->type) ? "selected":"") }} value="{{ $contactType->name }}">
-                            {{ ucfirst(trans($contactType->name)) }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col">
-                @error('type')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
     </fieldset>
+
+  <fieldset class="mb-3">
+    <legend>Contacttype per bedrijf</legend>
+    <div id="companies">
+      @if(!isset($contactTypesAssigned) || count($contactTypesAssigned) == 0)
+    <div id="company-1" class="mt-3.5">
+    <div>
+      <div class="mb-1">
+        <label for="company" class="form-label">Bedrijf</label>
+        <select class="form-control" name="company-1" id="companySelector-1">
+          <option disabled selected>Selecteer Bedrijf</option>
+          @foreach ($companies as $company)
+            <option
+              {{ ($company->name == old('type',$company->name) ? "selected":"") }} value="{{ $company->name }}">
+              {{ ucfirst(trans($company->name)) }}
+            </option>
+          @endforeach
+        </select>
+      </div>
+      <div class="col">
+        @error('type')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+    <div>
+      <div class="mb-1">
+        <label for="contactType" class="form-label">Contactsoort</label>
+        <select class="form-control" name="contacttype-1" id="contactTypeSelector-1">
+          <option disabled selected>Selecteer contactsoort</option>
+          @foreach ($contactTypes as $contactType)
+            <option
+              {{ ($contactType->name == old('type',$contact->type) ? "selected":"") }} value="{{ $contactType->name }}">
+              {{ ucfirst(trans($contactType->name)) }}
+            </option>
+          @endforeach
+        </select>
+      </div>
+      <div class="col">
+        @error('type')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+    </div>
+    </div>
+    @endif
+    @for($i = 0; $i < count($contactTypesAssigned); $i++)
+      <div id="company-{{$i + 1}}" class="mt-3.5">
+        <div>
+          <div class="mb-1">
+            <label for="company" class="form-label">Bedrijf</label>
+            <select class="form-control" name="company-{{$i + 1}}" id="companySelector-1">
+              <option disabled selected>Selecteer Bedrijf</option>
+              @foreach ($companies as $company)
+                <option
+                  {{ ($company->name == $contactTypesAssigned[$i]->name ? "selected":"") }} value="{{ $company->name }}">
+                  {{ ucfirst(trans($company->name)) }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col">
+            @error('type')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+          </div>
+        </div>
+        <div>
+          <div class="mb-1">
+            <label for="contactType" class="form-label">Contactsoort</label>
+            <select class="form-control" name="contacttype-{{$i + 1}}" id="contactTypeSelector-1">
+              <option disabled selected>Selecteer contactsoort</option>
+              @foreach ($contactTypes as $contactType)
+                <option
+                  {{ ($contactType->name == $contactTypesAssigned[$i]->contacttype ? "selected":"") }} value="{{ $contactType->name }}">
+                  {{ ucfirst(trans($contactType->name)) }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col">
+            @error('type')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+          </div>
+        </div>
+      </div>
+    @endfor
+  </fieldset>
+  <div class="mt-3 mb-3">
+    <p class="btn btn-primary" onclick="AddContactType()">Contacttype toevoegen</p>
+  </div>
     <input class="btn btn-primary" type="submit" value="Contact {{$formActionViewName}}">
 </form>
