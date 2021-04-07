@@ -7,6 +7,7 @@ use App\Models\contact\Contact;
 use App\Models\Contactpoint;
 use App\Models\User;
 use App\Service\AuthenticationService;
+use DateTime;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -31,6 +32,8 @@ class ContactpointController extends Controller
   public function create(int $id)
   {
     $contactpoint = new Contactpoint();
+    $contactpoint->dateOfContact = date('c');
+
     $contact = Contact::find($id);
 
     return view('contactpoint.manage')

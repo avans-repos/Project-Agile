@@ -9,7 +9,7 @@
     <div class="mb-1 row d-sm-flex">
       <div class="col-sm-12">
         <label for="dateOfContact" class="form-label">Datum *</label>
-        <input name="dateOfContact" value="{{date('Y-m-d\TH:i', strtotime((old('dateOfContact',$contactpoint->dateOfContact))))}}" type="datetime-local"
+        <input name="dateOfContact" value="{{date('c', strtotime((old('dateOfContact',$contactpoint->dateOfContact))))}}" type="datetime-local"
                class="form-control"
                id="dateOfContact" required>
         <label for="description" class="form-label">Omschrijving *</label>

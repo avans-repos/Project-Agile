@@ -14,7 +14,7 @@
   @foreach($contactpoints as $contactpoint)
     <tr>
       <td>{{$contactpoint->dateOfContact}}</td>
-      <td>{{$contactpoint->description}}</td>
+      <td style="word-break:break-all;">{{$contactpoint->description}}</td>
       <td>
         <div class="d-md-flex align-items-center">
           <div class="m-1 d-flex justify-content-center align-items-center">
