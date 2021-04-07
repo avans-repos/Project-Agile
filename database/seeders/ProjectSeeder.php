@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProjectgroupSeeder extends Seeder
+class ProjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,10 @@ class ProjectgroupSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('projectgroups')->insert([
-        'name' => 'groep 1',
-        'project' => 1
+      DB::table('projects')->insert([
+        'name' => 'project 1',
+        'description' => 'beschijrving van project 1',
+        'deadline' => '2022-01-01 18:00'
       ]);
     }
 }

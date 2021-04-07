@@ -6,6 +6,7 @@ use App\Http\Requests\ProjectgroupRequest;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
+use App\Models\Project;
 use App\Models\Projectgroup;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,10 +36,13 @@ class ProjectgroupController extends Controller
         $q->where('name', 'student');
       })->get();
 
+      $project = Project::find($group->project);
+
       array_push($groups, [
         'group' => $group,
         'teachers' => $teachers,
-        'students' => $students
+        'students' => $students,
+        'project' => $project->name
       ]);
     }
 
@@ -57,6 +61,7 @@ class ProjectgroupController extends Controller
 
     $students = User::role('Student')->get();
     $teachers = User::role('Teacher')->get();
+    $projects = Project::all();
 
     $assigned = null;
     return view('projectgroup.manage')
@@ -64,6 +69,7 @@ class ProjectgroupController extends Controller
       ->with('teachers', $teachers)
       ->with('students', $students)
       ->with('assigned', $assigned)
+      ->with('projects', $projects)
       ->with('action', 'store');
   }
 
@@ -88,17 +94,6 @@ class ProjectgroupController extends Controller
   }
 
   /**
-   * Display the specified resource.
-   *
-   * @param \App\Models\Projectgroup $projectgroup
-   * @return \Illuminate\Http\Response
-   */
-  public function show(Projectgroup $projectgroup)
-  {
-    //
-  }
-
-  /**
    * Show the form for editing the specified resource.
    *
    * @param \App\Models\Projectgroup $projectgroup
@@ -109,6 +104,7 @@ class ProjectgroupController extends Controller
 
     $students = User::role('student')->get();
     $teachers = User::role('teacher')->get();
+    $projects = Project::all();
 
     $assigned =
       DB::table('projectgroup_has_users')
@@ -125,6 +121,7 @@ class ProjectgroupController extends Controller
       ->with('teachers', $teachers)
       ->with('students', $students)
       ->with('assigned', $assigned)
+      ->with('projects', $projects)
       ->with('action', 'update');
   }
 

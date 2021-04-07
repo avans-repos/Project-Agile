@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Project-Agile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project-Agile.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProjectgroupRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProjectgroupRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Projectgroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projectgroup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_22_181123_create_projectgroups_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_22_181123_create_projectgroups_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_133058_create_projects_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_25_133058_create_projects_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/project/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +172,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/brianium/paratest" />
     </include_path>
   </component>
   <component name="ProjectId" id="1o1FG4U11inQDAvhvk5gZZ6kBuz" />
@@ -173,7 +188,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -258,6 +273,7 @@
       <workItem from="1616791176796" duration="614000" />
       <workItem from="1616934132380" duration="3549000" />
       <workItem from="1616946327487" duration="2000" />
+      <workItem from="1617784458478" duration="3103000" />
     </task>
     <servers />
   </component>
