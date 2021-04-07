@@ -12,12 +12,13 @@ class ProjectSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-      DB::table('projects')->insert([
-        'name' => 'project 1',
-        'description' => 'beschijrving van project 1',
-        'deadline' => '2022-01-01 18:00'
-      ]);
-    }
+  public function run()
+  {
+    DB::table('projects')->insert([
+      'name' => 'Project 1',
+      'description' => 'test project',
+      'deadline' => new \DateTime('10/10/2021'),
+      'notes' => 'test notes',
+    ]);
+  }
 }

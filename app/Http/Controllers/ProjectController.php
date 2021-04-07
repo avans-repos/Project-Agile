@@ -32,4 +32,10 @@ class ProjectController extends Controller
     return redirect()->route('project.index');
   }
 
+  public function destroy(Project $project)
+  {
+    $project->delete();
+    return redirect()->route('project.index');
+  }
+
 }
