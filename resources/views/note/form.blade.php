@@ -13,11 +13,6 @@
                class="form-control"
                    id="description" placeholder="Notitie hier" rows="5" required>{{old('description',$note->description)}}</textarea>
       </div>
-      <div class="col">
-        @error('description')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-      </div>
     </div>
   </fieldset>
   <input class="btn btn-primary" type="submit" value="Notitie {{$actionViewName}}">

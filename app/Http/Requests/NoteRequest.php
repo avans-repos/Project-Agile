@@ -36,4 +36,5 @@ class NoteRequest extends FormRequest
       'description' => 'beschrijving',
     ];
   }
+  
 }
