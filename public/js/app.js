@@ -3804,6 +3804,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./contact */ "./resources/js/contact.js");
+
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 
@@ -3853,6 +3855,31 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/contact.js":
+/*!*********************************!*\
+  !*** ./resources/js/contact.js ***!
+  \*********************************/
+/***/ (() => {
+
+window.AddContactType = function () {
+  var div = document.getElementById('company-1'),
+      clone = div.cloneNode(true); // true means clone all childNodes and all event handlers
+
+  clone.id = "company-".concat(++highestCompany);
+  document.getElementById('companies').appendChild(clone);
+  clone = document.getElementById("company-".concat(highestCompany));
+  var companySelector = clone.querySelector("#companySelector-1");
+  companySelector.id = "company-".concat(highestCompany);
+  companySelector.name = companySelector.id;
+  var contactTypeSelector = clone.querySelector("#contactTypeSelector-1");
+  contactTypeSelector.id = "contacttype-".concat(highestCompany);
+  contactTypeSelector.name = contactTypeSelector.id;
+};
+
+var highestCompany = 1;
 
 /***/ }),
 

@@ -12,6 +12,9 @@
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/project/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/project/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/note/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/note/form.blade.php" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,6 +171,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />
+
     </include_path>
   </component>
   <component name="ProjectId" id="1o1FG4U11inQDAvhvk5gZZ6kBuz" />
@@ -208,11 +212,9 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.ProjectTest">
-    <configuration name="ProjectTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ProjectTest" file="$PROJECT_DIR$/tests/Feature/ProjectTest.php" scope="Class" />
-      <method v="2" />
-    </configuration>
+
+  <component name="RunManager" selected="PHPUnit.phpunit.xml">
+
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
@@ -308,10 +310,12 @@
       <workItem from="1616924506722" duration="7046000" />
       <workItem from="1616924506722" duration="6014000" />
       <workItem from="1616696129445" duration="3909000" />
-      <workItem from="1617006193186" duration="1871000" />
-      <workItem from="1617283893574" duration="3911000" />
-      <workItem from="1617717141993" duration="3392000" />
-      <workItem from="1617782897978" duration="3335000" />
+      <workItem from="1616785840891" duration="2536000" />
+      <workItem from="1616791176796" duration="614000" />
+      <workItem from="1616934132380" duration="3549000" />
+      <workItem from="1616946327487" duration="2000" />
+      <workItem from="1617005035015" duration="2279000" />
+
     </task>
     <servers />
   </component>
