@@ -3811,9 +3811,10 @@ __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 window.deleteConfirm = function (formId) {
   sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
     icon: 'warning',
-    text: 'Do you want to delete this?',
+    title: 'Weet u zeker dat u dit wilt verwijderen?',
     showCancelButton: true,
-    confirmButtonText: 'Delete',
+    cancelButtonText: 'Annuleren',
+    confirmButtonText: 'Verwijder',
     confirmButtonColor: '#e3342f'
   }).then(function (result) {
     if (result.isConfirmed) {

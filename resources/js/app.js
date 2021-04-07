@@ -8,8 +8,9 @@ window.deleteConfirm = function(formId)
 {
   Swal.fire({
     icon: 'warning',
-    text: 'Weet u zeker dat u dit wilt verwijderen?',
+    title: 'Weet u zeker dat u dit wilt verwijderen?',
     showCancelButton: true,
+    cancelButtonText: 'Annuleren',
     confirmButtonText: 'Verwijder',
     confirmButtonColor: '#e3342f',
   }).then((result) => {
