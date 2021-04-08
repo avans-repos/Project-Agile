@@ -38,4 +38,30 @@ class ProjectController extends Controller
     return redirect()->route('project.index');
   }
 
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param \App\Models\Project $project
+   * @return \Illuminate\Http\Response
+   */
+  public function edit(Project $project)
+  {
+    return view('project.manage')
+      ->with('project', $project)
+      ->with('action', 'update');
+  }
+
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param \App\Http\Requests\ProjectRequest $request
+   * @param \App\Models\Project $project
+   * @return \Illuminate\Http\Response
+   */
+  public function update(ProjectRequest $request, Project $project)
+  {
+    $request->validated();
+    $project->update($request->all());
+    return redirect()->route('project.index');
+  }
 }
