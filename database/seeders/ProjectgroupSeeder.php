@@ -16,6 +16,7 @@ class ProjectgroupSeeder extends Seeder
     {
       DB::table('projectgroups')->insert([
         'name' => 'groep 1',
+        'project' => 1
       ]);
     }
 }
