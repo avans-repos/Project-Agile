@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Address;
 use App\Models\contact\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -75,10 +76,33 @@ class CompanyController extends Controller
     if ($company->visiting_address != $company->mailing_address) {
       $address2 = Address::find($company->mailing_address);
     }
+
+    $contacts = DB::select("SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = " . $company->id);
+    $newContacts = DB::select("SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != " . $company->id);
+
     return view('company.show')
       ->with('company', $company)
       ->with('address1', $address1)
-      ->with('address2', $address2);
+      ->with('address2', $address2)
+      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts);
+  }
+
+  public function addcontact($companyid, $contactid)
+  {
+    DB::table('company_has_contacts')->insert([
+      'companyid' => $companyid,
+      'contactid' => $contactid
+    ]);
+
+    return redirect()->route('company.show', [$companyid]);
+  }
+
+  public function removecontact($companyid, $contactid)
+  {
+    DB::table('company_has_contacts')->where('companyid', $companyid)->where('contactid', $contactid)->delete();
+
+    return redirect()->route('company.show', [$companyid]);
   }
 
   /**
