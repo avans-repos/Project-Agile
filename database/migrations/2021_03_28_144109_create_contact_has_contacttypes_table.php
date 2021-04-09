@@ -21,11 +21,7 @@ class CreateContactHasContacttypesTable extends Migration
             ->on('contacts')
             ->onDelete('cascade');
 
-          $table->unsignedInteger('company');
-          $table->foreign('company')
-            ->references('id')
-            ->on('companies')
-            ->onDelete('cascade');
+          $table->foreignId('company')->constrained('companies');
 
           $table->string('contacttype');
           $table->foreign('contacttype')
