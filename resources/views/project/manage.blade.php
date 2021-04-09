@@ -29,7 +29,7 @@
       </ul>
     </div>
   @endif
-  <div id="create-company-form-container" class="col-md-6">
+  <div id="create-project-form-container" class="col-md-6">
     @include('project.form',array('formAction'=>$action,'formActionViewName'=>$actionViewName))
   </div>
 </div>

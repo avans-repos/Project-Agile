@@ -35,9 +35,7 @@
     <div>
       <div class="mb-1">
         <label for="deadline" class="form-label">Deadline</label>
-        <input name="deadline" value="{{old('deadline',$project->deadline)}}" type="datetime-local"
-               class="form-control"
-               id="deadline" required>
+        <input type="datetime-local" id="deadline" value="{{old('deadline',isset($project->deadline) ? date('Y-m-d\TH:i', strtotime($project->deadline)) : null)}}" required name="deadline" class="form-control">
 
       </div>
       <div class="col">
