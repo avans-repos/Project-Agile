@@ -64,6 +64,8 @@ Route::get('/notes/delete/{note}', [NoteController::class, 'delete'])
 
 // API Example controller using the avans API
 
+Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, "addcontact"])->middleware(['auth']);
+Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, "removecontact"])->middleware(['auth']);
 Route::resource('company', CompanyController::class)
   ->middleware(['auth']);
 
