@@ -17,7 +17,7 @@ class CreateProjectgroupsTable extends Migration
       $table->id();
       $table->string('name', 100);
       $table->bigInteger('project')->unsigned();
-      $table->foreign('project')->references('id')->on('projects');
+      $table->foreign('project')->references('id')->on('projects')->onDelete('cascade');
       $table->timestamps();
       $table->softDeletes();
     });

@@ -26,9 +26,9 @@
         @foreach($projects as $project)
           <tr>
             <td>{{$project->name}}</td>
-            <td>{{$project->description}}</td>
+            <td class="text-break">{{$project->description}}</td>
             <td>{{$project->deadline}}</td>
-            <td>{{$project->notes}}</td>
+            <td class="text-break">{{$project->notes}}</td>
             <td>
               <div class="d-md-flex align-items-center">
                 <div class="m-1 d-flex justify-content-center align-items-center">
