@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title','Bedrijf details')
 
@@ -8,7 +8,7 @@
       <a class="btn btn-primary" href="{{route('company.index')}}">Terug naar overzicht</a>
     </div>
     <div class="d-md-flex justify-content-between">
-      <h1>{{$company->name}}</h1>
+      <h1 class="fs-1">{{$company->name}}</h1>
       <div class="align-self-center">
         <a class="btn btn-secondary" href="{{route('company.edit',$company)}}">Bedrijf aanpassen</a>
       </div>
@@ -149,19 +149,79 @@
         @endif
       </fieldset>
     </div>
-    <fieldset class="col-sm-6" id="companyDetails">
+    <fieldset class="col-sm-6 mt-4" id="companyDetails">
       <legend>Contactpersonen</legend>
 
+      @foreach($contacts as $contact)
       <div class="row">
-        <div class="col-6">
-          Contactpersoon 1
+        <div>
+          <b>{{$contact->firstname}} {{$contact->lastname}}</b> 
+          <a class="ml-1" href="{{$company->id}}/removecontact/{{ $contact->id }}">x</a>
         </div>
-        <div class="col-6">
-          Hamster Kwak
+
+        <div>
+          {{ $contact->gender }}
+        </div>
+
+        <div>
+          <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
+        </div>
+
+        <div>
+          {{ $contact->phonenumber }}
+        </div>
+
+        <div>
+          {{ $contact->type }}
         </div>
       </div>
+      @endforeach
+
+      <button onClick="showTable()" class="btn btn-primary mt-4">Contactpersoon toevoegen</button>
+
+      <table class="table mt-4 d-none" id="add-contact-table">
+        <tr>
+          <th>Naam</th>
+          <th>E-mail</th>
+          <th>Telefoonnummer</th>
+          <th></th>
+        </tr>
+      @foreach($newContacts as $contact)
+      <tr>
+        <td>
+          <b>{{$contact->firstname}} {{$contact->lastname}}</b>
+        </td>
+
+        <td>
+          <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
+        </td>
+
+        <td>
+          {{ $contact->phonenumber }}
+        </td>
+
+        <td>
+          <a href="{{$company->id}}/addcontact/{{ $contact->id }}" class="btn btn-secondary">Toevoegen</a>
+        </td>
+      </tr>
+      @endforeach
+      </table>
     </fieldset>
   </div>
 
+  <script>
+    let table = document.getElementById("add-contact-table");
 
+    function showTable()
+    {
+      if (table.classList.contains("d-none"))
+      {
+        table.classList.remove("d-none");
+      }
+      else
+      {
+        table.classList.add("d-none");
+      }
+    }
+  </script>
 @endsection

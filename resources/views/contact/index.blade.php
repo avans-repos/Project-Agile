@@ -1,18 +1,18 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('title','contactpersonen')
 
 @section('content')
     <div class="container mt-5">
-        <div class="d-flex justify-content-between">
-            <h1>Alle contactpersonen</h1>
+        <div class="d-flex justify-content-between mb-3 align-items-center">
+            <h1 class="fs-1">Alle contactpersonen</h1>
             <div class="align-self-center">
                 <a class="btn btn-primary" href="{{route('contact.create')}}">Contactpersoon toevoegen</a>
             </div>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped">
 
                 <thead>
                 <tr>

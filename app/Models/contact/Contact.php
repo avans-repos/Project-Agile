@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $insertion
  * @property string $lastname
  * @property string $gender
- * @property string $email
- * @property string $phonenumber
- * @property string $type
+ * @property string|null $email
+ * @property string|null $phonenumber
+ * @property string|null $type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Contact newModelQuery()
@@ -40,4 +40,15 @@ class Contact extends Model
   use HasFactory;
 
   protected $fillable = ['initials', 'firstname', 'insertion', 'lastname', 'gender', 'email', 'phonenumber', 'type'];
+
+  public function getName(): string
+  {
+    $fullname = $this->firstname . ' ';
+    if(isset($this->insertion)){
+      $fullname .= $this->insertion . ' ';
+    }
+    $fullname .= $this->lastname;
+
+    return $fullname;
+  }
 }

@@ -24,10 +24,10 @@ class CreateContactsTable extends Migration
             $table->string('gender',6);
             $table->foreign('gender')->references('type')->on('genders');
 
-            $table->string('email',320);
-            $table->string('phonenumber',15);
+            $table->string('email',320)->nullable();
+            $table->string('phonenumber',15)->nullable();
 
-            $table->string('type',20);
+            $table->string('type',20)->nullable();
             $table->foreign('type')->references('name')->on('contact_types');
             $table->timestamps();
         });

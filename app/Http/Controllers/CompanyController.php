@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Address;
 use App\Models\contact\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -56,8 +57,8 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
-      'visiting_address' => $addressIds{0},
-      'mailing_address' => $addressIds{1},
+      'visiting_address' => $addressIds[0],
+      'mailing_address' => $addressIds[1],
     ]);
     return redirect()->route('company.index');
   }
@@ -75,10 +76,33 @@ class CompanyController extends Controller
     if ($company->visiting_address != $company->mailing_address) {
       $address2 = Address::find($company->mailing_address);
     }
-    return view('company.show',)
+
+    $contacts = DB::select("SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = " . $company->id);
+    $newContacts = DB::select("SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != " . $company->id);
+
+    return view('company.show')
       ->with('company', $company)
       ->with('address1', $address1)
-      ->with('address2', $address2);
+      ->with('address2', $address2)
+      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts);
+  }
+
+  public function addcontact($companyid, $contactid)
+  {
+    DB::table('company_has_contacts')->insert([
+      'companyid' => $companyid,
+      'contactid' => $contactid
+    ]);
+
+    return redirect()->route('company.show', [$companyid]);
+  }
+
+  public function removecontact($companyid, $contactid)
+  {
+    DB::table('company_has_contacts')->where('companyid', $companyid)->where('contactid', $contactid)->delete();
+
+    return redirect()->route('company.show', [$companyid]);
   }
 
   /**
@@ -145,17 +169,14 @@ class CompanyController extends Controller
    */
   protected function createAddressesAndReturnIds($request)
   {
-
-
     $address1 = new Address([
       'streetname' => $request->input('streetname1'),
       'number' => $request->input('number1'),
       'addition' => $request->input('addition1'),
       'zipcode' => $request->input('zipcode1'),
       'city' => $request->input('city1'),
-      'country' => $request->input('country1')
+      'country' => $request->input('country1'),
     ]);
-
 
     $address1Id = self::createAddressAndReturnId($address1);
 
@@ -168,7 +189,7 @@ class CompanyController extends Controller
         'addition' => $request->input('addition2'),
         'zipcode' => $request->input('zipcode2'),
         'city' => $request->input('city2'),
-        'country' => $request->input('country2')
+        'country' => $request->input('country2'),
       ]);
       $address2Id = self::createAddressAndReturnId($address2);
     } else {
@@ -177,7 +198,6 @@ class CompanyController extends Controller
 
     return [$address1Id, $address2Id];
   }
-
 
   /**
    * Create address if not exist and return address id of database
@@ -189,10 +209,10 @@ class CompanyController extends Controller
   {
     $returnId = null;
 
-    $existing = Address::
-    where('zipcode', $address->zipcode)
+    $existing = Address::where('zipcode', $address->zipcode)
       ->where('number', $address->number)
-      ->where('city', $address->city)->first();
+      ->where('city', $address->city)
+      ->first();
 
     if ($existing != null) {
       $existing->update($address->toArray());
