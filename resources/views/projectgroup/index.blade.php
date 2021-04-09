@@ -17,8 +17,9 @@
         <thead>
         <tr>
           <td class="w-25">Naam</td>
-          <td class="w-25">gekoppelde docent(en)</td>
-          <td class="w-25">gekoppelde student(en)</td>
+          <td class="w-25">Gekoppelde docent(en)</td>
+          <td class="w-25">Gekoppelde student(en)</td>
+          <td class="w-25">Project</td>
           <td>Acties</td>
         </tr>
         </thead>
@@ -35,6 +36,9 @@
               @foreach($group['students'] as $assignee)
                 {{$assignee['name']}}<br>
               @endforeach
+            </td>
+            <td class="w-25">
+              {{$group['project']}}
             </td>
             <td>
               <div class="d-md-flex align-items-center">

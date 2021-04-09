@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
+use App\Models\Projectgroup;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -28,6 +29,12 @@ class ProjectController extends Controller
     $request->validated();
 
     Project::create($request->all());
+    return redirect()->route('project.index');
+  }
+
+  public function destroy(Project $project)
+  {
+    $project->delete();
     return redirect()->route('project.index');
   }
 

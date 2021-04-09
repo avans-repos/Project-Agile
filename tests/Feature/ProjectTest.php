@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Requests\ProjectRequest;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;

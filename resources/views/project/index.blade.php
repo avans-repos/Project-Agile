@@ -29,6 +29,30 @@
             <td>{{$project->description}}</td>
             <td>{{$project->deadline}}</td>
             <td>{{$project->notes}}</td>
+            <td>
+              <div class="d-md-flex align-items-center">
+{{--                <div class="m-1 d-flex justify-content-center align-items-center">--}}
+{{--                  <div>--}}
+{{--                    <a class="btn btn-primary" href="{{route('project.show',$project)}}">Details</a>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--                <div class="m-1 d-flex justify-content-center align-items-center">--}}
+{{--                  <div>--}}
+{{--                    <a class="btn btn-secondary"--}}
+{{--                       href="{{route('project.edit',$project)}}">Aanpassen</a>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+                <div class="m-1">
+                  <form method="POST" id="delete-product-form-39" action="{{ route('project.destroy', $project) }}">
+                    {{ method_field('DELETE') }}
+                    {{ csrf_field() }}
+                    <div class="d-flex justify-content-center align-items-center">
+                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-39')">Verwijderen </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </td>
           </tr>
         @endforeach
         </tbody>

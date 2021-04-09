@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="mb-1">
-      <p class="form-label">Selecteer docenten</p>
+      <label class="form-label">Selecteer docenten</label>
 
       <div class="d-flex flex-column">
         @foreach($teachers as $teacher)
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="mb-1">
-      <p class="form-label">Selecteer studenten</p>
+      <label class="form-label">Selecteer studenten</label>
 
       <div class="d-flex flex-column">
         @foreach($students as $student)
@@ -47,6 +47,17 @@
               }} type="checkbox" name="assigned[]" value="{{$student->id}}" ><span class="ms-2">{{$student->name}}</span>
           </label>
         @endforeach
+      </div>
+    </div>
+    <div class="mb-1">
+      <label class="form-label">Selecteer project</label>
+
+      <div class="d-flex flex-column">
+        <select name="project" id="project" class="form-control">
+          @foreach($projects as $project)
+            <option value="{{$project->id}}" @if($project->id == $projectgroup->project) selected @endif>{{$project->name}}</option>
+          @endforeach
+        </select>
       </div>
     </div>
   </fieldset>

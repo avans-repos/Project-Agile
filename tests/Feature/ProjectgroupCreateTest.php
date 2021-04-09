@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Requests\ProjectgroupRequest;
+use App\Models\Project;
 use App\Models\User;
 use Database\Seeders\ProjectgroupSeeder;
 use Database\Seeders\RoleSeeder;
@@ -80,9 +81,16 @@ class ProjectgroupCreateTest extends TestCase
 
     $name = Str::random(100);
 
+    $project = Project::create([
+      'name' => 'test',
+      'description' => 'test',
+      'deadline' => '2022-01-01 18:00'
+    ]);
+
     $response = $this
       ->post(route('projectgroup.store'), [
-        'name' => $name
+        'name' => $name,
+        'project' => $project->id
       ]);
     $response->assertSessionHasNoErrors();
 
