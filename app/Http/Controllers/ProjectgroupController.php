@@ -136,6 +136,7 @@ class ProjectgroupController extends Controller
   {
     $request->validated();
 
+    if (isset($request->assigned)) {
 
     foreach ($request->assigned as $assigned) {
       if (
@@ -147,13 +148,14 @@ class ProjectgroupController extends Controller
         DB::insert('INSERT INTO projectgroup_has_users (userid,projectgroupid) VALUES (?,?)', [$assigned, $projectgroup->id]);
       }
     }
+  }
     foreach (
       DB::table('projectgroup_has_users')
         ->where('projectgroupid', $projectgroup->id)
         ->get()
       as $dbvalue
     ) {
-      if (!in_array($dbvalue->userid, $request->assigned)) {
+      if (!isset($request->assigned) || !in_array($dbvalue->userid, $request->assigned)) {
         DB::delete('DELETE FROM projectgroup_has_users WHERE userid = ? AND projectgroupid = ?', [$dbvalue->userid, $dbvalue->projectgroupid]);
       }
     }
