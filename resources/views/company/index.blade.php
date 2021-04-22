@@ -44,11 +44,11 @@
                           </div>
                         </div>
                         <div class="m-1">
-                          <form method="POST" action="{{ route('company.destroy', $company) }}">
+                          <form method="POST"  id="delete-product-form-{{$company->id}}" action="{{ route('company.destroy', $company) }}">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             <div class="d-flex justify-content-center align-items-center">
-                              <input type="submit" value="Verwijderen" class="btn btn-danger">
+                              <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$company->id}}')">Verwijderen </a>
                             </div>
                           </form>
                         </div>

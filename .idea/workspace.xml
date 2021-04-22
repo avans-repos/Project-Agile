@@ -8,7 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/Project-Agile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project-Agile.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/project/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/actionPoints/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/actionPoints/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/company/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/company/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,7 +309,7 @@
       <workItem from="1616946327487" duration="2000" />
       <workItem from="1617005035015" duration="2279000" />
       <workItem from="1618910092440" duration="478000" />
-      <workItem from="1619023895431" duration="713000" />
+      <workItem from="1619096851462" duration="360000" />
     </task>
     <servers />
   </component>
