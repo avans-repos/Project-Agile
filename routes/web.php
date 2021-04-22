@@ -53,10 +53,7 @@ Route::get('/notes/edit/{note}', [NoteController::class, 'edit'])
 Route::patch('/notes/update/{note}', [NoteController::class, 'update'])
   ->middleware(['auth'])
   ->name('notes.update');
-Route::delete('/notes/delete/{note}', [NoteController::class, 'deleteConfirmed'])
-  ->middleware(['auth'])
-  ->name('notes.deleteConfirmed');
-Route::get('/notes/delete/{note}', [NoteController::class, 'delete'])
+Route::delete('/notes/delete/{note}', [NoteController::class, 'delete'])
   ->middleware(['auth'])
   ->name('notes.delete');
 
