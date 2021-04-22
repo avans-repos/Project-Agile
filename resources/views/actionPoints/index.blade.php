@@ -46,11 +46,11 @@
                   </div>
                 </div>
                 <div class="m-1">
-                  <form method="POST" class="m-0" action="{{ route('actionpoints.destroy', $actionPoint) }}">
+                  <form method="POST" id="delete-product-form-{{$actionPoint->id}}"  class="m-0" action="{{ route('actionpoints.destroy', $actionPoint) }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
-                      <input type="submit" value="Verwijderen" class="btn btn-danger">
+                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$actionPoint->id}}')">Verwijderen </a>
                     </div>
                   </form>
                 </div>
