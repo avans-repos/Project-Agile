@@ -22,9 +22,7 @@
     <div>
       <div class="mb-1">
         <label for="description" class="form-label">Omschrijving</label>
-        <input name="description" value="{{old('description',$project->description)}}" type="text"
-               class="form-control"
-               id="description" placeholder="" maxlength="255" required>
+        <textarea name="description" type="text" class="form-control" id="description">{{old('description',$project->description)}}</textarea>
       </div>
       <div class="col">
         @error('description')
