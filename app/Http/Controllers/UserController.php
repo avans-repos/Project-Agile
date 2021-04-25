@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -23,44 +24,6 @@ class UserController extends Controller
   }
 
   /**
-   * Show the form for creating a new resource.
-   *
-   * @return View
-   */
-  public function create()
-  {
-    return view('user.create');
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param Request $request
-   * @return Response
-   */
-  public function store(Request $request)
-  {
-    $data = $request->validate([
-      'user_id' => ['required'],
-    ]);
-
-    $user = Customer::create($data);
-
-    return redirect()->route('user.show', $user);
-  }
-
-  /**
-   * Display the specified resource.
-   *
-   * @param User $user
-   * @return View
-   */
-  public function show(User $user)
-  {
-    return view('user.show', compact('user'));
-  }
-
-  /**
    * Show the form for editing the specified resource.
    *
    * @param User $user
@@ -68,7 +31,9 @@ class UserController extends Controller
    */
   public function edit(User $user)
   {
-    return view('user.edit', compact('user'));
+    $roles = Role::all();
+
+    return view('user.edit', compact('user','roles'));
   }
 
   /**
@@ -80,25 +45,8 @@ class UserController extends Controller
    */
   public function update(Request $request, User $user)
   {
-    $data = $request->validate();
-
-    $user->update($data);
-
-    return redirect()->route('user.show', $user);
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param User $user
-   * @return RedirectResponse
-   */
-  public function destroy(User $user)
-  {
-    try {
-      $user->delete();
-    } catch (\Exception) {
-    }
-    return Redirect::to('user.index');
+    $roleIds = $request->roles;
+    $user->syncRoles($roleIds);
+    return redirect()->route('user.edit', $user);
   }
 }
