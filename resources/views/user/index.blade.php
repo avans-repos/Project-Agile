@@ -17,7 +17,8 @@
         <thead>
         <tr>
           <td>Naam</td>
-          <td class="w-50">Emailadres</td>
+          <td>Emailadres</td>
+          <td class="w-50">Rollen</td>
           <td>Acties</td>
         </tr>
         </thead>
@@ -26,6 +27,11 @@
           <tr>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
+            <td>
+              @foreach($user->getRoleNames() as $role)
+                {{$role}}
+              @endforeach
+            </td>
             <td>
               <div class="d-md-flex align-items-center">
                 <div class="m-1 d-flex justify-content-center align-items-center">
