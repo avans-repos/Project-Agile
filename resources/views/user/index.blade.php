@@ -6,9 +6,6 @@
   <div class="container mt-5">
     <div class="d-flex justify-content-between mb-3 align-items-center">
       <h1 class="fs-1">Gebruikers</h1>
-      <div class="align-self-center">
-        <a class="btn btn-primary" href="{{route('user.create')}}">Gebruiker toevoegen</a>
-      </div>
     </div>
 
     <div class="table-responsive">
