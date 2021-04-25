@@ -27,8 +27,8 @@
       <legend>Herinnering voor volgend contactmoment</legend>
       <div class="mb-1">
         <div class="col">
-          <label for="reminderdate" class="form-label">Datum</label>
-          <input type="date" name="reminderdate" id="reminderdate" value="{{old('reminderdate',($notification != null) ? $notification->data['reminderdate'] : null,Carbon\Carbon::today()->addDays(1)->format('Y-m-d'))}}">
+          <label for="reminderdate" class="form-label">Datum *</label>
+          <input type="date" name="reminderdate" id="reminderdate" value="{{old('reminderdate',($notification != null) ? $notification->data['reminderdate'] : Carbon\Carbon::today()->addDays(1)->format('Y-m-d'))}}">
         </div>
       </div>
       <div class="mb-1">

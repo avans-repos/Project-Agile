@@ -27,6 +27,7 @@ class NoteRequest extends FormRequest
   {
     return [
     'description' => 'required|string',
+    'reminderdate' => 'required_if:reminder,1|after:today'
   ];
   }
 
@@ -36,5 +37,12 @@ class NoteRequest extends FormRequest
       'description' => 'beschrijving',
     ];
   }
-  
+
+  public function messages()
+  {
+    return [
+      'reminderdate.after' => 'De herinneringsdatum moet later zijn dan vandaag.',
+    ];
+  }
+
 }

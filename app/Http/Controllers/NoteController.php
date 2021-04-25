@@ -27,20 +27,18 @@ class NoteController extends Controller
   }
 
   public function insert(Contact $contact, NoteRequest $note){
-
-
-
     $databaseNote = Note::create(['description' => $note->input('description'), 'creator' => Auth::user()->id, 'contact' =>  $contact->id]);
-    $notificationData = [
-      'reminderdate' => $note->reminderdate,
-      'noteId' => $databaseNote->id,
-      'description' => $note->reminderDescription,
-      'user' => Auth::user(),
-      'contactId' => $contact->id,
-    ];
 
-    event(new noteAdded($notificationData));
-
+    if($note->reminder != null && $note->reminder == 1) {
+      $notificationData = [
+        'reminderdate' => $note->reminderdate,
+        'noteId' => $databaseNote->id,
+        'description' => $note->reminderDescription,
+        'user' => Auth::user(),
+        'contactId' => $contact->id,
+      ];
+      event(new noteAdded($notificationData));
+    }
     return redirect()->route('contact.show', $contact);
   }
 

@@ -7,9 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewNoteNotification extends Notification
+class NewNoteNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    protected $notificationData;
 
     /**
      * Create a new notificationController instance.
