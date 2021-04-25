@@ -34,15 +34,15 @@
                        href="{{route('user.edit',$user)}}">Aanpassen</a>
                   </div>
                 </div>
-                <div class="m-1">
-                  <form method="POST" action="{{ route('user.destroy', $user) }}">
-                    {{ method_field('DELETE') }}
-                    {{ csrf_field() }}
-                    <div class="d-flex justify-content-center align-items-center">
-                      <input type="submit" value="Verwijderen" class="btn btn-danger">
-                    </div>
-                  </form>
-                </div>
+{{--                <div class="m-1">--}}
+{{--                  <form method="POST" action="{{ route('user.destroy', $user) }}">--}}
+{{--                    {{ method_field('DELETE') }}--}}
+{{--                    {{ csrf_field() }}--}}
+{{--                    <div class="d-flex justify-content-center align-items-center">--}}
+{{--                      <input type="submit" value="Verwijderen" class="btn btn-danger">--}}
+{{--                    </div>--}}
+{{--                  </form>--}}
+{{--                </div>--}}
               </div>
 
             </td>
