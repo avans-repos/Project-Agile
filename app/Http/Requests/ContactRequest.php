@@ -24,11 +24,11 @@ class ContactRequest extends FormRequest
   public function rules()
   {
     return [
-      'initials' => 'required|string|max:10',
-      'firstname' => 'required|string|max:50',
+      'initials' => 'nullable|string|max:10',
+      'firstname' => 'nullable|string|max:50',
       'insertion' => 'nullable|string|max:10',
-      'lastname' => 'required|string|max:50',
-      'gender' => 'required',
+      'lastname' => 'nullable|string|max:50',
+      'gender' => 'nullable',
       'email' => 'nullable|email|max:320',
       'phonenumber' => 'nullable|string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
       'type' => 'nullable',

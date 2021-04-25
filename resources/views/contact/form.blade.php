@@ -12,14 +12,14 @@
                     <input name="initials" value="{{old('initials',$contact->initials)}}" type="text"
                            class="form-control"
                            id="initials"
-                           placeholder="JDV" maxlength="10" required>
+                           placeholder="JDV" maxlength="10">
 
                 </div>
                 <div class="col-sm-9">
                     <label for="firstname" class="form-label">Voornaam *</label>
                     <input name="firstname" value="{{old('firstname',$contact->firstname)}}" type="text"
                            class="form-control"
-                           id="firstname" placeholder="John" maxlength="50" required>
+                           id="firstname" placeholder="John" maxlength="50">
 
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <label for="lastname" class="form-label">Achternaam *</label>
                     <input name="lastname" value="{{old('lastname',$contact->lastname)}}" type="text"
                            class="form-control" id="lastname"
-                           placeholder="Doe" maxlength="50" required>
+                           placeholder="Doe" maxlength="50">
                 </div>
             </div>
             <div class="col">
@@ -59,7 +59,7 @@
         </div>
         <div class="mb-1">
             <label for="gender" class="form-label">Geslacht</label>
-            <select class="form-control" name="gender" id="gender" required>
+            <select class="form-control" name="gender" id="gender">
                 <option disabled selected>Selecter geslacht</option>
                 @foreach ($genders as $gender)
                     <option
