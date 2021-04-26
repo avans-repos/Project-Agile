@@ -37,12 +37,15 @@ class ProjectgroupController extends Controller
       })->get();
 
       $project = Project::find($group->project);
-
+      
+      $projectname = "Geen Project";
+      if ($project != null) $projectname = $project->name;
+      
       array_push($groups, [
         'group' => $group,
         'teachers' => $teachers,
         'students' => $students,
-        'project' => $project->name
+        'project' => $projectname
       ]);
     }
 
@@ -82,7 +85,19 @@ class ProjectgroupController extends Controller
   public function store(ProjectgroupRequest $request)
   {
     $request->validated();
-    $id = Projectgroup::create($request->all())->id;
+
+    if ($request->project == -1)
+    {
+      $group = new Projectgroup;
+      $group->name = $request->name;
+      $group->save();
+
+      $id = $group->id;
+    } 
+    else 
+    {
+      $id = Projectgroup::create($request->all())->id;
+    }
 
     if (isset($request->assigned)) {
       foreach ($request->assigned as $assigned) {
