@@ -37,6 +37,8 @@ Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class
 Route::resource('contact', ContactController::class)
   ->middleware(['auth']);
 
+Route::get('project/{projectid}/addgroup/{groupid}', [\App\Http\Controllers\ProjectController::class, "addgroup"])->middleware(['auth']);
+Route::get('project/{projectid}/removegroup/{groupid}', [\App\Http\Controllers\ProjectController::class, "removegroup"])->middleware(['auth']);
 Route::resource('project', \App\Http\Controllers\ProjectController::class)
   ->middleware(['auth']);
 Route::resource('company', \App\Http\Controllers\CompanyController::class);

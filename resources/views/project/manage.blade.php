@@ -32,5 +32,65 @@
   <div id="create-project-form-container" class="col-md-6">
     @include('project.form',array('formAction'=>$action,'formActionViewName'=>$actionViewName))
   </div>
+
+  @if($action === 'update')
+  <div class="mt-5">
+    <legend>Gekoppelde projectgroepen:</legend>
+
+    <table class="table">
+      <tr>
+        <th>Groep id</th>
+        <th>Groep naam</th>
+        <th>Actie</th>
+      </tr>
+
+      @foreach($currentProjectgroups as $group)
+      <tr>
+        <td>{{ $group->id }}</td>
+        <td>{{ $group->name }}</td>
+        <td><a href="removegroup/{{ $group->id }}" class="btn btn-danger">Verwijderen</a></td>
+      </tr>
+      @endforeach
+    </table>
+  </div>
+
+  <button onClick="showTable()" class="btn btn-primary mt-4">Projectgroep toevoegen</button>
+
+  <div class="mt-5 d-none" id="add-projectgroup-table">
+    <legend>Beschikbare projectgroepen:</legend>
+
+    <table class="table">
+      <tr>
+        <th>Groep id</th>
+        <th>Groep naam</th>
+        <th>Actie</th>
+      </tr>
+
+      @foreach($availableProjectgroups as $group)
+      <tr>
+        <td>{{ $group->id }}</td>
+        <td>{{ $group->name }}</td>
+        <td><a href="addgroup/{{ $group->id }}" class="btn btn-secondary">Toevoegen</a></td>
+      </tr>
+      @endforeach
+    </table>
+  </div>
+  @endif
+
 </div>
+
+<script>
+    let table = document.getElementById("add-projectgroup-table");
+    function showTable()
+    {
+      if (table.classList.contains("d-none"))
+      {
+        table.classList.remove("d-none");
+      }
+      else
+      {
+        table.classList.add("d-none");
+      }
+    }
+  </script>
 @endsection
