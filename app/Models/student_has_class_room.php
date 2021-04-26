@@ -19,6 +19,6 @@ class student_has_class_room extends Model
   public $timestamps = false;
 
   public function student(){
-    $this->belongsTo(User::class);
+    return User::whereId($this->student)->first();
   }
 }

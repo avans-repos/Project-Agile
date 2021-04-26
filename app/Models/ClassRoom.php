@@ -20,6 +20,6 @@ class ClassRoom extends Model
 
   public function students()
   {
-    return $this->belongsToMany(student_has_class_room::class);
+    return student_has_class_room::where('class_room' , '=', $this->id)->get();
   }
 }
