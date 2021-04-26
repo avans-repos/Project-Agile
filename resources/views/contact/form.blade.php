@@ -12,7 +12,7 @@
                     <input name="initials" value="{{old('initials',$contact->initials)}}" type="text"
                            class="form-control"
                            id="initials"
-                           placeholder="JDV" maxlength="10" required>
+                           placeholder="JDV" maxlength="10">
 
                 </div>
                 <div class="col-sm-9">
@@ -59,7 +59,7 @@
         </div>
         <div class="mb-1">
             <label for="gender" class="form-label">Geslacht</label>
-            <select class="form-control" name="gender" id="gender" required>
+            <select class="form-control" name="gender" id="gender">
                 <option disabled selected>Selecter geslacht</option>
                 @foreach ($genders as $gender)
                     <option
