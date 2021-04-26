@@ -19,7 +19,7 @@
                     <label for="firstname" class="form-label">Voornaam *</label>
                     <input name="firstname" value="{{old('firstname',$contact->firstname)}}" type="text"
                            class="form-control"
-                           id="firstname" placeholder="John" maxlength="50">
+                           id="firstname" placeholder="John" maxlength="50" required>
 
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <label for="lastname" class="form-label">Achternaam *</label>
                     <input name="lastname" value="{{old('lastname',$contact->lastname)}}" type="text"
                            class="form-control" id="lastname"
-                           placeholder="Doe" maxlength="50">
+                           placeholder="Doe" maxlength="50" required>
                 </div>
             </div>
             <div class="col">

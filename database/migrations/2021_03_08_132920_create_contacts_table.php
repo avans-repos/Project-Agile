@@ -17,9 +17,9 @@ class CreateContactsTable extends Migration
             $table->id();
 
             $table->string('initials',10)->nullable();
-            $table->string('firstname',50)->nullable();
+            $table->string('firstname',50);
             $table->string('insertion',10)->nullable();
-            $table->string('lastname',50)->nullable();
+            $table->string('lastname',50);
 
             $table->string('gender',6)->nullable();
             $table->foreign('gender')->references('type')->on('genders');
