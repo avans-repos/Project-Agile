@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeders/StudentHasClassRoomSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassRoom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/student_has_class_room.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/student_has_class_room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +310,7 @@
       <workItem from="1616946327487" duration="2000" />
       <workItem from="1617005035015" duration="2279000" />
       <workItem from="1618910092440" duration="478000" />
-      <workItem from="1619427363874" duration="1386000" />
+      <workItem from="1619427363874" duration="3327000" />
     </task>
     <servers />
   </component>
@@ -319,6 +328,17 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/database/seeders/AddressSeeder.php</url>
+          <line>19</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
