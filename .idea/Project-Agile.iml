@@ -52,8 +52,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/asm89/stack-cors" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/facade/flare-client-php" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/facade/ignition" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/facade/ignition-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/commonmark" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
@@ -61,7 +59,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/collection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/uuid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/sail" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/tinker" />
@@ -102,7 +99,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-view-models" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/breeze" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-permission" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/routing" />
@@ -121,6 +117,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/error-handler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/facade/flare-client-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/facade/ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/breeze" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
