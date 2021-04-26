@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/CompanyRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CompanyRequest.php" afterDir="false" />
@@ -45,7 +48,7 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
+  <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
@@ -183,7 +186,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -300,7 +303,6 @@
       <workItem from="1616946327487" duration="2000" />
       <workItem from="1617005035015" duration="2279000" />
       <workItem from="1618910092440" duration="478000" />
-      <workItem from="1619023895431" duration="713000" />
     </task>
     <servers />
   </component>
