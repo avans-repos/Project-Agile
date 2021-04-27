@@ -9,13 +9,14 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $name
+ * @property int $year
  * @mixin \Eloquent
  */
 class ClassRoom extends Model
 {
     use HasFactory;
   protected $table = 'class_rooms';
-  protected $fillable = ['name'];
+  protected $fillable = ['name', 'year'];
   protected $dates = ['deleted_at', 'created_at'];
 
   public function students()

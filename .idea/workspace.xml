@@ -5,7 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassRoom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/student_has_class_room.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/student_has_class_room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_26_091217_create_class_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_26_091217_create_class_rooms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,6 +308,7 @@
       <workItem from="1617005035015" duration="2279000" />
       <workItem from="1618910092440" duration="478000" />
       <workItem from="1619427363874" duration="3861000" />
+      <workItem from="1619509112521" duration="1364000" />
     </task>
     <servers />
   </component>
