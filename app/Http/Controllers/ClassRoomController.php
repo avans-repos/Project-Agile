@@ -11,8 +11,6 @@ class ClassRoomController extends Controller
   {
     $classrooms = ClassRoom::all();
 
-   // die(json_encode($classrooms[0]->students()[0]->student()));
-
     return view('classroom.index')
       ->with('classrooms', $classrooms);
   }
