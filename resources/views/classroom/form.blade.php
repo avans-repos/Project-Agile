@@ -33,8 +33,36 @@
         </div>
     </fieldset>
 
+  <fieldset class="mt-5">
+    <legend>Studenten toevoegen</legend>
+    <input type="text" id="filterStudentInput" onkeyup="filterStudents()" placeholder="Zoek naar studenten" title="Typ een naam">
+    <ul class="list-group mt-2 mb-2" id="studentList">
+      @foreach($students as $student)
+      <li class="list-group-item list-group-item-action">{{$student->name}}</li>
+      @endforeach
+    </ul>
+  </fieldset>
   <div class="mt-3 mb-3">
     <p class="btn btn-primary" onclick="AddContactType()">Contacttype toevoegen</p>
   </div>
     <input class="btn btn-primary" type="submit" value="Contact {{$formActionViewName}}">
 </form>
+
+
+<script>
+  function filterStudents() {
+    let input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("filterStudentInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("studentList");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+      txtValue = li[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
+</script>

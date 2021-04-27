@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClassRoom;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClassRoomController extends Controller
@@ -17,9 +18,11 @@ class ClassRoomController extends Controller
 
   public function edit(ClassRoom $classroom)
   {
+    $students = User::role('Student')->get();
     return view('classroom.manage')
       ->with('classroom', $classroom)
-    ->with('action', 'update');
+      ->with('students', $students)
+      ->with('action', 'update');
   }
 
   public function update(ClassRoom $classRoom){}
