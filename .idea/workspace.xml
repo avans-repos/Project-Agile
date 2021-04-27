@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/classroom/form.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/classroom/manage.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +179,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/classroom" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -189,6 +193,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documents\Github\Project-Agile\resources\views\classroom" />
       <recent name="C:\xampp\Project-Agile\resources\views\project" />
       <recent name="D:\xampp\agile\Project-Agile\app\Http\Requests" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
@@ -302,7 +307,7 @@
       <workItem from="1617005035015" duration="2279000" />
       <workItem from="1618910092440" duration="478000" />
       <workItem from="1619427363874" duration="3861000" />
-      <workItem from="1619509112521" duration="1417000" />
+      <workItem from="1619509112521" duration="2544000" />
     </task>
     <servers />
   </component>

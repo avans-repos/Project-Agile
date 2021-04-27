@@ -40,7 +40,7 @@
                 <div class="m-1 d-flex justify-content-center align-items-center">
                   <div>
                     <a class="btn btn-secondary"
-                       href="{{route('contact.edit',$classroom)}}">Aanpassen</a>
+                       href="{{route('classroom.edit',$classroom)}}">Aanpassen</a>
                   </div>
                 </div>
                 <div class="m-1">

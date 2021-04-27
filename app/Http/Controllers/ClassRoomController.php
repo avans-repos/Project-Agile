@@ -14,4 +14,13 @@ class ClassRoomController extends Controller
     return view('classroom.index')
       ->with('classrooms', $classrooms);
   }
+
+  public function edit(ClassRoom $classroom)
+  {
+    return view('classroom.manage')
+      ->with('classroom', $classroom)
+    ->with('action', 'update');
+  }
+
+  public function update(ClassRoom $classRoom){}
 }
