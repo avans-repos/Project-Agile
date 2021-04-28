@@ -81,13 +81,6 @@ class NoteController extends Controller
 
   public function delete(Note $note){
     $contact = Contact::whereId($note->contact)->first();
-    return view('note.delete')
-      ->with('contact', $contact)
-      ->with('note', $note);
-  }
-
-  public function deleteConfirmed(Note $note){
-    $contact = Contact::whereId($note->contact)->first();
     $note->delete();
     return redirect()->route('contact.show', $contact);
   }
