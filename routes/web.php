@@ -10,6 +10,7 @@ use App\Http\Controllers\MyOwnActionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProjectgroupController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,9 @@ Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class
   ->name('actionpoints.complete');
 
 Route::resource('contact', ContactController::class)
+  ->middleware(['auth']);
+
+Route::resource('user', UserController::class)
   ->middleware(['auth']);
 
 Route::resource('project', \App\Http\Controllers\ProjectController::class)
