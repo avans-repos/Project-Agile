@@ -49,11 +49,11 @@
                   </div>
                 </div>
                 <div class="m-1">
-                  <form method="POST" action="{{ route('projectgroup.destroy', $group['group']) }}">
+                  <form method="POST" id="delete-product-form-{{ $group['group']->id}}" action="{{ route('projectgroup.destroy', $group['group']) }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
-                      <input type="submit" value="Verwijderen" class="btn btn-danger">
+                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$group['group']->id}}')">Verwijderen </a>
                     </div>
                   </form>
                 </div>
