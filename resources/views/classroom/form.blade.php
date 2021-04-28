@@ -22,11 +22,6 @@
 
                 </div>
 
-              <div class="col-sm-9" id="selectedStudents">
-                <label for="students"  class="form-label">Geselecteerde studenten</label>
-
-              </div>
-
             </div>
             <div class="col">
                 @error('name')
@@ -38,6 +33,13 @@
             </div>
         </div>
     </fieldset>
+
+  <fieldset class="mt-5">
+    <legend>Toegevoegde studenten</legend>
+
+    <ul class="list-group mt-2 mb-2"id="selectedStudents">
+    </ul>
+  </fieldset>
 
   <fieldset class="mt-5">
     <legend>Studenten toevoegen</legend>
