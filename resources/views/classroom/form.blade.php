@@ -37,7 +37,7 @@
   <fieldset class="mt-5">
     <legend>Toegevoegde studenten</legend>
 
-    <ul class="list-group mt-2 mb-2"id="selectedStudents">
+    <ul class="list-group mt-2 mb-2" id="selectedStudents">
     </ul>
   </fieldset>
 
