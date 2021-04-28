@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClassRoomRequest;
 use App\Models\ClassRoom;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,5 +26,7 @@ class ClassRoomController extends Controller
       ->with('action', 'update');
   }
 
-  public function update(ClassRoom $classRoom){}
+  public function update(ClassRoom $classRoom, ClassRoomRequest  $request){
+    die(json_encode($request->all()));
+  }
 }

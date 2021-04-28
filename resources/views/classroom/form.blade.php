@@ -21,6 +21,12 @@
                            id="year" placeholder="2020" maxlength="4" required>
 
                 </div>
+
+              <div class="col-sm-9" id="selectedStudents">
+                <label for="students"  class="form-label">Geselecteerde studenten</label>
+
+              </div>
+
             </div>
             <div class="col">
                 @error('name')
@@ -38,18 +44,59 @@
     <input type="text" id="filterStudentInput" onkeyup="filterStudents()" placeholder="Zoek naar studenten" title="Typ een naam">
     <ul class="list-group mt-2 mb-2" id="studentList">
       @foreach($students as $student)
-      <li class="list-group-item list-group-item-action">{{$student->name}}</li>
+        <li class="list-group-item list-group-item-action" id="{{$student->id}}">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <span>{{$student->name}}</span>
+              </div>
+              <div class="col-md-auto"></div>
+              <div class="col col-lg-2">
+                <a class="col-sm btn btn-primary" onclick="addStudent({{$student->id}}, '{{$student->name}}')">Toevoegen</a>
+              </div>
+            </div>
+          </div>
+        </li>
       @endforeach
     </ul>
   </fieldset>
-  <div class="mt-3 mb-3">
-    <p class="btn btn-primary" onclick="AddContactType()">Contacttype toevoegen</p>
-  </div>
-    <input class="btn btn-primary" type="submit" value="Contact {{$formActionViewName}}">
+    <input class="btn btn-primary" type="submit" value="Klas {{$formActionViewName}}">
 </form>
 
 
+
 <script>
+
+  function addStudent(studentId, studentName){
+
+    let studentTemplate = `
+            <li class="list-group-item list-group-item-action" id="selectedStudent-${studentId}">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <span>${studentName}</span>
+              </div>
+              <div class="col-md-auto"></div>
+              <div class="col col-lg-2">
+                <a class="col-sm btn btn-danger" onclick="deleteStudent(${studentId})">Verwijderen</a>
+                <input name="student[]" value="${studentId}" hidden>
+              </div>
+            </div>
+          </div>
+        </li>
+        `;
+
+    const studentDiv = document.getElementById('selectedStudents');
+    studentDiv.innerHTML += studentTemplate;
+
+    filterStudents();
+  }
+
+  function deleteStudent(studentId){
+    document.getElementById(`selectedStudent-${studentId}`).remove();
+    filterStudents();
+  }
+
   function filterStudents() {
     let input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("filterStudentInput");
@@ -58,7 +105,8 @@
     li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
       txtValue = li[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      let isSelected = document.getElementById(`selectedStudent-${li[i].id}`) != null;
+      if (txtValue.toUpperCase().indexOf(filter) > -1 && !isSelected) {
         li[i].style.display = "";
       } else {
         li[i].style.display = "none";
