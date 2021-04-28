@@ -32,11 +32,11 @@
             </td>
             <td>
               <div class="d-md-flex align-items-center">
-                <div class="m-1 d-flex justify-content-center align-items-center">
-                  <div>
-                    <a class="btn btn-primary" href="{{route('contact.show',$classroom)}}">Details</a>
-                  </div>
-                </div>
+{{--                <div class="m-1 d-flex justify-content-center align-items-center">--}}
+{{--                  <div>--}}
+{{--                    <a class="btn btn-primary" href="{{route('contact.show',$classroom)}}">Details</a>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
                 <div class="m-1 d-flex justify-content-center align-items-center">
                   <div>
                     <a class="btn btn-secondary"
@@ -44,11 +44,11 @@
                   </div>
                 </div>
                 <div class="m-1">
-                  <form method="POST" action="{{ route('contact.destroy', $classroom) }}">
+                  <form method="POST"  id="delete-product-form-{{$classroom->id}}"  action="{{ route('classroom.destroy', $classroom) }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
-                      <input type="submit" value="Verwijderen" class="btn btn-danger">
+                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$classroom->id}}')">Verwijderen </a>
                     </div>
                   </form>
                 </div>
