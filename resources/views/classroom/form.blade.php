@@ -65,7 +65,7 @@
   <fieldset class="mt-5">
     <legend>Studenten toevoegen</legend>
     <input type="text" id="filterStudentInput" onkeyup="filterStudents()" placeholder="Zoek naar studenten" title="Typ een naam">
-    <ul class="list-group mt-2 mb-2" id="studentList">
+    <ul class="list-group mt-2 mb-2 scroll max-h-screen" id="studentList">
       @foreach($students as $student)
         <li class="list-group-item list-group-item-action" id="{{$student->id}}">
           <div class="container">
