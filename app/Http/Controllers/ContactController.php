@@ -54,13 +54,20 @@ class ContactController extends Controller
   {
     $request->validated();
     $contactId = Contact::create($request->all())->id;
-    $data= $request->all();
-    foreach(array_keys($request->all()) as $key){
-      if(starts_with($key,'company-')){
-        $id = explode('-',$key)[1];
-        if(isset($data['contacttype-' . $id])){
-          $company =  DB::table('companies')->where('name', '=', $data[$key])->get('id')->first();
-          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [$contactId,$company->id, $data['contacttype-' . $id]]);
+    $data = $request->all();
+    foreach (array_keys($request->all()) as $key) {
+      if (starts_with($key, 'company-')) {
+        $id = explode('-', $key)[1];
+        if (isset($data['contacttype-' . $id])) {
+          $company = DB::table('companies')
+            ->where('name', '=', $data[$key])
+            ->get('id')
+            ->first();
+          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
+            $contactId,
+            $company->id,
+            $data['contacttype-' . $id],
+          ]);
         }
       }
     }
@@ -76,10 +83,24 @@ class ContactController extends Controller
    */
   public function show(Contact $contact)
   {
-    $notes = DB::Table('notes')->where('contact', '=', $contact->id)->join('users', 'notes.creator', '=', 'users.id')->select( 'notes.id', 'notes.creation', 'notes.description','users.name')->orderBy('notes.creation', 'desc')->get() ?? [];
-    $contactTypes = DB::Table('contact_has_contacttypes')->where('contact', '=', $contact->id)->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')->select('contact_has_contacttypes.contacttype', 'companies.name')->get() ?? [];
+    $notes =
+      DB::Table('notes')
+        ->where('contact', '=', $contact->id)
+        ->join('users', 'notes.creator', '=', 'users.id')
+        ->select('notes.id', 'notes.creation', 'notes.description', 'users.name')
+        ->orderBy('notes.creation', 'desc')
+        ->get() ?? [];
+    $contactTypes =
+      DB::Table('contact_has_contacttypes')
+        ->where('contact', '=', $contact->id)
+        ->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')
+        ->select('contact_has_contacttypes.contacttype', 'companies.name')
+        ->get() ?? [];
 
-    return view('contact.show')->with('contact', $contact)->with('notes', $notes)->with('contactTypes', $contactTypes);
+    return view('contact.show')
+      ->with('contact', $contact)
+      ->with('notes', $notes)
+      ->with('contactTypes', $contactTypes);
   }
 
   /**
@@ -93,7 +114,12 @@ class ContactController extends Controller
     $genders = Gender::all();
     $contactTypes = ContactType::all();
     $companies = Company::all();
-    $contactTypesAssigned = DB::Table('contact_has_contacttypes')->where('contact', '=', $contact->id)->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')->select('contact_has_contacttypes.contacttype', 'companies.name')->get() ?? [];
+    $contactTypesAssigned =
+      DB::Table('contact_has_contacttypes')
+        ->where('contact', '=', $contact->id)
+        ->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')
+        ->select('contact_has_contacttypes.contacttype', 'companies.name')
+        ->get() ?? [];
     return view('contact.manage')
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
@@ -114,15 +140,24 @@ class ContactController extends Controller
   {
     $data = $request->all();
 
-    DB::table('contact_has_contacttypes')->where('contact', $contact->id)->delete();
+    DB::table('contact_has_contacttypes')
+      ->where('contact', $contact->id)
+      ->delete();
 
-    $data= $request->all();
-    foreach(array_keys($request->all()) as $key){
-      if(starts_with($key,'company-')){
-        $id = explode('-',$key)[1];
-        if(isset($data['contacttype-' . $id]) &&  $data['contacttype-' . $id] != "n.v.t."){
-          $company =  DB::table('companies')->where('name', '=', $data[$key])->get('id')->first();
-          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [$contact->id,$company->id, $data['contacttype-' . $id]]);
+    $data = $request->all();
+    foreach (array_keys($request->all()) as $key) {
+      if (starts_with($key, 'company-')) {
+        $id = explode('-', $key)[1];
+        if (isset($data['contacttype-' . $id]) && $data['contacttype-' . $id] != 'n.v.t.') {
+          $company = DB::table('companies')
+            ->where('name', '=', $data[$key])
+            ->get('id')
+            ->first();
+          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
+            $contact->id,
+            $company->id,
+            $data['contacttype-' . $id],
+          ]);
         }
       }
     }
@@ -145,6 +180,7 @@ class ContactController extends Controller
   }
 }
 
-function starts_with($haystack, $needle) {
+function starts_with($haystack, $needle)
+{
   return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
 }

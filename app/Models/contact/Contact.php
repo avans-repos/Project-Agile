@@ -44,7 +44,7 @@ class Contact extends Model
   public function getName(): string
   {
     $fullname = $this->firstname . ' ';
-    if(isset($this->insertion)){
+    if (isset($this->insertion)) {
       $fullname .= $this->insertion . ' ';
     }
     $fullname .= $this->lastname;

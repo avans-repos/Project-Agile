@@ -12,6 +12,6 @@ class Projectgroup extends Model
   use SoftDeletes;
 
   protected $table = 'projectgroups';
-  protected $fillable = ['name','project'];
+  protected $fillable = ['name', 'project'];
   protected $dates = ['deleted_at'];
 }

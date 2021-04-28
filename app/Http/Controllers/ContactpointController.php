@@ -51,13 +51,13 @@ class ContactpointController extends Controller
     Contactpoint::create([
       'contactPerson' => $request->contactid,
       'dateOfContact' => $request->dateOfContact,
-      'description' => $request->description
+      'description' => $request->description,
     ]);
 
     return redirect()->route('contact.show', ['contact' => $contact]);
   }
 
-  public function show(Contactpoint $contactpoint, Contact  $contact)
+  public function show(Contactpoint $contactpoint, Contact $contact)
   {
     return view('contactpoint.manage')
       ->with('contactpoint', $contactpoint)
@@ -100,6 +100,5 @@ class ContactpointController extends Controller
 
   public function complete(Actionpoint $actionpoint)
   {
-
   }
 }

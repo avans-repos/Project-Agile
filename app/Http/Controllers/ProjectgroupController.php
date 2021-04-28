@@ -21,20 +21,25 @@ class ProjectgroupController extends Controller
    */
   public function index()
   {
-    $groups = array();
+    $groups = [];
 
-    foreach(Projectgroup::all() as $group) {
-      $assigned_to_group = DB::table('projectgroup_has_users')->select('userid')->where('projectgroupid',$group->id)->pluck('userid');
+    foreach (Projectgroup::all() as $group) {
+      $assigned_to_group = DB::table('projectgroup_has_users')
+        ->select('userid')
+        ->where('projectgroupid', $group->id)
+        ->pluck('userid');
 
-      $teachers = User::whereIn('id',$assigned_to_group)->whereHas(
-        'roles', function($q) {
-        $q->where('name', 'teacher');
-      })->get();
+      $teachers = User::whereIn('id', $assigned_to_group)
+        ->whereHas('roles', function ($q) {
+          $q->where('name', 'teacher');
+        })
+        ->get();
 
-      $students = User::whereIn('id',$assigned_to_group)->whereHas(
-        'roles', function($q) {
-        $q->where('name', 'student');
-      })->get();
+      $students = User::whereIn('id', $assigned_to_group)
+        ->whereHas('roles', function ($q) {
+          $q->where('name', 'student');
+        })
+        ->get();
 
       $project = Project::find($group->project);
 
@@ -42,12 +47,11 @@ class ProjectgroupController extends Controller
         'group' => $group,
         'teachers' => $teachers,
         'students' => $students,
-        'project' => $project->name
+        'project' => $project->name,
       ]);
     }
 
-    return view('projectgroup.index')
-      ->with('groups', $groups);
+    return view('projectgroup.index')->with('groups', $groups);
   }
 
   /**
@@ -101,7 +105,6 @@ class ProjectgroupController extends Controller
    */
   public function edit(Projectgroup $projectgroup)
   {
-
     $students = User::role('student')->get();
     $teachers = User::role('teacher')->get();
     $projects = Project::all();
@@ -137,18 +140,17 @@ class ProjectgroupController extends Controller
     $request->validated();
 
     if (isset($request->assigned)) {
-
-    foreach ($request->assigned as $assigned) {
-      if (
-      !DB::table('projectgroup_has_users')
-        ->where('userid', $assigned)
-        ->where('projectgroupid', $projectgroup->id)
-        ->exists()
-      ) {
-        DB::insert('INSERT INTO projectgroup_has_users (userid,projectgroupid) VALUES (?,?)', [$assigned, $projectgroup->id]);
+      foreach ($request->assigned as $assigned) {
+        if (
+          !DB::table('projectgroup_has_users')
+            ->where('userid', $assigned)
+            ->where('projectgroupid', $projectgroup->id)
+            ->exists()
+        ) {
+          DB::insert('INSERT INTO projectgroup_has_users (userid,projectgroupid) VALUES (?,?)', [$assigned, $projectgroup->id]);
+        }
       }
     }
-  }
     foreach (
       DB::table('projectgroup_has_users')
         ->where('projectgroupid', $projectgroup->id)

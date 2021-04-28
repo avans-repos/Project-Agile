@@ -18,8 +18,8 @@ use Tests\TestCase;
 
 class ProjectgroupCreateTest extends TestCase
 {
-  use CreatesApplication,RefreshDatabase;
-  public function setUp() : void
+  use CreatesApplication, RefreshDatabase;
+  public function setUp(): void
   {
     parent::setUp();
     $this->artisan('migrate:fresh --seed');
@@ -27,7 +27,7 @@ class ProjectgroupCreateTest extends TestCase
     $this->validator = $this->app['validator'];
     $user = new User([
       'id' => 1,
-      'name' => 'test'
+      'name' => 'test',
     ]);
 
     $this->be($user);
@@ -48,54 +48,44 @@ class ProjectgroupCreateTest extends TestCase
    */
   public function test_projectgroup_create_fails_no_name()
   {
-    $response = $this
-      ->post(route('projectgroup.store'), [
-        'name' => ''
-      ]);
-    $response->assertSessionHasErrors([
-      'name'
+    $response = $this->post(route('projectgroup.store'), [
+      'name' => '',
     ]);
+    $response->assertSessionHasErrors(['name']);
   }
-
 
   /**
    * @return void
    */
   public function test_projectgroup_create_fails_name_too_long()
   {
-    $response = $this
-      ->post(route('projectgroup.store'), [
-        'name' => Str::random(101)
-      ]);
-    $response->assertSessionHasErrors([
-      'name'
+    $response = $this->post(route('projectgroup.store'), [
+      'name' => Str::random(101),
     ]);
+    $response->assertSessionHasErrors(['name']);
   }
-
 
   /**
    * @return void
    */
   public function test_projectgroup_create_success()
   {
-
     $name = Str::random(100);
 
     $project = Project::create([
       'name' => 'test',
       'description' => 'test',
-      'deadline' => '2022-01-01 18:00'
+      'deadline' => '2022-01-01 18:00',
     ]);
 
-    $response = $this
-      ->post(route('projectgroup.store'), [
-        'name' => $name,
-        'project' => $project->id
-      ]);
+    $response = $this->post(route('projectgroup.store'), [
+      'name' => $name,
+      'project' => $project->id,
+    ]);
     $response->assertSessionHasNoErrors();
 
     $this->assertDatabaseHas('projectgroups', [
-      'name' => $name
+      'name' => $name,
     ]);
   }
 }

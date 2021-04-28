@@ -6,7 +6,6 @@ use App\Models\contact\Contact;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
  * App\Models\contact\Contact
  *
@@ -25,10 +24,9 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 
-
 class Note extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
   protected $table = 'notes';
 

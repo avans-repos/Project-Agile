@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    //
+  //
   public function index()
   {
     $projects = Project::all();
-    return view('project.index')->with('projects',$projects);
+    return view('project.index')->with('projects', $projects);
   }
 
   public function create()

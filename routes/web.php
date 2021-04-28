@@ -28,21 +28,17 @@ Route::get('/', [HomeController::class, 'index'])
   ->middleware(['auth'])
   ->name('dashboard');
 
-Route::resource('actionpoints', ActionpointController::class)
-  ->middleware(['auth']);
+Route::resource('actionpoints', ActionpointController::class)->middleware(['auth']);
 
 Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete'])
   ->middleware(['auth'])
   ->name('actionpoints.complete');
 
-Route::resource('contact', ContactController::class)
-  ->middleware(['auth']);
+Route::resource('contact', ContactController::class)->middleware(['auth']);
 
-Route::resource('user', UserController::class)
-  ->middleware(['auth']);
+Route::resource('user', UserController::class)->middleware(['auth']);
 
-Route::resource('project', \App\Http\Controllers\ProjectController::class)
-  ->middleware(['auth']);
+Route::resource('project', \App\Http\Controllers\ProjectController::class)->middleware(['auth']);
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
 
 Route::get('/notes/create/{contact}', [NoteController::class, 'create'])
@@ -61,29 +57,28 @@ Route::delete('/notes/delete/{note}', [NoteController::class, 'delete'])
   ->middleware(['auth'])
   ->name('notes.delete');
 
-
-
 // API Example controller using the avans API
 
-Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, "addcontact"])->middleware(['auth']);
-Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, "removecontact"])->middleware(['auth']);
-Route::resource('company', CompanyController::class)
-  ->middleware(['auth']);
+Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, 'addcontact'])->middleware(['auth']);
+Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, 'removecontact'])->middleware(['auth']);
+Route::resource('company', CompanyController::class)->middleware(['auth']);
 
-Route::resource('contactpoint', ContactpointController::class)->except(['create'])->middleware(['auth']);
+Route::resource('contactpoint', ContactpointController::class)
+  ->except(['create'])
+  ->middleware(['auth']);
 Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create');
 require __DIR__ . '/auth.php';
 
-Route::resource('contactpoint', ContactpointController::class)->except(['create'])->middleware(['auth']);
+Route::resource('contactpoint', ContactpointController::class)
+  ->except(['create'])
+  ->middleware(['auth']);
 Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create');
 require __DIR__ . '/auth.php';
 
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
 // API Example controller using the avans API
 
-Route::resource('role', RoleController::class)
-  ->middleware(['auth']);
+Route::resource('role', RoleController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
-Route::resource('projectgroup', ProjectgroupController::class)
-  ->middleware(['auth']);
+Route::resource('projectgroup', ProjectgroupController::class)->middleware(['auth']);
