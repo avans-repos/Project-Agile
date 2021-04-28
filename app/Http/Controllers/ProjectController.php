@@ -6,6 +6,7 @@ use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\Projectgroup;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProjectController extends Controller
 {
@@ -41,8 +42,8 @@ class ProjectController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param \App\Models\Project $project
-   * @return \Illuminate\Http\Response
+   * @param Project $project
+   * @return Response
    */
   public function edit(Project $project)
   {
@@ -54,9 +55,9 @@ class ProjectController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param \App\Http\Requests\ProjectRequest $request
-   * @param \App\Models\Project $project
-   * @return \Illuminate\Http\Response
+   * @param ProjectRequest $request
+   * @param Project $project
+   * @return Response
    */
   public function update(ProjectRequest $request, Project $project)
   {

@@ -1,6 +1,6 @@
 <form action="{{route('project.'.$formAction, ['project' => $project])}}" method="POST">
   @csrf
-  @if($formAction == "update")
+  @if($formAction == 'update')
     @method('PATCH')
   @endif
   <fieldset class="mb-3">

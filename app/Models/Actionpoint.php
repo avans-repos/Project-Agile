@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Builder;
@@ -16,7 +17,7 @@ use PhpParser\Builder;
  * @property string|null $finished
  * @property string|null $reminderdate
  * @property int $creator
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Actionpoint extends Model
 {

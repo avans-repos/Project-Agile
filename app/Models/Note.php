@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use App\Models\contact\Contact;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\contact\Contact
@@ -13,15 +16,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property int $creator
  * @property int $contact
- * @property \Illuminate\Support\Carbon|null $creation
- * @method static \Illuminate\Database\Eloquent\Builder|Contact newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Contact newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Contact query()
- * @method static \Illuminate\Database\Eloquent\Builder|Contact whereCreation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Contact whereCreator($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Contact whereContact($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Contact whereId($value)
- * @mixin \Eloquent
+ * @property Carbon|null $creation
+ * @method static Builder|Contact newModelQuery()
+ * @method static Builder|Contact newQuery()
+ * @method static Builder|Contact query()
+ * @method static Builder|Contact whereCreation($value)
+ * @method static Builder|Contact whereCreator($value)
+ * @method static Builder|Contact whereContact($value)
+ * @method static Builder|Contact whereId($value)
+ * @mixin Eloquent
  */
 
 class Note extends Model

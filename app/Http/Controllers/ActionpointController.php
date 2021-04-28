@@ -9,6 +9,7 @@ use App\Service\AuthenticationService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -68,8 +69,8 @@ class ActionpointController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @param Request $request
+   * @return RedirectResponse
    */
   public function store(ActionpointRequest $request)
   {
@@ -92,7 +93,7 @@ class ActionpointController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  \App\Models\Actionpoint  $actionpoint
+   * @param Actionpoint $actionpoint
    * @return Application|Factory|View|Response
    */
   public function show(Actionpoint $actionpoint)
@@ -117,7 +118,7 @@ class ActionpointController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  \App\Models\Actionpoint  $actionpoint
+   * @param Actionpoint $actionpoint
    * @return Application|Factory|View|Response
    */
   public function edit(Actionpoint $actionpoint)
@@ -142,9 +143,9 @@ class ActionpointController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Actionpoint  $actionpoint
-   * @return \Illuminate\Http\RedirectResponse
+   * @param Request $request
+   * @param Actionpoint $actionpoint
+   * @return RedirectResponse
    */
   public function update(ActionpointRequest $request, Actionpoint $actionpoint)
   {
@@ -184,8 +185,8 @@ class ActionpointController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param  \App\Models\Actionpoint  $actionpoint
-   * @return \Illuminate\Http\RedirectResponse
+   * @param Actionpoint $actionpoint
+   * @return RedirectResponse
    */
   public function destroy(Actionpoint $actionpoint)
   {

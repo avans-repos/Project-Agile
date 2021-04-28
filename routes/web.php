@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactpointController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyOwnActionController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProjectgroupController;
@@ -38,8 +39,8 @@ Route::resource('contact', ContactController::class)->middleware(['auth']);
 
 Route::resource('user', UserController::class)->middleware(['auth']);
 
-Route::resource('project', \App\Http\Controllers\ProjectController::class)->middleware(['auth']);
-Route::resource('company', \App\Http\Controllers\CompanyController::class);
+Route::resource('project', ProjectController::class)->middleware(['auth']);
+Route::resource('company', CompanyController::class);
 
 Route::get('/notes/create/{contact}', [NoteController::class, 'create'])
   ->middleware(['auth'])
@@ -75,7 +76,7 @@ Route::resource('contactpoint', ContactpointController::class)
 Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create');
 require __DIR__ . '/auth.php';
 
-Route::resource('company', \App\Http\Controllers\CompanyController::class);
+Route::resource('company', CompanyController::class);
 // API Example controller using the avans API
 
 Route::resource('role', RoleController::class)->middleware(['auth']);

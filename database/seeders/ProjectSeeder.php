@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,7 @@ class ProjectSeeder extends Seeder
     DB::table('projects')->insert([
       'name' => 'Project 1',
       'description' => 'test project',
-      'deadline' => new \DateTime('10/10/2021'),
+      'deadline' => new DateTime('10/10/2021'),
       'notes' => 'test notes',
     ]);
   }

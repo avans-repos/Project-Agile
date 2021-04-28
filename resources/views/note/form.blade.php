@@ -1,4 +1,4 @@
-  @if($formAction == "update")
+  @if($formAction == 'update')
     <form action="{{route('notes.update', ['note' => $note])}}" method="POST">
       @method('PATCH')
   @else

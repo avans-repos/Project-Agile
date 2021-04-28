@@ -7,14 +7,15 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class ConfirmablePasswordController extends Controller
 {
   /**
    * Show the confirm password view.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\View\View
+   * @param Request $request
+   * @return View
    */
   public function show(Request $request)
   {
@@ -24,7 +25,7 @@ class ConfirmablePasswordController extends Controller
   /**
    * Confirm the user's password.
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param Request $request
    * @return mixed
    */
   public function store(Request $request)
