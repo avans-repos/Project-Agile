@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $student
  * @property int $name
  * @mixin \Eloquent
+ * @method static where(string $string, string $string1, int $id)
  */
 class student_has_class_room extends Model
 {

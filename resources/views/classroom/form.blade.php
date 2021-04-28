@@ -38,7 +38,28 @@
     <legend>Toegevoegde studenten</legend>
 
     <ul class="list-group mt-2 mb-2" id="selectedStudents">
+      @foreach($addedStudents as $student)
+        <li class="list-group-item list-group-item-action" id="selectedStudent-{{$student->student()->id}}">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <span>{{$student->student()->name}}</span>
+              </div>
+              <div class="col-md-auto"></div>
+              <div class="col col-lg-2">
+                <a class="col-sm btn btn-danger" onclick="deleteStudent(${studentId})">Verwijderen</a>
+                <input name="student[]" value="{{$student->student()->id}}" hidden>
+              </div>
+            </div>
+          </div>
+        </li>
+      @endforeach
     </ul>
+    <div class="col">
+      @error('student')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+    </div>
   </fieldset>
 
   <fieldset class="mt-5">
@@ -114,5 +135,8 @@
         li[i].style.display = "none";
       }
     }
+  }
+  window.onload = function(e) {
+    filterStudents();
   }
 </script>
