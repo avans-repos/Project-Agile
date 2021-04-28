@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-between mb-3 align-items-center">
       <h1 class="fs-1">Alle Klassen</h1>
       <div class="align-self-center">
-        <a class="btn btn-primary" href="{{route('contact.create')}}">Klas toevoegen</a>
+        <a class="btn btn-primary" href="{{route('classroom.create')}}">Klas toevoegen</a>
       </div>
     </div>
 

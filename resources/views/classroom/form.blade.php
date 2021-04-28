@@ -47,7 +47,7 @@
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
-                <a class="col-sm btn btn-danger" onclick="deleteStudent(${studentId})">Verwijderen</a>
+                <a class="col-sm btn btn-danger" onclick="deleteStudent({{$student->student()->id}})">Verwijderen</a>
                 <input name="student[]" value="{{$student->student()->id}}" hidden>
               </div>
             </div>

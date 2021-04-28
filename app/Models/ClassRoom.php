@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property int $year
  * @mixin \Eloquent
+ * @method static create(array $all)
  */
 class ClassRoom extends Model
 {

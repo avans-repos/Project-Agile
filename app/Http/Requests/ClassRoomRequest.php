@@ -25,6 +25,7 @@ class ClassRoomRequest extends FormRequest
   {
     return [
       'name' =>  'required|string|min:3|max:255',
+      'year' => 'required|integer|min:0|max:9999',
       'student' => 'array',
       'student.*' => 'integer'
     ];
@@ -34,6 +35,7 @@ class ClassRoomRequest extends FormRequest
   {
     return [
       'name' => 'Klasnaam',
+      'year' => 'Jaar',
       'student' => 'Student'
     ];
   }
