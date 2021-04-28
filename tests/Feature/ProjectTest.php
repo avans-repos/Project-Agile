@@ -13,10 +13,10 @@ use Tests\TestCase;
 
 class ProjectTest extends TestCase
 {
-    use CreatesApplication;
-    use RefreshDatabase;
+  use CreatesApplication;
+  use RefreshDatabase;
 
-    protected $seed = true;
+  protected $seed = true;
 
   public function setUp(): void
   {
