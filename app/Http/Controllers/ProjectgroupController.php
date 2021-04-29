@@ -21,10 +21,10 @@ class ProjectgroupController extends Controller
    */
   public function index()
   {
-    $groups = array();
+    $projectgroups = array();
 
-    foreach(Projectgroup::all() as $group) {
-      $assigned_to_group = DB::table('projectgroup_has_users')->select('userid')->where('projectgroupid',$group->id)->pluck('userid');
+    foreach(Projectgroup::all() as $projectgroup) {
+      $assigned_to_group = DB::table('projectgroup_has_users')->select('userid')->where('projectgroupid',$projectgroup->id)->pluck('userid');
 
       $teachers = User::whereIn('id',$assigned_to_group)->whereHas(
         'roles', function($q) {
@@ -36,10 +36,10 @@ class ProjectgroupController extends Controller
         $q->where('name', 'student');
       })->get();
 
-      $project = Project::find($group->project);
+      $project = Project::find($projectgroup->project);
 
-      array_push($groups, [
-        'group' => $group,
+      array_push($projectgroups, [
+        'group' => $projectgroup,
         'teachers' => $teachers,
         'students' => $students,
         'project' => $project->name
@@ -47,7 +47,7 @@ class ProjectgroupController extends Controller
     }
 
     return view('projectgroup.index')
-      ->with('groups', $groups);
+      ->with('projectgroups', $projectgroups);
   }
 
   /**
@@ -108,6 +108,11 @@ class ProjectgroupController extends Controller
     }
 
     return redirect()->route('projectgroup.index');
+  }
+
+  public function show(Projectgroup $projectgroup)
+  {
+    return view('projectgroup.show')->with('projectgroup', $projectgroup);
   }
 
   /**
