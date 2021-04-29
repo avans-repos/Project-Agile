@@ -170,7 +170,11 @@ class ProjectgroupController extends Controller
       }
     }
 
-    $projectgroup->update($request->all());
+    $projectgroup->name = $request->name;
+    if ($request->project == -1) $projectgroup->project = null;
+    else $projectgroup->project = $request->project;
+    $projectgroup->save();
+
     return redirect()->route('projectgroup.index');
   }
 

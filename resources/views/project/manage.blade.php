@@ -48,7 +48,11 @@
       <tr>
         <td>{{ $group->id }}</td>
         <td>{{ $group->name }}</td>
-        <td><a href="removegroup/{{ $group->id }}" class="btn btn-danger">Verwijderen</a></td>
+        <td>
+          <form method="GET" id="delete-group-{{$group->id}}" action="{{ route('removegroup', ['projectid' => $project->id, 'groupid' => $group->id]) }}">
+            <a href="#" onclick="deleteConfirm('delete-group-{{$group->id}}')" class="btn btn-danger">Verwijderen</a>
+          </form>
+        </td>
       </tr>
       @endforeach
     </table>
@@ -70,7 +74,7 @@
       <tr>
         <td>{{ $group->id }}</td>
         <td>{{ $group->name }}</td>
-        <td><a href="addgroup/{{ $group->id }}" class="btn btn-secondary">Toevoegen</a></td>
+        <td><a href="{{ route('addgroup', ['projectid' => $project->id, 'groupid' => $group->id]) }}" class="btn btn-secondary">Toevoegen</a></td>
       </tr>
       @endforeach
     </table>
@@ -83,14 +87,7 @@
     let table = document.getElementById("add-projectgroup-table");
     function showTable()
     {
-      if (table.classList.contains("d-none"))
-      {
-        table.classList.remove("d-none");
-      }
-      else
-      {
-        table.classList.add("d-none");
-      }
+      table.classList.toggle("d-none");
     }
   </script>
 @endsection
