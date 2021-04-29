@@ -29,14 +29,9 @@ class ProjectController extends Controller
   {
     $request->validated();
 
-    Project::create($request->all());
-    
-    $projectid = DB::table('projects')
-      ->orderby('id', 'desc')
-      ->first()->id;
+    $project = Project::create($request->all());
 
-    return redirect()->route('project.edit', [$projectid]);
-    //return redirect()->route('project.index');
+    return redirect()->route('project.edit', [$project->id]);
   }
 
   public function destroy(Project $project)
@@ -53,8 +48,8 @@ class ProjectController extends Controller
    */
   public function edit(Project $project)
   {
-    $currentProjectgroups = DB::select("SELECT * FROM projectgroups WHERE project=$project->id");
-    $availableProjectgroups = DB::select("SELECT * FROM projectgroups WHERE project IS NULL");
+    $currentProjectgroups = Projectgroup::where('project', $project->id)->get();
+    $availableProjectgroups = Projectgroup::where('project', NULL)->get();
 
     return view('project.manage')
       ->with('project', $project)
@@ -77,20 +72,20 @@ class ProjectController extends Controller
     return redirect()->route('project.index');
   }
 
-  public function addgroup($projectid, $groupid)
+  public function addGroup($projectid, $groupid)
   {
-    DB::table('projectgroups')
-      ->where('id', $groupid)
-      ->update(['project' => $projectid]);
+    $group = Projectgroup::find($groupid);
+    $group->project = $projectid;
+    $group->save();
 
     return redirect()->route('project.edit', [$projectid]);
   }
 
-  public function removegroup($projectid, $groupid)
+  public function removeGroup($projectid, $groupid)
   {
-    DB::table('projectgroups')
-      ->where('id', $groupid)
-      ->update(['project' => NULL]);
+    $group = Projectgroup::find($groupid);
+    $group->project = NULL;
+    $group->save();
 
     return redirect()->route('project.edit', [$projectid]);
   }

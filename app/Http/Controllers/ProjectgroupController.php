@@ -86,18 +86,13 @@ class ProjectgroupController extends Controller
   {
     $request->validated();
 
-    if ($request->project == -1)
-    {
-      $group = new Projectgroup;
-      $group->name = $request->name;
-      $group->save();
+    $group = new Projectgroup;
+    $group->name = $request->name;
 
-      $id = $group->id;
-    } 
-    else 
-    {
-      $id = Projectgroup::create($request->all())->id;
-    }
+    if ($request->project != -1) $group->project = $request->project;
+
+    $group->save();
+    $id = $group->id;
 
     if (isset($request->assigned)) {
       foreach ($request->assigned as $assigned) {
