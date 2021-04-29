@@ -28,7 +28,6 @@ class NoteController extends Controller
 
   public function insert(Contact $contact, NoteRequest $note){
     $databaseNote = Note::create(['description' => $note->input('description'), 'creator' => Auth::user()->id, 'contact' =>  $contact->id]);
-
     if($note->reminder != null && $note->reminder == 1) {
       $notificationData = [
         'reminderdate' => $note->reminderdate,
@@ -48,15 +47,18 @@ class NoteController extends Controller
 
     DB::table('notifications')->where('data->note_id', $note->id)->delete();;
 
-    $notificationData = [
-      'reminderdate' => $noteRequest->reminderdate,
-      'noteId' => $note->id,
-      'description' => $noteRequest->reminderDescription,
-      'user' => Auth::user(),
-      'contactId' => $note->contact,
-    ];
 
-    event(new noteAdded($notificationData));
+    if($note->reminder != null && $note->reminder == 1) {
+      $notificationData = [
+        'reminderdate' => $noteRequest->reminderdate,
+        'noteId' => $note->id,
+        'description' => $noteRequest->reminderDescription,
+        'user' => Auth::user(),
+        'contactId' => $note->contact,
+      ];
+
+      event(new noteAdded($notificationData));
+    }
 
     $contact = Contact::whereId($note->contact)->first();
     return redirect()->route('contact.show', $contact);
