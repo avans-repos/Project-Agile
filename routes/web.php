@@ -11,6 +11,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
 use \App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectgroupController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,10 @@ Route::resource('contact', ContactController::class)
 Route::get('project/{projectid}/addgroup/{groupid}', [ProjectController::class, "addGroup"])->middleware(['auth']);
 Route::get('project/{projectid}/removegroup/{groupid}', [ProjectController::class, "removeGroup"])->middleware(['auth']);
 Route::resource('project', ProjectController::class)
+Route::resource('user', UserController::class)
+  ->middleware(['auth']);
+
+Route::resource('project', \App\Http\Controllers\ProjectController::class)
   ->middleware(['auth']);
 Route::resource('company', \App\Http\Controllers\CompanyController::class);
 
@@ -56,10 +61,7 @@ Route::get('/notes/edit/{note}', [NoteController::class, 'edit'])
 Route::patch('/notes/update/{note}', [NoteController::class, 'update'])
   ->middleware(['auth'])
   ->name('notes.update');
-Route::delete('/notes/delete/{note}', [NoteController::class, 'deleteConfirmed'])
-  ->middleware(['auth'])
-  ->name('notes.deleteConfirmed');
-Route::get('/notes/delete/{note}', [NoteController::class, 'delete'])
+Route::delete('/notes/delete/{note}', [NoteController::class, 'delete'])
   ->middleware(['auth'])
   ->name('notes.delete');
 
