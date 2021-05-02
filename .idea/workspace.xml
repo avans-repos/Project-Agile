@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/Feature/ClassroomTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ClassRoomRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ClassRoomRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassRoom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_26_091217_create_class_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_26_091217_create_class_rooms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/classroom/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/classroom/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,7 +314,11 @@
       <workItem from="1618910092440" duration="478000" />
       <workItem from="1619427363874" duration="3861000" />
       <workItem from="1619509112521" duration="4569000" />
-      <workItem from="1619609833824" duration="7365000" />
+      <workItem from="1619609833824" duration="7405000" />
+      <workItem from="1619855942620" duration="1045000" />
+      <workItem from="1619870222224" duration="1030000" />
+      <workItem from="1619945679974" duration="94000" />
+      <workItem from="1619945832106" duration="2903000" />
     </task>
     <servers />
   </component>

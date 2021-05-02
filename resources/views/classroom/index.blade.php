@@ -18,6 +18,7 @@
         <tr>
           <td class="w-50">Klas</td>
           <td>Jaar</td>
+          <td>Blok</td>
           <td class="w-50">Leerlingen</td>
         </tr>
         </thead>
@@ -25,7 +26,8 @@
         @foreach($classrooms as $classroom)
           <tr>
             <td class="w-25">{{$classroom->name}}</td>
-            <td class="w-25">{{$classroom->year}}</td>
+            <td class="w-12">{{$classroom->year}}</td>
+            <td class="w-25">{{$classroom->schoolBlock}}</td>
             <td class="w-25">@foreach($classroom->students() as $student)
                {{$student->student()->name}}<br>
               @endforeach

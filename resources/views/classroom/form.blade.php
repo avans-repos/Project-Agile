@@ -11,16 +11,23 @@
                     <input name="name" value="{{old('name',$classroom->name)}}" type="text"
                            class="form-control"
                            id="name"
-                           placeholder="42IN4SOa" maxlength="10" required>
+                           placeholder="42IN4SOa" minlength="3" maxlength="10" required>
 
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-3">
                     <label for="year" class="form-label">Schooljaar *</label>
                     <input name="year" value="{{old('year',$classroom->year)}}" type="number"
                            class="form-control"
-                           id="year" placeholder="2020" maxlength="4" required>
+                           id="year" placeholder="2020" min="1900" max="9999" maxlength="4" required>
 
                 </div>
+              <div class="col-sm-3">
+                <label for="schoolBlock" class="form-label">Blok *</label>
+                <input name="schoolBlock" value="{{old('schoolBlock',$classroom->schoolBlock)}}" type="number"
+                       class="form-control"
+                       id="schoolBlock" placeholder="1" min="1" max="100" maxlength="3" required>
+
+              </div>
 
             </div>
             <div class="col">
@@ -30,6 +37,9 @@
                 @error('year')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+              @error('schoolBlock')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
             </div>
         </div>
     </fieldset>

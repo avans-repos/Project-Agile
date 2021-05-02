@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property int $year
+ * @property int $schoolBlock
  * @mixin \Eloquent
  * @method static create(array $all)
  */
@@ -17,7 +18,7 @@ class ClassRoom extends Model
 {
     use HasFactory;
   protected $table = 'class_rooms';
-  protected $fillable = ['name', 'year'];
+  protected $fillable = ['name', 'year', 'schoolBlock'];
   protected $dates = ['deleted_at', 'created_at'];
 
   public function students()
