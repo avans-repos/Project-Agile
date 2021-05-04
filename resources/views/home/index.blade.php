@@ -39,8 +39,7 @@
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-gray-dark">{{$actionpoint->title}}</strong>
-                <span class="d-block"
-                      style="color: {{(new DateTime() > new DateTime(date("Y-m-d H:i:s",strtotime($actionpoint->deadline) - (12*60*60)))) ? 'orange' : null}}">{{$actionpoint->deadline}}</span>
+                <span class="d-block {{(new DateTime() > new DateTime(date("Y-m-d H:i:s",strtotime($actionpoint->deadline) - (12*60*60)))) ? 'text-warning' : null}}">{{$actionpoint->deadline}}</span>
               </div>
               <div class="d-flex justify-content-between align-items-center w-100">
                 <span class="d-block">{{$actionpoint->description}}</span>
