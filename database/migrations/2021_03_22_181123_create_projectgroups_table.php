@@ -16,7 +16,7 @@ class CreateProjectgroupsTable extends Migration
     Schema::create('projectgroups', function (Blueprint $table) {
       $table->id();
       $table->string('name', 100);
-      $table->bigInteger('project')->unsigned();
+      $table->bigInteger('project')->unsigned()->nullable();
       $table->foreign('project')->references('id')->on('projects')->onDelete('cascade');
       $table->timestamps();
       $table->softDeletes();

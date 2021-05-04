@@ -10,6 +10,7 @@ use App\Http\Controllers\MyOwnActionController;
 use App\Http\Controllers\notificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
+use \App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectgroupController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,9 @@ Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class
 Route::resource('contact', ContactController::class)
   ->middleware(['auth']);
 
+Route::get('project/{projectid}/addgroup/{groupid}', [ProjectController::class, "addGroup"])->name('addgroup')->middleware(['auth']);
+Route::get('project/{projectid}/removegroup/{groupid}', [ProjectController::class, "removeGroup"])->name('removegroup')->middleware(['auth']);
+Route::resource('project', ProjectController::class);
 Route::resource('user', UserController::class)
   ->middleware(['auth']);
 
