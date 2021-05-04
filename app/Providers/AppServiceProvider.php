@@ -25,7 +25,7 @@ namespace App\Providers {
      */
     public function boot()
     {
-      //
+
     }
   }
 }
