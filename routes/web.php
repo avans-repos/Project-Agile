@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactpointController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyOwnActionController;
+use App\Http\Controllers\notificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
 use \App\Http\Controllers\ProjectController;
@@ -65,7 +66,9 @@ Route::delete('/notes/delete/{note}', [NoteController::class, 'delete'])
   ->middleware(['auth'])
   ->name('notes.delete');
 
-
+// Notifications
+Route::get('notificationController/mark/{notificationId}', [NotificationController::class, "markNotification"])->name('notification.mark')->middleware(['auth']);
+Route::get('notificationController/markall', [NotificationController::class, "markAllNotifications"])->name('notification.markall')->middleware(['auth']);
 
 // API Example controller using the avans API
 
