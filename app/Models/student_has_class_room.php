@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $name
  * @mixin \Eloquent
  * @method static where(string $string, string $string1, int $id)
+ * @method static create(array $array)
  */
 class student_has_class_room extends Model
 {
