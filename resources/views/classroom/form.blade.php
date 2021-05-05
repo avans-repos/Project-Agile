@@ -18,7 +18,7 @@
                     <label for="year" class="form-label">Schooljaar *</label>
                     <input name="year" value="{{old('year',$classroom->year)}}" type="number"
                            class="form-control"
-                           id="year" placeholder="2020" min="1900" max="9999" maxlength="4" required>
+                           id="year" placeholder="2020" min="1901" max="2150" maxlength="4" required>
 
                 </div>
               <div class="col-sm-3">

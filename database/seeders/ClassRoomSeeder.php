@@ -44,7 +44,8 @@ class ClassRoomSeeder extends Seeder
       'name' => '42IN5BIb',
       'year' => Carbon::now()->format('Y'),
       'schoolBlock' => '5'
-    ]);    DB::table('class_rooms')->insert([
+    ]);
+    DB::table('class_rooms')->insert([
     'name' => '42IN5BIc',
     'year' => Carbon::now()->format('Y'),
     'schoolBlock' => '5'
