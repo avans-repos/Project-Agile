@@ -43,13 +43,12 @@ Route::resource('contact', ContactController::class)
 
 Route::get('project/{projectid}/addgroup/{groupid}', [ProjectController::class, "addGroup"])->name('addgroup')->middleware(['auth']);
 Route::get('project/{projectid}/removegroup/{groupid}', [ProjectController::class, "removeGroup"])->name('removegroup')->middleware(['auth']);
-Route::resource('project', ProjectController::class);
+Route::resource('project', ProjectController::class)->middleware(['auth']);
 Route::resource('user', UserController::class)
   ->middleware(['auth']);
 
-Route::resource('project', \App\Http\Controllers\ProjectController::class)
+Route::resource('project', ProjectController::class)
   ->middleware(['auth']);
-Route::resource('company', CompanyController::class);
 
 Route::get('/notes/create/{contact}', [NoteController::class, 'create'])
   ->middleware(['auth'])
@@ -79,15 +78,8 @@ Route::resource('company', CompanyController::class)
   ->middleware(['auth']);
 
 Route::resource('contactpoint', ContactpointController::class)->except(['create'])->middleware(['auth']);
-Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create');
+Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create')->middleware(['auth']);
 require __DIR__ . '/auth.php';
-
-Route::resource('contactpoint', ContactpointController::class)->except(['create'])->middleware(['auth']);
-Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])->name('contactpoint.create');
-require __DIR__ . '/auth.php';
-
-Route::resource('company', CompanyController::class);
-// API Example controller using the avans API
 
 Route::resource('role', RoleController::class)
   ->middleware(['auth']);
