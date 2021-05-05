@@ -18,8 +18,9 @@
         <tr>
           <td class="w-50">Klas</td>
           <td>Jaar</td>
-          <td>Blok</td>
-          <td class="w-50">Leerlingen</td>
+          <td class="w-25">Blok</td>
+          <td class="w-25">Studenten</td>
+          <td>Acties</td>
         </tr>
         </thead>
         <tbody>
