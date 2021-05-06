@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectgroupRequest;
+use App\Models\Address;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
@@ -112,7 +113,63 @@ class ProjectgroupController extends Controller
 
   public function show(Projectgroup $projectgroup)
   {
-    return view('projectgroup.show')->with('projectgroup', $projectgroup);
+    $assignedUsers =
+      DB::table('projectgroup_has_users')
+        ->where('projectgroupid', '=', $projectgroup->id)
+        ->join('users', 'projectgroup_has_users.userid', '=', 'users.id')
+        ->get('users.id')->pluck('id');
+
+    $students = User::role('student')
+      ->whereIn('id',$assignedUsers)
+      ->get();
+
+    $teachers = User::role('teacher')
+      ->whereIn('id',$assignedUsers)
+      ->get();
+
+    $project = DB::table('projects')
+        ->where('id', '=', $projectgroup->id)
+        ->get()
+        ->first();
+
+    $assignedContacts =
+      DB::table('projectgroup_has_contacts')
+        ->where('projectgroupid', '=', $projectgroup->id)
+        ->join('contacts', 'projectgroup_has_contacts.contactid', '=', 'contacts.id')
+        ->get('contacts.id')->pluck('id');
+
+    $contacts = Contact::all()
+      ->whereIn('id', $assignedContacts);
+
+    $contacts = Self::matchAdressWithContacts($contacts);
+
+    $newContacts = Contact::all()
+      ->wherenotin('id', $assignedContacts);
+
+    return view('projectgroup.show')
+      ->with('projectgroup', $projectgroup)
+      ->with('project', $project)
+      ->with('students', $students)
+      ->with('teachers', $teachers)
+      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts);
+  }
+
+  public function addcontact($projectgroupid, $contactid)
+  {
+    DB::table('projectgroup_has_contacts')->insert([
+      'projectgroupid' => $projectgroupid,
+      'contactid' => $contactid
+    ]);
+
+    return redirect()->route('projectgroup.show', [$projectgroupid]);
+  }
+
+  public function removecontact($projectgroupid, $contactid)
+  {
+    DB::table('projectgroup_has_contacts')->where('projectgroupid', '=', $projectgroupid)->where('contactid', '=', $contactid)->delete();
+
+    return redirect()->route('projectgroup.show', [$projectgroupid]);
   }
 
   /**
@@ -238,5 +295,30 @@ class ProjectgroupController extends Controller
   {
     $projectgroup->delete();
     return redirect()->route('projectgroup.index');
+  }
+
+  private function matchAdressWithContacts($contacts)
+  {
+    foreach($contacts as $contact)
+    {
+      if($contact->address == null)
+      {
+        // company address
+        $contact->address = null;
+
+        $contact->privateAddress = false;
+      }
+      else
+      {
+        // personal address
+        $contact->address = Address::find($contact->address)->get()->first();
+
+        $contact->privateAddress = true;
+      }
+      if($contact->address != null){
+        $contact->formattedAddress = $contact->address['streetname'] . " " . $contact->address['number'] . $contact->address['addition']  . ", " . $contact->address['zipcode'] . ", " . $contact->address['city'];
+      }
+    }
+    return $contacts;
   }
 }

@@ -22,9 +22,9 @@ class CreateCompaniesTable extends Migration
       $table->string('email', 320);
       $table->integer('size');
       $table->string('website', 255);
-      $table->integer('visiting_address')->unsigned();
+      $table->unsignedBigInteger('visiting_address')->unsigned();
       $table->foreign('visiting_address')->references('id')->on('addresses');
-      $table->integer('mailing_address')->unsigned()->nullable();
+      $table->unsignedBigInteger('mailing_address')->unsigned()->nullable();
       $table->foreign('mailing_address')->references('id')->on('addresses')->nullable();
       $table->timestamps();
       $table->softDeletes();

@@ -3,7 +3,7 @@
 @section('title','Contactpersoon bekijken')
 
 @section('content')
-    <div class="container">
+  <div class="container" xmlns="http://www.w3.org/1999/html">
         <div class="w-auto mt-3">
             <a class="btn btn-primary" href="{{route('contact.index')}}">Terug naar overzicht</a>
         </div>
@@ -76,19 +76,79 @@
                         {{$contact->phonenumber ?? "N.v.t."}}
                     </div>
                 </div>
-              <legend>Contact Types</legend>
-              @foreach($contactTypes as $contactType)
-                <fieldset class="row">
-                    <div class="col-6">
-                        {{$contactType->name}}
-                    </div>
-                    <div class="col-6">
-                        {{ucfirst($contactType->contacttype) }}
-                    </div>
-                </fieldset>
-              @endforeach
+
             </div>
+
+
         </div>
+
+<div class="mt-5 mb-5 d-md-flex">
+  <div class="col-sm-6">
+  <legend>Contact Types</legend>
+    <fieldset class="row">
+      <div class="col-6">
+        <strong>Bedrijf</strong>
+      </div>
+      <div class="col-6">
+        <strong>Contact type</strong>
+      </div>
+    </fieldset>
+  @foreach($contactTypes as $contactType)
+    <fieldset class="row">
+      <div class="col-6">
+        {{$contactType->name}}
+      </div>
+      <div class="col-6">
+        {{ucfirst($contactType->contacttype) }}
+      </div>
+    </fieldset>
+  @endforeach
+  </div>
+    <fieldset class="col-sm-6" id="companyAddresses">
+      <legend>Adres</legend>
+      @if($address != null)
+        <div id="adres1">
+          <div class="row">
+            <div class="col-6">
+              Straatnaam
+            </div>
+            <div class="col-6">
+              {{$address->streetname}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              Huisnummer + toevoeging
+            </div>
+            <div class="col-6">
+              {{$address->number . $address->addition}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              Postcode
+            </div>
+            <div class="col-6">
+              {{$address->zipcode}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              Plaats
+            </div>
+            <div class="col-6">
+              {{$address->city}}
+            </div>
+          </div>
+        </div>
+      @else
+        <div>Geen adres beschikbaar</div>
+      @endif
+    </fieldset>
+</div>
 
       <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7">
         <div class="d-flex justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">

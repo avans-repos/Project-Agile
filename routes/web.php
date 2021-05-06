@@ -85,5 +85,7 @@ Route::resource('role', RoleController::class)
   ->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
+Route::get('projectgroup/{projectgroupid}/addContact/{contactid}', [ProjectgroupController::class, "addContact"])->name('projectgroup.addContact')->middleware(['auth']);
+Route::get('projectgroup/{projectgroupid}/removeContact/{contactid}', [ProjectgroupController::class, "removeContact"])->name('projectgroup.removeContact')->middleware(['auth']);
 Route::resource('projectgroup', ProjectgroupController::class)
   ->middleware(['auth']);
