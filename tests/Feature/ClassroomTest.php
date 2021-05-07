@@ -56,18 +56,6 @@ class ClassroomTest extends TestCase
     ]);
   }
 
-  public function test_create_classroom_schoolBlock_below_1()
-  {
-    $response = $this
-      ->post(route('classroom.store'), [       // limit is set to 255 bytes, this lorum ipsum text is 256 bytes
-        'schoolBlock' =>
-          0
-      ]);
-    $response->assertSessionHasErrors([
-      'schoolBlock'
-    ]);
-  }
-
   public function test_create_classroom_success()
   {
 
