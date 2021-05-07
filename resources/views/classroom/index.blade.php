@@ -17,7 +17,7 @@
         <thead>
         <tr>
           <td class="w-50">Klas</td>
-          <td>Jaar</td>
+          <td>Startjaar</td>
           <td class="w-25">Studenten</td>
           <td>Acties</td>
         </tr>
