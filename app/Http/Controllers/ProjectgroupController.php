@@ -37,11 +37,11 @@ class ProjectgroupController extends Controller
         $q->where('name', 'student');
       })->get();
 
-      $project = Project::find($projectgroup->project);   
-      
+      $project = Project::find($projectgroup->project);
+
       $projectname = "Geen Project";
       if ($project != null) $projectname = $project->name;
-      
+
       array_push($projectgroups, [
         'group' => $projectgroup,
         'teachers' => $teachers,
@@ -289,9 +289,8 @@ class ProjectgroupController extends Controller
         DB::delete('DELETE FROM projectgroup_has_contacts WHERE contactid = ? AND projectgroupid = ?', [$dbvalue->contactid, $dbvalue->projectgroupid]);
       }
     }
-
-    $projectgroup->update($request->all());
     
+
     $projectgroup->name = $request->name;
     if ($request->project == -1) $projectgroup->project = null;
     else $projectgroup->project = $request->project;
