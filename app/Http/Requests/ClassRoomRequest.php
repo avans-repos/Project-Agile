@@ -26,7 +26,6 @@ class ClassRoomRequest extends FormRequest
     return [
       'name' =>  'required|string|min:3|max:10',
       'year' => 'required|integer|min:1901|max:2150',
-      'schoolBlock' => 'required|integer|min:1|max:100',
       'student' => 'array',
       'student.*' => 'integer',
     ];

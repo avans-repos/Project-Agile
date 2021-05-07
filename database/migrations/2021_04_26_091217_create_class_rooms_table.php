@@ -17,7 +17,6 @@ class CreateClassRoomsTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->year('year');
-            $table->integer('schoolBlock');
             $table->timestamps();
         });
     }
