@@ -31469,6 +31469,11 @@ select {
   box-shadow: none;
 }
 
+.scroll{
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 #login_form {
   border-radius: 0;
 }

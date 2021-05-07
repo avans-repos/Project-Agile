@@ -32,6 +32,9 @@
                   <x-nav-link :href="route('user.index')" class="avans-white"  :active="request()->routeIs('user')">
                     {{ __('Gebruikers') }}
                   </x-nav-link>
+                  <x-nav-link :href="route('classroom.index')" class="avans-white"  :active="request()->routeIs('classroom')">
+                    {{ __('Klassen') }}
+                  </x-nav-link>
                 </div>
             </div>
 
