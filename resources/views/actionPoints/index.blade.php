@@ -8,7 +8,7 @@
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 class="fs-1">Actiepunten</h1>
         <div class="align-self-center">
-          <a class="btn btn-primary" href="{{ route('actionpoints.create') }}">Nieuwe actiepunt aanmaken</a>
+          <a class="btn btn-primary" href="{{ route('actionpoints.create') }}">Nieuw actiepunt aanmaken</a>
         </div>
       </div>
       <table class="table table-striped mt-3">

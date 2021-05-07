@@ -69,6 +69,7 @@
 
       <div class="d-flex flex-column">
         <select name="project" id="project" class="form-control">
+            <option value="-1">Geen project</option>
           @foreach($projects as $project)
             <option value="{{$project->id}}" @if($project->id == $projectgroup->project) selected @endif>{{$project->name}}</option>
           @endforeach

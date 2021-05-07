@@ -18,8 +18,12 @@ class HomeController extends Controller
       ->join('actionpoints', 'teacher_has_actionpoints.actionpointid', '=', 'actionpoints.id')
       ->orderBy('actionpoints.deadline')
       ->get();
-    // die(json_encode($actionPoints));
 
-    return view('home.index')->with('actionpoints', json_decode($actionPoints));
+    $notifications = auth()->user()->unreadNotifications;
+
+
+    return view('home.index')
+      ->with('actionpoints', json_decode($actionPoints))
+      ->with('notifications', $notifications);
   }
 }

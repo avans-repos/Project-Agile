@@ -6,6 +6,7 @@ use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\Projectgroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -28,8 +29,9 @@ class ProjectController extends Controller
   {
     $request->validated();
 
-    Project::create($request->all());
-    return redirect()->route('project.index');
+    $project = Project::create($request->all());
+
+    return redirect()->route('project.edit', [$project->id]);
   }
 
   public function destroy(Project $project)
@@ -46,8 +48,13 @@ class ProjectController extends Controller
    */
   public function edit(Project $project)
   {
+    $currentProjectgroups = Projectgroup::where('project', $project->id)->get();
+    $availableProjectgroups = Projectgroup::where('project', NULL)->get();
+
     return view('project.manage')
       ->with('project', $project)
+      ->with('currentProjectgroups', $currentProjectgroups)
+      ->with('availableProjectgroups', $availableProjectgroups)
       ->with('action', 'update');
   }
 
@@ -63,5 +70,23 @@ class ProjectController extends Controller
     $request->validated();
     $project->update($request->all());
     return redirect()->route('project.index');
+  }
+
+  public function addGroup($projectid, $groupid)
+  {
+    $group = Projectgroup::find($groupid);
+    $group->project = $projectid;
+    $group->save();
+
+    return redirect()->route('project.edit', [$projectid]);
+  }
+
+  public function removeGroup($projectid, $groupid)
+  {
+    $group = Projectgroup::find($groupid);
+    $group->project = NULL;
+    $group->save();
+
+    return redirect()->route('project.edit', [$projectid]);
   }
 }
