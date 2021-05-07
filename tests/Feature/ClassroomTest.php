@@ -76,7 +76,6 @@ class ClassroomTest extends TestCase
       ->post(route('classroom.store'), [
         'name' => 'TestKlas',
         'year' => Carbon::now()->year,
-        'schoolBlock' => 5,
         'student' => [$student]
       ]);
 
@@ -85,7 +84,6 @@ class ClassroomTest extends TestCase
     $this->assertDatabaseHas('class_rooms', [
       'name' => 'TestKlas',
       'year'=> Carbon::now()->year,
-      'schoolBlock' => 5
     ]);
   }
 }
