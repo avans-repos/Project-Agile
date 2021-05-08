@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +16,38 @@ class ProjectgroupSeeder extends Seeder
     public function run()
     {
       DB::table('projectgroups')->insert([
-        'name' => 'groep 1',
+        'name' => 'IN01 - Groep A1',
         'project' => 1
+      ]);
+
+      DB::table('projectgroups')->insert([
+        'name' => 'IN01 - Groep B2',
+        'project' => 2
+      ]);
+
+      DB::table('projectgroup_has_users')->insert([
+        'userid' => User::role('student')->get()->first()->id,
+        'projectgroupid' => 1,
+      ]);
+
+      DB::table('projectgroup_has_users')->insert([
+        'userid' => User::role('student')->get()[1]->id,
+        'projectgroupid' => 1,
+      ]);
+
+      DB::table('projectgroup_has_users')->insert([
+        'userid' => User::role('student')->get()[2]->id,
+        'projectgroupid' => 1,
+      ]);
+
+      DB::table('projectgroup_has_users')->insert([
+        'userid' => User::role('student')->get()[2]->id,
+        'projectgroupid' => 2,
+      ]);
+
+      DB::table('projectgroup_has_users')->insert([
+        'userid' => User::role('student')->get()[0]->id,
+        'projectgroupid' => 2,
       ]);
     }
 }
