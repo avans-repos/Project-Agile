@@ -57,9 +57,8 @@
               }} type="checkbox" name="assigned[]" value="{{$student->id}}" >
               </td>
               <td>{{$student->name}}</td>
-              <td>1a</td>
+              <td>{{$student->classroom}}</td>
             </tr>
-
           @endforeach
         </tbody>
       </table>

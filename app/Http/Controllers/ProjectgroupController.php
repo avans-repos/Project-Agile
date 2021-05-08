@@ -6,6 +6,8 @@ use App\Http\Requests\ProjectgroupRequest;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
+use App\Models\ClassRoom;
+use App\Models\student_has_class_room;
 use App\Models\Project;
 use App\Models\Projectgroup;
 use App\Models\User;
@@ -66,6 +68,27 @@ class ProjectgroupController extends Controller
     $teachers = User::role('Teacher')->get();
     $projects = Project::all();
 
+    foreach($students as $student)
+    {
+      $classroomid = student_has_class_room::where('student', $student->id)->first();
+
+      if (is_null($classroomid)) 
+      {
+        $student->classroom = "Geen Klas";
+        continue;
+      }
+
+      $class = ClassRoom::where('id', $classroomid->class_room)->first();
+
+      if (is_null($class))
+      {
+        $student->classroom = "Geen Klas";
+        continue;
+      }
+
+      $student->classroom = $class->name;
+    }
+
     $assigned = null;
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
@@ -125,6 +148,27 @@ class ProjectgroupController extends Controller
     $assigned = array_map(function ($teacher) {
       return $teacher->id;
     }, json_decode($assigned));
+
+    foreach($students as $student)
+    {
+      $classroomid = student_has_class_room::where('student', $student->id)->first();
+
+      if (is_null($classroomid)) 
+      {
+        $student->classroom = "Geen Klas";
+        continue;
+      }
+
+      $class = ClassRoom::where('id', $classroomid->class_room)->first();
+
+      if (is_null($class))
+      {
+        $student->classroom = "Geen Klas";
+        continue;
+      }
+
+      $student->classroom = $class->name;
+    }
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
