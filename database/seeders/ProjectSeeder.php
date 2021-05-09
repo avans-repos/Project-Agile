@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Project;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,14 +15,14 @@ class ProjectSeeder extends Seeder
      */
   public function run()
   {
-    DB::table('projects')->insert([
+    project::create([
       'name' => 'Interview met Vizova',
       'description' => 'Leg een interview af met Vizova en verwerk deze in een verslag.',
       'deadline' => new \DateTime('10/10/2021'),
       'notes' => 'De rubric staat op BlackBoard.',
     ]);
 
-    DB::table('projects')->insert([
+    project::create([
       'name' => 'Maak een plan van aanpak voor een bedrijf.',
       'description' => 'Plan van aanpak maken voor bedrijf X. Dit moet in tweetallen.',
       'deadline' => new \DateTime('10/10/2021'),

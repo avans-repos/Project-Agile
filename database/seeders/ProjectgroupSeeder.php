@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Projectgroup;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +16,12 @@ class ProjectgroupSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('projectgroups')->insert([
+      projectgroup::create([
         'name' => 'IN01 - Groep A1',
         'project' => 1
       ]);
 
-      DB::table('projectgroups')->insert([
+      projectgroup::create([
         'name' => 'IN01 - Groep B2',
         'project' => 2
       ]);
