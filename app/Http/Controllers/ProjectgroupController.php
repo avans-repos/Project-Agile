@@ -55,6 +55,24 @@ class ProjectgroupController extends Controller
       ->with('groups', $groups);
   }
 
+  private function addClassToStudent($students)
+  {
+    foreach($students as $student)
+    {
+      $student_has_class_room = student_has_class_room::where('student', $student->id)->first();
+
+      if (is_null($student_has_class_room)) 
+      {
+        $student->classroom = "Geen Klas";
+        continue;
+      }
+
+      $class = ClassRoom::where('id', $student_has_class_room->class_room)->first();
+
+      $student->classroom = $class->name;
+    }
+  }
+
   /**
    * Show the form for creating a new resource.
    *
@@ -68,26 +86,7 @@ class ProjectgroupController extends Controller
     $teachers = User::role('Teacher')->get();
     $projects = Project::all();
 
-    foreach($students as $student)
-    {
-      $classroomid = student_has_class_room::where('student', $student->id)->first();
-
-      if (is_null($classroomid)) 
-      {
-        $student->classroom = "Geen Klas";
-        continue;
-      }
-
-      $class = ClassRoom::where('id', $classroomid->class_room)->first();
-
-      if (is_null($class))
-      {
-        $student->classroom = "Geen Klas";
-        continue;
-      }
-
-      $student->classroom = $class->name;
-    }
+    $this->addClassToStudent($students);
 
     $assigned = null;
     return view('projectgroup.manage')
@@ -149,26 +148,7 @@ class ProjectgroupController extends Controller
       return $teacher->id;
     }, json_decode($assigned));
 
-    foreach($students as $student)
-    {
-      $classroomid = student_has_class_room::where('student', $student->id)->first();
-
-      if (is_null($classroomid)) 
-      {
-        $student->classroom = "Geen Klas";
-        continue;
-      }
-
-      $class = ClassRoom::where('id', $classroomid->class_room)->first();
-
-      if (is_null($class))
-      {
-        $student->classroom = "Geen Klas";
-        continue;
-      }
-
-      $student->classroom = $class->name;
-    }
+    $this->addClassToStudent($students);
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)

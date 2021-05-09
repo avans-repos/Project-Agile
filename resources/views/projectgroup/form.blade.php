@@ -40,9 +40,9 @@
       <table class="table" id="student-table">
         <thead>
           <tr>
-            <th>Select</th>
-            <th><input type="text" id="student-search" onkeyup="search()" placeholder="Naam"/></th>
-            <th><input type="text" id="class-search" onkeyup="search()" placeholder="Klas"/></th>
+            <th>Selecteren</th>
+            <th><input type="text" id="student-search" placeholder="Naam"/></th>
+            <th><input type="text" id="class-search" placeholder="Klas"/></th>
           </tr>
         </thead>
         <tbody>
@@ -81,6 +81,9 @@
 </form>
 
 <script>
+document.getElementById("student-search").addEventListener("keyup", search);
+document.getElementById("class-search").addEventListener("keyup", search);
+
 function search() {
   // Declare variables
   let inputstudent = document.getElementById("student-search");
