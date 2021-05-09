@@ -10,29 +10,29 @@ class UserSeeder extends Seeder
 {
   public function run()
   {
-    $jaap = new User([
-      'name' => 'Jaap Rodenburg',
-      'email' => 'jaap@avans.nl',
-      'password' => bcrypt('jaap@avans.nl'),
+    $tanja = new User([
+      'name' => 'Tanja Gielen',
+      'email' => 't.gielen@avans.nl',
+      'password' => bcrypt('t.gielen@avans.nl'),
     ]);
-    $jaap->assignRole('Teacher');
-    $jaap->save($jaap->toArray());
+    $tanja->assignRole('Teacher');
+    $tanja->save($tanja->toArray());
 
-    $jeroen = new User([
-      'name' => 'Jeroen vermaat',
-      'email' => 'jeroen@avans.nl',
-      'password' => bcrypt('jeroen@avans.nl'),
+    $rene = new User([
+      'name' => 'Rene Barnard',
+      'email' => 'rp.barnard@avans.nl',
+      'password' => bcrypt('rp.barnard@avans.nl'),
     ]);
-    $jeroen->assignRole('Teacher');
-    $jeroen->save($jeroen->toArray());
+    $rene->assignRole('Teacher');
+    $rene->save($rene->toArray());
 
-    $marijn = new User([
-      'name' => 'marijn Kieboom',
-      'email' => 'marijn@avans.nl',
-      'password' => bcrypt('marijn@avans.nl'),
+    $maikel = new User([
+      'name' => 'Maikel Mocking',
+      'email' => 'm.mocking1@avans.nl',
+      'password' => bcrypt('m.mocking1@avans.nl'),
     ]);
-    $marijn->assignRole('Teacher');
-    $marijn->save($marijn->toArray());
+    $maikel->assignRole('Teacher');
+    $maikel->save($maikel->toArray());
 
 
     $tom = new User([
