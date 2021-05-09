@@ -105,7 +105,10 @@ class ProjectgroupController extends Controller
     {
       foreach ($request->assignedUsers as $assignedUser)
       {
-        DB::insert('INSERT INTO projectgroup_has_users (userid,projectgroupid) VALUES (?,?)', [$assignedUser, $id]);
+        DB::table('projectgroup_has_users')->insert([
+          'userid' => $assignedUser,
+          'projectgroupid' => $id
+        ]);
       }
     }
 
@@ -114,7 +117,10 @@ class ProjectgroupController extends Controller
     {
       foreach ($request->assignedContacts as $assignedContact)
       {
-        DB::insert('INSERT INTO projectgroup_has_contacts (contactid,projectgroupid) VALUES (?,?)', [$assignedContact, $id]);
+        DB::table('projectgroup_has_contacts')->insert([
+          'contactid' => $assignedContact,
+          'projectgroupid' => $id
+        ]);
       }
     }
 
@@ -247,7 +253,10 @@ class ProjectgroupController extends Controller
           ->where('projectgroupid', $projectgroup->id)
           ->exists()
         ) {
-          DB::insert('INSERT INTO projectgroup_has_users (userid,projectgroupid) VALUES (?,?)', [$assignedUser, $projectgroup->id]);
+          DB::table('projectgroup_has_users')->insert([
+            'userid' => $assignedUser,
+            'projectgroupid' => $projectgroup->id
+          ]);
         }
       }
     }
@@ -261,7 +270,10 @@ class ProjectgroupController extends Controller
           ->where('projectgroupid', $projectgroup->id)
           ->exists()
         ) {
-          DB::insert('INSERT INTO projectgroup_has_contacts (contactid,projectgroupid) VALUES (?,?)', [$assignedContact, $projectgroup->id]);
+          DB::table('projectgroup_has_contacts')->insert([
+            'contactid' => $assignedContact,
+            'projectgroupid' => $projectgroup->id
+          ]);
         }
       }
     }
@@ -274,7 +286,11 @@ class ProjectgroupController extends Controller
       as $dbvalue
     ) {
       if (!isset($request->assignedUsers) || !in_array($dbvalue->userid, $request->assignedUsers)) {
-        DB::delete('DELETE FROM projectgroup_has_users WHERE userid = ? AND projectgroupid = ?', [$dbvalue->userid, $dbvalue->projectgroupid]);
+        //DB::delete('DELETE FROM projectgroup_has_users WHERE userid = ? AND projectgroupid = ?', [$dbvalue->userid, $dbvalue->projectgroupid]);
+        DB::table('projectgroup_has_users')
+          ->where('userid', $dbvalue->userid)
+          ->where('projectgroupid', $dbvalue->projectgroupid)
+          ->delete();
       }
     }
 
@@ -286,10 +302,14 @@ class ProjectgroupController extends Controller
       as $dbvalue
     ) {
       if (!isset($request->assignedContacts) || !in_array($dbvalue->contactid, $request->assignedContacts)) {
-        DB::delete('DELETE FROM projectgroup_has_contacts WHERE contactid = ? AND projectgroupid = ?', [$dbvalue->contactid, $dbvalue->projectgroupid]);
+        //DB::delete('DELETE FROM projectgroup_has_contacts WHERE contactid = ? AND projectgroupid = ?', [$dbvalue->contactid, $dbvalue->projectgroupid]);
+        DB::table('projectgroup_has_contacts')
+          ->where('contactid', $dbvalue->contactid)
+          ->where('projectgroupid', $dbvalue->projectgroupid)
+          ->delete();
       }
     }
-    
+
 
     $projectgroup->name = $request->name;
     if ($request->project == -1) $projectgroup->project = null;

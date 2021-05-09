@@ -3,7 +3,7 @@
 @section('title','Contactpersoon bekijken')
 
 @section('content')
-  <div class="container" xmlns="http://www.w3.org/1999/html">
+  <div class="container">
         <div class="w-auto mt-3">
             <a class="btn btn-primary" href="{{route('contact.index')}}">Terug naar overzicht</a>
         </div>
