@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ClassroomTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ClassroomTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/AddressSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddressSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/NotesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/NotesSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,6 +180,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -199,6 +205,7 @@
       <recent name="C:\Users\Job\Github\Project-Agile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\agile\Project-Agile\database\factories\contact" />
       <recent name="D:\xampp\agile\Project-Agile\public\img" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
       <recent name="D:\Documents\Github\Project-Agile\app" />
@@ -323,6 +330,8 @@
       <workItem from="1620120281740" duration="247000" />
       <workItem from="1620120554725" duration="594000" />
       <workItem from="1620201476921" duration="598000" />
+      <workItem from="1620467911225" duration="3690000" />
+      <workItem from="1620585934750" duration="230000" />
     </task>
     <servers />
   </component>
@@ -340,17 +349,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/database/seeders/AddressSeeder.php</url>
-          <line>19</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
