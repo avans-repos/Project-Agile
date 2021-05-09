@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +175,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -200,6 +200,7 @@
       <recent name="C:\Users\Job\Github\Project-Agile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\agile\Project-Agile\database\factories\contact" />
       <recent name="D:\xampp\agile\Project-Agile\public\img" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
       <recent name="D:\Documents\Github\Project-Agile\app" />
@@ -314,7 +315,6 @@
       <workItem from="1619342167785" duration="4727000" />
       <workItem from="1619642384441" duration="3603000" />
       <workItem from="1618910092440" duration="478000" />
-      <workItem from="1620378566681" duration="154000" />
     </task>
     <servers />
   </component>
@@ -332,17 +332,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/database/seeders/AddressSeeder.php</url>
-          <line>19</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

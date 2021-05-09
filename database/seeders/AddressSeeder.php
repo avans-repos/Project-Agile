@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,7 @@ class AddressSeeder extends Seeder
    */
   public function run()
   {
-    DB::table('addresses')->insert([
+    address::create([
       'streetname' => 'Bermershof',
       'number' => '831',
       'zipcode' => '5403WP',
