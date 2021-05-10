@@ -1,6 +1,6 @@
 <form action="{{route('contact.'.$formAction, ['contact' => $contact])}}" method="POST">
     @csrf
-    @if($formAction == "update")
+    @if($formAction == 'update')
         @method('PATCH')
     @endif
     <fieldset class="mb-3">
@@ -63,7 +63,7 @@
                 <option disabled selected>Selecter geslacht</option>
                 @foreach ($genders as $gender)
                     <option
-                        {{ ($gender->type == old('gender',$contact->gender) ? "selected":"") }} value="{{ $gender->type }}">
+                        {{ ($gender->type == old('gender',$contact->gender) ? 'selected':'') }} value="{{ $gender->type }}">
                         {{ ucfirst(trans($gender->type)) }}
                     </option>
                 @endforeach
@@ -192,7 +192,7 @@
           <option disabled selected>Selecteer Bedrijf</option>
           @foreach ($companies as $company)
             <option
-              {{ ($company->name == old('type',$company->name) ? "selected":"") }} value="{{ $company->name }}">
+              {{ ($company->name == old('type',$company->name) ? 'selected':'') }} value="{{ $company->name }}">
               {{ ucfirst(trans($company->name)) }}
             </option>
           @endforeach
@@ -211,7 +211,7 @@
           <option disabled selected>Selecteer contactsoort</option>
           @foreach ($contactTypes as $contactType)
             <option
-              {{ ($contactType->name == old('type',$contact->type) ? "selected":"") }} value="{{ $contactType->name }}">
+              {{ ($contactType->name == old('type',$contact->type) ? 'selected':'') }} value="{{ $contactType->name }}">
               {{ ucfirst(trans($contactType->name)) }}
             </option>
           @endforeach
@@ -235,7 +235,7 @@
               <option disabled selected>Selecteer Bedrijf</option>
               @foreach ($companies as $company)
                 <option
-                  {{ ($company->name == $contactTypesAssigned[$i]->name ? "selected":"") }} value="{{ $company->name }}">
+                  {{ ($company->name == $contactTypesAssigned[$i]->name ? 'selected':'') }} value="{{ $company->name }}">
                   {{ ucfirst(trans($company->name)) }}
                 </option>
               @endforeach
@@ -254,7 +254,7 @@
               <option disabled selected>Selecteer contactsoort</option>
               @foreach ($contactTypes as $contactType)
                 <option
-                  {{ ($contactType->name == $contactTypesAssigned[$i]->contacttype ? "selected":"") }} value="{{ $contactType->name }}">
+                  {{ ($contactType->name == $contactTypesAssigned[$i]->contacttype ? 'selected':'') }} value="{{ $contactType->name }}">
                   {{ ucfirst(trans($contactType->name)) }}
                 </option>
               @endforeach

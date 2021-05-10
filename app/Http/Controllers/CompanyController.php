@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Address;
 use App\Models\contact\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
@@ -14,7 +15,7 @@ class CompanyController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return Response
    */
   public function index()
   {
@@ -25,7 +26,7 @@ class CompanyController extends Controller
   /**
    * Show the form for creating a new resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return Response
    */
   public function create()
   {
@@ -42,8 +43,8 @@ class CompanyController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @param Request $request
+   * @return Response
    */
   public function store(CompanyRequest $request)
   {
@@ -66,8 +67,8 @@ class CompanyController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param \App\Models\Company $company
-   * @return \Illuminate\Http\Response
+   * @param Company $company
+   * @return Response
    */
   public function show(Company $company)
   {
@@ -115,8 +116,8 @@ class CompanyController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param \App\Models\Company $company
-   * @return \Illuminate\Http\Response
+   * @param Company $company
+   * @return Response
    */
   public function edit(Company $company)
   {
@@ -133,9 +134,9 @@ class CompanyController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param \App\Http\Requests\CompanyRequest $request
-   * @param \App\Models\Company $company
-   * @return \Illuminate\Http\Response
+   * @param CompanyRequest $request
+   * @param Company $company
+   * @return Response
    */
   public function update(CompanyRequest $request, Company $company)
   {
@@ -159,8 +160,8 @@ class CompanyController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param \App\Models\Company $company
-   * @return \Illuminate\Http\Response
+   * @param Company $company
+   * @return Response
    */
   public function destroy(Company $company)
   {
@@ -171,7 +172,7 @@ class CompanyController extends Controller
   /**
    * Create addresses if not exists and return address ids of database
    *
-   * @param \App\Http\Requests\CompanyRequest $request
+   * @param CompanyRequest $request
    * @return array
    */
   protected function createAddressesAndReturnIds($request)
@@ -209,8 +210,8 @@ class CompanyController extends Controller
   /**
    * Create address if not exist and return address id of database
    *
-   * @param \App\Models\Address $address
-   * @return integer
+   * @param Address $address
+   * @return int
    */
   protected function createAddressAndReturnId($address)
   {

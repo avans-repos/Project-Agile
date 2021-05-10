@@ -1,4 +1,4 @@
-@if($formAction == "update")
+@if($formAction == 'update')
     <form action="{{route('notes.update', ['note' => $note])}}" method="POST">
     @method('PATCH')
 @else
@@ -19,7 +19,7 @@
       <div class="mb-1">
         <div class="col">
           <label for="reminder" class="form-label">
-            <input type="checkbox" name="reminder" value="1" id="reminder" {{(old("reminder")) ? (old("reminder") == 0) ? null : 'checked' : 'checked'}}> Herinnering volgend contactmoment
+            <input type="checkbox" name="reminder" value="1" id="reminder" {{(old('reminder')) ? (old('reminder') == 0) ? null : 'checked' : 'checked'}}> Herinnering volgend contactmoment
           </label>
         </div>
       </div>

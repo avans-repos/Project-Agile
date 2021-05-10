@@ -11,9 +11,10 @@ use Tests\TestCase;
 
 class ClassroomTest extends TestCase
 {
-  use CreatesApplication, RefreshDatabase;
+    use CreatesApplication;
+    use RefreshDatabase;
 
-  public function setUp(): void
+    public function setUp(): void
   {
     parent::setUp();
     $this->artisan('migrate:fresh --seed');

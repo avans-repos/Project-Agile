@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\User;
+use DateTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\CreatesApplication;
@@ -12,9 +13,10 @@ use Tests\TestCase;
 
 class ProjectTest extends TestCase
 {
-  use CreatesApplication, RefreshDatabase;
+    use CreatesApplication;
+    use RefreshDatabase;
 
-  protected $seed = true;
+    protected $seed = true;
 
   public function setUp(): void
   {
@@ -40,7 +42,7 @@ class ProjectTest extends TestCase
   {
     $name = 'Test Project';
     $description = 'This is a test';
-    $deadline = new \DateTime('10/10/2032');
+    $deadline = new DateTime('10/10/2032');
     $notes = 'This is a test';
 
     $response = $this->post(route('project.store'), [
@@ -63,7 +65,7 @@ class ProjectTest extends TestCase
   {
     $name = Str::random(46);
     $description = Str::random(256);
-    $deadline = new \DateTime('10/10/2032');
+    $deadline = new DateTime('10/10/2032');
     $notes = 'This is a test';
 
     $response = $this->post(route('project.store'), [

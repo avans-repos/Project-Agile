@@ -18,7 +18,9 @@ use Tests\TestCase;
 
 class ProjectgroupCreateTest extends TestCase
 {
-  use CreatesApplication, RefreshDatabase;
+  use CreatesApplication;
+  use RefreshDatabase;
+
   public function setUp(): void
   {
     parent::setUp();

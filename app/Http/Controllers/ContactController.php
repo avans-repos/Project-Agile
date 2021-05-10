@@ -8,7 +8,12 @@ use App\Models\Company;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
@@ -16,7 +21,7 @@ class ContactController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   * @return Application|Factory|View|Response
    */
 
   public function index()
@@ -28,7 +33,7 @@ class ContactController extends Controller
   /**
    * Show the form for creating a new resource.
    *
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   * @return Application|Factory|View|Response
    */
   public function create()
   {
@@ -51,8 +56,8 @@ class ContactController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @param Request $request
+   * @return RedirectResponse
    */
   public function store(ContactRequest $request)
   {
@@ -96,8 +101,8 @@ class ContactController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  \App\Models\contact\Contact  $contact
-   * @return \Illuminate\Http\Response
+   * @param Contact $contact
+   * @return Response
    */
   public function show(Contact $contact)
   {
@@ -126,8 +131,8 @@ class ContactController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  \App\Models\contact\Contact  $contact
-   * @return \Illuminate\Http\Response
+   * @param Contact $contact
+   * @return Response
    */
   public function edit(Contact $contact)
   {
@@ -159,9 +164,9 @@ class ContactController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\contact\Contact  $contact
-   * @return \Illuminate\Http\Response
+   * @param Request $request
+   * @param Contact $contact
+   * @return Response
    */
   public function update(ContactRequest $request, Contact $contact)
   {
@@ -211,8 +216,8 @@ class ContactController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param  \App\Models\contact\Contact  $contact
-   * @return \Illuminate\Http\Response
+   * @param Contact $contact
+   * @return Response
    */
   public function destroy(Contact $contact)
   {

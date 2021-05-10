@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 /**
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property int $year
  * @property int $schoolBlock
- * @mixin \Eloquent
+ * @mixin Eloquent
  * @method static create(array $all)
  */
 class ClassRoom extends Model

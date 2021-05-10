@@ -65,7 +65,7 @@
                         E-mail
                     </div>
                     <div class="col-6">
-                        {{$contact->email ?? "N.v.t."}}
+                        {{$contact->email ?? 'N.v.t.'}}
                     </div>
                 </div>
                 <div class="row">
@@ -73,7 +73,7 @@
                         Telefoonnummer
                     </div>
                     <div class="col-6">
-                        {{$contact->phonenumber ?? "N.v.t."}}
+                        {{$contact->phonenumber ?? 'N.v.t.'}}
                     </div>
                 </div>
 
