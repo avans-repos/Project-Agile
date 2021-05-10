@@ -108,6 +108,79 @@
     </fieldset>
 
   <fieldset class="mb-3">
+    <legend>Adres</legend>
+    <div>
+      <div class="mb-1">
+        <label for="streetname1" class="form-label">Straatnaam</label>
+        <input name="streetname1" value="{{old('streetname1',$address->streetname)}}" type="text"
+               class="form-control"
+               id="streetname1"
+               placeholder="Sintjanstraat" maxlength="100">
+
+      </div>
+
+      <div class="col">
+        @error('streetname1')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+    <div class="mb-1">
+      <div class="mb-1 row d-sm-flex">
+        <div class="col-sm-4">
+          <label for="number1" class="form-label">Huisnummer</label>
+          <input name="number1" value="{{old('number1',$address->number)}}" type="number"
+                 class="form-control"
+                 id="number1" placeholder="123" maxlength="11" min="0">
+
+        </div>
+        <div class="col-sm-4">
+          <label for="addition1" class="form-label">Toevoeging</label>
+          <input name="addition1" value="{{old('addition1',$address->addition)}}" type="text"
+                 class="form-control"
+                 id="addition1" placeholder="123" maxlength="5">
+
+        </div>
+      </div>
+      <div class="col">
+        @error('number1')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @error('addition1')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+    <div class="mb-1">
+      <div class="mb-1 row d-sm-flex">
+        <div class="col-sm-6">
+          <label for="zipcode1" class="form-label">Postcode</label>
+          <input name="zipcode1" value="{{old('zipcode1',$address->zipcode)}}" type="text"
+                 class="form-control"
+                 id="zipcode1" placeholder="1234 AB" maxlength="10">
+
+        </div>
+        <div class="col-sm-6">
+          <label for="city1" class="form-label">Plaatsnaam</label>
+          <input name="city1" value="{{old('city1',$address->city)}}" type="text"
+                 class="form-control"
+                 id="city1" placeholder="Amsterdam" maxlength="100">
+
+        </div>
+      </div>
+      <div class="col">
+        @error('zipcode1')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @error('city1')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+    <input name="country1" type="hidden" value="Nederland">
+  </fieldset>
+
+  <fieldset class="mb-3">
     <legend>Contacttype per bedrijf</legend>
     <div id="companies">
       @if(!isset($contactTypesAssigned) || count($contactTypesAssigned) == 0)

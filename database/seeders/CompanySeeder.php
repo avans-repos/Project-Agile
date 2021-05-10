@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,7 @@ class CompanySeeder extends Seeder
    */
   public function run()
   {
-    DB::table('companies')->insert([
+    company::create([
       'name' => 'Vizova',
       'email' => 'martijn@vizova.nl',
       'phonenumber' => '0657305857',

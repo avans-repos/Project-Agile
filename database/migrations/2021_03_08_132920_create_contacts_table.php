@@ -29,6 +29,13 @@ class CreateContactsTable extends Migration
 
             $table->string('type',20)->nullable();
             $table->foreign('type')->references('name')->on('contact_types');
+
+            $table->unsignedBigInteger('address')->nullable();
+            $table->foreign('address')
+              ->references('id')
+              ->on('addresses')
+              ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
