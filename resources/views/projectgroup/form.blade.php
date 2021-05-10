@@ -50,10 +50,10 @@
             <tr>
               <td>
               <input
-              {{ (is_array(old("assigned",$assigned))) ?
-                      (in_array($student->id, old("assigned", $assigned))) ? 'checked' : null
+              {{ (is_array(old("assignedUsers",$assignedUsers))) ?
+                      (in_array($student->id, old("assignedUsers",$assignedUsers))) ? 'checked' : null
                    : null
-              }} type="checkbox" name="assigned[]" value="{{$student->id}}" >
+              }} type="checkbox" name="assignedUsers[]" value="{{$student->id}}" >
               </td>
               <td>{{$student->name}}</td>
               <td>{{$student->classroom}}</td>
