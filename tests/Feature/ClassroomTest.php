@@ -11,9 +11,10 @@ use Tests\TestCase;
 
 class ClassroomTest extends TestCase
 {
-  use CreatesApplication,RefreshDatabase;
+  use CreatesApplication;
+  use RefreshDatabase;
 
-  public function setUp() : void
+  public function setUp(): void
   {
     parent::setUp();
     $this->artisan('migrate:fresh --seed');
@@ -21,7 +22,7 @@ class ClassroomTest extends TestCase
     $this->validator = $this->app['validator'];
     $user = new User([
       'id' => 1,
-      'name' => 'test'
+      'name' => 'test',
     ]);
 
     $this->be($user);
@@ -36,42 +37,36 @@ class ClassroomTest extends TestCase
 
   public function test_create_classroom_fails_year_before_1900()
   {
-    $response = $this
-      ->post(route('classroom.store'), [
-        'year' => 1800
-      ]);
-    $response->assertSessionHasErrors([
-      'year'
+    $response = $this->post(route('classroom.store'), [
+      'year' => 1800,
     ]);
+    $response->assertSessionHasErrors(['year']);
   }
 
   public function test_create_classroom_fails_no_class_name()
   {
-    $response = $this
-      ->post(route('classroom.store'), [
-        'name' => ''
-      ]);
-    $response->assertSessionHasErrors([
-      'name'
+    $response = $this->post(route('classroom.store'), [
+      'name' => '',
     ]);
+    $response->assertSessionHasErrors(['name']);
   }
 
   public function test_create_classroom_success()
   {
-
-    $student = User::role('Student')->get()->first()->id;
-    $response = $this
-      ->post(route('classroom.store'), [
-        'name' => 'TestKlas',
-        'year' => Carbon::now()->year,
-        'student' => [$student]
-      ]);
+    $student = User::role('Student')
+      ->get()
+      ->first()->id;
+    $response = $this->post(route('classroom.store'), [
+      'name' => 'TestKlas',
+      'year' => Carbon::now()->year,
+      'student' => [$student],
+    ]);
 
     $response->assertSessionDoesntHaveErrors();
 
     $this->assertDatabaseHas('class_rooms', [
       'name' => 'TestKlas',
-      'year'=> Carbon::now()->year,
+      'year' => Carbon::now()->year,
     ]);
   }
 }

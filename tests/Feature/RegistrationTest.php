@@ -10,7 +10,7 @@ class RegistrationTest extends TestCase
 {
   use RefreshDatabase;
 
-  public function setUp() : void
+  public function setUp(): void
   {
     parent::setUp();
     $this->artisan('migrate:fresh --seed');
@@ -27,7 +27,7 @@ class RegistrationTest extends TestCase
   {
     $user = new User([
       'id' => 1,
-      'name' => 'test'
+      'name' => 'test',
     ]);
 
     $this->be($user);

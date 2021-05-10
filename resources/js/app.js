@@ -4,8 +4,7 @@ require('alpinejs');
 
 import Swal from 'sweetalert2';
 
-window.deleteConfirm = function(formId)
-{
+window.deleteConfirm = function (formId) {
   Swal.fire({
     icon: 'warning',
     title: 'Weet u zeker dat u dit wilt verwijderen?',
@@ -13,9 +12,9 @@ window.deleteConfirm = function(formId)
     cancelButtonText: 'Annuleren',
     confirmButtonText: 'Verwijder',
     confirmButtonColor: '#e3342f',
-  }).then((result) => {
+  }).then(result => {
     if (result.isConfirmed) {
       document.getElementById(formId).submit();
     }
   });
-}
+};

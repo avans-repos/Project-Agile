@@ -16,7 +16,6 @@ use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
-
   use RefreshDatabase;
 
   public function setUp(): void
@@ -27,7 +26,7 @@ class NotificationTest extends TestCase
     $this->validator = $this->app['validator'];
     $user = new User([
       'id' => 1,
-      'name' => 'test'
+      'name' => 'test',
     ]);
     $this->user = $user;
     $this->be($user);
@@ -37,47 +36,38 @@ class NotificationTest extends TestCase
   {
     $id = Contact::all()->first()->id;
     $this->assertAuthenticated();
-    $response = $this
-      ->post('/notes/insert/' . $id, [
-        'description' => 'test',
-        'reminder' => 1,
-        'reminderdate' => ''
-      ]);
-    $response->assertStatus(302);
-    $response->assertSessionHasErrors([
-      'reminderdate'
+    $response = $this->post('/notes/insert/' . $id, [
+      'description' => 'test',
+      'reminder' => 1,
+      'reminderdate' => '',
     ]);
+    $response->assertStatus(302);
+    $response->assertSessionHasErrors(['reminderdate']);
   }
 
   public function test_notification_wrong_date_format_error()
   {
     $id = Contact::all()->first()->id;
     $this->assertAuthenticated();
-    $response = $this
-      ->post('/notes/insert/' . $id, [
-        'description' => 'test',
-        'reminder' => 1,
-        'reminderdate' => 'asdf'
-      ]);
-    $response->assertStatus(302);
-    $response->assertSessionHasErrors([
-      'reminderdate'
+    $response = $this->post('/notes/insert/' . $id, [
+      'description' => 'test',
+      'reminder' => 1,
+      'reminderdate' => 'asdf',
     ]);
+    $response->assertStatus(302);
+    $response->assertSessionHasErrors(['reminderdate']);
   }
 
   public function test_notification_date_is_today_fails()
   {
     $id = Contact::all()->first()->id;
     $this->assertAuthenticated();
-    $response = $this
-      ->post('/notes/insert/' . $id, [
-        'description' => 'test',
-        'reminder' => 1,
-        'reminderdate' => Carbon::now()->format('Y-m-d')
-      ]);
-    $response->assertStatus(302);
-    $response->assertSessionHasErrors([
-      'reminderdate'
+    $response = $this->post('/notes/insert/' . $id, [
+      'description' => 'test',
+      'reminder' => 1,
+      'reminderdate' => Carbon::now()->format('Y-m-d'),
     ]);
+    $response->assertStatus(302);
+    $response->assertSessionHasErrors(['reminderdate']);
   }
 }

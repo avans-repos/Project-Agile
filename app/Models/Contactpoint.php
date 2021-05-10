@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Builder;
@@ -13,7 +14,7 @@ use PhpParser\Builder;
  * @property int $contactPerson
  * @property string $dateOfContact
  * @property string $description
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Contactpoint extends Model
 {

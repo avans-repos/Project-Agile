@@ -12,7 +12,11 @@ use App\Models\student_has_class_room;
 use App\Models\Project;
 use App\Models\Projectgroup;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class ProjectgroupController extends Controller
@@ -20,51 +24,55 @@ class ProjectgroupController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return Response
    */
   public function index()
   {
-    $projectgroups = array();
+    $projectgroups = [];
 
-    foreach(Projectgroup::all() as $projectgroup) {
-      $assigned_to_group = DB::table('projectgroup_has_users')->select('userid')->where('projectgroupid',$projectgroup->id)->pluck('userid');
+    foreach (Projectgroup::all() as $projectgroup) {
+      $assigned_to_group = DB::table('projectgroup_has_users')
+        ->select('userid')
+        ->where('projectgroupid', $projectgroup->id)
+        ->pluck('userid');
 
-      $teachers = User::whereIn('id',$assigned_to_group)->whereHas(
-        'roles', function($q) {
-        $q->where('name', 'teacher');
-      })->get();
+      $teachers = User::whereIn('id', $assigned_to_group)
+        ->whereHas('roles', function ($q) {
+          $q->where('name', 'teacher');
+        })
+        ->get();
 
-      $students = User::whereIn('id',$assigned_to_group)->whereHas(
-        'roles', function($q) {
-        $q->where('name', 'student');
-      })->get();
+      $students = User::whereIn('id', $assigned_to_group)
+        ->whereHas('roles', function ($q) {
+          $q->where('name', 'student');
+        })
+        ->get();
 
       $project = Project::find($projectgroup->project);
 
-      $projectname = "Geen Project";
-      if ($project != null) $projectname = $project->name;
+      $projectname = 'Geen Project';
+      if ($project != null) {
+        $projectname = $project->name;
+      }
 
       array_push($projectgroups, [
         'group' => $projectgroup,
         'teachers' => $teachers,
         'students' => $students,
-        'project' => $projectname
+        'project' => $projectname,
       ]);
     }
 
-    return view('projectgroup.index')
-      ->with('projectgroups', $projectgroups);
+    return view('projectgroup.index')->with('projectgroups', $projectgroups);
   }
 
   private function addClassToStudent($students)
   {
-    foreach($students as $student)
-    {
+    foreach ($students as $student) {
       $student_has_class_room = student_has_class_room::where('student', $student->id)->first();
 
-      if (is_null($student_has_class_room)) 
-      {
-        $student->classroom = "Geen Klas";
+      if (is_null($student_has_class_room)) {
+        $student->classroom = 'Geen Klas';
         continue;
       }
 
@@ -77,7 +85,7 @@ class ProjectgroupController extends Controller
   /**
    * Show the form for creating a new resource.
    *
-   * @return \Illuminate\Http\Response
+   * @return Response
    */
   public function create()
   {
@@ -107,41 +115,39 @@ class ProjectgroupController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
+   * @param Request $request
+   * @return Response
    */
   public function store(ProjectgroupRequest $request)
   {
     $request->validated();
 
-    $group = new Projectgroup;
+    $group = new Projectgroup();
     $group->name = $request->name;
 
-    if ($request->project != -1) $group->project = $request->project;
+    if ($request->project != -1) {
+      $group->project = $request->project;
+    }
 
     $group->save();
     $id = $group->id;
 
     // fill in all the users (students and teachers)
-    if (isset($request->assignedUsers))
-    {
-      foreach ($request->assignedUsers as $assignedUser)
-      {
+    if (isset($request->assignedUsers)) {
+      foreach ($request->assignedUsers as $assignedUser) {
         DB::table('projectgroup_has_users')->insert([
           'userid' => $assignedUser,
-          'projectgroupid' => $id
+          'projectgroupid' => $id,
         ]);
       }
     }
 
     // fill in all the contactpersons
-    if (isset($request->assignedContacts))
-    {
-      foreach ($request->assignedContacts as $assignedContact)
-      {
+    if (isset($request->assignedContacts)) {
+      foreach ($request->assignedContacts as $assignedContact) {
         DB::table('projectgroup_has_contacts')->insert([
           'contactid' => $assignedContact,
-          'projectgroupid' => $id
+          'projectgroupid' => $id,
         ]);
       }
     }
@@ -151,38 +157,36 @@ class ProjectgroupController extends Controller
 
   public function show(Projectgroup $projectgroup)
   {
-    $assignedUsers =
-      DB::table('projectgroup_has_users')
-        ->where('projectgroupid', '=', $projectgroup->id)
-        ->join('users', 'projectgroup_has_users.userid', '=', 'users.id')
-        ->get('users.id')->pluck('id');
+    $assignedUsers = DB::table('projectgroup_has_users')
+      ->where('projectgroupid', '=', $projectgroup->id)
+      ->join('users', 'projectgroup_has_users.userid', '=', 'users.id')
+      ->get('users.id')
+      ->pluck('id');
 
     $students = User::role('student')
-      ->whereIn('id',$assignedUsers)
+      ->whereIn('id', $assignedUsers)
       ->get();
 
     $teachers = User::role('teacher')
-      ->whereIn('id',$assignedUsers)
+      ->whereIn('id', $assignedUsers)
       ->get();
 
     $project = DB::table('projects')
-        ->where('id', '=', $projectgroup->id)
-        ->get()
-        ->first();
+      ->where('id', '=', $projectgroup->id)
+      ->get()
+      ->first();
 
-    $assignedContacts =
-      DB::table('projectgroup_has_contacts')
-        ->where('projectgroupid', '=', $projectgroup->id)
-        ->join('contacts', 'projectgroup_has_contacts.contactid', '=', 'contacts.id')
-        ->get('contacts.id')->pluck('id');
+    $assignedContacts = DB::table('projectgroup_has_contacts')
+      ->where('projectgroupid', '=', $projectgroup->id)
+      ->join('contacts', 'projectgroup_has_contacts.contactid', '=', 'contacts.id')
+      ->get('contacts.id')
+      ->pluck('id');
 
-    $contacts = Contact::all()
-      ->whereIn('id', $assignedContacts);
+    $contacts = Contact::all()->whereIn('id', $assignedContacts);
 
-    $contacts = Self::matchAdressWithContacts($contacts);
+    $contacts = self::matchAdressWithContacts($contacts);
 
-    $newContacts = Contact::all()
-      ->wherenotin('id', $assignedContacts);
+    $newContacts = Contact::all()->wherenotin('id', $assignedContacts);
 
     return view('projectgroup.show')
       ->with('projectgroup', $projectgroup)
@@ -197,7 +201,7 @@ class ProjectgroupController extends Controller
   {
     DB::table('projectgroup_has_contacts')->insert([
       'projectgroupid' => $projectgroupid,
-      'contactid' => $contactid
+      'contactid' => $contactid,
     ]);
 
     return redirect()->route('projectgroup.show', [$projectgroupid]);
@@ -205,7 +209,10 @@ class ProjectgroupController extends Controller
 
   public function removecontact($projectgroupid, $contactid)
   {
-    DB::table('projectgroup_has_contacts')->where('projectgroupid', '=', $projectgroupid)->where('contactid', '=', $contactid)->delete();
+    DB::table('projectgroup_has_contacts')
+      ->where('projectgroupid', '=', $projectgroupid)
+      ->where('contactid', '=', $contactid)
+      ->delete();
 
     return redirect()->route('projectgroup.show', [$projectgroupid]);
   }
@@ -213,12 +220,11 @@ class ProjectgroupController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param \App\Models\Projectgroup $projectgroup
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+   * @param Projectgroup $projectgroup
+   * @return Application|Factory|View|Response
    */
   public function edit(Projectgroup $projectgroup)
   {
-
     $students = User::role('student')->get();
     $teachers = User::role('teacher')->get();
     $contacts = Contact::all();
@@ -262,7 +268,7 @@ class ProjectgroupController extends Controller
    *
    * @param ProjectgroupRequest $request
    * @param Projectgroup $group
-   * @return \Illuminate\Http\Response
+   * @return Response
    */
   public function update(ProjectgroupRequest $request, Projectgroup $projectgroup)
   {
@@ -272,14 +278,14 @@ class ProjectgroupController extends Controller
     if (isset($request->assignedUsers)) {
       foreach ($request->assignedUsers as $assignedUser) {
         if (
-        !DB::table('projectgroup_has_users')
-          ->where('userid', $assignedUser)
-          ->where('projectgroupid', $projectgroup->id)
-          ->exists()
+          !DB::table('projectgroup_has_users')
+            ->where('userid', $assignedUser)
+            ->where('projectgroupid', $projectgroup->id)
+            ->exists()
         ) {
           DB::table('projectgroup_has_users')->insert([
             'userid' => $assignedUser,
-            'projectgroupid' => $projectgroup->id
+            'projectgroupid' => $projectgroup->id,
           ]);
         }
       }
@@ -289,14 +295,14 @@ class ProjectgroupController extends Controller
     if (isset($request->assignedContacts)) {
       foreach ($request->assignedContacts as $assignedContact) {
         if (
-        !DB::table('projectgroup_has_contacts')
-          ->where('contactid', $assignedContact)
-          ->where('projectgroupid', $projectgroup->id)
-          ->exists()
+          !DB::table('projectgroup_has_contacts')
+            ->where('contactid', $assignedContact)
+            ->where('projectgroupid', $projectgroup->id)
+            ->exists()
         ) {
           DB::table('projectgroup_has_contacts')->insert([
             'contactid' => $assignedContact,
-            'projectgroupid' => $projectgroup->id
+            'projectgroupid' => $projectgroup->id,
           ]);
         }
       }
@@ -334,10 +340,12 @@ class ProjectgroupController extends Controller
       }
     }
 
-
     $projectgroup->name = $request->name;
-    if ($request->project == -1) $projectgroup->project = null;
-    else $projectgroup->project = $request->project;
+    if ($request->project == -1) {
+      $projectgroup->project = null;
+    } else {
+      $projectgroup->project = $request->project;
+    }
     $projectgroup->save();
 
     return redirect()->route('projectgroup.index');
@@ -346,8 +354,8 @@ class ProjectgroupController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param \App\Models\Projectgroup $projectgroup
-   * @return \Illuminate\Http\Response
+   * @param Projectgroup $projectgroup
+   * @return Response
    */
   public function destroy(Projectgroup $projectgroup)
   {
@@ -357,24 +365,30 @@ class ProjectgroupController extends Controller
 
   private function matchAdressWithContacts($contacts)
   {
-    foreach($contacts as $contact)
-    {
-      if($contact->address == null)
-      {
+    foreach ($contacts as $contact) {
+      if ($contact->address == null) {
         // company address
         $contact->address = null;
 
         $contact->privateAddress = false;
-      }
-      else
-      {
+      } else {
         // personal address
-        $contact->address = Address::find($contact->address)->get()->first();
+        $contact->address = Address::find($contact->address)
+          ->get()
+          ->first();
 
         $contact->privateAddress = true;
       }
-      if($contact->address != null){
-        $contact->formattedAddress = $contact->address['streetname'] . " " . $contact->address['number'] . $contact->address['addition']  . ", " . $contact->address['zipcode'] . ", " . $contact->address['city'];
+      if ($contact->address != null) {
+        $contact->formattedAddress =
+          $contact->address['streetname'] .
+          ' ' .
+          $contact->address['number'] .
+          $contact->address['addition'] .
+          ', ' .
+          $contact->address['zipcode'] .
+          ', ' .
+          $contact->address['city'];
       }
     }
     return $contacts;

@@ -13,6 +13,6 @@ class Projectgroup extends Model
 
   protected $table = 'projectgroups';
   protected $primaryKey = 'id';
-  protected $fillable = ['name','project'];
+  protected $fillable = ['name', 'project'];
   protected $dates = ['deleted_at'];
 }

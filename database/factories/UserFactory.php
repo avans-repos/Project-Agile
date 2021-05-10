@@ -23,7 +23,7 @@ class UserFactory extends Factory
   public function definition()
   {
     $first_name = '';
-    while(strlen($first_name) < 3) {
+    while (strlen($first_name) < 3) {
       $first_name = $this->faker->firstName;
     }
     return [

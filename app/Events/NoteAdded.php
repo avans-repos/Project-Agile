@@ -12,17 +12,19 @@ use Illuminate\Queue\SerializesModels;
 
 class NoteAdded
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+  use Dispatchable;
+  use InteractsWithSockets;
+  use SerializesModels;
 
-   public $notificationData;
+  public $notificationData;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct($notificationData)
-    {
-        $this->notificationData = $notificationData;
-    }
+  /**
+   * Create a new event instance.
+   *
+   * @return void
+   */
+  public function __construct($notificationData)
+  {
+    $this->notificationData = $notificationData;
+  }
 }

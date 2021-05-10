@@ -1,6 +1,6 @@
 <form action="{{route('company.'.$formAction, ['company' => $company])}}" method="POST">
   @csrf
-  @if($formAction == "update")
+  @if($formAction == 'update')
     @method('PATCH')
   @endif
   <fieldset class="mb-3">
@@ -148,7 +148,7 @@
     </div>
     <label for="address_same" class="form-label">
       <input type='hidden' value='1' name='address_same'>
-      <input type="checkbox" name="address_same" value="0" id="address_same" {{($address2->id == $address1->id && old("address_same") == 0) ? 'checked' : null}}> Postadres is hetzelfde als het bezoekadres
+      <input type="checkbox" name="address_same" value="0" id="address_same" {{($address2->id == $address1->id && old('address_same') == 0) ? 'checked' : null}}> Postadres is hetzelfde als het bezoekadres
     </label>
     <input name="country1" type="hidden" value="Nederland">
   </fieldset>

@@ -24,7 +24,7 @@ class ClassRoomRequest extends FormRequest
   public function rules()
   {
     return [
-      'name' =>  'required|string|min:3|max:10',
+      'name' => 'required|string|min:3|max:10',
       'year' => 'required|integer|min:1901|max:2150',
       'student' => 'array',
       'student.*' => 'integer',
@@ -37,7 +37,7 @@ class ClassRoomRequest extends FormRequest
       'name' => 'Klasnaam',
       'year' => 'Jaar',
       'schoolBlock' => 'Blok',
-      'student' => 'Student'
+      'student' => 'Student',
     ];
   }
 }

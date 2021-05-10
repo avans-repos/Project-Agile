@@ -6,15 +6,16 @@ use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\Projectgroup;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
-    //
+  //
   public function index()
   {
     $projects = Project::all();
-    return view('project.index')->with('projects',$projects);
+    return view('project.index')->with('projects', $projects);
   }
 
   public function create()
@@ -43,13 +44,13 @@ class ProjectController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param \App\Models\Project $project
-   * @return \Illuminate\Http\Response
+   * @param Project $project
+   * @return Response
    */
   public function edit(Project $project)
   {
     $currentProjectgroups = Projectgroup::where('project', $project->id)->get();
-    $availableProjectgroups = Projectgroup::where('project', NULL)->get();
+    $availableProjectgroups = Projectgroup::where('project', null)->get();
 
     return view('project.manage')
       ->with('project', $project)
@@ -61,9 +62,9 @@ class ProjectController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param \App\Http\Requests\ProjectRequest $request
-   * @param \App\Models\Project $project
-   * @return \Illuminate\Http\Response
+   * @param ProjectRequest $request
+   * @param Project $project
+   * @return Response
    */
   public function update(ProjectRequest $request, Project $project)
   {
@@ -84,7 +85,7 @@ class ProjectController extends Controller
   public function removeGroup($projectid, $groupid)
   {
     $group = Projectgroup::find($groupid);
-    $group->project = NULL;
+    $group->project = null;
     $group->save();
 
     return redirect()->route('project.edit', [$projectid]);

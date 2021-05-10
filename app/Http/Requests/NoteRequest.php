@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests;
-
 
 use Carbon\Carbon;
 use Carbon\Exceptions\InvalidFormatException;
@@ -32,18 +30,23 @@ class NoteRequest extends FormRequest
   {
     return [
       'description' => 'required|string',
-      'reminderdate' => 'required_if:reminder,1|after:today'
+      'reminderdate' => 'required_if:reminder,1|after:today',
     ];
   }
 
   public function withValidator($validator)
   {
     $validator->after(function ($validator) {
-      if($this->reminderdate != null || $this->reminderdate != '') {
+      if ($this->reminderdate != null || $this->reminderdate != '') {
         try {
-          $date = Carbon::createFromFormat('Y-m-d',$this->reminderdate);
+          $date = Carbon::createFromFormat('Y-m-d', $this->reminderdate);
         } catch (InvalidFormatException $e) {
-          $validator->errors()->add('reminderdate','De datum is niet in het juiste formaat genoteerd. Controleer of deze voldoet aan DD-MM-YYYY (Dag, maand, jaar).');
+          $validator
+            ->errors()
+            ->add(
+              'reminderdate',
+              'De datum is niet in het juiste formaat genoteerd. Controleer of deze voldoet aan DD-MM-YYYY (Dag, maand, jaar).'
+            );
         }
       }
     });
@@ -62,5 +65,4 @@ class NoteRequest extends FormRequest
       'reminderdate.after' => 'De herinneringsdatum moet later zijn dan vandaag.',
     ];
   }
-
 }

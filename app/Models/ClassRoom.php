@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 /**
@@ -11,18 +12,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property int $year
  * @property int $schoolBlock
- * @mixin \Eloquent
+ * @mixin Eloquent
  * @method static create(array $all)
  */
 class ClassRoom extends Model
 {
-    use HasFactory;
+  use HasFactory;
   protected $table = 'class_rooms';
   protected $fillable = ['name', 'year', 'schoolBlock'];
   protected $dates = ['deleted_at', 'created_at'];
 
   public function students()
   {
-    return student_has_class_room::where('class_room' , '=', $this->id)->get();
+    return student_has_class_room::where('class_room', '=', $this->id)->get();
   }
 }

@@ -41,8 +41,8 @@ class ClassRoomSeeder extends Seeder
       'year' => Carbon::now()->format('Y'),
     ]);
     ClassRoom::create([
-    'name' => '42IN5BIc',
-    'year' => Carbon::now()->format('Y'),
+      'name' => '42IN5BIc',
+      'year' => Carbon::now()->format('Y'),
     ]);
     ClassRoom::create([
       'name' => '42IN5BId',

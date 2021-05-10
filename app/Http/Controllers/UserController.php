@@ -32,7 +32,7 @@ class UserController extends Controller
   {
     $roles = Role::all();
 
-    return view('user.edit', compact('user','roles'));
+    return view('user.edit', compact('user', 'roles'));
   }
 
   /**
@@ -54,15 +54,15 @@ class UserController extends Controller
 
     $exceptions = [];
 
-    if(in_array('Student', $roleNames) && in_array('Teacher', $roleNames)) {
+    if (in_array('Student', $roleNames) && in_array('Teacher', $roleNames)) {
       array_push($exceptions, ['student_is_teacher' => 'Een gebruiker kan niet een student & docent zijn.']);
     }
 
-    if(in_array('Student', $roleNames) && in_array('Admin', $roleNames)) {
+    if (in_array('Student', $roleNames) && in_array('Admin', $roleNames)) {
       array_push($exceptions, ['student_is_admin' => 'Een gebruiker kan niet een student & admin zijn.']);
     }
 
-    if(sizeof($exceptions) > 0) {
+    if (sizeof($exceptions) > 0) {
       throw ValidationException::withMessages($exceptions);
     }
 

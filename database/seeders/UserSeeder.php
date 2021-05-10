@@ -34,7 +34,6 @@ class UserSeeder extends Seeder
     $maikel->assignRole('Teacher');
     $maikel->save($maikel->toArray());
 
-
     $tom = new User([
       'name' => 'Tom Cornelissen',
       'email' => 'tom@avans.nl',
@@ -50,7 +49,6 @@ class UserSeeder extends Seeder
     ]);
     $job->assignRole('Student');
     $job->save($job->toArray());
-
 
     $martijn = new User([
       'name' => 'Martijn Ambagtsheer',
