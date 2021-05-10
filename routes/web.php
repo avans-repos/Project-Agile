@@ -43,7 +43,9 @@ Route::resource('contact', ContactController::class)
 
 Route::get('project/{projectid}/addgroup/{groupid}', [ProjectController::class, "addGroup"])->name('addgroup')->middleware(['auth']);
 Route::get('project/{projectid}/removegroup/{groupid}', [ProjectController::class, "removeGroup"])->name('removegroup')->middleware(['auth']);
+
 Route::resource('project', ProjectController::class)->middleware(['auth']);
+
 Route::resource('user', UserController::class)
   ->middleware(['auth']);
 
@@ -88,5 +90,7 @@ Route::resource('classroom', ClassRoomController::class)
   ->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
+Route::get('projectgroup/{projectgroupid}/addContact/{contactid}', [ProjectgroupController::class, "addContact"])->name('projectgroup.addContact')->middleware(['auth']);
+Route::get('projectgroup/{projectgroupid}/removeContact/{contactid}', [ProjectgroupController::class, "removeContact"])->name('projectgroup.removeContact')->middleware(['auth']);
 Route::resource('projectgroup', ProjectgroupController::class)
   ->middleware(['auth']);
