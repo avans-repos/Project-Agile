@@ -1,14 +1,12 @@
 <?php
 
 use App\Http\Controllers\ActionpointController;
-use App\Http\Controllers\ApiExampleController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactpointController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MyOwnActionController;
-use App\Http\Controllers\notificationController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProjectController;
