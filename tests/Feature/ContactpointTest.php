@@ -13,10 +13,10 @@ use Tests\TestCase;
 
 class ContactpointTest extends TestCase
 {
-    use CreatesApplication;
-    use RefreshDatabase;
+  use CreatesApplication;
+  use RefreshDatabase;
 
-    public function setUp(): void
+  public function setUp(): void
   {
     parent::setUp();
     $this->artisan('migrate:fresh --seed');
