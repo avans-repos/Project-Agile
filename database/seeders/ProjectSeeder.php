@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class ProjectSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
   public function run()
   {
     project::create([

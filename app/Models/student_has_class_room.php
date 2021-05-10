@@ -17,10 +17,11 @@ class student_has_class_room extends Model
 {
   use HasFactory;
   protected $table = 'student_has_class_rooms';
-  protected $fillable = ['student','class_room'];
+  protected $fillable = ['student', 'class_room'];
   public $timestamps = false;
 
-  public function student(){
+  public function student()
+  {
     return User::whereId($this->student)->first();
   }
 }

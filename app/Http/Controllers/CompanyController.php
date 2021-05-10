@@ -77,8 +77,12 @@ class CompanyController extends Controller
       $address2 = Address::find($company->mailing_address);
     }
 
-    $contacts = DB::select("SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = " . $company->id);
-    $newContacts = DB::select("SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != " . $company->id);
+    $contacts = DB::select(
+      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = ' . $company->id
+    );
+    $newContacts = DB::select(
+      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != ' . $company->id
+    );
 
     return view('company.show')
       ->with('company', $company)
@@ -92,7 +96,7 @@ class CompanyController extends Controller
   {
     DB::table('company_has_contacts')->insert([
       'companyid' => $companyid,
-      'contactid' => $contactid
+      'contactid' => $contactid,
     ]);
 
     return redirect()->route('company.show', [$companyid]);
@@ -100,7 +104,10 @@ class CompanyController extends Controller
 
   public function removecontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')->where('companyid', $companyid)->where('contactid', $contactid)->delete();
+    DB::table('company_has_contacts')
+      ->where('companyid', $companyid)
+      ->where('contactid', $contactid)
+      ->delete();
 
     return redirect()->route('company.show', [$companyid]);
   }

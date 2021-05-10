@@ -11,16 +11,15 @@ use Illuminate\Support\Facades\Notification;
 
 class SendNewNoteNotification
 {
-
-    /**
-     * Handle the event.
-     *
-     * @param  object  $event
-     * @return void
-     */
-    public function handle(NoteAdded $event)
-    {
-      $delay = Carbon::createFromFormat('Y-m-d',$event->notificationData['reminderdate']);
-      Notification::send($event->notificationData['user'], (new NewNoteNotification($event->notificationData))->delay($delay));
-    }
+  /**
+   * Handle the event.
+   *
+   * @param  object  $event
+   * @return void
+   */
+  public function handle(NoteAdded $event)
+  {
+    $delay = Carbon::createFromFormat('Y-m-d', $event->notificationData['reminderdate']);
+    Notification::send($event->notificationData['user'], (new NewNoteNotification($event->notificationData))->delay($delay));
+  }
 }

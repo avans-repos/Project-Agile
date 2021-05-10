@@ -16,13 +16,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ClassRoom extends Model
 {
-    use HasFactory;
+  use HasFactory;
   protected $table = 'class_rooms';
   protected $fillable = ['name', 'year', 'schoolBlock'];
   protected $dates = ['deleted_at', 'created_at'];
 
   public function students()
   {
-    return student_has_class_room::where('class_room' , '=', $this->id)->get();
+    return student_has_class_room::where('class_room', '=', $this->id)->get();
   }
 }

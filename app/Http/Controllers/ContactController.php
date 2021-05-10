@@ -58,7 +58,6 @@ class ContactController extends Controller
   {
     $request->validated();
 
-
     $addressId = self::createAddressAndReturnId($request);
 
     $contactId = Contact::create([
@@ -70,16 +69,23 @@ class ContactController extends Controller
       'email' => $request->input('email'),
       'phonenumber' => $request->input('phonenumber'),
       'type' => $request->input('type'),
-      'address' => $addressId
+      'address' => $addressId,
     ])->id;
 
-    $data= $request->all();
-    foreach(array_keys($request->all()) as $key){
-      if(starts_with($key,'company-')){
-        $id = explode('-',$key)[1];
-        if(isset($data['contacttype-' . $id])){
-          $company =  DB::table('companies')->where('name', '=', $data[$key])->get('id')->first();
-          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [$contactId,$company->id, $data['contacttype-' . $id]]);
+    $data = $request->all();
+    foreach (array_keys($request->all()) as $key) {
+      if (starts_with($key, 'company-')) {
+        $id = explode('-', $key)[1];
+        if (isset($data['contacttype-' . $id])) {
+          $company = DB::table('companies')
+            ->where('name', '=', $data[$key])
+            ->get('id')
+            ->first();
+          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
+            $contactId,
+            $company->id,
+            $data['contacttype-' . $id],
+          ]);
         }
       }
     }
@@ -95,8 +101,19 @@ class ContactController extends Controller
    */
   public function show(Contact $contact)
   {
-    $notes = DB::Table('notes')->where('contact', '=', $contact->id)->join('users', 'notes.creator', '=', 'users.id')->select( 'notes.id', 'notes.creation', 'notes.description','users.name')->orderBy('notes.creation', 'desc')->get() ?? [];
-    $contactTypes = DB::Table('contact_has_contacttypes')->where('contact', '=', $contact->id)->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')->select('contact_has_contacttypes.contacttype', 'companies.name')->get() ?? [];
+    $notes =
+      DB::Table('notes')
+        ->where('contact', '=', $contact->id)
+        ->join('users', 'notes.creator', '=', 'users.id')
+        ->select('notes.id', 'notes.creation', 'notes.description', 'users.name')
+        ->orderBy('notes.creation', 'desc')
+        ->get() ?? [];
+    $contactTypes =
+      DB::Table('contact_has_contacttypes')
+        ->where('contact', '=', $contact->id)
+        ->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')
+        ->select('contact_has_contacttypes.contacttype', 'companies.name')
+        ->get() ?? [];
     $address = Address::find($contact->address);
 
     return view('contact.show')
@@ -117,11 +134,15 @@ class ContactController extends Controller
     $genders = Gender::all();
     $contactTypes = ContactType::all();
     $companies = Company::all();
-    $contactTypesAssigned = DB::Table('contact_has_contacttypes')->where('contact', '=', $contact->id)->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')->select('contact_has_contacttypes.contacttype', 'companies.name')->get() ?? [];
+    $contactTypesAssigned =
+      DB::Table('contact_has_contacttypes')
+        ->where('contact', '=', $contact->id)
+        ->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')
+        ->select('contact_has_contacttypes.contacttype', 'companies.name')
+        ->get() ?? [];
     $address = Address::find($contact->address);
 
-    if ($address == null)
-    {
+    if ($address == null) {
       $address = new Address();
     }
 
@@ -146,13 +167,13 @@ class ContactController extends Controller
   {
     $data = $request->all();
 
-    DB::table('contact_has_contacttypes')->where('contact', $contact->id)->delete();
-
+    DB::table('contact_has_contacttypes')
+      ->where('contact', $contact->id)
+      ->delete();
 
     $request->validated();
 
     $addressId = self::createAddressAndReturnId($request);
-
 
     $contact->update([
       'initials' => $request->input('initials'),
@@ -163,17 +184,23 @@ class ContactController extends Controller
       'email' => $request->input('email'),
       'phonenumber' => $request->input('phonenumber'),
       'type' => $request->input('type'),
-      'address' => $addressId
-      ]);
+      'address' => $addressId,
+    ]);
 
-
-    $data= $request->all();
-    foreach(array_keys($request->all()) as $key){
-      if(starts_with($key,'company-')){
-        $id = explode('-',$key)[1];
-        if(isset($data['contacttype-' . $id]) &&  $data['contacttype-' . $id] != "n.v.t."){
-          $company =  DB::table('companies')->where('name', '=', $data[$key])->get('id')->first();
-          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [$contact->id,$company->id, $data['contacttype-' . $id]]);
+    $data = $request->all();
+    foreach (array_keys($request->all()) as $key) {
+      if (starts_with($key, 'company-')) {
+        $id = explode('-', $key)[1];
+        if (isset($data['contacttype-' . $id]) && $data['contacttype-' . $id] != 'n.v.t.') {
+          $company = DB::table('companies')
+            ->where('name', '=', $data[$key])
+            ->get('id')
+            ->first();
+          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
+            $contact->id,
+            $company->id,
+            $data['contacttype-' . $id],
+          ]);
         }
       }
     }
@@ -205,8 +232,13 @@ class ContactController extends Controller
     ]);
     $returnId = null;
     // check if there is usable info in the result as the info is nullable
-    if ($address->streetname != null && $address->number != null && $address->zipcode != null && $address->city != null && $address->country != null)
-    {
+    if (
+      $address->streetname != null &&
+      $address->number != null &&
+      $address->zipcode != null &&
+      $address->city != null &&
+      $address->country != null
+    ) {
       $existing = Address::where('zipcode', $address->zipcode)
         ->where('number', $address->number)
         ->where('city', $address->city)
@@ -224,8 +256,7 @@ class ContactController extends Controller
   }
 }
 
-function starts_with($haystack, $needle) {
+function starts_with($haystack, $needle)
+{
   return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
 }
-
-

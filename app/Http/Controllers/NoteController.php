@@ -18,17 +18,17 @@ class NoteController extends Controller
 {
   public function create(Contact $contact)
   {
-
     return view('note.manage')
       ->with('contact', $contact)
       ->with('action', 'store')
-      ->with('notification',null)
+      ->with('notification', null)
       ->with('note', new Note());
   }
 
-  public function insert(Contact $contact, NoteRequest $note){
-    $databaseNote = Note::create(['description' => $note->input('description'), 'creator' => Auth::user()->id, 'contact' =>  $contact->id]);
-    if($note->reminder != null && $note->reminder == 1) {
+  public function insert(Contact $contact, NoteRequest $note)
+  {
+    $databaseNote = Note::create(['description' => $note->input('description'), 'creator' => Auth::user()->id, 'contact' => $contact->id]);
+    if ($note->reminder != null && $note->reminder == 1) {
       $notificationData = [
         'reminderdate' => $note->reminderdate,
         'noteId' => $databaseNote->id,
@@ -41,14 +41,16 @@ class NoteController extends Controller
     return redirect()->route('contact.show', $contact);
   }
 
-  public function update(Note $note, NoteRequest $noteRequest){
+  public function update(Note $note, NoteRequest $noteRequest)
+  {
     $note->description = $noteRequest->input('description');
     $note->update($noteRequest->all());
 
-    DB::table('notifications')->where('data->note_id', $note->id)->delete();;
+    DB::table('notifications')
+      ->where('data->note_id', $note->id)
+      ->delete();
 
-
-    if($note->reminder != null && $note->reminder == 1) {
+    if ($note->reminder != null && $note->reminder == 1) {
       $notificationData = [
         'reminderdate' => $noteRequest->reminderdate,
         'noteId' => $note->id,
@@ -64,24 +66,26 @@ class NoteController extends Controller
     return redirect()->route('contact.show', $contact);
   }
 
-  public function edit(Note $note){
+  public function edit(Note $note)
+  {
     $contact = Contact::whereId($note->contact)->first();
-    $notification = DB::table('notifications')->where('data->note_id', $note->id)->first();
+    $notification = DB::table('notifications')
+      ->where('data->note_id', $note->id)
+      ->first();
 
-    if($notification != null) {
+    if ($notification != null) {
       $notification->data = json_decode($notification->data, true);
     }
-
-
 
     return view('note.manage')
       ->with('note', $note)
       ->with('contact', $contact)
-      ->with('notification',$notification)
+      ->with('notification', $notification)
       ->with('action', 'update');
   }
 
-  public function delete(Note $note){
+  public function delete(Note $note)
+  {
     $contact = Contact::whereId($note->contact)->first();
     $note->delete();
     return redirect()->route('contact.show', $contact);

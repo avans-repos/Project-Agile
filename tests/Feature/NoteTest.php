@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Requests\NoteRequest;
 use App\Models\contact\Contact;
 use App\Models\Note;
@@ -13,15 +12,15 @@ class NoteTest extends TestCase
 {
   use RefreshDatabase;
 
-  public function setUp() : void
+  public function setUp(): void
   {
     parent::setUp();
     $this->artisan('migrate:fresh --seed');
-    $this->rules     = (new NoteRequest())->rules();
+    $this->rules = (new NoteRequest())->rules();
     $this->validator = $this->app['validator'];
     $user = new User([
       'id' => 1,
-      'name' => 'test'
+      'name' => 'test',
     ]);
     $this->be($user);
   }
@@ -30,7 +29,7 @@ class NoteTest extends TestCase
   {
     $id = Contact::all()->first()->id;
     $this->assertAuthenticated();
-    $response = $this->get('/notes/create/' .  $id);
+    $response = $this->get('/notes/create/' . $id);
     $response->assertStatus(200);
   }
 
@@ -38,13 +37,10 @@ class NoteTest extends TestCase
   {
     $id = Contact::all()->first()->id;
     $this->assertAuthenticated();
-    $response = $this
-      ->post('/notes/insert/' . $id, [
-        'description' => ''
-      ]);
-    $response->assertStatus(302);
-    $response->assertSessionHasErrors([
-      'description'
+    $response = $this->post('/notes/insert/' . $id, [
+      'description' => '',
     ]);
+    $response->assertStatus(302);
+    $response->assertSessionHasErrors(['description']);
   }
 }
