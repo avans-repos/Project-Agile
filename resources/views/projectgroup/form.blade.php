@@ -36,19 +36,32 @@
     </div>
     <div class="mb-1">
       <label class="form-label">Selecteer studenten</label>
-
-      <div class="d-flex flex-column">
-        @foreach($students as $student)
-          <label class="radio-inline">
-            <input
+      
+      <table class="table" id="student-table">
+        <thead>
+          <tr>
+            <th>Selecteren</th>
+            <th><input type="text" id="student-search" placeholder="Naam"/></th>
+            <th><input type="text" id="class-search" placeholder="Klas"/></th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($students as $student)
+            <tr>
+              <td>
+              <input
               {{ (is_array(old("assignedUsers",$assignedUsers))) ?
-                      (in_array($student->id, old("assignedUsers", $assignedUsers))) ? 'checked' : null
+                      (in_array($student->id, old("assignedUsers",$assignedUsers))) ? 'checked' : null
                    : null
-              }} type="checkbox" name="assignedUsers[]" value="{{$student->id}}" ><span class="ms-2">{{$student->name}}</span>
-          </label>
-        @endforeach
-      </div>
-    </div>
+              }} type="checkbox" name="assignedUsers[]" value="{{$student->id}}" >
+              </td>
+              <td>{{$student->name}}</td>
+              <td>{{$student->classroom}}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+
     <div class="mb-1">
       <label class="form-label">Selecteer contactpersonen</label>
 
@@ -79,3 +92,37 @@
   </fieldset>
   <input class="btn btn-primary" type="submit" value="Projectgroep {{$formActionViewName}}">
 </form>
+
+<script>
+document.getElementById("student-search").addEventListener("keyup", search);
+document.getElementById("class-search").addEventListener("keyup", search);
+
+function search() {
+  // Declare variables
+  let inputstudent = document.getElementById("student-search");
+  let filterstudent = inputstudent.value.toUpperCase();
+
+  let inputclass = document.getElementById("class-search");
+  let filterclass = inputclass.value.toUpperCase();
+
+  let table = document.getElementById("student-table");
+  let tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    let studenttd = tr[i].getElementsByTagName("td")[1];
+    let classtd = tr[i].getElementsByTagName("td")[2];
+
+    if (studenttd && classtd) {
+      let studentvalue = studenttd.textContent || studenttd.innerText;
+      let classvalue = classtd.textContent || classtd.innerText;
+
+      if (studentvalue.toUpperCase().indexOf(filterstudent) > -1 && classvalue.toUpperCase().indexOf(filterclass) > -1) {
+        tr[i].classList.remove("d-none");
+      } else {
+        tr[i].classList.add("d-none");
+      }
+    }
+  }
+}
+</script>

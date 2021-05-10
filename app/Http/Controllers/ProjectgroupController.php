@@ -7,6 +7,8 @@ use App\Models\Address;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
+use App\Models\ClassRoom;
+use App\Models\student_has_class_room;
 use App\Models\Project;
 use App\Models\Projectgroup;
 use App\Models\User;
@@ -54,6 +56,24 @@ class ProjectgroupController extends Controller
       ->with('projectgroups', $projectgroups);
   }
 
+  private function addClassToStudent($students)
+  {
+    foreach($students as $student)
+    {
+      $student_has_class_room = student_has_class_room::where('student', $student->id)->first();
+
+      if (is_null($student_has_class_room)) 
+      {
+        $student->classroom = "Geen Klas";
+        continue;
+      }
+
+      $class = ClassRoom::where('id', $student_has_class_room->class_room)->first();
+
+      $student->classroom = $class->name;
+    }
+  }
+
   /**
    * Show the form for creating a new resource.
    *
@@ -67,6 +87,8 @@ class ProjectgroupController extends Controller
     $teachers = User::role('Teacher')->get();
     $contacts = Contact::all();
     $projects = Project::all();
+
+    $this->addClassToStudent($students);
 
     $assignedUsers = null;
     $assignedContacts = null;
@@ -221,6 +243,8 @@ class ProjectgroupController extends Controller
     $assignedContacts = array_map(function ($contact) {
       return $contact->id;
     }, json_decode($assignedContacts));
+
+    $this->addClassToStudent($students);
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
