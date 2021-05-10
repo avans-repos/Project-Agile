@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AddressSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddressSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/NotesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/NotesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -320,18 +315,6 @@
       <workItem from="1619342167785" duration="4727000" />
       <workItem from="1619642384441" duration="3603000" />
       <workItem from="1618910092440" duration="478000" />
-      <workItem from="1619427363874" duration="3861000" />
-      <workItem from="1619509112521" duration="4569000" />
-      <workItem from="1619609833824" duration="7405000" />
-      <workItem from="1619855942620" duration="1045000" />
-      <workItem from="1619870222224" duration="1030000" />
-      <workItem from="1619945679974" duration="94000" />
-      <workItem from="1619945832106" duration="2903000" />
-      <workItem from="1620120281740" duration="247000" />
-      <workItem from="1620120554725" duration="594000" />
-      <workItem from="1620201476921" duration="598000" />
-      <workItem from="1620467911225" duration="3690000" />
-      <workItem from="1620585934750" duration="230000" />
     </task>
     <servers />
   </component>

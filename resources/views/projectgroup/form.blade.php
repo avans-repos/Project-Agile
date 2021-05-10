@@ -26,10 +26,10 @@
         @foreach($teachers as $teacher)
           <label class="radio-inline">
             <input
-              {{ (is_array(old("assigned",$assigned))) ?
-                      (in_array($teacher->id, old("assigned", $assigned))) ? 'checked' : null
+              {{ (is_array(old("assignedUsers",$assignedUsers))) ?
+                      (in_array($teacher->id, old("assignedUsers", $assignedUsers))) ? 'checked' : null
                    : null
-              }} type="checkbox" name="assigned[]" value="{{$teacher->id}}" ><span class="ms-2">{{$teacher->name}}</span>
+              }} type="checkbox" name="assignedUsers[]" value="{{$teacher->id}}" ><span class="ms-2">{{$teacher->name}}</span>
           </label>
         @endforeach
       </div>
@@ -47,7 +47,6 @@
         </thead>
         <tbody>
           @foreach($students as $student)
-
             <tr>
               <td>
               <input
@@ -63,6 +62,20 @@
         </tbody>
       </table>
 
+    <div class="mb-1">
+      <label class="form-label">Selecteer contactpersonen</label>
+
+      <div class="d-flex flex-column">
+        @foreach($contacts as $contact)
+          <label class="radio-inline">
+            <input
+              {{ (is_array(old("assignedContacts",$assignedContacts))) ?
+                      (in_array($contact->id, old("assignedContacts", $assignedContacts))) ? 'checked' : null
+                   : null
+              }} type="checkbox" name="assignedContacts[]" value="{{$contact->id}}" ><span class="ms-2">{{$contact->firstname}} {{$contact->insertion}} {{$contact->lastname}}</span>
+          </label>
+        @endforeach
+      </div>
     </div>
     <div class="mb-1">
       <label class="form-label">Selecteer project</label>

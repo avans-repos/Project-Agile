@@ -923,6 +923,7 @@
         },
         {
             "name": "laravel/framework",
+
             "version": "v8.40.0",
             "source": {
                 "type": "git",
@@ -1087,6 +1088,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+
             "time": "2021-04-28T14:38:56+00:00"
         },
         {
