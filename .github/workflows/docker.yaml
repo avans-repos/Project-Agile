@@ -50,6 +50,6 @@ jobs:
           context: .
           # Don't push draft pull requests
           push: ${{ github.event.pull_request.draft == false }}
-          tags: ghcr.io/${{ github.repository_owner }}/project-agile:${{ env.BRANCH_NAME }}
+          tags: ghcr.io/lordchunk/project-agile:${{ env.BRANCH_NAME }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
