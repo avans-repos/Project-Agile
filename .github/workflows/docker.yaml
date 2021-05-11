@@ -8,6 +8,7 @@ jobs:
     name: Docker Build and Push
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       ## START SET CORRECT DOCKER TAG
       - name: Get branch name (merge)
         if: github.event_name != 'pull_request'
