@@ -48,6 +48,6 @@ jobs:
         with:
           # Don't push draft pull requests
           push: ${{ github.event.pull_request.draft == false }}
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/project-agile:${{ env.BRANCH_NAME }}
+          tags: lordchunk/project-agile:${{ env.BRANCH_NAME }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
