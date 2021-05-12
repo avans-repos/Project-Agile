@@ -49,7 +49,7 @@ jobs:
         with:
           context: .
           # Don't push draft pull requests
-          push: ${{ github.event.pull_request.draft == false }}
+          push: ${{ github.event.pull_request.draft == false && (env.BRANCH_NAME == 'development' || env.BRANCH_NAME == 'master') }}
           tags: ghcr.io/lordchunk/project-agile:${{ env.BRANCH_NAME }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
