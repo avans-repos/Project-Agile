@@ -11,20 +11,17 @@ class CreateProjectGroupHasUsers extends Migration
    *
    * @return void
    */
+  // These cascade on delete constraints don't actually do anything because soft deletes are enabled on project groups
   public function up()
   {
     Schema::create('project_group_user', function (Blueprint $table) {
-      $table->unsignedBigInteger('user_id');
-      $table->unsignedBigInteger('project_group_id');
+      $table->foreignId('user_id')
+        ->constrained()
+        ->onDelete('cascade');
+      $table->foreignId('project_group_id')
+        ->constrained()
+        ->onDelete('cascade');
       $table->primary(['user_id', 'project_group_id']);
-//      $table->foreign('project_group_id')
-//        ->references('id')
-//        ->on('projectgroups')
-//        ->onDelete('cascade');
-//      $table->foreign('user_id')
-//        ->references('id')
-//        ->on('users')
-//        ->onDelete('cascade');
     });
   }
 

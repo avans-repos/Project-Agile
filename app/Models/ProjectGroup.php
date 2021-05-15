@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\contact\Contact;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,7 +12,6 @@ class ProjectGroup extends Model
 {
   use HasFactory;
   use SoftDeletes;
-  protected $table = 'projectgroups';
   protected $primaryKey = 'id';
   protected $fillable = ['name', 'project'];
   protected $dates = ['deleted_at'];
@@ -19,5 +19,10 @@ class ProjectGroup extends Model
   public function users(): BelongsToMany
   {
     return $this->belongsToMany(User::class);
+  }
+
+  public function contacts(): BelongsToMany
+  {
+    $this->belongsToMany(Contact::class);
   }
 }

@@ -154,7 +154,7 @@ class ProjectGroupController extends Controller
 
   public function show(Projectgroup $projectgroup)
   {
-    $assignedUsers = $projectgroup->users()->get();
+    $assignedUsers = $projectgroup->users()->get()->pluck('id');
 
     $students = User::role('Student')
       ->whereIn('id', $assignedUsers)
@@ -164,9 +164,8 @@ class ProjectGroupController extends Controller
       ->whereIn('id', $assignedUsers)
       ->get();
 
-    $project = DB::table('projects')
+    $project = Project::all()
       ->where('id', '=', $projectgroup->id)
-      ->get()
       ->first();
 
     $assignedContacts = DB::table('projectgroup_has_contacts')

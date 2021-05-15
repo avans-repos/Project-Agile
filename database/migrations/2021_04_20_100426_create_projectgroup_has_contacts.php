@@ -17,14 +17,6 @@ class CreateProjectgroupHasContacts extends Migration
             $table->unsignedBigInteger('contactid');
             $table->unsignedBigInteger('projectgroupid');
             $table->primary(['contactid', 'projectgroupid']);
-            $table->foreign('contactid')
-              ->references('id')
-              ->on('contacts')
-              ->onDelete('cascade');
-          $table->foreign('projectgroupid')
-            ->references('id')
-            ->on('projectgroups')
-            ->onDelete('cascade');
         });
     }
 
