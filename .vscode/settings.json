@@ -1,0 +1,11 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "database": "${workspaceFolder:Project-Agile}/database/database.sqlite",
+      "name": "default"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
