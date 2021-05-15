@@ -16,41 +16,28 @@ class ProjectgroupSeeder extends Seeder
    */
   public function run()
   {
-    ProjectGroup::create([
+    $group = ProjectGroup::create([
       'name' => 'IN01 - Groep A1',
       'project' => 1,
     ]);
 
-    ProjectGroup::create([
+    $group->users()->sync([
+      User::role('Student')->get()[0]->id,
+      User::role('Student')->get()[1]->id,
+      User::role('Student')->get()[2]->id,
+      User::role('Teacher')->get()[0]->id,
+    ]);
+
+
+    $group2 = ProjectGroup::create([
       'name' => 'IN01 - Groep B2',
       'project' => 2,
     ]);
 
-    DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('Student')
-        ->get()
-        ->first()->id,
-      'projectgroupid' => 1,
-    ]);
-
-    DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('Student')->get()[1]->id,
-      'projectgroupid' => 1,
-    ]);
-
-    DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('Student')->get()[2]->id,
-      'projectgroupid' => 1,
-    ]);
-
-    DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('Student')->get()[2]->id,
-      'projectgroupid' => 2,
-    ]);
-
-    DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('Student')->get()[0]->id,
-      'projectgroupid' => 2,
+    $group2->users()->sync([
+      User::role('Student')->get()[0]->id,
+      User::role('Student')->get()[2]->id,
+      User::role('Teacher')->get()[1]->id,
     ]);
   }
 }

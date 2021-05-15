@@ -7,7 +7,7 @@ use App\Models\Address;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
-use App\Models\ClassRoom;
+use App\Models\StudentClass;
 use App\Models\student_has_class_room;
 use App\Models\Project;
 use App\Models\Projectgroup;
@@ -31,10 +31,10 @@ class ProjectGroupController extends Controller
     $projectgroups = [];
 
     foreach (ProjectGroup::all() as $projectgroup) {
-      $assigned_to_group = DB::table('projectgroup_has_users')
-        ->select('userid')
-        ->where('projectgroupid', $projectgroup->id)
-        ->pluck('userid');
+      $assigned_to_group = DB::table('project_group_user')
+        ->select('user_id')
+        ->where('project_group_id', $projectgroup->id)
+        ->pluck('user_id');
 
       $teachers = User::whereIn('id', $assigned_to_group)
         ->whereHas('roles', function ($q) {
@@ -76,7 +76,7 @@ class ProjectGroupController extends Controller
         continue;
       }
 
-      $class = ClassRoom::where('id', $student_has_class_room->class_room)->first();
+      $class = StudentClass::where('id', $student_has_class_room->class_room)->first();
 
       $student->classroom = $class->name;
     }
@@ -122,23 +122,20 @@ class ProjectGroupController extends Controller
   {
     $request->validated();
 
-    $group = new Projectgroup();
-    $group->name = $request->name;
+    $projectGroup = new Projectgroup();
+    $projectGroup->name = $request->name;
 
     if ($request->project != -1) {
-      $group->project = $request->project;
+      $projectGroup->project = $request->project;
     }
 
-    $group->save();
-    $id = $group->id;
+    $projectGroup->save();
+    $id = $projectGroup->id;
 
     // fill in all the users (students and teachers)
     if (isset($request->assignedUsers)) {
       foreach ($request->assignedUsers as $assignedUser) {
-        DB::table('projectgroup_has_users')->insert([
-          'userid' => $assignedUser,
-          'projectgroupid' => $id,
-        ]);
+        $projectGroup->users()->attach($assignedUser);
       }
     }
 
@@ -152,18 +149,18 @@ class ProjectGroupController extends Controller
       }
     }
 
-    return redirect()->route('projectgroup.index');
+    return redirect()->route('projectGroup.index');
   }
 
   public function show(Projectgroup $projectgroup)
   {
-    $assignedUsers = $projectgroup->users();
+    $assignedUsers = $projectgroup->users()->get();
 
-    $students = User::role('student')
+    $students = User::role('Student')
       ->whereIn('id', $assignedUsers)
       ->get();
 
-    $teachers = User::role('teacher')
+    $teachers = User::role('Teacher')
       ->whereIn('id', $assignedUsers)
       ->get();
 
@@ -227,9 +224,9 @@ class ProjectGroupController extends Controller
     $projects = Project::all();
 
     $assignedUsers =
-      DB::table('projectgroup_has_users')
+      DB::table('project_group_users')
         ->where('projectgroupid', '=', $projectgroup->id)
-        ->join('users', 'projectgroup_has_users.userid', '=', 'users.id')
+        ->join('users', 'project_group_users.userid', '=', 'users.id')
         ->get('users.id') ?? [];
 
     $assignedUsers = array_map(function ($teacher) {

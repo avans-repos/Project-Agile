@@ -13,18 +13,18 @@ class CreateProjectGroupHasUsers extends Migration
    */
   public function up()
   {
-    Schema::create('projectgroup_has_users', function (Blueprint $table) {
-      $table->unsignedBigInteger('userid');
-      $table->unsignedBigInteger('projectgroupid');
-      $table->primary(['userid', 'projectgroupid']);
-      $table->foreign('projectgroupid')
-        ->references('id')
-        ->on('projectgroups')
-        ->onDelete('cascade');
-      $table->foreign('userid')
-        ->references('id')
-        ->on('users')
-        ->onDelete('cascade');
+    Schema::create('project_group_user', function (Blueprint $table) {
+      $table->unsignedBigInteger('user_id');
+      $table->unsignedBigInteger('project_group_id');
+      $table->primary(['user_id', 'project_group_id']);
+//      $table->foreign('project_group_id')
+//        ->references('id')
+//        ->on('projectgroups')
+//        ->onDelete('cascade');
+//      $table->foreign('user_id')
+//        ->references('id')
+//        ->on('users')
+//        ->onDelete('cascade');
     });
   }
 
@@ -35,6 +35,6 @@ class CreateProjectGroupHasUsers extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('projectgroup_has_users');
+    Schema::dropIfExists('project_group_user');
   }
 }

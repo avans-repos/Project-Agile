@@ -5,6 +5,8 @@ namespace App\Models;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 /**
  * App\Models\ClassRoom
  *
@@ -15,15 +17,15 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin Eloquent
  * @method static create(array $all)
  */
-class ClassRoom extends Model
+class StudentClass extends Model
 {
   use HasFactory;
   protected $table = 'class_rooms';
   protected $fillable = ['name', 'year', 'schoolBlock'];
   protected $dates = ['deleted_at', 'created_at'];
 
-  public function students()
+  public function students(): BelongsToMany
   {
-    return student_has_class_room::where('class_room', '=', $this->id)->get();
+    return $this->belongsToMany(User::class);
   }
 }

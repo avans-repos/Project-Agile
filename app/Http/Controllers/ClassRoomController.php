@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClassRoomRequest;
-use App\Models\ClassRoom;
+use App\Models\StudentClass;
 use App\Models\student_has_class_room;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -13,14 +13,14 @@ class ClassRoomController extends Controller
 {
   public function index()
   {
-    $classrooms = ClassRoom::all();
+    $classrooms = StudentClass::all();
 
     return view('classroom.index')->with('classrooms', $classrooms);
   }
 
   public function create()
   {
-    $classroom = new ClassRoom();
+    $classroom = new StudentClass();
     $students = User::role('Student')->get();
     $addedStudents = [];
     return view('classroom.manage')
@@ -30,7 +30,7 @@ class ClassRoomController extends Controller
       ->with('action', 'store');
   }
 
-  public function edit(ClassRoom $classroom)
+  public function edit(StudentClass $classroom)
   {
     $students = User::role('Student')->get();
     $addedStudents = student_has_class_room::where('class_room', '=', $classroom->id)->get();
@@ -41,7 +41,7 @@ class ClassRoomController extends Controller
       ->with('action', 'update');
   }
 
-  public function update(ClassRoom $classroom, ClassRoomRequest $request)
+  public function update(StudentClass $classroom, ClassRoomRequest $request)
   {
     $request->validated();
     $classroom->update($request->all());
@@ -67,7 +67,7 @@ class ClassRoomController extends Controller
   public function store(ClassRoomRequest $request)
   {
     $request->validated();
-    $classroomId = ClassRoom::create($request->all())->id;
+    $classroomId = StudentClass::create($request->all())->id;
     $newStudents = $request->all()['student'] ?? [];
     foreach ($newStudents as $student) {
       if (
@@ -84,7 +84,7 @@ class ClassRoomController extends Controller
     return redirect(route('classroom.index'));
   }
 
-  public function destroy(ClassRoom $classroom)
+  public function destroy(StudentClass $classroom)
   {
     student_has_class_room::where('class_room', '=', $classroom->id)->delete();
     $classroom->delete();

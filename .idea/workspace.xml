@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectgroupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_180736_create_projectgroup_has_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_180736_create_projectGroup_has_users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StudentClass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Projectgroup.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_180736_create_projectGroup_has_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_180736_create_projectGroup_has_users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
