@@ -17,13 +17,13 @@ class StudentHasClassRoomSeeder extends Seeder
   public function run()
   {
     student_has_class_room::create([
-      'student' => User::role('student')
+      'student' => User::role('Student')
         ->get()
         ->first()->id,
       'class_room' => 1,
     ]);
     student_has_class_room::create([
-      'student' => User::role('student')->get()[1]->id,
+      'student' => User::role('Student')->get()[1]->id,
       'class_room' => 1,
     ]);
   }
