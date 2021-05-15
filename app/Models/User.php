@@ -78,4 +78,5 @@ class User extends Authenticatable
   public function classrooms(): BelongsToMany
   {
     return $this->belongsToMany(StudentClass::class);
-  }}
+  }
+}

@@ -213,7 +213,7 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.Dockerfile">
+  <component name="RunManager" selected="npm.format">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
@@ -268,10 +268,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.format" />
         <item itemvalue="npm.watch" />
         <item itemvalue="npm.production" />
         <item itemvalue="npm.format:check" />
-        <item itemvalue="npm.format" />
         <item itemvalue="Docker.Dockerfile" />
       </list>
     </recent_temporary>

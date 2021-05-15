@@ -154,7 +154,10 @@ class ProjectGroupController extends Controller
 
   public function show(Projectgroup $projectgroup)
   {
-    $assignedUsers = $projectgroup->users()->get()->pluck('id');
+    $assignedUsers = $projectgroup
+      ->users()
+      ->get()
+      ->pluck('id');
 
     $students = User::role('Student')
       ->whereIn('id', $assignedUsers)
