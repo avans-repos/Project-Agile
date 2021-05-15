@@ -23,6 +23,6 @@ class ProjectGroup extends Model
 
   public function contacts(): BelongsToMany
   {
-    $this->belongsToMany(Contact::class);
+    return $this->belongsToMany(Contact::class);
   }
 }

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\contact\Contact;
 use App\Models\ProjectGroup;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ProjectgroupSeeder extends Seeder
 {
@@ -28,6 +28,10 @@ class ProjectgroupSeeder extends Seeder
       User::role('Teacher')->get()[0]->id,
     ]);
 
+    $group->contacts()->sync(
+      Contact::all()->get('id'),
+    );
+
 
     $group2 = ProjectGroup::create([
       'name' => 'IN01 - Groep B2',
@@ -39,5 +43,9 @@ class ProjectgroupSeeder extends Seeder
       User::role('Student')->get()[2]->id,
       User::role('Teacher')->get()[1]->id,
     ]);
+
+    $group->contacts()->sync(
+      Contact::all()->first()->id
+    );
   }
 }

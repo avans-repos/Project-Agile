@@ -168,17 +168,11 @@ class ProjectGroupController extends Controller
       ->where('id', '=', $projectgroup->id)
       ->first();
 
-    $assignedContacts = DB::table('projectgroup_has_contacts')
-      ->where('projectgroupid', '=', $projectgroup->id)
-      ->join('contacts', 'projectgroup_has_contacts.contactid', '=', 'contacts.id')
-      ->get('contacts.id')
-      ->pluck('id');
-
-    $contacts = Contact::all()->whereIn('id', $assignedContacts);
+    $contacts = $projectgroup->contacts()->get();
 
     $contacts = self::matchAdressWithContacts($contacts);
 
-    $newContacts = Contact::all()->wherenotin('id', $assignedContacts);
+    $newContacts = Contact::all()->wherenotin('id', $contacts->pluck('id'));
 
     return view('projectgroup.show')
       ->with('projectgroup', $projectgroup)
@@ -223,9 +217,9 @@ class ProjectGroupController extends Controller
     $projects = Project::all();
 
     $assignedUsers =
-      DB::table('project_group_users')
-        ->where('projectgroupid', '=', $projectgroup->id)
-        ->join('users', 'project_group_users.userid', '=', 'users.id')
+      DB::table('project_group_user')
+        ->where('project_group_id', '=', $projectgroup->id)
+        ->join('users', 'project_group_user.userid', '=', 'users.id')
         ->get('users.id') ?? [];
 
     $assignedUsers = array_map(function ($teacher) {

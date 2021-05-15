@@ -17,10 +17,10 @@ class CreateProjectGroupHasUsers extends Migration
     Schema::create('project_group_user', function (Blueprint $table) {
       $table->foreignId('user_id')
         ->constrained()
-        ->onDelete('cascade');
+        ->cascadeOnDelete();
       $table->foreignId('project_group_id')
         ->constrained()
-        ->onDelete('cascade');
+        ->cascadeOnDelete();
       $table->primary(['user_id', 'project_group_id']);
     });
   }
