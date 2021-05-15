@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
-class ProjectgroupController extends Controller
+class ProjectGroupController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -30,7 +30,7 @@ class ProjectgroupController extends Controller
   {
     $projectgroups = [];
 
-    foreach (Projectgroup::all() as $projectgroup) {
+    foreach (ProjectGroup::all() as $projectgroup) {
       $assigned_to_group = DB::table('projectgroup_has_users')
         ->select('userid')
         ->where('projectgroupid', $projectgroup->id)
