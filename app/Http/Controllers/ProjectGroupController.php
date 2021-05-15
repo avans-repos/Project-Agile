@@ -134,22 +134,15 @@ class ProjectGroupController extends Controller
 
     // fill in all the users (students and teachers)
     if (isset($request->assignedUsers)) {
-      foreach ($request->assignedUsers as $assignedUser) {
-        $projectGroup->users()->attach($assignedUser);
-      }
+      $projectGroup->users()->sync($request->assignedUsers);
     }
 
     // fill in all the contactpersons
     if (isset($request->assignedContacts)) {
-      foreach ($request->assignedContacts as $assignedContact) {
-        DB::table('projectgroup_has_contacts')->insert([
-          'contactid' => $assignedContact,
-          'projectgroupid' => $id,
-        ]);
-      }
+      $projectGroup->contacts()->sync($request->assignedContacts);
     }
 
-    return redirect()->route('projectGroup.index');
+    return redirect()->route('projectgroup.index');
   }
 
   public function show(Projectgroup $projectgroup)
@@ -168,7 +161,7 @@ class ProjectGroupController extends Controller
       ->get();
 
     $project = Project::all()
-      ->where('id', '=', $projectgroup->id)
+      ->where('id', '=', $projectgroup->project)
       ->first();
 
     $contacts = $projectgroup->contacts()->get();

@@ -7,10 +7,6 @@
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProjectGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProjectGroup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_180736_create_projectGroup_has_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_180736_create_projectGroup_has_users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_20_100426_create_projectgroup_has_contacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_20_100426_create_projectGroup_has_contacts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectgroupSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
