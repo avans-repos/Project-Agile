@@ -168,20 +168,16 @@ class ProjectGroupController extends Controller
 
   public function addcontact($projectgroupid, $contactid)
   {
-    DB::table('projectgroup_has_contacts')->insert([
-      'projectgroupid' => $projectgroupid,
-      'contactid' => $contactid,
-    ]);
+    $projectGroup = Projectgroup::all()->where('id', '=', $projectgroupid)->first();
+    $projectGroup->contacts()->attach($contactid);
 
     return redirect()->route('projectgroup.show', [$projectgroupid]);
   }
 
   public function removecontact($projectgroupid, $contactid)
   {
-    DB::table('projectgroup_has_contacts')
-      ->where('projectgroupid', '=', $projectgroupid)
-      ->where('contactid', '=', $contactid)
-      ->delete();
+    $projectGroup = Projectgroup::all()->where('id', '=', $projectgroupid)->first();
+    $projectGroup->contacts()->detach($contactid);
 
     return redirect()->route('projectgroup.show', [$projectgroupid]);
   }
