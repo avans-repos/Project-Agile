@@ -31,22 +31,9 @@ class ProjectGroupController extends Controller
     $projectgroups = [];
 
     foreach (ProjectGroup::all() as $projectgroup) {
-      $assigned_to_group = DB::table('project_group_user')
-        ->select('user_id')
-        ->where('project_group_id', $projectgroup->id)
-        ->pluck('user_id');
+      $teachers = $projectgroup->users()->role('Teacher')->get();
 
-      $teachers = User::whereIn('id', $assigned_to_group)
-        ->whereHas('roles', function ($q) {
-          $q->where('name', 'teacher');
-        })
-        ->get();
-
-      $students = User::whereIn('id', $assigned_to_group)
-        ->whereHas('roles', function ($q) {
-          $q->where('name', 'student');
-        })
-        ->get();
+      $students =  $projectgroup->users()->role('Student')->get();
 
       $project = Project::find($projectgroup->project);
 
