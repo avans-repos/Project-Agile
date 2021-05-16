@@ -27,29 +27,29 @@ class ProjectgroupSeeder extends Seeder
     ]);
 
     DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('student')
+      'userid' => User::role('Student')
         ->get()
         ->first()->id,
       'projectgroupid' => 1,
     ]);
 
     DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('student')->get()[1]->id,
+      'userid' => User::role('Student')->get()[1]->id,
       'projectgroupid' => 1,
     ]);
 
     DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('student')->get()[2]->id,
+      'userid' => User::role('Student')->get()[2]->id,
       'projectgroupid' => 1,
     ]);
 
     DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('student')->get()[2]->id,
+      'userid' => User::role('Student')->get()[2]->id,
       'projectgroupid' => 2,
     ]);
 
     DB::table('projectgroup_has_users')->insert([
-      'userid' => User::role('student')->get()[0]->id,
+      'userid' => User::role('Student')->get()[0]->id,
       'projectgroupid' => 2,
     ]);
   }
