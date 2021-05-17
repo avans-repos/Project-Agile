@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/StudentClass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StudentClass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/student_has_class_room.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_26_091217_create_class_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_26_091217_create_class_rooms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_26_092143_create_student_has_class_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_26_092143_create_student_has_class_rooms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/StudentHasClassRoomSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/StudentHasClassRoomSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,10 +271,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.format" />
         <item itemvalue="npm.watch" />
         <item itemvalue="npm.production" />
         <item itemvalue="npm.format:check" />
+        <item itemvalue="npm.format" />
         <item itemvalue="Docker.Dockerfile" />
       </list>
     </recent_temporary>
@@ -330,6 +338,8 @@
       <workItem from="1621084736852" duration="128000" />
       <workItem from="1621085052229" duration="796000" />
       <workItem from="1621189064851" duration="3571000" />
+      <workItem from="1621255959480" duration="1076000" />
+      <workItem from="1621266575368" duration="926000" />
     </task>
     <servers />
   </component>

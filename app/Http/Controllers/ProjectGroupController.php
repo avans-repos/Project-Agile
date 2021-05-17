@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProjectgroupRequest;
 use App\Models\Address;
 use App\Models\contact\Contact;
-use App\Models\contact\ContactType;
-use App\Models\contact\Gender;
 use App\Models\StudentClass;
-use App\Models\student_has_class_room;
 use App\Models\Project;
 use App\Models\Projectgroup;
 use App\Models\User;
@@ -55,16 +52,9 @@ class ProjectGroupController extends Controller
   private function addClassToStudent($students)
   {
     foreach ($students as $student) {
-      $student_has_class_room = student_has_class_room::where('student', $student->id)->first();
+      $className = $student->classrooms()->first()->name ?? 'Geen Klas';
 
-      if (is_null($student_has_class_room)) {
-        $student->classroom = 'Geen Klas';
-        continue;
-      }
-
-      $class = StudentClass::where('id', $student_has_class_room->class_room)->first();
-
-      $student->classroom = $class->name;
+      $student->classroom = $className;
     }
   }
 
@@ -116,7 +106,6 @@ class ProjectGroupController extends Controller
     }
 
     $projectGroup->save();
-    $id = $projectGroup->id;
 
     // fill in all the users (students and teachers)
     if (isset($request->assignedUsers)) {

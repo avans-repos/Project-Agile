@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class StudentClass extends Model
 {
   use HasFactory;
-  protected $table = 'class_rooms';
   protected $fillable = ['name', 'year', 'schoolBlock'];
   protected $dates = ['deleted_at', 'created_at'];
 

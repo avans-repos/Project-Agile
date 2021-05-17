@@ -36,7 +36,7 @@
     </div>
     <div class="mb-1">
       <label class="form-label">Selecteer studenten</label>
-      
+
       <table class="table" id="student-table">
         <thead>
           <tr>
