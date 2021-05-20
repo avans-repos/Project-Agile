@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MailFormatRequest;
 use App\Models\Mail_format;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class MailFormatController extends Controller
      */
     public function index()
     {
-        //
+      $mailFormats = Mail_format::all();
+        return view('mailformat.index')
+          ->with('mailFormats',$mailFormats);
     }
 
     /**
@@ -24,7 +27,10 @@ class MailFormatController extends Controller
      */
     public function create()
     {
-        //
+      $mailformat = new Mail_format();
+      return view('mailformat.manage')
+        ->with('mailformat',$mailformat)
+        ->with('action', 'store');
     }
 
     /**
@@ -33,20 +39,12 @@ class MailFormatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MailFormatRequest $request)
     {
-        //
-    }
+        $request->validated();
+        Mail_format::create($request->all());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Mail_format  $mail_format
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Mail_format $mail_format)
-    {
-        //
+        return redirect()->route('mailformat.index');
     }
 
     /**
@@ -55,9 +53,11 @@ class MailFormatController extends Controller
      * @param  \App\Models\Mail_format  $mail_format
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mail_format $mail_format)
+    public function edit(Mail_format $mailformat)
     {
-        //
+      return view('mailformat.manage')
+        ->with('mailformat', $mailformat)
+        ->with('action', 'update');
     }
 
     /**
@@ -67,9 +67,11 @@ class MailFormatController extends Controller
      * @param  \App\Models\Mail_format  $mail_format
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mail_format $mail_format)
+    public function update(MailFormatRequest $request, Mail_format $mailformat)
     {
-        //
+        $request->validated();
+        $mailformat->update($request->all());
+        return redirect()->route('mailformat.index');
     }
 
     /**
@@ -78,8 +80,9 @@ class MailFormatController extends Controller
      * @param  \App\Models\Mail_format  $mail_format
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mail_format $mail_format)
+    public function destroy(Mail_format $mailformat)
     {
-        //
+        $mailformat->delete();
+        return redirect()->route('mailformat.index');
     }
 }

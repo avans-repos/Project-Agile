@@ -11,13 +11,13 @@
       $actionViewName = 'aanpassen';
     }
     ?>
-@section('title','Contactpersoon '.$actionViewName)
+@section('title','Standaardtekst '.$actionViewName)
     <div class="container mb-5">
         <div class="w-auto mt-3">
-            <a class="btn btn-primary" href="{{route('contact.index')}}">Terug naar overzicht</a>
+            <a class="btn btn-primary" href="{{route('mailformat.index')}}">Terug naar overzicht</a>
         </div>
         <div class="d-flex justify-content-between">
-            <h1 class="fs-1">Contactpersoon {{$actionViewName}}</h1>
+            <h1 class="fs-1">Standaardtekst {{$actionViewName}}</h1>
         </div>
         @if($errors->any())
             <div class="alert alert-danger">
@@ -30,7 +30,7 @@
             </div>
         @endif
         <div id="create-contact-form-container" class="col-md-6">
-            @include('contact.form',array('formAction'=>$action,'formActionViewName'=>$actionViewName))
+            @include('mailformat.form',array('formAction'=>$action,'formActionViewName'=>$actionViewName))
         </div>
     </div>
 @endsection
