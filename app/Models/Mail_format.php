@@ -8,16 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mail_format extends Model
 {
-    use HasFactory;
-    protected $table = 'mail_formats';
-    protected $fillable = ['name', 'body'];
+  use HasFactory;
+  protected $table = 'mail_formats';
+  protected $fillable = ['name', 'body'];
 
-    public function getReplacedText(Array $information) {
-      $text = $this->body;
-      foreach($information as $key=>$value) {
-        $replace = '{'.$key.'}';
-        $text = str_replace($replace,$value,$text);
-      }
-      return $text;
+  public function getReplacedText(array $information)
+  {
+    $text = $this->body;
+    foreach ($information as $key => $value) {
+      $replace = '{' . $key . '}';
+      $text = str_replace($replace, $value, $text);
     }
+    return $text;
+  }
 }
