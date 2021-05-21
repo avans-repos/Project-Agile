@@ -83,29 +83,26 @@ class CompanyController extends Controller
     );
 
     $newContacts = DB::table('company_has_contacts')
-    ->rightJoin('contacts', 'contactid', '=', 'contacts.id')
-    ->where('companyid', '!=', $company->id)
-    ->orWhereNull('companyid')
-    ->get();
+      ->rightJoin('contacts', 'contactid', '=', 'contacts.id')
+      ->where('companyid', '!=', $company->id)
+      ->orWhereNull('companyid')
+      ->get();
 
-    foreach($newContacts as $contactKey => $newContact)
-    {
-      $newContact->company = array();
+    foreach ($newContacts as $contactKey => $newContact) {
+      $newContact->company = [];
 
       $contactCompanies = DB::table('companies')
         ->leftJoin('company_has_contacts', 'companies.id', '=', 'companyid')
         ->where('contactid', '=', $newContact->id)
         ->get();
 
-        foreach($contactCompanies as $contactCompany)
-        {
-          if ($contactCompany->id == $company->id)
-          {
-            unset($newContacts[$contactKey]);
-          }
-
-          $newContact->company[] = $contactCompany->name;
+      foreach ($contactCompanies as $contactCompany) {
+        if ($contactCompany->id == $company->id) {
+          unset($newContacts[$contactKey]);
         }
+
+        $newContact->company[] = $contactCompany->name;
+      }
     }
 
     return view('company.show')
