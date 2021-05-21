@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MailFormatRequest;
+use App\Models\contact\Contact;
 use App\Models\Mail_format;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MailFormatController extends Controller

@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
     $this->call(CompanyHasContactsSeeder::class);
     $this->call(ClassRoomSeeder::class);
     $this->call(StudentHasClassRoomSeeder::class);
+    $this->call(MailFormatSeeder::class);
   }
 }

@@ -4,6 +4,9 @@
 
 @section('content')
     <?php
+
+      $tags = ['voornaam' => 'De voornaam van het contact.','achternaam' => 'De achternaam van het contact.','datum' => 'De huidige datum.'];
+
     $actionViewName = '';
     if ($action == 'store') {
       $actionViewName = 'toevoegen';
