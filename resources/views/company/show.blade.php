@@ -181,9 +181,10 @@
 
       <table class="table mt-4 d-none" id="add-contact-table">
         <tr>
-          <th>Naam</th>
+          <th><input type="text" id="search-1" placeholder="Naam"/></th>
           <th>E-mail</th>
           <th>Telefoonnummer</th>
+          <th><input type="text" id="search-2" placeholder="Bedrijf"/></th>
           <th></th>
         </tr>
       @foreach($newContacts as $contact)
@@ -198,6 +199,16 @@
 
         <td>
           {{ $contact->phonenumber }}
+        </td>
+
+        <td>
+          @empty($contact->company)
+            Geen Bedrijf
+          @else
+            @foreach($contact->company as $contactcompany)
+              {{$contactcompany}},
+            @endforeach
+          @endempty
         </td>
 
         <td>
@@ -223,5 +234,11 @@
         table.classList.add("d-none");
       }
     }
+  </script>
+
+  <script src="{{ asset('js/search.js')}}"></script>
+  <script>
+  document.getElementById("search-1").addEventListener("keyup", search);
+  document.getElementById("search-2").addEventListener("keyup", search);
   </script>
 @endsection

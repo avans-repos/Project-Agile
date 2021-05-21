@@ -186,7 +186,22 @@ class ProjectgroupController extends Controller
 
     $contacts = self::matchAdressWithContacts($contacts);
 
-    $newContacts = Contact::all()->wherenotin('id', $assignedContacts);
+    $newContacts = DB::table('contacts')->wherenotin('id', $assignedContacts)->get();
+
+    foreach($newContacts as $newContact)
+    {
+      $newContact->company = array();
+
+      $contactCompanies = DB::table('companies')
+        ->leftJoin('company_has_contacts', 'companies.id', '=', 'companyid')
+        ->where('contactid', '=', $newContact->id)
+        ->get();
+
+        foreach($contactCompanies as $contactCompany)
+        {
+          $newContact->company[] = $contactCompany->name;
+        }
+    }
 
     return view('projectgroup.show')
       ->with('projectgroup', $projectgroup)
