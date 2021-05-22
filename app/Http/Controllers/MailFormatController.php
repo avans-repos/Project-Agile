@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MailFormatRequest;
+use App\Mail\TestEmail;
 use App\Models\contact\Contact;
 use App\Models\Mail_format;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MailFormatController extends Controller
 {
@@ -17,6 +21,12 @@ class MailFormatController extends Controller
    */
   public function index()
   {
+    $mail = Mail_format::all()->first();
+    $body = $mail->getReplacedText(['voornaam' => 'Jaap', 'achternaam' => 'Rodenburg']);
+    $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $mail->name];
+
+    Mail::to('jhpa.rodenburg@student.avans.nl')->send(new TestEmail($data));
+
     $mailFormats = Mail_format::all();
     return view('mailformat.index')->with('mailFormats', $mailFormats);
   }
