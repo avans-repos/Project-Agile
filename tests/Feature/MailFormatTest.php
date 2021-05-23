@@ -37,7 +37,7 @@ class MailFormatTest extends TestCase
   public function test_mailformat_without_name()
   {
     $this->assertAuthenticated();
-    $response = $this->post('/mailformat/', [
+    $response = $this->post(route('mailformat.store'), [
       'name' => '',
     ]);
     $response->assertStatus(302);
