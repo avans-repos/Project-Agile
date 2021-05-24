@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MailFormatRequest;
 use App\Http\Requests\SendMailRequest;
-use App\Mail\TestEmail;
+use App\Mail\BaseEmail;
 use App\Models\contact\Contact;
 use App\Models\EmailTag;
 use App\Models\Mail_format;
@@ -46,7 +46,7 @@ class MailFormatController extends Controller
           'datum' => Carbon::now()->format('Y-m-d'),
         ]);
         $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $request->get('name')];
-        Mail::to($contact->email)->queue(new TestEmail($data));
+        Mail::to($contact->email)->queue(new BaseEmail($data));
       }
     }
     return redirect(route('mailformat.index'));
