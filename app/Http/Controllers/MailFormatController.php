@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\Mail;
 
 class MailFormatController extends Controller
 {
-
   public function index()
   {
     $mailFormats = Mail_format::all();
     return view('mailformat.index')->with('mailFormats', $mailFormats);
   }
 
-  public function mailSetup(){
-    $mailFormats= Mail_format::all();
+  public function mailSetup()
+  {
+    $mailFormats = Mail_format::all();
     $contacts = Contact::all();
     $tags = EmailTag::all();
 
@@ -34,19 +34,23 @@ class MailFormatController extends Controller
       ->with('contacts', $contacts);
   }
 
-  public function sendMail(SendMailRequest $request){
+  public function sendMail(SendMailRequest $request)
+  {
     $contactIds = $request->get('contact');
-    foreach ($contactIds as $contactId){
+    foreach ($contactIds as $contactId) {
       $contact = Contact::whereId($contactId)->first();
-      if($contact != null && $contact->email != null){
-        $body = $this->getReplacedText($request->get('body'),['voornaam' => $contact->firstname, 'achternaam' => $contact->lastname, 'datum' => Carbon::now()->format('Y-m-d')]);
+      if ($contact != null && $contact->email != null) {
+        $body = $this->getReplacedText($request->get('body'), [
+          'voornaam' => $contact->firstname,
+          'achternaam' => $contact->lastname,
+          'datum' => Carbon::now()->format('Y-m-d'),
+        ]);
         $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $request->get('name')];
         Mail::to($contact->email)->queue(new TestEmail($data));
       }
     }
     return redirect(route('mailformat.index'));
   }
-
 
   public function create()
   {

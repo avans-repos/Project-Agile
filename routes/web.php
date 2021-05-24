@@ -92,7 +92,9 @@ Route::resource('role', RoleController::class)->middleware(['auth']);
 
 Route::resource('classroom', ClassRoomController::class)->middleware(['auth']);
 
-Route::resource('mailformat', MailFormatController::class)->middleware(['auth'])->except(['show']);
+Route::resource('mailformat', MailFormatController::class)
+  ->middleware(['auth'])
+  ->except(['show']);
 Route::get('/mailformat/send', [MailFormatController::class, 'mailSetup'])
   ->name('mailformat.mailSetup')
   ->middleware(['auth']);

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmailTag extends Model
 {
-    use HasFactory;
+  use HasFactory;
   public $timestamps = false; // removes the 'created_at' & 'updated_at' properties
   protected $fillable = ['tag', 'description'];
 }

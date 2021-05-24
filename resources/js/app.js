@@ -26,15 +26,11 @@ window.sendEmailConfirm = function (formId, emailText, emailRecipients) {
     showCancelButton: true,
     confirmButtonText: 'Versturen',
     cancelButtonText: 'Annuleren',
-    reverseButtons: true
-  }).then((result) => {
+    reverseButtons: true,
+  }).then(result => {
     if (result.isConfirmed) {
       document.getElementById(formId).submit();
-      Swal.fire(
-        'Verzonden!',
-        'De e-mail is verzonden naar de contacten.',
-        'success'
-      )
+      Swal.fire('Verzonden!', 'De e-mail is verzonden naar de contacten.', 'success');
     }
   });
 };
