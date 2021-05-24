@@ -22,6 +22,7 @@ class CreateCompaniesTable extends Migration
       $table->string('email', 320);
       $table->integer('size');
       $table->string('website', 255);
+      $table->longText('note')->nullable();
       $table->unsignedBigInteger('visiting_address')->unsigned();
       $table->foreign('visiting_address')->references('id')->on('addresses');
       $table->unsignedBigInteger('mailing_address')->unsigned()->nullable();

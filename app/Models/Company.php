@@ -12,6 +12,6 @@ class Company extends Model
   use SoftDeletes;
 
   protected $table = 'companies';
-  protected $fillable = ['name', 'phonenumber', 'email', 'size', 'website', 'visiting_address', 'mailing_address'];
+  protected $fillable = ['name', 'phonenumber', 'email', 'size', 'website','note', 'visiting_address', 'mailing_address'];
   protected $dates = ['deleted_at'];
 }
