@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/mailformat/send.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MailFormatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MailFormatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/TestEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/TestEmail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/sendTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/test.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/base.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mailformat/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mailformat/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mailformat/manage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mailformat/manage.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -340,6 +342,8 @@
       <workItem from="1621539774177" duration="7016000" />
       <workItem from="1621553323316" duration="1624000" />
       <workItem from="1621594444169" duration="3522000" />
+      <workItem from="1621844162562" duration="628000" />
+      <workItem from="1621844821318" duration="731000" />
     </task>
     <servers />
   </component>
