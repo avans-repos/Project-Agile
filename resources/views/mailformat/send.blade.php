@@ -104,11 +104,28 @@
     </ul>
   </fieldset>
 
-  <a class="btn btn-primary" type="submit" href="#" onclick="deleteConfirm('sendMailForm')" >Versturen</a>
+  <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
 </form>
   </div>
 
   <script>
+
+      function showConfirm(){
+          let recipients = '';
+        let recipientsElements = document.querySelectorAll('[id=recipientName]');
+          if(recipientsElements.length === 0){
+            recipients = 'Niemand';
+          }
+          else {
+            for (let i = 0; i < recipientsElements.length; i++) {
+              recipients += recipientsElements[i].innerText;
+              if (i < recipientsElements.length - 1) {
+                recipients += ', ';
+              }
+            }
+          }
+        sendEmailConfirm('sendMailForm', document.getElementById('mail-body').value, recipients);
+      }
 
     function insertAtCaret(text) {
       let txtarea = document.getElementById('mail-body');
@@ -138,7 +155,7 @@
           <div class="container">
             <div class="row">
               <div class="col">
-                <span>${contactName}</span>
+                <span id='recipientName'>${contactName}</span>
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">

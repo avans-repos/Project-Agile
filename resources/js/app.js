@@ -17,3 +17,24 @@ window.deleteConfirm = function (formId) {
     }
   });
 };
+
+window.sendEmailConfirm = function (formId, emailText, emailRecipients) {
+  Swal.fire({
+    title: 'Weet je zeker dat je de e-mail(s) wilt versturen?',
+    html: `De volgende email:<br>${emailText}<br>Zal worden verstuurd naar: ${emailRecipients}`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Versturen',
+    cancelButtonText: 'Annuleren',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById(formId).submit();
+      Swal.fire(
+        'Verzonden!',
+        'De e-mail is verzonden naar de contacten.',
+        'success'
+      )
+    }
+  });
+};

@@ -3825,6 +3825,23 @@ window.deleteConfirm = function (formId) {
   });
 };
 
+window.sendEmailConfirm = function (formId, emailText, emailRecipients) {
+  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+    title: 'Weet je zeker dat je de e-mail(s) wilt versturen?',
+    html: "De volgende email:<br>".concat(emailText, "<br>Zal worden verstuurd naar: ").concat(emailRecipients),
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Versturen',
+    cancelButtonText: 'Annuleren',
+    reverseButtons: true
+  }).then(function (result) {
+    if (result.isConfirmed) {
+      document.getElementById(formId).submit();
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire('Verzonden!', 'De e-mail is verzonden naar de contacten.', 'success');
+    }
+  });
+};
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

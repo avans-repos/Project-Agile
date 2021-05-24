@@ -39,9 +39,9 @@ class MailFormatController extends Controller
     foreach ($contactIds as $contactId){
       $contact = Contact::whereId($contactId)->first();
       if($contact != null && $contact->email != null){
-        $body = $this->getReplacedText($request->get('body'),['voornaam' => $contact->firstname, 'achternaam' => $contact->lastname]);
+        $body = $this->getReplacedText($request->get('body'),['voornaam' => $contact->firstname, 'achternaam' => $contact->lastname, 'datum' => Carbon::now()->format('Y-m-d')]);
         $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $request->get('name')];
-        Mail::to($contact->email)->send(new TestEmail($data));
+        Mail::to($contact->email)->queue(new TestEmail($data));
       }
     }
     return redirect(route('mailformat.index'));
