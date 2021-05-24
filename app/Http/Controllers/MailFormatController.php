@@ -28,7 +28,7 @@ class MailFormatController extends Controller
     $tags = EmailTag::all();
 
     return view('mailformat.send')
-      ->with('mailFormats', $mailFormats)
+      ->with('mailformats', $mailFormats)
       ->with('tags', $tags)
       ->with('contacts', $contacts);
   }
