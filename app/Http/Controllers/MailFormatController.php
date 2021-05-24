@@ -36,7 +36,7 @@ class MailFormatController extends Controller
 
   public function sendMail(SendMailRequest $request)
   {
-    $contactIds = $request->get('contact');
+    $contactIds = $request->get('contact') ?? [];
     foreach ($contactIds as $contactId) {
       $contact = Contact::whereId($contactId)->first();
       if ($contact != null && $contact->email != null) {

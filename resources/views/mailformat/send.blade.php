@@ -25,7 +25,7 @@
     <legend class="mb-3">Te verzenden E-mail</legend>
     <div class="col">
       <label for="name" class="form-label">Titel *</label>
-      <input name="name" value="{{old('name',$mail->name)}}" type="text"
+      <input name="name" value="{{old('name')}}" type="text"
              class="form-control"
              id="mail-title"
              placeholder="Titel van standaardtekst" maxlength="45" required>
@@ -59,8 +59,8 @@
         </div>
         <textarea name="body"
                   class="form-control"
-                  id="mail-body" placeholder="Inhoud van de mail." rows="10"
-        >{{old('body',$mail->body)}}</textarea>
+                  id="mail-body" placeholder="Inhoud van de mail." rows="10" required
+        >{{old('body')}}</textarea>
       </div>
       <div class="col">
         @error('body')
