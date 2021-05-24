@@ -65,6 +65,7 @@
           <div class="col-6">
             Notitie
           </div>
+          
           <div class="col-6">
             <p>{{$company->note}}</p>
           </div>
