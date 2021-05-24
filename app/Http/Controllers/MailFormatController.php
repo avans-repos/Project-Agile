@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MailFormatRequest;
+use App\Http\Requests\SendMailRequest;
 use App\Mail\TestEmail;
 use App\Models\contact\Contact;
 use App\Models\EmailTag;
@@ -33,12 +34,17 @@ class MailFormatController extends Controller
       ->with('contacts', $contacts);
   }
 
-  public function sendMail(){
-    $mail = Mail_format::all()->first();
-    $body = $mail->getReplacedText(['voornaam' => 'Jaap', 'achternaam' => 'Rodenburg']);
-    $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $mail->name];
-
-    Mail::to('jhpa.rodenburg@student.avans.nl')->send(new TestEmail($data));
+  public function sendMail(SendMailRequest $request){
+    $contactIds = $request->get('contact');
+    foreach ($contactIds as $contactId){
+      $contact = Contact::whereId($contactId)->first();
+      if($contact != null && $contact->email != null){
+        $body = $this->getReplacedText($request->get('body'),['voornaam' => $contact->firstname, 'achternaam' => $contact->lastname]);
+        $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $request->get('name')];
+        Mail::to($contact->email)->send(new TestEmail($data));
+      }
+    }
+    return redirect(route('mailformat.index'));
   }
 
 
@@ -100,5 +106,14 @@ class MailFormatController extends Controller
   {
     $mailformat->delete();
     return redirect()->route('mailformat.index');
+  }
+
+  public function getReplacedText(string $text, array $information)
+  {
+    foreach ($information as $key => $value) {
+      $replace = '{' . $key . '}';
+      $text = str_replace($replace, $value, $text);
+    }
+    return $text;
   }
 }

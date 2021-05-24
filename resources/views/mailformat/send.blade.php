@@ -2,10 +2,10 @@
 
 @section('content')
   <div class="container mb-5 mt-5">
-<form action="{{route('mailformat.sendMail')}}" method="POST">
+<form action="{{route('mailformat.sendMail')}}" id="sendMailForm" method="POST">
   @csrf
   <fieldset class="mb-3">
-    <legend>Mail Template</legend>
+    <legend  class="mb-3">E-mail Template</legend>
     <div class="row">
       @foreach($mailformats as $mail)
       <div class="col-sm-6 mb-2">
@@ -22,8 +22,9 @@
   </fieldset>
 
   <fieldset class="mb-3">
+    <legend class="mb-3">Te verzenden E-mail</legend>
     <div class="col">
-      <label for="name" class="form-label">Naam *</label>
+      <label for="name" class="form-label">Titel *</label>
       <input name="name" value="{{old('name',$mail->name)}}" type="text"
              class="form-control"
              id="mail-title"
@@ -41,7 +42,7 @@
       <div class="col">
         <div class="mt-3">
           <div class="d-flex align-items-end justify-content-between mb-1">
-            <label for="body" class="form-label mb-1">Inhoud</label>
+            <label for="body" class="form-label mb-1">Inhoud *</label>
             <p class="btn-secondary btn btn-sm" data-bs-target="#taghelp" data-bs-toggle="collapse">Welke tags kan ik
               gebruiken?</p>
           </div>
@@ -68,7 +69,42 @@
       </div>
     </div>
   </fieldset>
-  <input class="btn btn-primary" type="submit" value="Versturen">
+
+  <fieldset class="mt-5">
+    <legend>Toegevoegde contacten</legend>
+
+    <ul class="list-group mt-2 mb-2" id="selectedContacts">
+    </ul>
+    <div class="col">
+      @error('contact')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+    </div>
+  </fieldset>
+
+  <fieldset class="mt-5">
+    <legend>Contacten toevoegen</legend>
+    <input type="text" id="filterContactInput" onkeyup="filterContacts()" placeholder="Zoek naar contacten" title="Typ een naam">
+    <ul class="list-group mt-2 mb-2 scroll max-h-screen" id="contactList">
+      @foreach($contacts as $contact)
+        <li class="list-group-item list-group-item-action" id="{{$contact->id}}">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <span>{{$contact->getName()}}</span>
+              </div>
+              <div class="col-md-auto"></div>
+              <div class="col col-lg-2">
+                <a class="col-sm btn btn-primary" onclick="addContact({{$contact->id}}, '{{$contact->getName()}}')">Toevoegen</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      @endforeach
+    </ul>
+  </fieldset>
+
+  <a class="btn btn-primary" type="submit" href="#" onclick="deleteConfirm('sendMailForm')" >Versturen</a>
 </form>
   </div>
 
@@ -94,5 +130,54 @@
       document.getElementById('mail-title').value = title;
       document.getElementById('mail-body').value = body;
     }
+
+    function addContact(contactId, contactName){
+
+    let contactTemplate = `
+            <li class="list-group-item list-group-item-action" id="selectedContact-${contactId}">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <span>${contactName}</span>
+              </div>
+              <div class="col-md-auto"></div>
+              <div class="col col-lg-2">
+                <a class="col-sm btn btn-danger" onclick="deleteContact(${contactId})">Verwijderen</a>
+                <input name="contact[]" value="${contactId}" hidden>
+              </div>
+            </div>
+          </div>
+        </li>
+        `;
+
+    const contactDiv = document.getElementById('selectedContacts');
+      contactDiv.innerHTML += contactTemplate;
+
+    filterContacts();
+    }
+
+    function deleteContact(contactId){
+      document.getElementById(`selectedContact-${contactId}`).remove();
+      filterContacts();
+    }
+
+    function filterContacts() {
+      let input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById("filterContactInput");
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("contactList");
+      li = ul.getElementsByTagName("li");
+      for (i = 0; i < li.length; i++) {
+        txtValue = li[i].innerText;
+        let isSelected = document.getElementById(`selectedContact-${li[i].id}`) != null;
+        if (txtValue.toUpperCase().indexOf(filter) > -1 && !isSelected) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+
+
   </script>
 @endsection
