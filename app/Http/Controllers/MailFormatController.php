@@ -49,7 +49,7 @@ class MailFormatController extends Controller
         Mail::to($contact->email)->queue(new BaseEmail($data));
       }
     }
-    return redirect(route('mailformat.index'));
+    return redirect(route('dashboard'));
   }
 
   public function create()
