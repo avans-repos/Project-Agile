@@ -31482,6 +31482,10 @@ select {
   width: 100px;
 }
 
+.table-layout-fixed {
+  table-layout: fixed;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
