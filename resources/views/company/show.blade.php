@@ -243,7 +243,4 @@
   </script>
 
   <script src="{{ asset('js/search.js')}}"></script>
-  <script>
-  document.getElementById("searchInput").addEventListener("keyup", singleSearch);
-  </script>
 @endsection
