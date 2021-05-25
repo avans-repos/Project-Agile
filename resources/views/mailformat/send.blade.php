@@ -6,19 +6,48 @@
   @csrf
   <fieldset class="mb-3">
     <legend  class="mb-3">E-mail Template</legend>
-    <div class="row">
-      @foreach($mailformats as $mail)
-      <div class="col-sm-6 mb-2">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><strong>{{$mail->name}}</strong></h5>
-            <p class="card-text">{{$mail->body}}</p>
-            <a href="#" class="btn btn-primary mt-3" onclick="useTemplate(`{{$mail->name}}`, `{{$mail->body}}`)">Kiezen</a>
-          </div>
-        </div>
-      </div>
+    <table class="table-layout-fixed table table-striped">
+
+      <thead>
+      <tr>
+        <td>Naam</td>
+        <td>Inhoud</td>
+        <td>Acties</td>
+      </tr>
+      </thead>
+      <tbody>
+      @foreach($mailformats as $mailFormat)
+        <tr>
+          <td><p class="text-nowrap overflow-hidden text-truncate">{{$mailFormat->name}}</p></td>
+          <td>
+            <div class="collapse show multi-collapse-{{$mailFormat->id}}" id="smalltext-{{$mailFormat->id}}">
+              <p class="text-nowrap overflow-hidden text-truncate">{{$mailFormat->body}}</p>
+            </div>
+            <div class="collapse multi-collapse-{{$mailFormat->id}}" id="fulltext-{{$mailFormat->id}}">
+              <div class="card card-body">
+                <p>{!! nl2br(e($mailFormat->body))!!}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-md-flex align-items-center">
+              <div class="m-1 d-flex justify-content-center align-items-center">
+                <div>
+                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{$mailFormat->id}}" aria-expanded="false" aria-controls="smalltext-{{$mailFormat->id}} fulltext-{{$mailFormat->id}}">Volledige inhoud</button>
+                </div>
+              </div>
+              <div class="m-1 d-flex justify-content-center align-items-center">
+                <div>
+                  <a href="#" class="btn btn-secondary" onclick="useTemplate(`{{$mailFormat->name}}`, `{{$mailFormat->body}}`)">Kiezen</a>
+                </div>
+              </div>
+            </div>
+
+          </td>
+        </tr>
       @endforeach
-    </div>
+      </tbody>
+    </table>
   </fieldset>
 
   <fieldset class="mb-3">
