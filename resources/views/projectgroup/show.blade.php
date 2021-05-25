@@ -26,7 +26,7 @@
             Project
           </div>
           <div class="col-6">
-            {{$project->name}}
+            {{$project->name ?? 'Nog geen project'}}
           </div>
         </div>
         <div class="row">
