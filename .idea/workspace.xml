@@ -18,7 +18,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="EditorConfigPreviewManager">
     <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/.prettierrc" />
@@ -183,7 +185,6 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../de-gouden-draak" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -194,16 +195,16 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pStrict Cleanup" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.composer" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\agile\Project-Agile\resources\views\mail_format" />
       <recent name="D:\Documents\Github\Project-Agile\resources\views\classroom" />
       <recent name="C:\xampp\Project-Agile\resources\views\project" />
       <recent name="D:\xampp\agile\Project-Agile\app\Http\Requests" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
-      <recent name="C:\Users\Job\Github\Project-Agile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\xampp\agile\Project-Agile\database\factories\contact" />
