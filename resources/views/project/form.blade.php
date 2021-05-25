@@ -139,12 +139,8 @@
 
   function deleteProjectGroup(projectGroupId)
   {
-   console.log(`selectedProjectGroup-${projectGroupId}`)
-
     document.getElementById(`selectedProjectGroup-${projectGroupId}`).remove();
     filterProjectGroups();
-
-    //alert(`${projectGroupId} is verwijderd`);
   }
 
   function filterProjectGroups()
