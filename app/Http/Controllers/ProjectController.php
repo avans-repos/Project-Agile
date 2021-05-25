@@ -42,9 +42,6 @@ class ProjectController extends Controller
     $newProjectGroups = $request->all()['projectGroup'] ?? [];
 
     foreach ($newProjectGroups as $newProjectGroup) {
-      // werkelijk waar geen enkel idee waarom dit werkt
-      // hoe kan ik een int met een object vergelijken
-      // maar het werkt wel
       Projectgroup::where('id', $newProjectGroup)
         ->first()
         ->update(['project' => $project->id]);
