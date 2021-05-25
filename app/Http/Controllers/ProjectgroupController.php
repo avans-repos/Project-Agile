@@ -172,8 +172,7 @@ class ProjectgroupController extends Controller
       ->get();
 
     $project = DB::table('projects')
-      ->where('id', '=', $projectgroup->id)
-      ->get()
+      ->where('id', '=', $projectgroup->project)
       ->first();
 
     $assignedContacts = DB::table('projectgroup_has_contacts')

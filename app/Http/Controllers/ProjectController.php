@@ -21,9 +21,16 @@ class ProjectController extends Controller
   public function create()
   {
     $project = new Project();
+
+    $newProjectGroups = Projectgroup::where('project', null)->get();
+
+    $assignedProjectGroups = [];
+
     return view('project.manage')
       ->with('project', $project)
-      ->with('action', 'store');
+      ->with('action', 'store')
+      ->with('newProjectGroups', $newProjectGroups)
+      ->with('assignedProjectGroups', $assignedProjectGroups);
   }
 
   public function store(ProjectRequest $request)
@@ -32,7 +39,17 @@ class ProjectController extends Controller
 
     $project = Project::create($request->all());
 
-    return redirect()->route('project.edit', [$project->id]);
+    $newProjectGroups = $request->all()['projectGroup'] ?? [];
+
+    foreach ($newProjectGroups as $newProjectGroup)
+    {
+      // werkelijk waar geen enkel idee waarom dit werkt
+      // hoe kan ik een int met een object vergelijken
+      // maar het werkt wel
+      Projectgroup::where('id', $newProjectGroup)->first()->update(['project' => $project->id]);
+    }
+
+    return redirect()->route('project.index');
   }
 
   public function destroy(Project $project)
@@ -45,17 +62,18 @@ class ProjectController extends Controller
    * Show the form for editing the specified resource.
    *
    * @param Project $project
-   * @return Response
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Response
    */
   public function edit(Project $project)
   {
-    $currentProjectgroups = Projectgroup::where('project', $project->id)->get();
-    $availableProjectgroups = Projectgroup::where('project', null)->get();
+    $newProjectGroups = Projectgroup::where('project', null)->get();
+
+    $assignedProjectGroups = Projectgroup::where('project', $project->id)->get();
 
     return view('project.manage')
       ->with('project', $project)
-      ->with('currentProjectgroups', $currentProjectgroups)
-      ->with('availableProjectgroups', $availableProjectgroups)
+      ->with('newProjectGroups', $newProjectGroups)
+      ->with('assignedProjectGroups', $assignedProjectGroups)
       ->with('action', 'update');
   }
 
@@ -64,12 +82,23 @@ class ProjectController extends Controller
    *
    * @param ProjectRequest $request
    * @param Project $project
-   * @return Response
+   * @return \Illuminate\Http\RedirectResponse
    */
   public function update(ProjectRequest $request, Project $project)
   {
     $request->validated();
     $project->update($request->all());
+    $newProjectGroups = $request->all()['projectGroup'] ?? [];
+
+    // remove all references to $project in all the ProjectGroups
+    Projectgroup::where('project', $project->id)->update(['project' => null]);
+
+    // add the given references to $project in all the ProjectGroups
+    foreach ($newProjectGroups as $newProjectGroup)
+    {
+      Projectgroup::where('id', $newProjectGroup)->first()->update(['project' => $project->id]);
+    }
+
     return redirect()->route('project.index');
   }
 
