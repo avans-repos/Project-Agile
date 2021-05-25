@@ -124,7 +124,7 @@
               }
             }
           }
-        sendEmailConfirm('sendMailForm', document.getElementById('mail-body').value, recipients);
+        sendEmailConfirm('sendMailForm', recipients);
       }
 
     function insertAtCaret(text) {

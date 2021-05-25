@@ -3825,10 +3825,10 @@ window.deleteConfirm = function (formId) {
   });
 };
 
-window.sendEmailConfirm = function (formId, emailText, emailRecipients) {
+window.sendEmailConfirm = function (formId, emailRecipients) {
   sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
     title: 'Weet je zeker dat je de e-mail(s) wilt versturen?',
-    html: "De volgende email:<br>".concat(emailText, "<br>Zal worden verstuurd naar: ").concat(emailRecipients),
+    html: "De e-mail zal worden verstuurd naar: ".concat(emailRecipients),
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Versturen',

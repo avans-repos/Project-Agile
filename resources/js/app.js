@@ -18,10 +18,10 @@ window.deleteConfirm = function (formId) {
   });
 };
 
-window.sendEmailConfirm = function (formId, emailText, emailRecipients) {
+window.sendEmailConfirm = function (formId, emailRecipients) {
   Swal.fire({
     title: 'Weet je zeker dat je de e-mail(s) wilt versturen?',
-    html: `De volgende email:<br>${emailText}<br>Zal worden verstuurd naar: ${emailRecipients}`,
+    html: `De e-mail zal worden verstuurd naar: ${emailRecipients}`,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Versturen',
