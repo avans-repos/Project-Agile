@@ -6,6 +6,7 @@ use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use App\Models\Address;
 use App\Models\contact\Contact;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -79,17 +80,27 @@ class CompanyController extends Controller
     }
 
     $contacts = DB::select(
-      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = ' . $company->id
+      'SELECT id FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = ' . $company->id
     );
+    $contacts = DB::table('company_has_contacts')->rightJoin('contacts','contactid','=','id')->where('companyid','=',$company->id)->get();
+
+
     $newContacts = DB::select(
       'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != ' . $company->id
     );
+
+    $newContacts = DB::table('company_has_contacts')->rightJoin('contacts','contactid','=','id')->where('companyid','=',null)->orWhere('companyid','!=',$company->id)->get();
+
+    $notes = Note::whereIn('contact',$contacts->pluck('id')->toArray())->get();
+
+
 
     return view('company.show')
       ->with('company', $company)
       ->with('address1', $address1)
       ->with('address2', $address2)
       ->with('contacts', $contacts)
+      ->with('notes',$notes)
       ->with('newContacts', $newContacts);
   }
 
