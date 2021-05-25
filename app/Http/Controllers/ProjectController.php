@@ -41,12 +41,13 @@ class ProjectController extends Controller
 
     $newProjectGroups = $request->all()['projectGroup'] ?? [];
 
-    foreach ($newProjectGroups as $newProjectGroup)
-    {
+    foreach ($newProjectGroups as $newProjectGroup) {
       // werkelijk waar geen enkel idee waarom dit werkt
       // hoe kan ik een int met een object vergelijken
       // maar het werkt wel
-      Projectgroup::where('id', $newProjectGroup)->first()->update(['project' => $project->id]);
+      Projectgroup::where('id', $newProjectGroup)
+        ->first()
+        ->update(['project' => $project->id]);
     }
 
     return redirect()->route('project.index');
@@ -94,9 +95,10 @@ class ProjectController extends Controller
     Projectgroup::where('project', $project->id)->update(['project' => null]);
 
     // add the given references to $project in all the ProjectGroups
-    foreach ($newProjectGroups as $newProjectGroup)
-    {
-      Projectgroup::where('id', $newProjectGroup)->first()->update(['project' => $project->id]);
+    foreach ($newProjectGroups as $newProjectGroup) {
+      Projectgroup::where('id', $newProjectGroup)
+        ->first()
+        ->update(['project' => $project->id]);
     }
 
     return redirect()->route('project.index');
