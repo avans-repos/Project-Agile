@@ -7,7 +7,7 @@
     <legend>Algemene informatie:</legend>
     <div>
       <div class="mb-1">
-        <label for="name" class="form-label">Projectnaam</label>
+        <label for="name" class="form-label">Projectnaam *</label>
         <input name="name" value="{{old('name',$project->name)}}" type="text"
                class="form-control"
                id="name" placeholder="" maxlength="45" required>
@@ -33,7 +33,7 @@
     <div>
       <div class="mb-1">
         <label for="deadline" class="form-label">Deadline</label>
-        <input type="datetime-local" id="deadline" value="{{old('deadline',isset($project->deadline) ? date('Y-m-d\TH:i', strtotime($project->deadline)) : null)}}" required name="deadline" class="form-control">
+        <input type="datetime-local" id="deadline" value="{{old('deadline',isset($project->deadline) ? date('Y-m-d\TH:i', strtotime($project->deadline)) : null)}}" name="deadline" class="form-control">
 
       </div>
       <div class="col">

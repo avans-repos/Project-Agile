@@ -25,10 +25,10 @@ class CompanyRequest extends FormRequest
   {
     return [
       'name' => 'required|string|max:50',
-      'phonenumber' => 'required|string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
+      'phonenumber' => 'string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
       'email' => 'required|email|max:320',
-      'size' => 'required|numeric|min:0',
-      'website' => 'required|string|max:255',
+      'size' => 'min:0',
+      'website' => 'max:255',
       'streetname1' => 'required|max:100',
       'number1' => 'required|max:11',
       'addition1' => 'max:5',
