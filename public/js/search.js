@@ -1,28 +1,34 @@
-function search() {
-  // Declare variables
-  let inputstudent = document.getElementById('search-1');
-  let filterstudent = inputstudent.value.toUpperCase();
+function singleSearch() {
 
-  let inputclass = document.getElementById('search-2');
-  let filterclass = inputclass.value.toUpperCase();
+  // Declare variables 
+  var input = document.getElementById("searchInput");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("searchTable");
+  var trs = table.tBodies[0].getElementsByTagName("tr");
 
-  let table = document.getElementById('add-contact-table');
-  let tr = table.getElementsByTagName('tr');
+  // Loop through first tbody's rows
+  for (var i = 0; i < trs.length; i++) {
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    let studenttd = tr[i].getElementsByTagName('td')[0];
-    let classtd = tr[i].getElementsByTagName('td')[3];
+    // define the row's cells
+    var tds = trs[i].getElementsByTagName("td");
 
-    if (studenttd && classtd) {
-      let studentvalue = studenttd.textContent || studenttd.innerText;
-      let classvalue = classtd.textContent || classtd.innerText;
+    // hide the row
+    trs[i].style.display = "none";
 
-      if (studentvalue.toUpperCase().indexOf(filterstudent) > -1 && classvalue.toUpperCase().indexOf(filterclass) > -1) {
-        tr[i].classList.remove('d-none');
-      } else {
-        tr[i].classList.add('d-none');
+    // loop through row cells
+    for (var i2 = 0; i2 < tds.length; i2++) {
+
+      // if there's a match
+      if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+        // show the row
+        trs[i].style.display = "";
+
+        // skip to the next row
+        continue;
+
       }
     }
   }
+
 }

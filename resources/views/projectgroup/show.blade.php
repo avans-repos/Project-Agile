@@ -10,8 +10,8 @@
     <div class="d-md-flex justify-content-between mt-3">
       <h1 class="fs-1">Projectgroep weergeven</h1>
     </div>
-    <div class="d-md-flex">
-      <fieldset class="col-sm-6">
+    <div>
+      <fieldset class="col-sm-12">
         <legend>Projectgroep informatie</legend>
         <div class="row">
           <div class="col-6">
@@ -50,7 +50,7 @@
           </div>
         </div>
       </fieldset>
-      <fieldset class="col-sm-6">
+      <fieldset class="col-sm-12 mt-5">
         <legend>Contactpersonen</legend>
 
         @foreach($contacts as $contact)
@@ -80,44 +80,51 @@
 
         <button onClick="showTable()" class="btn btn-primary mt-4">Contactpersoon toevoegen</button>
 
-        <table class="table mt-4 d-none" id="add-contact-table">
-          <tr>
-            <th><input type="text" id="search-1" placeholder="Naam"/></th>
-            <th>E-mail</th>
-            <th>Telefoonnummer</th>
-            <th><input type="text" id="search-2" placeholder="Bedrijf"/></th>
-            <th></th>
-          </tr>
-          @foreach($newContacts as $contact)
+        <div class="mt-4 d-none" id="add-contact-table">
+          <input class="form-control rounded w-25 my-4" type="text" id="searchInput" placeholder="Zoeken..." />
+          <table class="table" id="searchTable">
+            <thead>
             <tr>
-              <td>
-                <b>{{$contact->firstname}} {{$contact->lastname}}</b>
-              </td>
-
-              <td>
-                <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
-              </td>
-
-              <td>
-                {{ $contact->phonenumber }}
-              </td>
-
-              <td>
-                @empty($contact->company)
-                  Geen Bedrijf
-                @else
-                  @foreach($contact->company as $contactcompany)
-                    {{$contactcompany}},
-                  @endforeach
-                @endempty
-              </td>
-
-              <td>
-                <a href="{{route('projectgroup.addContact', ['projectgroupid'=>$projectgroup->id, 'contactid' => $contact->id ])}}" class="btn btn-secondary">Toevoegen</a>
-              </td>
+              <th>Naam</th>
+              <th>E-mail</th>
+              <th>Telefoonnummer</th>
+              <th>Bedrijf</th>
+              <th></th>
             </tr>
-          @endforeach
-        </table>
+            </thead>
+            <tbody>
+            @foreach($newContacts as $contact)
+              <tr>
+                <td>
+                  <b>{{$contact->firstname}} {{$contact->lastname}}</b>
+                </td>
+
+                <td>
+                  <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
+                </td>
+
+                <td>
+                  {{ $contact->phonenumber }}
+                </td>
+
+                <td>
+                  @empty($contact->company)
+                    Geen Bedrijf
+                  @else
+                    @foreach($contact->company as $contactcompany)
+                      {{$contactcompany}},
+                    @endforeach
+                  @endempty
+                </td>
+
+                <td>
+                  <a href="{{route('projectgroup.addContact', ['projectgroupid'=>$projectgroup->id, 'contactid' => $contact->id ])}}" class="btn btn-secondary">Toevoegen</a>
+                </td>
+              </tr>
+            @endforeach
+            </tbody>
+          </table>
+        </div>
       </fieldset>
     </div>
 
@@ -139,7 +146,6 @@
 
   <script src="{{ asset('js/search.js')}}"></script>
   <script>
-    document.getElementById("search-1").addEventListener("keyup", search);
-    document.getElementById("search-2").addEventListener("keyup", search);
+    document.getElementById("searchInput").addEventListener("keyup", singleSearch);
   </script>
 @endsection
