@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Faker\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -57,5 +59,17 @@ class UserSeeder extends Seeder
     ]);
     $martijn->assignRole('Student');
     $martijn->save($martijn->toArray());
+
+    $faker= Factory::create();
+    for($i = 0; $i < 50; $i++){
+      $email = $faker->email;
+      $randomStudent = new User([
+        'name' => $faker->name,
+        'email' => $email,
+        'password' => bcrypt($email),
+      ]);
+      $randomStudent->assignRole('Student');
+      $randomStudent->save($randomStudent->toArray());
+    }
   }
 }
