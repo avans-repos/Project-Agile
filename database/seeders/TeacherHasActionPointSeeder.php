@@ -8,15 +8,15 @@ use Illuminate\Database\Seeder;
 
 class TeacherHasActionPointSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-      teacher_has_actionpoints::factory()
-        ->count(10)
-        ->create();
-    }
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    teacher_has_actionpoints::factory()
+      ->count(10)
+      ->create();
+  }
 }

@@ -60,8 +60,8 @@ class UserSeeder extends Seeder
     $martijn->assignRole('Student');
     $martijn->save($martijn->toArray());
 
-    $faker= Factory::create();
-    for($i = 0; $i < 50; $i++){
+    $faker = Factory::create();
+    for ($i = 0; $i < 50; $i++) {
       $email = $faker->email;
       $randomStudent = new User([
         'name' => $faker->name,

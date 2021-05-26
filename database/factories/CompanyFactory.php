@@ -26,7 +26,7 @@ class CompanyFactory extends Factory
     return [
       'name' => $this->faker->company,
       'email' => $this->faker->companyEmail,
-      'size' => $this->faker->numberBetween(5,4000),
+      'size' => $this->faker->numberBetween(5, 4000),
       'phonenumber' => $this->faker->e164PhoneNumber,
       'visiting_address' => $addressId,
       'mailing_address' => $addressId,

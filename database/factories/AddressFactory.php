@@ -24,7 +24,7 @@ class AddressFactory extends Factory
   {
     return [
       'streetname' => $this->faker->streetName,
-      'number' => $this->faker->numberBetween(1,100),
+      'number' => $this->faker->numberBetween(1, 100),
       'zipcode' => $this->faker->postcode,
       'city' => $this->faker->city,
       'country' => 'The Netherlands',

@@ -28,7 +28,7 @@ class NoteFactory extends Factory
     return [
       'description' => $this->faker->text($this->faker->numberBetween(100, 1000)),
       'creator' => User::all()->random(1)[0]->id,
-      'creation' =>  $this->faker->dateTimeBetween('-1 day', 'now'),
+      'creation' => $this->faker->dateTimeBetween('-1 day', 'now'),
     ];
   }
 }

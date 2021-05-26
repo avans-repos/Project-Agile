@@ -25,10 +25,15 @@ class teacher_has_actionpointsFactory extends Factory
    */
   public function definition()
   {
-    $userId = User::role('Teacher')->get()->random(1)[0]->id;
+    $userId = User::role('Teacher')
+      ->get()
+      ->random(1)[0]->id;
     $actionpointId = Actionpoint::all()->random(1)[0]->id;
-    $actionpoint = teacher_has_actionpoints::all()->where('userid', $userId)->where('actionpointid', $actionpointId)->first();
-    if($actionpoint == null || !$actionpoint->exists()) {
+    $actionpoint = teacher_has_actionpoints::all()
+      ->where('userid', $userId)
+      ->where('actionpointid', $actionpointId)
+      ->first();
+    if ($actionpoint == null || !$actionpoint->exists()) {
       return [
         'userid' => $userId,
         'actionpointid' => $actionpointId,

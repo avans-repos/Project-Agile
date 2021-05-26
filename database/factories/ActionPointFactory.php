@@ -25,12 +25,14 @@ class ActionPointFactory extends Factory
    */
   public function definition()
   {
-    $deadline =  Carbon::now()->addDays(random_int(2,12));
+    $deadline = Carbon::now()->addDays(random_int(2, 12));
     return [
       'deadline' => $deadline,
       'title' => 'Contact opnemen met ' . Company::all()->random(1)[0]->name,
       'reminderdate' => $deadline->addDays(-1),
-      'creator' => User::role('Teacher')->get()->random(1)[0]->id,
+      'creator' => User::role('Teacher')
+        ->get()
+        ->random(1)[0]->id,
     ];
   }
 }
