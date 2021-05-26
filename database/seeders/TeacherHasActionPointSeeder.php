@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Actionpoint;
+use App\Models\teacher_has_actionpoints;
 use Illuminate\Database\Seeder;
 
-class ActionPointSeeder extends Seeder
+class TeacherHasActionPointSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,8 @@ class ActionPointSeeder extends Seeder
      */
     public function run()
     {
-      Actionpoint::factory()
-        ->count(50)
+      teacher_has_actionpoints::factory()
+        ->count(10)
         ->create();
     }
 }
