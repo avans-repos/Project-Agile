@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
     $this->call(StudentHasClassRoomSeeder::class);
     $this->call(EmailTagSeeder::class);
     $this->call(MailFormatSeeder::class);
+    $this->call(ActionPointSeeder::class);
+    $this->call(TeacherHasActionPointSeeder::class);
   }
 }
