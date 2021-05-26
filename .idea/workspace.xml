@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/database/seeders/ContactSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ContactSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/contact/ContactFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/contact/ContactFactory.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,7 +339,7 @@
       <workItem from="1621594444169" duration="3522000" />
       <workItem from="1621642505330" duration="40000" />
       <workItem from="1621796375886" duration="396000" />
-      <workItem from="1622016443140" duration="1776000" />
+      <workItem from="1622016443140" duration="2016000" />
     </task>
     <servers />
   </component>
