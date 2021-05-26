@@ -1,7 +1,6 @@
 require('./bootstrap');
 require('./contact');
 require('alpinejs');
-
 import Swal from 'sweetalert2';
 
 window.deleteConfirm = function (formId) {

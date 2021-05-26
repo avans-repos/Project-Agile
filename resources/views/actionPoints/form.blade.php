@@ -6,7 +6,7 @@
     <div class="col-sm-6">
         <div class="row">
             <div class="mb-1">
-                <label for="deadline" class="form-label">Deadline</label>
+                <label for="deadline" class="form-label">Deadline *</label>
                 <input type="datetime-local" id="deadline" value="{{old('deadline',isset($actionpoint->deadline) ? date('Y-m-d\TH:i', strtotime($actionpoint->deadline)) : null)}}" required name="deadline" class="form-control">
             </div>
             <div class="col">
@@ -15,7 +15,7 @@
                 @enderror
             </div>
             <div class="mb-1">
-                <label for="title" class="form-label">Titel</label>
+                <label for="title" class="form-label">Titel *</label>
                 <input type="text" id="title" required value="{{old('title',$actionpoint->title)}}" name="title" class="form-control" placeholder="Titel">
             </div>
             <div class="col">
@@ -25,7 +25,7 @@
             </div>
             <div class="mb-1">
                 <label for="description" class="form-label">Beschrijving</label>
-                <input type="text" id="description" value="{{old('description',$actionpoint->description)}}" name="description" required class="form-control"
+                <input type="text" id="description" value="{{old('description',$actionpoint->description)}}" name="description" class="form-control"
                        placeholder="Omschrijving">
             </div>
             <div class="mb-1">
@@ -39,7 +39,7 @@
             </div>
 
             <div class="mb-1">
-                <p class="form-label">Selecteer docenten</p>
+                <p class="form-label">Selecteer docenten *</p>
 
                 <div class="d-flex flex-column">
                     @foreach($teachers as $teacher)
