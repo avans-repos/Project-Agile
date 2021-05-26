@@ -8,10 +8,7 @@ on:
 
 jobs:
   laravel-tests:
-    env:
-      DB_CONNECTION: sqlite
-      DB_DATABASE: ''
-      
+
     runs-on: ubuntu-latest
     steps:
     - uses: shivammathur/setup-php@2.11.0
@@ -28,10 +25,6 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
-        DB_CONNECTION: mysql
-        DB_HOST: 127.0.0.1
-        DB_PORT: 3306
-        DB_DATABASE: 'project_agile'
-        DB_USERNAME: 'root'
-        DB_PASSWORD: 'root'
+        DB_CONNECTION: sqlite
+        DB_DATABASE: ''
       run: vendor/bin/phpunit
