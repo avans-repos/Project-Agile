@@ -2,6 +2,7 @@
 
 namespace Database\Factories\contact;
 
+use App\Models\Address;
 use App\Models\contact\Contact;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,13 +24,14 @@ class ContactFactory extends Factory
   {
     $first_name = $this->faker->firstName;
     return [
-      'initials' => strtoupper($first_name[0] . $first_name[1] . $first_name[2]),
+      'initials' => strtoupper(substr($first_name, 0, 3)),
       'firstname' => $first_name,
       'lastname' => $this->faker->lastname,
       'gender' => 'man',
       'email' => $this->faker->unique()->safeEmail,
-      'phonenumber' => mt_rand(10000000, 199999999),
-      'type' => 'warm',
+      'phonenumber' => $this->faker->e164PhoneNumber,
+      'type' => rand(0, 1) == 1 ? 'warm' : 'koud',
+      'address' => rand(0, 1) == 1 ? Address::all()->random(1)[0]->id : null,
     ];
   }
 }

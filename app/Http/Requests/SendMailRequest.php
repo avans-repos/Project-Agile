@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MailFormatRequest extends FormRequest
+class SendMailRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,16 +24,18 @@ class MailFormatRequest extends FormRequest
   public function rules()
   {
     return [
-      'name' => 'required|string|max:45',
+      'name' => 'required|string',
       'body' => 'required|string',
+      'contact' => 'array|required',
+      'contact.*' => 'integer|required',
     ];
   }
-
   public function attributes()
   {
     return [
-      'name' => 'naam',
-      'body' => 'inhoud',
+      'name' => 'Titel',
+      'body' => 'Inhoud',
+      'contact' => 'Contact',
     ];
   }
 }

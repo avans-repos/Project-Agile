@@ -30,9 +30,9 @@
           <div class="collapse" id="taghelp">
             <div class="card card-body p-3 mb-1">
               <ul class="list-group list-group my-2">
-                @foreach($tags as $tag=>$description)
-                  <li class="list-group-item d-flex"><h5 class="mb-1 text-primary col-sm-4">{{'{'.$tag.'}'}}</h5>
-                    <small class="col-sm-8">{{$description}}</small></li>
+                @foreach($tags as $tag)
+                  <li class="list-group-item d-flex"><h5 class="mb-1 text-primary col-sm-4">{{'{'.$tag->tag .'}'}}</h5>
+                    <small class="col-sm-8">{{$tag->description}}</small></li>
                 @endforeach
               </ul>
             </div>
