@@ -27,7 +27,6 @@ jobs:
       env:
         DB_CONNECTION: sqlite
       run: |
-        set -n DB_DATABASE
+        unset DB_DATABASE
         touch database/database.sqlite
-
         vendor/bin/phpunit
