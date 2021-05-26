@@ -91,6 +91,7 @@
           </li>
         @endforeach
       </ul>
+      <h1 id="noProjectGroupsFound">Geen projectgroepen om mee te koppelen</h1>
     </div>
 
     <div>
@@ -145,20 +146,24 @@
 
   function filterProjectGroups()
   {
-    let input, filter, ul, li, a, i, txtValue;
+    let input, filter, ul, li, a, i, txtValue, selectableGroups = 0;
     input = document.getElementById("filterProjectGroupInput");
     filter = input.value.toUpperCase();
     ul = document.getElementById("projectGroupList");
     li = ul.getElementsByTagName("li");
+
     for (i = 0; i < li.length; i++) {
       txtValue = li[i].innerText;
       let isSelected = document.getElementById(`selectedProjectGroup-${li[i].id}`) != null;
       if (txtValue.toUpperCase().indexOf(filter) > -1 && !isSelected) {
         li[i].style.display = "";
+        selectableGroups++;
       } else {
         li[i].style.display = "none";
       }
     }
+
+      document.getElementById('noProjectGroupsFound').style.display = (selectableGroups == 0 ? "" : "none");
   }
   window.onload = function(e)
   {
