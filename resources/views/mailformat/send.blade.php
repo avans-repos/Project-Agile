@@ -120,8 +120,11 @@
           <div class="container">
             <div class="row">
               <div class="col">
-                <span>{{$contact->getName()}}</span> | <span>{{$contact->email}}</span>
+                <span>{{$contact->getName()}}</span>
               </div>
+                <div class="col">
+                <span>{{$contact->email}}</span>
+                </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
                 <a class="col-sm btn btn-primary" onclick="addContact({{$contact->id}}, '{{$contact->getName()}}', '{{$contact->email}}')">Toevoegen</a>
