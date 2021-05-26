@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\contact\Contact;
+use App\Models\Actionpoint;
 use Illuminate\Database\Seeder;
 
-class ContactSeeder extends Seeder
+class ActionPointSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -14,8 +14,8 @@ class ContactSeeder extends Seeder
    */
   public function run()
   {
-    Contact::factory()
-      ->count(150)
+    Actionpoint::factory()
+      ->count(50)
       ->create();
   }
 }

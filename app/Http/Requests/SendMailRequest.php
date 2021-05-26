@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProjectRequest extends FormRequest
+class SendMailRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,17 +24,18 @@ class ProjectRequest extends FormRequest
   public function rules()
   {
     return [
-      'name' => 'required|string|max:45',
-      'description' => 'nullable|string',
-      'deadline' => 'nullable|date|after:tomorrow',
-      'notes' => 'nullable|string',
+      'name' => 'required|string',
+      'body' => 'required|string',
+      'contact' => 'array|required',
+      'contact.*' => 'integer|required',
     ];
   }
-
-  public function messages()
+  public function attributes()
   {
     return [
-      'deadline.after' => 'De deadline moet minstens een dag in de toekomst liggen',
+      'name' => 'Titel',
+      'body' => 'Inhoud',
+      'contact' => 'Contact',
     ];
   }
 }

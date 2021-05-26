@@ -25,7 +25,7 @@ class MailFormatRequest extends FormRequest
   {
     return [
       'name' => 'required|string|max:45',
-      'body' => 'nullable|string',
+      'body' => 'required|string',
     ];
   }
 
