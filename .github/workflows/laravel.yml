@@ -28,5 +28,5 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: ''
       run: |
-        touch ./database/database.sqlite
+        touch database/database.sqlite
         vendor/bin/phpunit
