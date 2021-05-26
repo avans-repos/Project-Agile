@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Actionpoint;
 use App\Models\teacher_has_actionpoints;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class TeacherHasActionPointSeeder extends Seeder
@@ -15,8 +16,13 @@ class TeacherHasActionPointSeeder extends Seeder
    */
   public function run()
   {
-    teacher_has_actionpoints::factory()
-      ->count(10)
-      ->create();
+    for ($i = 0; $i < 50; $i++) {
+      teacher_has_actionpoints::firstOrCreate([
+        'userid' => User::role('Teacher')
+          ->get()
+          ->random(1)[0]->id,
+        'actionpointid' => Actionpoint::all()->random(1)[0]->id,
+      ]);
+    }
   }
 }
