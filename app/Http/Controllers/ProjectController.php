@@ -64,7 +64,9 @@ class ProjectController extends Controller
    */
   public function edit(Project $project)
   {
-    $newProjectGroups = Projectgroup::where('project', null)->orWhere('project', $project->id)->get();
+    $newProjectGroups = Projectgroup::where('project', null)
+      ->orWhere('project', $project->id)
+      ->get();
 
     $assignedProjectGroups = Projectgroup::where('project', $project->id)->get();
 
