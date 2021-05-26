@@ -102,7 +102,7 @@
   <fieldset class="mt-5">
     <legend>Toegevoegde contacten</legend>
 
-    <ul class="list-group mt-2 mb-2" id="selectedContacts">
+    <ul class="list-group mt-2 mb-2 scroll max-h-96" id="selectedContacts">
     </ul>
     <div class="col">
       @error('contact')
