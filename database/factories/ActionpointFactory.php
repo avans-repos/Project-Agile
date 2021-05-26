@@ -9,7 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ActionPointFactory extends Factory
+class ActionpointFactory extends Factory
 {
   /**
    * The name of the factory's corresponding model.
