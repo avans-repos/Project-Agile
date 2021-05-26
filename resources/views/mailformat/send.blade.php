@@ -187,7 +187,10 @@
           <div class="container">
             <div class="row">
               <div class="col">
-                <span id='recipientName'>${contactName}</span> | <span id='recipientMail'>${email}</span>
+                <span id='recipientName'>${contactName}</span>
+              </div>
+              <div class="col">
+             <span id='recipientMail'>${email}</span>
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
