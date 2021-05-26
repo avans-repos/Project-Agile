@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Address;
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -57,5 +58,9 @@ class AddressSeeder extends Seeder
       'city' => 'Erp',
       'country' => 'The Netherlands',
     ]);
+
+    Address::factory()
+      ->count(200)
+      ->create();
   }
 }

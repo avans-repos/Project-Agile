@@ -72,7 +72,5 @@ class CompanySeeder extends Seeder
     Company::factory()
       ->count(200)
       ->create();
-
-
   }
 }
