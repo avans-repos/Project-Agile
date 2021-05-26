@@ -27,4 +27,6 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: ''
-      run: vendor/bin/phpunit
+      run: |
+        touch ./database/database.sqlite
+        vendor/bin/phpunit
