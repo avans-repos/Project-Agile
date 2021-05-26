@@ -22,5 +22,40 @@ class AddressSeeder extends Seeder
       'city' => 'Uden',
       'country' => 'The Netherlands',
     ]);
+    address::create([
+      'streetname' => 'Industrieweg',
+      'number' => '55',
+      'zipcode' => '5145PD',
+      'city' => 'Waalwijk',
+      'country' => 'The Netherlands',
+    ]);
+    address::create([
+      'streetname' => 'Backershagen',
+      'number' => '99',
+      'zipcode' => '1082GT',
+      'city' => 'Amsterdam',
+      'country' => 'The Netherlands',
+    ]);
+    address::create([
+      'streetname' => 'Kraaiendonk',
+      'number' => '46',
+      'zipcode' => '5428NZ',
+      'city' => 'Venhorst',
+      'country' => 'The Netherlands',
+    ]);
+    address::create([
+      'streetname' => 'Binderskampweg',
+      'number' => '29',
+      'zipcode' => '6545CA',
+      'city' => 'Nijmegen',
+      'country' => 'The Netherlands',
+    ]);
+    address::create([
+      'streetname' => 'Molentien',
+      'number' => '10',
+      'zipcode' => '5469EK',
+      'city' => 'Erp',
+      'country' => 'The Netherlands',
+    ]);
   }
 }
