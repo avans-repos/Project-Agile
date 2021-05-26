@@ -120,11 +120,11 @@
           <div class="container">
             <div class="row">
               <div class="col">
-                <span>{{$contact->getName()}}</span>
+                <span>{{$contact->getName()}}</span> | <span>{{$contact->email}}</span>
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
-                <a class="col-sm btn btn-primary" onclick="addContact({{$contact->id}}, '{{$contact->getName()}}')">Toevoegen</a>
+                <a class="col-sm btn btn-primary" onclick="addContact({{$contact->id}}, '{{$contact->getName()}}', '{{$contact->email}}')">Toevoegen</a>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@
   <script>
 
       function showConfirm(){
-          let recipients = '';
+        let recipients = '';
         let recipientsElements = document.querySelectorAll('[id=recipientName]');
           if(recipientsElements.length === 0){
             recipients = 'Niemand';
@@ -177,14 +177,14 @@
       document.getElementById('mail-body').value = body;
     }
 
-    function addContact(contactId, contactName){
+    function addContact(contactId, contactName, email){
 
     let contactTemplate = `
             <li class="list-group-item list-group-item-action" id="selectedContact-${contactId}">
           <div class="container">
             <div class="row">
               <div class="col">
-                <span id='recipientName'>${contactName}</span>
+                <span id='recipientName'>${contactName}</span> | <span id='recipientMail'>${email}</span>
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">

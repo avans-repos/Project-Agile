@@ -26,8 +26,8 @@ class SendMailRequest extends FormRequest
     return [
       'name' => 'required|string',
       'body' => 'required|string',
-      'contact' => 'array',
-      'contact.*' => 'integer',
+      'contact' => 'array|required',
+      'contact.*' => 'integer|required',
     ];
   }
   public function attributes()
