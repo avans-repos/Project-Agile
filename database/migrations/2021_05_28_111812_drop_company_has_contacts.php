@@ -13,6 +13,7 @@ class DropCompanyHasContacts extends Migration
      */
     public function up()
     {
+        Schema::rename('contact_has_contacttypes', 'company_has_contacts_has_contacttypes');
         Schema::dropIfExists('company_has_contacts');
     }
 

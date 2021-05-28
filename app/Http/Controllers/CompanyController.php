@@ -79,10 +79,10 @@ class CompanyController extends Controller
     }
 
     $contacts = DB::select(
-      'SELECT * FROM contact_has_contacttypes RIGHT JOIN contacts ON contact = contacts.id WHERE company = ' . $company->id
+      'SELECT * FROM company_has_contacts_has_contacttypes RIGHT JOIN contacts ON contact = contacts.id WHERE company = ' . $company->id
     );
 
-    $newContacts = DB::table('contact_has_contacttypes')
+    $newContacts = DB::table('company_has_contacts_has_contacttypes')
       ->rightJoin('contacts', 'contact', '=', 'contacts.id')
       ->where('company', '!=', $company->id)
       ->orWhereNull('company')
@@ -92,7 +92,7 @@ class CompanyController extends Controller
       $newContact->company = [];
 
       $contactCompanies = DB::table('companies')
-        ->leftJoin('contact_has_contacttypes', 'companies.id', '=', 'company')
+        ->leftJoin('company_has_contacts_has_contacttypes', 'companies.id', '=', 'company')
         ->where('contact', '=', $newContact->id)
         ->get();
 
@@ -115,7 +115,7 @@ class CompanyController extends Controller
 
   public function addcontact($companyid, $contactid)
   {
-    DB::table('contact_has_contacttypes')->insert([
+    DB::table('company_has_contacts_has_contacttypes')->insert([
       'company' => $companyid,
       'contact' => $contactid,
       'contacttype' => 'warm',
@@ -126,7 +126,7 @@ class CompanyController extends Controller
 
   public function removecontact($companyid, $contactid)
   {
-    DB::table('contact_has_contacttypes')
+    DB::table('company_has_contacts_has_contacttypes')
       ->where([
         'company' => $companyid,
         'contact' => $contactid,

@@ -9,7 +9,7 @@ use App\Models\contact\Contact;
 class Company_has_contacts extends Model
 {
   use HasFactory;
-  protected $table = 'contact_has_contacttypes';
+  protected $table = 'company_has_contacts_has_contacttypes';
   protected $fillable = ['contact', 'company', 'contacttype'];
 
   public function contact()

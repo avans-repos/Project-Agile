@@ -86,7 +86,7 @@ class ContactController extends Controller
             ->where('name', '=', $data[$key])
             ->get('id')
             ->first();
-          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
+          DB::insert('INSERT INTO company_has_contacts_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
             $contactId,
             $company->id,
             $data['contacttype-' . $id],
@@ -114,10 +114,10 @@ class ContactController extends Controller
         ->orderBy('notes.creation', 'desc')
         ->get() ?? [];
     $contactTypes =
-      DB::Table('contact_has_contacttypes')
+      DB::Table('company_has_contacts_has_contacttypes')
         ->where('contact', '=', $contact->id)
-        ->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')
-        ->select('contact_has_contacttypes.contacttype', 'companies.name')
+        ->join('companies', 'company_has_contacts_has_contacttypes.company', '=', 'companies.id')
+        ->select('company_has_contacts_has_contacttypes.contacttype', 'companies.name')
         ->get() ?? [];
     $address = Address::find($contact->address);
 
@@ -140,10 +140,10 @@ class ContactController extends Controller
     $contactTypes = ContactType::all();
     $companies = Company::all();
     $contactTypesAssigned =
-      DB::Table('contact_has_contacttypes')
+      DB::Table('company_has_contacts_has_contacttypes')
         ->where('contact', '=', $contact->id)
-        ->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')
-        ->select('contact_has_contacttypes.contacttype', 'companies.name')
+        ->join('companies', 'company_has_contacts_has_contacttypes.company', '=', 'companies.id')
+        ->select('company_has_contacts_has_contacttypes.contacttype', 'companies.name')
         ->get() ?? [];
     $address = Address::find($contact->address);
 
@@ -172,7 +172,7 @@ class ContactController extends Controller
   {
     $data = $request->all();
 
-    DB::table('contact_has_contacttypes')
+    DB::table('company_has_contacts_has_contacttypes')
       ->where('contact', $contact->id)
       ->delete();
 
@@ -201,7 +201,7 @@ class ContactController extends Controller
             ->where('name', '=', $data[$key])
             ->get('id')
             ->first();
-          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
+          DB::insert('INSERT INTO company_has_contacts_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
             $contact->id,
             $company->id,
             $data['contacttype-' . $id],
