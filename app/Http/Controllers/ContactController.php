@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Models\Address;
 use App\Models\Company;
+use App\Models\Company_has_contacts;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
@@ -86,11 +87,12 @@ class ContactController extends Controller
             ->where('name', '=', $data[$key])
             ->get('id')
             ->first();
-          DB::insert('INSERT INTO company_has_contacts_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
-            $contactId,
-            $company->id,
-            $data['contacttype-' . $id],
-          ]);
+
+          $company_has_contact = new Company_has_contacts();
+          $company_has_contact->contact = $contact->id;
+          $company_has_contact->company = $company->id;
+          $company_has_contact->contacttype = $data['contacttype-' . $id];
+          $company_has_contact->save();
         }
       }
     }
@@ -201,11 +203,12 @@ class ContactController extends Controller
             ->where('name', '=', $data[$key])
             ->get('id')
             ->first();
-          DB::insert('INSERT INTO company_has_contacts_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
-            $contact->id,
-            $company->id,
-            $data['contacttype-' . $id],
-          ]);
+
+          $company_has_contact = new Company_has_contacts();
+          $company_has_contact->contact = $contact->id;
+          $company_has_contact->company = $company->id;
+          $company_has_contact->contacttype = $data['contacttype-' . $id];
+          $company_has_contact->save();
         }
       }
     }
