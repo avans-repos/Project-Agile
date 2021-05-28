@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectgroupRequest;
 use App\Models\Address;
+use App\Models\Company;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
@@ -186,20 +187,17 @@ class ProjectgroupController extends Controller
 
     $contacts = self::matchAdressWithContacts($contacts);
 
-    $newContacts = DB::table('contacts')
-      ->wherenotin('id', $assignedContacts)
-      ->get();
+    $newContacts = Contact::all()->wherenotin('id', $assignedContacts);
 
     foreach ($newContacts as $newContact) {
       $newContact->company = [];
 
-      $contactCompanies = DB::table('companies')
-        ->leftJoin('company_has_contacts_has_contacttypes', 'companies.id', '=', 'company')
+      $contactCompanies = Company::leftJoin('company_has_contacts_has_contacttypes', 'companies.id', '=', 'company')
         ->where('contact', '=', $newContact->id)
         ->get();
 
       foreach ($contactCompanies as $contactCompany) {
-        $newContact->company[] = $contactCompany->name;
+        $newContact->company = array_merge($newContact->company, [$contactCompany->name]);
       }
     }
 

@@ -82,7 +82,7 @@ class CompanyController extends Controller
       'SELECT * FROM company_has_contacts_has_contacttypes RIGHT JOIN contacts ON contact = contacts.id WHERE company = ' . $company->id
     );
 
-    $newContacts = DB::table('contacts')->get();
+    $newContacts = Contact::all();
 
     foreach ($newContacts as $contactKey => $newContact) {
       $newContact->company = [];
@@ -97,7 +97,7 @@ class CompanyController extends Controller
           unset($newContacts[$contactKey]);
         }
 
-        $newContact->company[] = $contactCompany->name;
+        $newContact->company = array_merge($newContact->company, [$contactCompany->name]);
       }
     }
 
