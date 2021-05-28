@@ -111,8 +111,12 @@
                   @empty($contact->company)
                     Geen Bedrijf
                   @else
-                    @foreach($contact->company as $contactcompany)
-                      {{$contactcompany}},
+                    @foreach($contact->company as $key=>$contactcompany)
+                      @if(count($contact->company) == $key + 1)
+                        {{$contactcompany}}
+                      @else
+                        {{$contactcompany}},
+                      @endif
                     @endforeach
                   @endempty
                 </td>
