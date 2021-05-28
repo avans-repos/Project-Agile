@@ -97,7 +97,7 @@ class CompanyController extends Controller
         ->get();
 
       foreach ($contactCompanies as $contactCompany) {
-        if ($contactCompany->id == $company->id) {
+        if ($contactCompany->company == $company->id) {
           unset($newContacts[$contactKey]);
         }
 
