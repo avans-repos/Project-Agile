@@ -177,25 +177,48 @@
               </div>
             </div>
             <div class="w-100">
-              <div class="d-flex w-100 justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
+              <div
+                class="d-flex w-100 justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
                 <h6 class="">Notities | {{$notes->where('contact',$contact->id)->count()}}</h6>
-                <button class="ml-3" type="button" data-bs-toggle="collapse" data-bs-target="#notes-{{$contact->id}}">Alles lezen</button>
               </div>
-              <div class="collapse w-100" id="notes-{{$contact->id}}">
-                <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
+              @php
+                $firstNote = $notes->where('contact',$contact->id)[0]
+              @endphp
+
+              <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
+                <div class="media text-muted pt-3">
+                  <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                      <strong class="text-gray-dark">Gemaakt door: {{$firstNote->name}}
+                        op {{date('d-m-Y H:i:s', strtotime($firstNote->creation))}}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center w-100 mt-2">
+                      <span class="d-block text-break">{{$firstNote->description}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="read-more-button" type="button" data-bs-toggle="collapse" data-bs-target=".extra-notes">
+                Meer lezen...
+              </button>
+              <div class="collapse extra-notes" id="notes-{{$contact->id}}">
+                <div class="w-100">
                   @foreach($notes->where('contact',$contact->id) as $note)
-                    <div class="media text-muted pt-3">
-                      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <div class="d-flex justify-content-between align-items-center w-100">
-                          <strong class="text-gray-dark">Gemaakt door: {{$note->name}}
-                            op {{date('d-m-Y H:i:s', strtotime($note->creation))}}</strong>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center w-100 mt-2">
-                          <span class="d-block text-break">{{$note->description}}</span>
+                    @continue($loop->index == 0)
+                    <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
+                      <div class="media text-muted pt-3">
+                        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                          <div class="d-flex justify-content-between align-items-center w-100">
+                            <strong class="text-gray-dark">Gemaakt door: {{$note->name}}
+                              op {{date('d-m-Y H:i:s', strtotime($note->creation))}}</strong>
+                          </div>
+                          <div class="d-flex justify-content-between align-items-center w-100 mt-2">
+                            <span class="d-block text-break">{{$note->description}}</span>
+                          </div>
                         </div>
                       </div>
-                      @endforeach
                     </div>
+                  @endforeach
                 </div>
               </div>
             </div>
@@ -242,6 +265,20 @@
         table.classList.remove("d-none");
       } else {
         table.classList.add("d-none");
+      }
+    }
+
+    let showMoreTexts = document.querySelectorAll(".read-more-button");
+    showMoreTexts.forEach(element => element.addEventListener('click',function() {editReadMoreText(element)}));
+
+    function editReadMoreText(element) {
+
+      console.log(element);
+
+      if(element.innerHTML === 'Minder lezen...') {
+        element.innerHTML = 'Meer lezen...';
+      } else {
+        element.innerHTML = 'Minder lezen...';
       }
     }
   </script>
