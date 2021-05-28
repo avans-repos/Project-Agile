@@ -17,7 +17,7 @@ class Actionpoint extends Migration
             $table->id();
             $table->DateTime('deadline');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->boolean('finished')->nullable();
             $table->DateTime('reminderdate')->nullable();
             $table->unsignedBigInteger('creator');

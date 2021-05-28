@@ -48,3 +48,7 @@
 #login_logo {
   width: 100px;
 }
+
+.table-layout-fixed {
+  table-layout: fixed;
+}

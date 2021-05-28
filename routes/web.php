@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactpointController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailFormatController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
@@ -86,11 +87,20 @@ Route::resource('contactpoint', ContactpointController::class)
 Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])
   ->name('contactpoint.create')
   ->middleware(['auth']);
-require __DIR__ . '/auth.php';
 
 Route::resource('role', RoleController::class)->middleware(['auth']);
 
 Route::resource('classroom', ClassRoomController::class)->middleware(['auth']);
+
+Route::resource('mailformat', MailFormatController::class)
+  ->middleware(['auth'])
+  ->except(['show']);
+Route::get('/mailformat/send', [MailFormatController::class, 'mailSetup'])
+  ->name('mailformat.mailSetup')
+  ->middleware(['auth']);
+Route::post('/mailformat/send', [MailFormatController::class, 'sendMail'])
+  ->name('mailformat.sendMail')
+  ->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
 Route::get('projectgroup/{projectgroupid}/addContact/{contactid}', [ProjectgroupController::class, 'addContact'])

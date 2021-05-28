@@ -60,6 +60,17 @@
             <a href="{{$company->website}}">{{$company->website}}</a>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-6">
+            Notitie
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p>{{$company->note}}</p>
+          </div>
+        </div>
       </fieldset>
       <fieldset class="col-sm-6" id="companyAddresses">
         <legend>Adres</legend>
