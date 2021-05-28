@@ -46,15 +46,12 @@
           {{--                        {{ __('Wachtwoord vergeten?') }}--}}
           {{--                    </a>--}}
         @endif
-        <a href="/register" class="ml-3">
+        <a href="/register" class="ml-3" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
           Registreren
         </a>
-        <x-button class="ml-3" type="button" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+        <x-button class="ml-3" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
           {{ __('Log in') }}
         </x-button>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-            Tooltip on top
-          </button>
       </div>
     </form>
   </x-auth-card>
