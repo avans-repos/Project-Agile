@@ -26,6 +26,5 @@ jobs:
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
-      run: |
-        touch database/database.sqlite
-        vendor/bin/phpunit
+        DB_DATABASE: ':memory:'
+      run: vendor/bin/phpunit
