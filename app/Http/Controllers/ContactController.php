@@ -27,7 +27,7 @@ class ContactController extends Controller
 
   public function index()
   {
-    $contacts = Contact::all();
+    $contacts = Contact::with('projectgroups')->get();
     return view('contact.index')->with('contacts', $contacts);
   }
 

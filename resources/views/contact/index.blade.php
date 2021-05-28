@@ -19,15 +19,23 @@
                     <td class="w-50">Voornaam</td>
                     <td>Tussenvoegsel</td>
                     <td class="w-50">Achternaam</td>
+                    <td class="w-50">Type</td>
+                    <td class="w-50">Huidige werkgever</td>
+                    <td class="w-50">Laatste project</td>
                     <td>Acties</td>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($contacts as $contact)
+                    @if($contact->projectgroups)
+                      {{dd($contact)}}
+                    @endif
                     <tr>
                         <td>{{$contact->firstname}}</td>
                         <td>{{$contact->insertion}}</td>
                         <td>{{$contact->lastname}}</td>
+                        <td>{{$contact->type}}</td>
+                        <td>{{$contact->projectgroups[0]}}</td>
                         <td>
                             <div class="d-md-flex align-items-center">
                                 <div class="m-1 d-flex justify-content-center align-items-center">

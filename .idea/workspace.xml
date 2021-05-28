@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/company/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/company/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Projectgroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Projectgroup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/contact/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/contact/Contact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/projectgroup_has_contacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/projectgroup_has_contacts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/index.blade.php" afterDir="false" />
     </list>
-    <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

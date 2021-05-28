@@ -15,4 +15,12 @@ class Projectgroup extends Model
   protected $primaryKey = 'id';
   protected $fillable = ['name', 'project'];
   protected $dates = ['deleted_at'];
+
+  public function project() {
+    return $this->hasOne(Project::class,'id')->withDefault();
+  }
+
+  public function contact() {
+    return $this->belongsTo(projectgroup_has_contacts::class,'projectgroupid')->withDefault();
+  }
 }

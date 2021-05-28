@@ -3,6 +3,9 @@
 namespace App\Models\contact;
 
 use App\Models\Company_has_contacts;
+use App\Models\Project;
+use App\Models\Projectgroup;
+use App\Models\projectgroup_has_contacts;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -59,5 +62,10 @@ class Contact extends Model
   public function companies()
   {
     return $this->hasMany(Company_has_contacts::class, 'contact');
+  }
+
+  public function projectgroups()
+  {
+    return $this->hasManyThrough(Projectgroup::class, projectgroup_has_contacts::class,'contactid','projectgroupid','contactid','contactid');
   }
 }
