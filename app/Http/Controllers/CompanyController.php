@@ -82,11 +82,7 @@ class CompanyController extends Controller
       'SELECT * FROM company_has_contacts_has_contacttypes RIGHT JOIN contacts ON contact = contacts.id WHERE company = ' . $company->id
     );
 
-    $newContacts = DB::table('company_has_contacts_has_contacttypes')
-      ->rightJoin('contacts', 'contact', '=', 'contacts.id')
-      ->where('company', '!=', $company->id)
-      ->orWhereNull('company')
-      ->get();
+    $newContacts = DB::table('contacts')->get();
 
     foreach ($newContacts as $contactKey => $newContact) {
       $newContact->company = [];
