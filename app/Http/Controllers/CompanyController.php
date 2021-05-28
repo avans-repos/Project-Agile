@@ -79,21 +79,21 @@ class CompanyController extends Controller
     }
 
     $contacts = DB::select(
-      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = ' . $company->id
+      'SELECT * FROM contact_has_contacttypes RIGHT JOIN contacts ON contact = contacts.id WHERE company = ' . $company->id
     );
 
-    $newContacts = DB::table('company_has_contacts')
-      ->rightJoin('contacts', 'contactid', '=', 'contacts.id')
-      ->where('companyid', '!=', $company->id)
-      ->orWhereNull('companyid')
+    $newContacts = DB::table('contact_has_contacttypes')
+      ->rightJoin('contacts', 'contact', '=', 'contacts.id')
+      ->where('company', '!=', $company->id)
+      ->orWhereNull('company')
       ->get();
 
     foreach ($newContacts as $contactKey => $newContact) {
       $newContact->company = [];
 
       $contactCompanies = DB::table('companies')
-        ->leftJoin('company_has_contacts', 'companies.id', '=', 'companyid')
-        ->where('contactid', '=', $newContact->id)
+        ->leftJoin('contact_has_contacttypes', 'companies.id', '=', 'company')
+        ->where('contact', '=', $newContact->id)
         ->get();
 
       foreach ($contactCompanies as $contactCompany) {
@@ -115,9 +115,10 @@ class CompanyController extends Controller
 
   public function addcontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')->insert([
-      'companyid' => $companyid,
-      'contactid' => $contactid,
+    DB::table('contact_has_contacttypes')->insert([
+      'company' => $companyid,
+      'contact' => $contactid,
+      'contacttype' => 'warm',
     ]);
 
     return redirect()->route('company.show', [$companyid]);
@@ -125,9 +126,11 @@ class CompanyController extends Controller
 
   public function removecontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')
-      ->where('companyid', $companyid)
-      ->where('contactid', $contactid)
+    DB::table('contact_has_contacttypes')
+      ->where([
+        'company' => $companyid,
+        'contact' => $contactid,
+      ])
       ->delete();
 
     return redirect()->route('company.show', [$companyid]);

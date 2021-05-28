@@ -194,8 +194,8 @@ class ProjectgroupController extends Controller
       $newContact->company = [];
 
       $contactCompanies = DB::table('companies')
-        ->leftJoin('company_has_contacts', 'companies.id', '=', 'companyid')
-        ->where('contactid', '=', $newContact->id)
+        ->leftJoin('contact_has_contacttypes', 'companies.id', '=', 'company')
+        ->where('contact', '=', $newContact->id)
         ->get();
 
       foreach ($contactCompanies as $contactCompany) {
