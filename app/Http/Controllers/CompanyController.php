@@ -78,19 +78,27 @@ class CompanyController extends Controller
       $address2 = Address::find($company->mailing_address);
     }
 
-    $contactsLinkedToCompany = [];
-    foreach ($company->contacts()->get() as $company_contact) {
-      array_push($contactsLinkedToCompany, $company_contact->contact()->first());
+    $contacts = [];
+    foreach ($company->contacts()->get() as $contact) {
+      array_push($contacts, Contact::where('id', $contact->contact)->first());
     }
 
-    $unlinkedContacts = Contact::all()->whereNotIn('id', array_column($contactsLinkedToCompany, 'id'));
+    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts, 'id'));
+
+    foreach ($newContacts as $contactKey => $newContact) {
+      $newContact->company = [];
+
+      foreach ($newContact->companies()->get() as $contact_company) {
+        $newContact->company = array_merge($newContact->company, [Company::where('id', $contact_company->company)->first()->name]);
+      }
+    }
 
     return view('company.show')
       ->with('company', $company)
       ->with('address1', $address1)
       ->with('address2', $address2)
-      ->with('contacts', $contactsLinkedToCompany)
-      ->with('newContacts', $unlinkedContacts);
+      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts);
   }
 
   public function addcontact($companyid, $contactid)
