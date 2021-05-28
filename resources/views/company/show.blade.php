@@ -60,6 +60,17 @@
             <a href="{{$company->website}}">{{$company->website}}</a>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-6">
+            Notitie
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p>{{$company->note}}</p>
+          </div>
+        </div>
       </fieldset>
       <fieldset class="col-sm-6" id="companyAddresses">
         <legend>Adres</legend>
@@ -155,7 +166,7 @@
       @foreach($contacts as $contact)
       <div class="row">
         <div>
-          <b>{{$contact->firstname}} {{$contact->lastname}}</b> 
+          <b>{{$contact->firstname}} {{$contact->lastname}}</b>
           <a class="ml-1" href="{{$company->id}}/removecontact/{{ $contact->id }}">x</a>
         </div>
 

@@ -58,6 +58,7 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
+      'note' => $request->input('note'),
       'visiting_address' => $addressIds[0],
       'mailing_address' => $addressIds[1],
     ]);
@@ -150,6 +151,7 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
+      'note' => $request->input('note'),
       'visiting_address' => $addressIds[0],
       'mailing_address' => $addressIds[1],
     ]);
