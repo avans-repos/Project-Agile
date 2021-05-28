@@ -156,7 +156,7 @@
       <div class="row">
         <div>
           <b>{{$contact->firstname}} {{$contact->lastname}}</b> 
-          <a class="ml-1" href="{{$company->id}}/removecontact/{{ $contact->id }}">x</a>
+          <a class="ml-1" href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}">x</a>
         </div>
 
         <div>
@@ -221,7 +221,7 @@
               </td>
 
               <td>
-                <a href="{{$company->id}}/addcontact/{{ $contact->id }}" class="btn btn-secondary">Toevoegen</a>
+                <a href="{{ route('company.addContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}" class="btn btn-secondary">Toevoegen</a>
               </td>
             </tr>
           @endforeach
