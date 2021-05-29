@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Action;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
@@ -79,5 +80,10 @@ class User extends Authenticatable
   public function classrooms(): BelongsToMany
   {
     return $this->belongsToMany(StudentClass::class);
+  }
+
+  public function Actionpoints(): BelongsToMany
+  {
+    return $this->belongsToMany(Actionpoint::class);
   }
 }
