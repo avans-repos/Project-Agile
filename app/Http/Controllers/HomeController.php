@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     $actionPoints = Actionpoint::where('finished', null)
       ->teachers()
-      ->where('teachers.user_id', $userid)
+      ->where('user_id', $userid)
       ->orderBy('actionpoints.deadline');
 
     $notifications = auth()->user()->unreadNotifications;
