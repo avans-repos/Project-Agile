@@ -5,85 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MailFormatController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/MailFormatRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/SendMailRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Mail/BaseEmail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Company_has_contacts.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/EmailTag.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Mail_format.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/projectgroup_has_contacts.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/projectgroup_has_users.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/ActionpointFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/AddressFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/CompanyFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/NoteFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_05_19_085416_create_mail_formats_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_05_24_082244_create_email_tags_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_05_28_111812_drop_company_has_contacts.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/ActionPointSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/EmailTagSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/MailFormatSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/TeacherHasActionPointSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/emails/base.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mailformat/form.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mailformat/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mailformat/manage.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mailformat/send.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/MailFormatTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Project-Agile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project-Agile.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ActionpointController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActionpointController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ActionpointRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ActionpointRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CompanyRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CompanyRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProjectRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProjectRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Actionpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Actionpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Company.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/contact/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/contact/Contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/contact/ContactFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/contact/ContactFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_25_133058_create_projects_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_25_133058_create_projects_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_07_105113_actionpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_07_105113_actionpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_08_100331_docent_has_actionpoints.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_08_100331_docent_has_actionpoints.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_08_114055_create_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_08_114055_create_companies_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AddressSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddressSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/CompanyHasContactsSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ContactSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ContactSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/NotesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/NotesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/actionPoints/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/actionPoints/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/company/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/company/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/company/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/company/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/project/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/classroom/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/classroom/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/classroom/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -407,7 +333,7 @@
       <workItem from="1619642384441" duration="3603000" />
       <workItem from="1618910092440" duration="478000" />
       <workItem from="1620686198555" duration="309000" />
-      <workItem from="1622276927721" duration="2600000" />
+      <workItem from="1622276927721" duration="3244000" />
     </task>
     <servers />
   </component>

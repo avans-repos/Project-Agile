@@ -33,7 +33,7 @@ class ClassRoomController extends Controller
   public function edit(StudentClass $classroom)
   {
     $students = User::role('Student')->get();
-    $addedStudents = student_has_class_room::where('class_room', '=', $classroom->id)->get();
+    $addedStudents = $classroom->students()->get();
     return view('classroom.manage')
       ->with('classroom', $classroom)
       ->with('students', $students)
@@ -47,46 +47,23 @@ class ClassRoomController extends Controller
     $classroom->update($request->all());
     $newStudents = $request->all()['student'] ?? [];
 
-    student_has_class_room::where('class_room', '=', $classroom->id)->delete();
+    $classroom->students()->sync($newStudents);
 
-    foreach ($newStudents as $student) {
-      if (
-        User::whereId($student)
-          ->first()
-          ->exists()
-      ) {
-        $newLink = new student_has_class_room();
-        $newLink['class_room'] = $classroom->id;
-        $newLink['student'] = $student;
-        $newLink->save();
-      }
-    }
     return redirect(route('classroom.index'));
   }
 
   public function store(ClassRoomRequest $request)
   {
     $request->validated();
-    $classroomId = StudentClass::create($request->all())->id;
+    $classroom = StudentClass::create($request->all());
     $newStudents = $request->all()['student'] ?? [];
-    foreach ($newStudents as $student) {
-      if (
-        User::whereId($student)
-          ->first()
-          ->exists()
-      ) {
-        $newLink = new student_has_class_room();
-        $newLink['class_room'] = $classroomId;
-        $newLink['student'] = $student;
-        $newLink->save();
-      }
-    }
+
+    $classroom->students()->sync($newStudents);
     return redirect(route('classroom.index'));
   }
 
   public function destroy(StudentClass $classroom)
   {
-    student_has_class_room::where('class_room', '=', $classroom->id)->delete();
     $classroom->delete();
     return redirect(route('classroom.index'));
   }
