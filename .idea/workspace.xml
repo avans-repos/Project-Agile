@@ -5,50 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Events/NoteAdded.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/NoteAdded.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ActionpointController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActionpointController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassRoomController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactpointController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactpointController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MailFormatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MailFormatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/NoteRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/SendNewNoteNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendNewNoteNotification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/BaseEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/BaseEmail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Actionpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Actionpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Address.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Contactpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Contactpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Mail_format.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Mail_format.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/NewNoteNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/NewNoteNotification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ActionpointFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ActionpointFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/AddressFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/AddressFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/NoteFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/NoteFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_08_114055_create_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_08_114055_create_companies_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_28_111812_drop_company_has_contacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_28_111812_drop_company_has_contacts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/AddressSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/AddressSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ClassRoomSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/NotesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/NotesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ProjectSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProjectSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/RoleSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/RoleSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/StudentHasClassRoomSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/StudentHasClassRoomSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ClassroomTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ClassroomTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/CompanyTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CompanyTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ContactpointTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ContactpointTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/MailFormatTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/MailFormatTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/NoteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/NoteTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/NotificationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/NotificationTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ProjectTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ProjectTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ProjectgroupCreateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ProjectgroupCreateTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,6 +331,7 @@
       <workItem from="1618910092440" duration="478000" />
       <workItem from="1620686198555" duration="309000" />
       <workItem from="1622276927721" duration="6929000" />
+      <workItem from="1622296249588" duration="504000" />
     </task>
     <servers />
   </component>
@@ -398,6 +357,11 @@
           <url>file://$PROJECT_DIR$/database/seeders/CompanySeeder.php</url>
           <line>4</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php</url>
+          <line>3</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
