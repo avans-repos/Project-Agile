@@ -7,7 +7,8 @@
         <div class="row">
             <div class="mb-1">
                 <label for="deadline" class="form-label">Deadline *</label>
-                <input type="datetime-local" id="deadline" value="{{old('deadline',isset($actionpoint->deadline) ? date('Y-m-d\TH:i', strtotime($actionpoint->deadline)) : null)}}" required name="deadline" class="form-control">
+                <input type="datetime-local" id="deadline" value="{{old('deadline',isset($actionpoint->deadline) ? date('Y-m-d\TH:i', strtotime($actionpoint->deadline)) : null)}}" required name="deadline" class="form-control"
+                       data-bs-toggle="tooltip" data-bs-placement="right" title="Een datum in de toekomst met een format van dd/mm/yyyy, druk op het calender icoontje om een datum te kiezen">
             </div>
             <div class="col">
                 @error('deadline')
@@ -30,7 +31,8 @@
             </div>
             <div class="mb-1">
                 <label for="reminderdate" class="form-label">Herinneringsdatum</label>
-                <input type="datetime-local" id="reminderdate" value="{{old('reminderdate', isset($actionpoint->reminderdate) ? date('Y-m-d\TH:i', strtotime($actionpoint->reminderdate)) : null)}}" name="reminderdate" class="form-control">
+                <input type="datetime-local" id="reminderdate" value="{{old('reminderdate', isset($actionpoint->reminderdate) ? date('Y-m-d\TH:i', strtotime($actionpoint->reminderdate)) : null)}}" name="reminderdate" class="form-control"
+                       data-bs-toggle="tooltip" data-bs-placement="right" title="De datum waarop u een herinnering wilt ontvangen, het invullen werkt hetzelfde als bij de deadline datum">
             </div>
             <div class="col">
                 @error('reminderdate')
@@ -50,7 +52,8 @@
                             {{ (is_array(old("assigned",$assigned))) ?
                                     (in_array($teacher->id, old("assigned", $assigned))) ? 'checked' : null
                                  : null
-                            }} type="checkbox" name="assigned[]" value="{{$teacher->id}}" ><span class="ms-2">{{$teacher->name}}</span>
+                            }} type="checkbox" name="assigned[]" value="{{$teacher->id}}" ><span class="ms-2"
+                                                                                                 data-bs-toggle="tooltip" data-bs-placement="right" title="Druk op de checkbox om een docent te selecteren">{{$teacher->name}}</span>
                         </label>
                     @endforeach
                 </div>
