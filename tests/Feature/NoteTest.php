@@ -2,10 +2,8 @@
 
 use App\Http\Requests\NoteRequest;
 use App\Models\contact\Contact;
-use App\Models\Note;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class NoteTest extends TestCase

@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\StudentClass;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ClassRoomSeeder extends Seeder
 {

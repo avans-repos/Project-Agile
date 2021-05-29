@@ -5,7 +5,6 @@ use App\Http\Requests\ClassRoomRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Str;
 use Tests\CreatesApplication;
 use Tests\TestCase;
 

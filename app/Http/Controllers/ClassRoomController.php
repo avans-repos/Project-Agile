@@ -6,8 +6,6 @@ use App\Http\Requests\ClassRoomRequest;
 use App\Models\StudentClass;
 use App\Models\student_has_class_room;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class ClassRoomController extends Controller
 {
