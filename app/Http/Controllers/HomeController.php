@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
   public function index(Request $request)
   {
-     $actionPoints = Auth::user()
+    $actionPoints = Auth::user()
       ->actionpoints()
       ->where('finished', null)
       ->orderBy('actionpoints.deadline')

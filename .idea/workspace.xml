@@ -308,10 +308,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.format" />
         <item itemvalue="npm.watch" />
         <item itemvalue="npm.production" />
         <item itemvalue="npm.format:check" />
-        <item itemvalue="npm.format" />
         <item itemvalue="Docker.Dockerfile" />
       </list>
     </recent_temporary>
