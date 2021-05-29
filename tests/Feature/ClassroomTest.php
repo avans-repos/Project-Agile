@@ -63,7 +63,7 @@ class ClassroomTest extends TestCase
 
     $response->assertSessionDoesntHaveErrors();
 
-    $this->assertDatabaseHas('class_rooms', [
+    $this->assertDatabaseHas('student_classes', [
       'name' => 'TestKlas',
       'year' => Carbon::now()->year,
     ]);

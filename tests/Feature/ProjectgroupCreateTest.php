@@ -36,7 +36,7 @@ class ProjectgroupCreateTest extends TestCase
   public function test_projectgroup_create_screen_can_be_rendered()
   {
     $this->assertAuthenticated();
-    $response = $this->get('/projectgroup/create');
+    $response = $this->get(route('projectgroup.create'));
     $response->assertStatus(200);
   }
 
@@ -81,7 +81,7 @@ class ProjectgroupCreateTest extends TestCase
     ]);
     $response->assertSessionHasNoErrors();
 
-    $this->assertDatabaseHas('projectgroups', [
+    $this->assertDatabaseHas('project_groups', [
       'name' => $name,
     ]);
   }
