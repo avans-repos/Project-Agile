@@ -55,7 +55,7 @@ class ActionpointController extends Controller
    */
   public function create()
   {
-    $teachers = json_decode(User::role('Teacher')->get());
+    $teachers = User::role('Teacher')->get();
 
     $actionpoint = new Actionpoint();
     $assigned = null;
@@ -128,7 +128,7 @@ class ActionpointController extends Controller
       return $teacher->id;
     }, json_decode($assigned));
 
-    $teachers = json_decode(User::all('id', 'name'));
+    $teachers = User::role('Teacher')->get();
     return view('actionPoints.manage', compact('actionpoint'))
       ->with('teachers', $teachers)
       ->with('assigned', $assigned)
