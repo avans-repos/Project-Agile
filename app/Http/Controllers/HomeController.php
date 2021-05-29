@@ -18,7 +18,7 @@ class HomeController extends Controller
     $notifications = auth()->user()->unreadNotifications;
 
     return view('home.index')
-      ->with('actionpoints', json_decode($actionPoints))
+      ->with('actionpoints', $actionPoints)
       ->with('notifications', $notifications);
   }
 }
