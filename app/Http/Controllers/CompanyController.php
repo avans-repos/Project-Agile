@@ -58,6 +58,7 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
+      'note' => $request->input('note'),
       'visiting_address' => $addressIds[0],
       'mailing_address' => $addressIds[1],
     ]);
@@ -78,12 +79,20 @@ class CompanyController extends Controller
       $address2 = Address::find($company->mailing_address);
     }
 
-    $contacts = DB::select(
-      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = ' . $company->id
-    );
-    $newContacts = DB::select(
-      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != ' . $company->id
-    );
+    $contacts = [];
+    foreach ($company->contacts()->get() as $contact) {
+      array_push($contacts, Contact::where('id', $contact->contact)->first());
+    }
+
+    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts, 'id'));
+
+    foreach ($newContacts as $contactKey => $newContact) {
+      $newContact->company = [];
+
+      foreach ($newContact->companies()->get() as $contact_company) {
+        $newContact->company = array_merge($newContact->company, [Company::where('id', $contact_company->company)->first()->name]);
+      }
+    }
 
     return view('company.show')
       ->with('company', $company)
@@ -95,9 +104,10 @@ class CompanyController extends Controller
 
   public function addcontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')->insert([
-      'companyid' => $companyid,
-      'contactid' => $contactid,
+    DB::table('company_has_contacts_has_contacttypes')->insert([
+      'company' => $companyid,
+      'contact' => $contactid,
+      'contacttype' => 'warm',
     ]);
 
     return redirect()->route('company.show', [$companyid]);
@@ -105,9 +115,11 @@ class CompanyController extends Controller
 
   public function removecontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')
-      ->where('companyid', $companyid)
-      ->where('contactid', $contactid)
+    DB::table('company_has_contacts_has_contacttypes')
+      ->where([
+        'company' => $companyid,
+        'contact' => $contactid,
+      ])
       ->delete();
 
     return redirect()->route('company.show', [$companyid]);
@@ -150,6 +162,7 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
+      'note' => $request->input('note'),
       'visiting_address' => $addressIds[0],
       'mailing_address' => $addressIds[1],
     ]);

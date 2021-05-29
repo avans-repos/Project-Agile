@@ -75,6 +75,17 @@
         @enderror
       </div>
     </div>
+    <div>
+      <div class="mb-1">
+        <label for="note" class="form-label">Notitie</label>
+        <textarea placeholder="Een kleine notitie over het bedrijf." name="note" rows="5" class="form-control" id="note">{{old('note',$company->note)}}</textarea>
+      </div>
+      <div class="col">
+        @error('note')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
   </fieldset>
   <fieldset class="mb-3">
     <legend>Bezoekadres</legend>
