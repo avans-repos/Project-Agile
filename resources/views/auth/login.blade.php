@@ -19,7 +19,8 @@
       <div>
         <x-label for="email" :value="__('Email')" />
 
-        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus data-bs-toggle="tooltip"
+                 data-bs-placement="right" title="Vul hier het e-mail adres in waarmee je dit account hebt geregisteerd" />
       </div>
 
       <!-- Password -->
@@ -29,7 +30,8 @@
         <x-input id="password" class="block mt-1 w-full"
                  type="password"
                  name="password"
-                 required autocomplete="current-password" />
+                 required autocomplete="current-password"
+                 data-bs-toggle="tooltip" data-bs-placement="right" title="Vul hier het wachtwoord in die je hebt aangemaakt bij het registreren van je account" />
       </div>
 
       <!-- Remember Me -->
@@ -46,10 +48,10 @@
           {{--                        {{ __('Wachtwoord vergeten?') }}--}}
           {{--                    </a>--}}
         @endif
-        <a href="/register" class="ml-3" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+        <a href="/register">
           Registreren
         </a>
-        <x-button class="ml-3" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+        <x-button class="ml-3" >
           {{ __('Log in') }}
         </x-button>
       </div>
