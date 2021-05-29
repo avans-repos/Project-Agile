@@ -28,10 +28,6 @@
                   <x-nav-link :href="route('project.index')" class="avans-white"  :active="request()->routeIs('project')">
                     {{ __('Projecten') }}
                   </x-nav-link>
-
-                  <x-nav-link :href="route('user.index')" class="avans-white"  :active="request()->routeIs('user')">
-                    {{ __('Gebruikers') }}
-                  </x-nav-link>
                   <x-nav-link :href="route('classroom.index')" class="avans-white"  :active="request()->routeIs('classroom')">
                     {{ __('Klassen') }}
                   </x-nav-link>
@@ -59,6 +55,11 @@
                       </x-slot>
                     </x-dropdown>
                   </div>
+                  @role('Admin')
+                  <x-nav-link :href="route('user.index')" class="avans-white"  :active="request()->routeIs('user')">
+                    {{ __('Gebruikers') }}
+                  </x-nav-link>
+                  @endrole
                 </div>
             </div>
 

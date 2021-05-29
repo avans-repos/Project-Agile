@@ -8,6 +8,7 @@ use App\Models\student_has_class_room;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClassRoomController extends Controller
 {
@@ -86,8 +87,10 @@ class ClassRoomController extends Controller
 
   public function destroy(ClassRoom $classroom)
   {
-    student_has_class_room::where('class_room', '=', $classroom->id)->delete();
-    $classroom->delete();
+    if(Auth::user()->isAdmin()) {
+      student_has_class_room::where('class_room', '=', $classroom->id)->delete();
+      $classroom->delete();
+    }
     return redirect(route('classroom.index'));
   }
 }

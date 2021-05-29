@@ -18,6 +18,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProjectgroupController extends Controller
@@ -372,7 +373,9 @@ class ProjectgroupController extends Controller
    */
   public function destroy(Projectgroup $projectgroup)
   {
-    $projectgroup->delete();
+    if(Auth::user()->isAdmin()) {
+      $projectgroup->delete();
+    }
     return redirect()->route('projectgroup.index');
   }
 

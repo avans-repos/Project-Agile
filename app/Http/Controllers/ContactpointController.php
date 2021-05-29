@@ -92,8 +92,9 @@ class ContactpointController extends Controller
   {
     $contactpoint = Contactpoint::find($contactpointid);
     $contact = Contact::find($contactpoint->contactPerson);
-
-    $contactpoint->delete();
+    if(Auth::user()->isAdmin()) {
+      $contactpoint->delete();
+    }
 
     return redirect()->route('contact.show', ['contact' => $contact]);
   }

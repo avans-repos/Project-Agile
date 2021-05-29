@@ -44,6 +44,7 @@
                        href="{{route('classroom.edit',$classroom)}}">Aanpassen</a>
                   </div>
                 </div>
+                @role('Admin')
                 <div class="m-1">
                   <form method="POST"  id="delete-product-form-{{$classroom->id}}"  action="{{ route('classroom.destroy', $classroom) }}">
                     {{ method_field('DELETE') }}
@@ -53,6 +54,7 @@
                     </div>
                   </form>
                 </div>
+                @endrole
               </div>
 
             </td>

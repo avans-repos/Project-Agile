@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Projectgroup;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
@@ -37,7 +38,9 @@ class ProjectController extends Controller
 
   public function destroy(Project $project)
   {
-    $project->delete();
+    if(Auth::user()->isAdmin()) {
+      $project->delete();
+    }
     return redirect()->route('project.index');
   }
 

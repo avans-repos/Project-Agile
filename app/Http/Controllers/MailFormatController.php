@@ -108,7 +108,9 @@ class MailFormatController extends Controller
    */
   public function destroy(Mail_format $mailformat)
   {
-    $mailformat->delete();
+    if(Auth::user()->isAdmin()) {
+      $mailformat->delete();
+    }
     return redirect()->route('mailformat.index');
   }
 

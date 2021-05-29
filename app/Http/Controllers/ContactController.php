@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
@@ -224,7 +225,9 @@ class ContactController extends Controller
    */
   public function destroy(Contact $contact)
   {
-    $contact->delete();
+    if(Auth::user()->isAdmin()) {
+      $contact->delete();
+    }
     return redirect()->route('contact.index');
   }
 

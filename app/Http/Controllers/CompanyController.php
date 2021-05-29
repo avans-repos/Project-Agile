@@ -8,6 +8,7 @@ use App\Models\Address;
 use App\Models\contact\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
@@ -178,7 +179,9 @@ class CompanyController extends Controller
    */
   public function destroy(Company $company)
   {
-    $company->delete();
+    if(Auth::user()->isAdmin()) {
+      $company->delete();
+    }
     return redirect()->route('company.index');
   }
 
