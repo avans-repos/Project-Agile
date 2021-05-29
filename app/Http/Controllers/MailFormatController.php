@@ -45,7 +45,12 @@ class MailFormatController extends Controller
           'achternaam' => $contact->lastname,
           'datum' => Carbon::now()->format('Y-m-d'),
         ]);
-        $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $request->get('name')];
+        $subject = $this->getReplacedText($request->get('name'), [
+          'voornaam' => $contact->firstname,
+          'achternaam' => $contact->lastname,
+          'datum' => Carbon::now()->format('Y-m-d'),
+        ]);
+        $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $subject];
         Mail::to($contact->email)->queue(new BaseEmail($data));
       }
     }

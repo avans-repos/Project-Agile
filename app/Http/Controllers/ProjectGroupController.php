@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -21,7 +22,7 @@ class ProjectGroupController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return Response
+   * @return Application|Factory|View
    */
   public function index()
   {
@@ -34,10 +35,7 @@ class ProjectGroupController extends Controller
 
       $project = Project::find($projectgroup->project);
 
-      $projectname = 'Geen Project';
-      if ($project != null) {
-        $projectname = $project->name;
-      }
+      $projectname =  $project != null ? $project->name : 'Geen Project';
 
       array_push($projectgroups, [
         'group' => $projectgroup,
@@ -62,7 +60,7 @@ class ProjectGroupController extends Controller
   /**
    * Show the form for creating a new resource.
    *
-   * @return Response
+   * @return Application|Factory|View
    */
   public function create()
   {
@@ -92,10 +90,10 @@ class ProjectGroupController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param Request $request
-   * @return Response
+   * @param ProjectgroupRequest $request
+   * @return RedirectResponse
    */
-  public function store(ProjectgroupRequest $request)
+  public function store(ProjectgroupRequest $request): RedirectResponse
   {
     $request->validated();
 
@@ -200,8 +198,8 @@ class ProjectGroupController extends Controller
       ->with('students', User::role('student')->get())
       ->with('contacts', Contact::all())
       ->with('projects', Project::all())
-      ->with('assignedUsers', $projectgroup->users()->get())
-      ->with('assignedContacts', $projectgroup->contacts()->get())
+      ->with('assignedUsers', $projectgroup->users()->get()->pluck('id')->toArray())
+      ->with('assignedContacts', $projectgroup->contacts()->get()->pluck('id')->toArray())
       ->with('action', 'update');
   }
 

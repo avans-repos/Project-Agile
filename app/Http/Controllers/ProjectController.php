@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectGroup;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +30,7 @@ class ProjectController extends Controller
       ->with('action', 'store');
   }
 
-  public function store(ProjectRequest $request)
+  public function store(ProjectRequest $request): RedirectResponse
   {
     $request->validated();
 
@@ -35,7 +39,7 @@ class ProjectController extends Controller
     return redirect()->route('project.edit', [$project->id]);
   }
 
-  public function destroy(Project $project)
+  public function destroy(Project $project): RedirectResponse
   {
     $project->delete();
     return redirect()->route('project.index');
@@ -45,7 +49,7 @@ class ProjectController extends Controller
    * Show the form for editing the specified resource.
    *
    * @param Project $project
-   * @return Response
+   * @return Application|Factory|View
    */
   public function edit(Project $project)
   {
@@ -66,7 +70,7 @@ class ProjectController extends Controller
    * @param Project $project
    * @return Response
    */
-  public function update(ProjectRequest $request, Project $project)
+  public function update(ProjectRequest $request, Project $project): Response
   {
     $request->validated();
     $project->update($request->all());
