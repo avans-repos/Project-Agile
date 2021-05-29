@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/StudentClass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StudentClass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/student_has_class_room.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_26_091217_create_class_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_26_091217_create_class_rooms_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_26_092143_create_student_has_class_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_26_092143_create_student_has_class_rooms_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/StudentHasClassRoomSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/StudentHasClassRoomSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projectgroup/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laravel.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Laravel.Dockerfile" afterDir="false" />
     </list>
+    <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +16,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="EditorConfigPreviewManager">
     <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/.prettierrc" />
@@ -187,9 +183,8 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/classroom" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/Javascript/vue/first" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -198,18 +193,19 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pStrict Cleanup" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.composer" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\agile\Project-Agile\resources\views\mail_format" />
       <recent name="D:\Documents\Github\Project-Agile\resources\views\classroom" />
       <recent name="C:\xampp\Project-Agile\resources\views\project" />
       <recent name="D:\xampp\agile\Project-Agile\app\Http\Requests" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
-      <recent name="C:\Users\Job\Github\Project-Agile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\Github\Project-Agile\database\factories" />
       <recent name="D:\xampp\agile\Project-Agile\database\factories\contact" />
       <recent name="D:\xampp\agile\Project-Agile\public\img" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
@@ -335,11 +331,6 @@
       <workItem from="1619642384441" duration="3603000" />
       <workItem from="1618910092440" duration="478000" />
       <workItem from="1620686198555" duration="309000" />
-      <workItem from="1621084736852" duration="128000" />
-      <workItem from="1621085052229" duration="796000" />
-      <workItem from="1621189064851" duration="3571000" />
-      <workItem from="1621255959480" duration="1076000" />
-      <workItem from="1621266575368" duration="926000" />
     </task>
     <servers />
   </component>
@@ -357,6 +348,17 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/database/seeders/CompanySeeder.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

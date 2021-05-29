@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectgroupRequest;
 use App\Models\Address;
+use App\Models\Company;
 use App\Models\contact\Contact;
 use App\Models\StudentClass;
 use App\Models\Project;
@@ -144,6 +145,18 @@ class ProjectGroupController extends Controller
     $contacts = self::matchAdressWithContacts($contacts);
 
     $newContacts = Contact::all()->wherenotin('id', $contacts->pluck('id'));
+
+    foreach ($newContacts as $newContact) {
+      $newContact->company = [];
+
+      $contactCompanies = Company::leftJoin('company_has_contacts_has_contacttypes', 'companies.id', '=', 'company')
+        ->where('contact', '=', $newContact->id)
+        ->get();
+
+      foreach ($contactCompanies as $contactCompany) {
+        $newContact->company = array_merge($newContact->company, [$contactCompany->name]);
+      }
+    }
 
     return view('projectgroup.show')
       ->with('projectgroup', $projectgroup)

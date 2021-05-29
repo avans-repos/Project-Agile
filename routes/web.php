@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactpointController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailFormatController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
@@ -76,8 +77,12 @@ Route::get('notificationController/markall', [NotificationController::class, 'ma
 
 // API Example controller using the avans API
 
-Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, 'addcontact'])->middleware(['auth']);
-Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, 'removecontact'])->middleware(['auth']);
+Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, 'addcontact'])
+  ->name('company.addContact')
+  ->middleware(['auth']);
+Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, 'removecontact'])
+  ->name('company.removeContact')
+  ->middleware(['auth']);
 Route::resource('company', CompanyController::class)->middleware(['auth']);
 
 Route::resource('contactpoint', ContactpointController::class)
@@ -86,11 +91,20 @@ Route::resource('contactpoint', ContactpointController::class)
 Route::get('/contactpoint/create/{id}', [ContactpointController::class, 'create'])
   ->name('contactpoint.create')
   ->middleware(['auth']);
-require __DIR__ . '/auth.php';
 
 Route::resource('role', RoleController::class)->middleware(['auth']);
 
 Route::resource('classroom', ClassRoomController::class)->middleware(['auth']);
+
+Route::resource('mailformat', MailFormatController::class)
+  ->middleware(['auth'])
+  ->except(['show']);
+Route::get('/mailformat/send', [MailFormatController::class, 'mailSetup'])
+  ->name('mailformat.mailSetup')
+  ->middleware(['auth']);
+Route::post('/mailformat/send', [MailFormatController::class, 'sendMail'])
+  ->name('mailformat.sendMail')
+  ->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
 Route::get('projectgroup/{projectgroupid}/addContact/{contactid}', [ProjectGroupController::class, 'addContact'])

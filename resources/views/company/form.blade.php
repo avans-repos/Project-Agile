@@ -7,7 +7,7 @@
     <legend>Algemene informatie:</legend>
     <div>
       <div class="mb-1">
-        <label for="name" class="form-label">Bedrijfsnaam</label>
+        <label for="name" class="form-label">Bedrijfsnaam *</label>
         <input name="name" value="{{old('name',$company->name)}}" type="text"
                class="form-control"
                id="name" placeholder="Avans" maxlength="50" required>
@@ -24,7 +24,7 @@
         <label for="phonenumber" class="form-label">Telefoonnummer</label>
         <input name="phonenumber" value="{{old('phonenumber',$company->phonenumber)}}" type="tel"
                class="form-control"
-               id="phonenumber" placeholder="06 - 12345678" maxlength="15" required>
+               id="phonenumber" placeholder="06 - 12345678" maxlength="15">
 
       </div>
       <div class="col">
@@ -35,7 +35,7 @@
     </div>
     <div>
       <div class="mb-1">
-        <label for="email" class="form-label">E-mail</label>
+        <label for="email" class="form-label">E-mail *</label>
         <input name="email" value="{{old('email',$company->email)}}" type="tel"
                class="form-control"
                id="email" placeholder="email@domain.com" maxlength="320" required>
@@ -52,7 +52,7 @@
         <label for="size" class="form-label">Aantal medewerkers</label>
         <input name="size" value="{{old('size',$company->size)}}" type="number"
                class="form-control"
-               id="size" placeholder="12" min="0" maxlength="11" step="1" required>
+               id="size" placeholder="12" min="0" maxlength="11" step="1">
 
       </div>
       <div class="col">
@@ -66,11 +66,22 @@
         <label for="website" class="form-label">Website</label>
         <input name="website" value="{{old('website',$company->website)}}" type="text"
                class="form-control"
-               id="website" placeholder="bedrijfsnaam.nl" maxlength="255" required>
+               id="website" placeholder="bedrijfsnaam.nl" maxlength="255">
 
       </div>
       <div class="col">
         @error('website')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+    <div>
+      <div class="mb-1">
+        <label for="note" class="form-label">Notitie</label>
+        <textarea placeholder="Een kleine notitie over het bedrijf." name="note" rows="5" class="form-control" id="note">{{old('note',$company->note)}}</textarea>
+      </div>
+      <div class="col">
+        @error('note')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
