@@ -98,10 +98,12 @@ class ActionpointController extends Controller
    */
   public function show(Actionpoint $actionpoint)
   {
-    $assigned =  Actionpoint::where('id', $actionpoint->id)->first()->teachers()->get();
+    $assigned = Actionpoint::where('id', $actionpoint->id)
+      ->first()
+      ->teachers()
+      ->get();
 
-    $creator = User::where('id', '=', $actionpoint->creator)
-      ->first();
+    $creator = User::where('id', '=', $actionpoint->creator)->first();
 
     return view('actionPoints.show')
       ->with('actionpoint', $actionpoint)
@@ -117,7 +119,10 @@ class ActionpointController extends Controller
    */
   public function edit(Actionpoint $actionpoint)
   {
-    $assigned = Actionpoint::where('id', $actionpoint->id)->first()->teachers()->get();
+    $assigned = Actionpoint::where('id', $actionpoint->id)
+      ->first()
+      ->teachers()
+      ->get();
 
     $assigned = array_map(function ($teacher) {
       return $teacher->id;

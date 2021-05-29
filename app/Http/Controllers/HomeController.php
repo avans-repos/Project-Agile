@@ -13,18 +13,17 @@ class HomeController extends Controller
   {
     $userid = Auth::user()->id;
 
+    //    $actionPoints = DB::table('teacher_has_actionpoints')
+    //      ->where('userid', $userid, 'and')
+    //      ->where('finished', null)
+    //      ->join('actionpoints', 'teacher_has_actionpoints.actionpointid', '=', 'actionpoints.id')
+    //      ->orderBy('actionpoints.deadline')
+    //      ->get();
 
-
-//    $actionPoints = DB::table('teacher_has_actionpoints')
-//      ->where('userid', $userid, 'and')
-//      ->where('finished', null)
-//      ->join('actionpoints', 'teacher_has_actionpoints.actionpointid', '=', 'actionpoints.id')
-//      ->orderBy('actionpoints.deadline')
-//      ->get();
-
-    $actionPoints = Actionpoint::where('finished', null)->teachers()->where(function ($q) {
-      $q->where("user_id", $userid);
-    })->get();
+    $actionPoints = Actionpoint::where('finished', null)
+      ->teachers()
+      ->where('teachers.user_id', $userid)
+      ->orderBy('actionpoints.deadline');
 
     $notifications = auth()->user()->unreadNotifications;
 

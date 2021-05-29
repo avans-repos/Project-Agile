@@ -29,13 +29,19 @@ class ProjectGroupController extends Controller
     $projectgroups = [];
 
     foreach (ProjectGroup::all() as $projectgroup) {
-      $teachers = $projectgroup->users()->role('Teacher')->get();
+      $teachers = $projectgroup
+        ->users()
+        ->role('Teacher')
+        ->get();
 
-      $students =  $projectgroup->users()->role('Student')->get();
+      $students = $projectgroup
+        ->users()
+        ->role('Student')
+        ->get();
 
       $project = Project::find($projectgroup->project);
 
-      $projectname =  $project != null ? $project->name : 'Geen Project';
+      $projectname = $project != null ? $project->name : 'Geen Project';
 
       array_push($projectgroups, [
         'group' => $projectgroup,
@@ -167,7 +173,9 @@ class ProjectGroupController extends Controller
 
   public function addcontact($projectgroupid, $contactid)
   {
-    $projectGroup = Projectgroup::all()->where('id', '=', $projectgroupid)->first();
+    $projectGroup = Projectgroup::all()
+      ->where('id', '=', $projectgroupid)
+      ->first();
     $projectGroup->contacts()->attach($contactid);
 
     return redirect()->route('projectgroup.show', [$projectgroupid]);
@@ -175,7 +183,9 @@ class ProjectGroupController extends Controller
 
   public function removecontact($projectgroupid, $contactid)
   {
-    $projectGroup = Projectgroup::all()->where('id', '=', $projectgroupid)->first();
+    $projectGroup = Projectgroup::all()
+      ->where('id', '=', $projectgroupid)
+      ->first();
     $projectGroup->contacts()->detach($contactid);
 
     return redirect()->route('projectgroup.show', [$projectgroupid]);
@@ -198,8 +208,22 @@ class ProjectGroupController extends Controller
       ->with('students', User::role('student')->get())
       ->with('contacts', Contact::all())
       ->with('projects', Project::all())
-      ->with('assignedUsers', $projectgroup->users()->get()->pluck('id')->toArray())
-      ->with('assignedContacts', $projectgroup->contacts()->get()->pluck('id')->toArray())
+      ->with(
+        'assignedUsers',
+        $projectgroup
+          ->users()
+          ->get()
+          ->pluck('id')
+          ->toArray()
+      )
+      ->with(
+        'assignedContacts',
+        $projectgroup
+          ->contacts()
+          ->get()
+          ->pluck('id')
+          ->toArray()
+      )
       ->with('action', 'update');
   }
 
