@@ -27,6 +27,8 @@ class ActionpointRequest extends FormRequest
       'deadline' => 'required|after:tomorrow',
       'title' => 'required',
       'reminderdate' => 'nullable|after:tomorrow',
+      'assigned' => 'array|required',
+      'assigned.*' => 'integer|required',
     ];
   }
 
@@ -37,6 +39,7 @@ class ActionpointRequest extends FormRequest
       'title' => 'titel',
       'description' => 'beschrijving',
       'reminderdate' => 'Herinneringsdatum',
+      'assigned' => 'Docenten'
     ];
   }
 }
