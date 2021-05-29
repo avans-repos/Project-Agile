@@ -59,6 +59,7 @@
       </div>
     </div>
   </fieldset>
+
   <fieldset>
     <legend>projectgroepen</legend>
     <div class="row d-flex flex-column">
@@ -89,6 +90,7 @@
           @enderror
         </div>
       </div>
+
       <div class="mb-3">
         <h3>Toevoegen</h3>
         <input type="text" id="filterProjectGroupInput" onkeyup="filterProjectGroups()"
@@ -115,10 +117,25 @@
     </div>
   </fieldset>
 
+  <fieldset>
+    <a class="btn btn-secondary" onClick="ajaxTest()" >
+      Voeg nieuwe projectgroep toe.
+    </a>
+
+    <div id="ajaxField"></div>
+
   <input class="btn btn-primary" type="submit" value="Project {{$formActionViewName}}">
 </form>
 
 <script>
+
+  function ajaxTest() {
+    $.get("{{route('projectgroup.create')}}",
+      function(data){
+      //alert("Data: " + data);
+        document.getElementById('ajaxField').innerHTML = data;
+    });
+  }
 
   const projectGroupDiv = document.getElementById('selectedProjectGroups');
   const addedGroupsDiv = document.getElementById('addedGroups');

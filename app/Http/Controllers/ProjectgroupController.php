@@ -110,6 +110,8 @@ class ProjectgroupController extends Controller
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
       ->with('action', 'store');
+
+    //return \response('Hello World!');
   }
 
   /**
