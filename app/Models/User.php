@@ -39,6 +39,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @method static role(string $string)
+ * @method static where(string $string, string $string1, int $creator)
  * @mixin Eloquent
  */
 class User extends Authenticatable

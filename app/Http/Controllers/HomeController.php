@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actionpoint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,12 +13,18 @@ class HomeController extends Controller
   {
     $userid = Auth::user()->id;
 
-    $actionPoints = DB::table('teacher_has_actionpoints')
-      ->where('userid', $userid, 'and')
-      ->where('finished', null)
-      ->join('actionpoints', 'teacher_has_actionpoints.actionpointid', '=', 'actionpoints.id')
-      ->orderBy('actionpoints.deadline')
-      ->get();
+
+
+//    $actionPoints = DB::table('teacher_has_actionpoints')
+//      ->where('userid', $userid, 'and')
+//      ->where('finished', null)
+//      ->join('actionpoints', 'teacher_has_actionpoints.actionpointid', '=', 'actionpoints.id')
+//      ->orderBy('actionpoints.deadline')
+//      ->get();
+
+    $actionPoints = Actionpoint::where('finished', null)->teachers()->where(function ($q) {
+      $q->where("user_id", $userid);
+    })->get();
 
     $notifications = auth()->user()->unreadNotifications;
 

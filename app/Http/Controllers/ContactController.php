@@ -89,7 +89,7 @@ class ContactController extends Controller
             ->first();
 
           $company_has_contact = new Company_has_contacts();
-          $company_has_contact->contact = $contact->id;
+          $company_has_contact->contact = $contactId;
           $company_has_contact->company = $company->id;
           $company_has_contact->contacttype = $data['contacttype-' . $id];
           $company_has_contact->save();
