@@ -160,7 +160,7 @@
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
                 <strong class="text-gray-dark">Gemaakt door: {{$note->name}} op {{date('d-m-Y H:i', strtotime($note->creation))}}</strong>
-                <a href="{{route('notes.edit',$note->id)}}">Bewerken ></a>
+                <a href="{{route('notes.edit',$note->id)}}">Bewerken</a>
               </div>
               <div class="d-flex justify-content-between align-items-center w-100 mt-2">
                 <span></span>
@@ -168,7 +168,7 @@
                   {{ method_field('DELETE') }}
                   {{ csrf_field() }}
                   <div class="d-flex justify-content-center align-items-center">
-                    <a onclick="deleteConfirm('delete-product-form-{{$note->id}}')">Verwijderen </a>
+                    <a href="#" onclick="deleteConfirm('delete-product-form-{{$note->id}}')">Verwijderen </a>
                   </div>
                 </form>
               </div>
