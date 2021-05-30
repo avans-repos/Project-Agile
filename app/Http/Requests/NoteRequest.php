@@ -30,32 +30,14 @@ class NoteRequest extends FormRequest
   {
     return [
       'description' => 'required|string',
-      'reminderdate' => 'required_if:reminder,1|after:today',
+      'reminderdate' => 'required_if:reminder,1|after:today|date',
     ];
-  }
-
-  public function withValidator($validator)
-  {
-    $validator->after(function ($validator) {
-      if ($this->reminderdate != null || $this->reminderdate != '') {
-        try {
-          $date = Carbon::createFromFormat('Y-m-d', $this->reminderdate);
-        } catch (InvalidFormatException $e) {
-          $validator
-            ->errors()
-            ->add(
-              'reminderdate',
-              'De datum is niet in het juiste formaat genoteerd. Controleer of deze voldoet aan DD-MM-YYYY (Dag, maand, jaar).'
-            );
-        }
-      }
-    });
   }
 
   public function attributes()
   {
     return [
-      'description' => 'beschrijving',
+      'description' => 'Omschrijving',
     ];
   }
 

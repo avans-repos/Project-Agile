@@ -33,9 +33,9 @@ class SendMailRequest extends FormRequest
   public function attributes()
   {
     return [
-      'name' => 'Titel',
-      'body' => 'Inhoud',
-      'contact' => 'Contact',
+      'name' => 'titel',
+      'body' => 'inhoud',
+      'contact' => 'contact',
     ];
   }
 }
