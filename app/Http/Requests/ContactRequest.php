@@ -34,6 +34,12 @@ class ContactRequest extends FormRequest
       'type' => 'nullable',
       'company-*' => 'nullable|string',
       'contactTypeSelector-*' => 'nullable|string',
+      'streetname1' => 'max:100',
+      'number1' => 'nullable|integer|max:2147483645|min:1',
+      'addition1' => 'nullable|max:5',
+      'zipcode1' => 'nullable|max:10',
+      'city1' => 'nullable|max:100',
+      'country1' => 'nullable|max:50',
     ];
   }
 
@@ -50,6 +56,12 @@ class ContactRequest extends FormRequest
       'type' => 'contactsoort',
       'company-*' => 'bedrijf',
       'contactTypeSelector-*' => 'contactType',
+      'streetname1' => 'straatnaam',
+      'number1' => 'huisnummer',
+      'addition1' => 'toevoeging',
+      'zipcode1' => 'postcode',
+      'city1' => 'stad',
+      'country1'=> 'land'
     ];
   }
 }
