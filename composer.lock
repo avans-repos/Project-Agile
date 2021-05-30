@@ -5664,21 +5664,22 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.1.6",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "222889eecf49bb02ea91e2122c9ab9f8379c0c45"
+                "reference": "40444821ebfc781b91281048e18f06193d388f4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/222889eecf49bb02ea91e2122c9ab9f8379c0c45",
-                "reference": "222889eecf49bb02ea91e2122c9ab9f8379c0c45",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/40444821ebfc781b91281048e18f06193d388f4a",
+                "reference": "40444821ebfc781b91281048e18f06193d388f4a",
                 "shasum": ""
             },
             "require": {
-                "illuminate/filesystem": "^8.0",
-                "illuminate/support": "^8.0",
+                "illuminate/filesystem": "^8.42",
+                "illuminate/support": "^8.42",
+                "illuminate/validation": "^8.42",
                 "php": "^7.3|^8.0"
             },
             "type": "library",
@@ -5716,20 +5717,20 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2021-04-27T17:35:17+00:00"
+            "time": "2021-05-25T16:27:09+00:00"
         },
         {
             "name": "laravel/sail",
-            "version": "v1.5.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "7f2d520f8c7d6fc0e5e4949c1363f6ddff0ff116"
+                "reference": "d1f703d73f782af5427697cdc5023395cd341963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/7f2d520f8c7d6fc0e5e4949c1363f6ddff0ff116",
-                "reference": "7f2d520f8c7d6fc0e5e4949c1363f6ddff0ff116",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/d1f703d73f782af5427697cdc5023395cd341963",
+                "reference": "d1f703d73f782af5427697cdc5023395cd341963",
                 "shasum": ""
             },
             "require": {
@@ -5776,7 +5777,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-04-20T16:17:55+00:00"
+            "time": "2021-05-25T16:41:13+00:00"
         },
         {
             "name": "mockery/mockery",

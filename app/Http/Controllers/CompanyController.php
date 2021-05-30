@@ -79,12 +79,9 @@ class CompanyController extends Controller
     if ($company->visiting_address != $company->mailing_address) {
       $address2 = Address::find($company->mailing_address);
     }
-    $contacts = [];
-    foreach ($company->contacts()->get() as $contact) {
-      array_push($contacts, Contact::where('id', $contact->contact)->first());
-    }
+    $contacts = $company->contacts()->get();
 
-    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts, 'id'));
+    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts->toArray(), 'id'));
 
     foreach ($newContacts as $contactKey => $newContact) {
       $newContact->company = [];
@@ -94,10 +91,10 @@ class CompanyController extends Controller
       }
     }
 
-    $newContacts = DB::table('company_has_contacts')
-      ->rightJoin('contacts', 'contactid', '=', 'id')
-      ->where('companyid', '=', null)
-      ->orWhere('companyid', '!=', $company->id)
+    $newContacts = DB::table('company_has_contacts_has_contacttypes')
+      ->rightJoin('contacts', 'contact', '=', 'contacts.id')
+      ->where('company', '=', null)
+      ->orWhere('company', '!=', $company->id)
       ->get();
 
     $notes = Note::whereIn('contact', $contacts->pluck('id')->toArray())->get();
