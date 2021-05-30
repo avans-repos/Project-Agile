@@ -7,7 +7,7 @@ use App\Models\Address;
 use App\Models\Company;
 use App\Models\contact\Contact;
 use App\Models\Project;
-use App\Models\Projectgroup;
+use App\Models\ProjectGroup;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
