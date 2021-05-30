@@ -9,6 +9,7 @@ use App\Models\contact\Contact;
 use App\Models\Project;
 use App\Models\ProjectGroup;
 use App\Models\User;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -174,7 +175,10 @@ class ProjectGroupController extends Controller
     $projectGroup = Projectgroup::all()
       ->where('id', '=', $projectgroupid)
       ->first();
-    $projectGroup->contacts()->attach($contactid);
+    try {
+      $projectGroup->contacts()->attach($contactid);
+    } catch (Exception $ex) {
+    }
 
     return redirect()->route('projectgroup.show', [$projectgroupid]);
   }

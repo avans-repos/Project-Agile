@@ -61,7 +61,7 @@ class ContactRequest extends FormRequest
       'addition1' => 'toevoeging',
       'zipcode1' => 'postcode',
       'city1' => 'stad',
-      'country1'=> 'land'
+      'country1' => 'land',
     ];
   }
 }
