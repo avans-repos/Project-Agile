@@ -34,10 +34,9 @@ class ClassRoomRequest extends FormRequest
   public function attributes()
   {
     return [
-      'name' => 'Klasnaam',
-      'year' => 'Jaar',
-      'schoolBlock' => 'Blok',
-      'student' => 'Student',
+      'name' => 'klasnaam',
+      'year' => 'start schooljaar',
+      'student' => 'student',
     ];
   }
 }
