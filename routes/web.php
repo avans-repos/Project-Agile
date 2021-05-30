@@ -49,8 +49,6 @@ Route::resource('project', ProjectController::class)->middleware(['auth']);
 
 Route::resource('user', UserController::class)->middleware(['auth']);
 
-Route::resource('project', ProjectController::class)->middleware(['auth']);
-
 Route::get('/notes/create/{contact}', [NoteController::class, 'create'])
   ->middleware(['auth'])
   ->name('notes.create');
@@ -74,8 +72,6 @@ Route::get('notificationController/mark/{notificationId}', [NotificationControll
 Route::get('notificationController/markall', [NotificationController::class, 'markAllNotifications'])
   ->name('notification.markall')
   ->middleware(['auth']);
-
-// API Example controller using the avans API
 
 Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, 'addcontact'])
   ->name('company.addContact')

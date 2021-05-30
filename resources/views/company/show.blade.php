@@ -156,10 +156,10 @@
           <div class="d-flex align-items-start bg-white rounded shadow-sm p-3">
             <div class="me-sm-3">
               <div>
-                <b>{{$contact->firstname}} {{$contact->lastname}}</b>
-                <a class="ml-1" href="{{$company->id}}/removecontact/{{ $contact->id }}">x</a>
+                <b>{{$contact->getName()}}</b>
+                <a class="ml-1" href="{{route('company.removeContact',['companyid' => $company->id, 'contactid' => $contact->id])}}">x</a>
               </div>
-              
+
               <div>
                 {{ $contact->gender }}
               </div>
@@ -190,7 +190,7 @@
                   <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
                       <strong class="text-gray-dark">Gemaakt door: {{$firstNote->name}}
-                        op {{date('d-m-Y H:i:s', strtotime($firstNote->creation))}}</strong>
+                        op {{date('d-m-Y H:i', strtotime($firstNote->creation))}}</strong>
                     </div>
                     <div class="d-flex justify-content-between align-items-center w-100 mt-2">
                       <span class="d-block text-break">{{$firstNote->description}}</span>
@@ -210,7 +210,7 @@
                         <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                           <div class="d-flex justify-content-between align-items-center w-100">
                             <strong class="text-gray-dark">Gemaakt door: {{$note->name}}
-                              op {{date('d-m-Y H:i:s', strtotime($note->creation))}}</strong>
+                              op {{date('d-m-Y H:i', strtotime($note->creation))}}</strong>
                           </div>
                           <div class="d-flex justify-content-between align-items-center w-100 mt-2">
                             <span class="d-block text-break">{{$note->description}}</span>
@@ -274,6 +274,7 @@
           @endforeach
           </tbody>
         </table>
+      </div>
     </fieldset>
   </div>
 
