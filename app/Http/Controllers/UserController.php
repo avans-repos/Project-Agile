@@ -12,7 +12,6 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-
   /**
    * Display a listing of the resource.
    */
@@ -71,7 +70,14 @@ class UserController extends Controller
         array_push($exceptions, ['student_is_admin' => 'Een gebruiker kan niet een student & admin zijn.']);
       }
 
-      if (!in_array('Admin', $roleNames) && count(User::role('Admin')->where('id', '!=', $user->id)->get()) < 1) {
+      if (
+        !in_array('Admin', $roleNames) &&
+        count(
+          User::role('Admin')
+            ->where('id', '!=', $user->id)
+            ->get()
+        ) < 1
+      ) {
         array_push($exceptions, ['no_admin' => 'Er moet minimaal één (1) admin in het systeem staan.']);
       }
 

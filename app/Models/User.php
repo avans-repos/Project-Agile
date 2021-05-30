@@ -71,10 +71,8 @@ class User extends Authenticatable
 
   public function isAdmin(): bool
   {
-    foreach ($this->roles()->get() as $role)
-    {
-      if ($role->name == 'Admin')
-      {
+    foreach ($this->roles()->get() as $role) {
+      if ($role->name == 'Admin') {
         return true;
       }
     }

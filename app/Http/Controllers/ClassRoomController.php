@@ -87,7 +87,7 @@ class ClassRoomController extends Controller
 
   public function destroy(ClassRoom $classroom)
   {
-    if(Auth::user()->isAdmin()) {
+    if (Auth::user()->isAdmin()) {
       student_has_class_room::where('class_room', '=', $classroom->id)->delete();
       $classroom->delete();
     }

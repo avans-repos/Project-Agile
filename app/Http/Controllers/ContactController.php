@@ -225,7 +225,7 @@ class ContactController extends Controller
    */
   public function destroy(Contact $contact)
   {
-    if(Auth::user()->isAdmin()) {
+    if (Auth::user()->isAdmin()) {
       $contact->delete();
     }
     return redirect()->route('contact.index');

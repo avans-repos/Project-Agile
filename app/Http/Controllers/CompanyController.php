@@ -179,7 +179,7 @@ class CompanyController extends Controller
    */
   public function destroy(Company $company)
   {
-    if(Auth::user()->isAdmin()) {
+    if (Auth::user()->isAdmin()) {
       $company->delete();
     }
     return redirect()->route('company.index');

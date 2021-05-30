@@ -28,7 +28,6 @@ class UserSeeder extends Seeder
     $tanja->assignRole('Teacher');
     $tanja->save($tanja->toArray());
 
-
     $rene = new User([
       'name' => 'Rene Barnard',
       'email' => 'rp.barnard@avans.nl',

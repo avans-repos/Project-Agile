@@ -92,7 +92,7 @@ class ContactpointController extends Controller
   {
     $contactpoint = Contactpoint::find($contactpointid);
     $contact = Contact::find($contactpoint->contactPerson);
-    if(Auth::user()->isAdmin()) {
+    if (Auth::user()->isAdmin()) {
       $contactpoint->delete();
     }
 
