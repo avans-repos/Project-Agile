@@ -79,9 +79,13 @@ class CompanyController extends Controller
     if ($company->visiting_address != $company->mailing_address) {
       $address2 = Address::find($company->mailing_address);
     }
-    $contacts = $company->contacts()->get();
+    $contacts = [];
 
-    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts->toArray(), 'id'));
+    foreach($company->contacts()->get() as $contact) {
+      array_push($contacts, Contact::find($contact->contact));
+    }
+
+    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts, 'id'));
 
     foreach ($newContacts as $contactKey => $newContact) {
       $newContact->company = [];
@@ -97,7 +101,7 @@ class CompanyController extends Controller
       ->orWhere('company', '!=', $company->id)
       ->get();
 
-    $notes = Note::whereIn('contact', $contacts->pluck('id')->toArray())->get();
+    $notes = Note::whereIn('contact', $company->contacts()->get()->toArray())->get();
 
     return view('company.show')
       ->with('company', $company)

@@ -195,7 +195,7 @@
           @foreach($newContacts as $contact)
             <tr>
               <td>
-                <b>{{$contact->getName()}}</b>
+                <b>{{$contact->firstname}} {{$contact->lastname}}</b>
               </td>
 
               <td>
