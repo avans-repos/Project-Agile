@@ -61,14 +61,23 @@ class CompanyRequest extends FormRequest
   public function attributes()
   {
     return [
-      'initials' => 'voorletters',
-      'firstname' => 'voornaam',
-      'insertion' => 'tussenvoegsel',
-      'lastname' => 'achternaam',
-      'gender' => 'geslacht',
-      'email' => 'e-mail',
+      'name' => 'bedrijfsnaam',
       'phonenumber' => 'telefoonnummer',
-      'type' => 'contactsoort',
+      'email' => 'e-mail',
+      'size' => 'aantal medewerkers',
+      'website' => 'website',
+      'streetname1' => 'bezoekadres - straatnaam',
+      'number1' => 'bezoekadres - huisnummer',
+      'addition1' => 'bezoekadres - toevoeging',
+      'zipcode1' => 'bezoekadres - postcode',
+      'city1' => 'bezoekadres - plaatsnaam',
+      'country1' => 'bezoekadres - land',
+      'streetname2' => 'postadres - straatnaam',
+      'number2' => 'postadres - huisnummer',
+      'addition2' => 'postadres - toevoeging',
+      'zipcode2' => 'postadres - postcode',
+      'city2' => 'postadres - plaatsnaam',
+      'country2' => 'land',
     ];
   }
 }

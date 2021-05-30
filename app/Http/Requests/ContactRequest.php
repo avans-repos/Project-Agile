@@ -40,7 +40,7 @@ class ContactRequest extends FormRequest
   public function attributes()
   {
     return [
-      'initials' => 'voorletters',
+      'initials' => 'initialen',
       'firstname' => 'voornaam',
       'insertion' => 'tussenvoegsel',
       'lastname' => 'achternaam',
