@@ -85,7 +85,7 @@ class CompanyController extends Controller
       array_push($contacts, Contact::find($contact->contact));
     }
 
-    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts, 'id'));
+    $newContacts = Contact::whereNotIn('id', array_column($contacts, 'id'))->get();
 
     foreach ($newContacts as $contactKey => $newContact) {
       $newContact->company = [];
@@ -94,12 +94,6 @@ class CompanyController extends Controller
         $newContact->company = array_merge($newContact->company, [Company::where('id', $contact_company->company)->first()->name]);
       }
     }
-
-    $newContacts = DB::table('company_has_contacts_has_contacttypes')
-      ->rightJoin('contacts', 'contact', '=', 'contacts.id')
-      ->where('company', '=', null)
-      ->orWhere('company', '!=', $company->id)
-      ->get();
 
     $notes = Note::whereIn('contact', $company->contacts()->get()->toArray())->get();
 
