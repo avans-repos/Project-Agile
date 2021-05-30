@@ -81,7 +81,7 @@ class CompanyController extends Controller
     }
     $contacts = [];
 
-    foreach($company->contacts()->get() as $contact) {
+    foreach ($company->contacts()->get() as $contact) {
       array_push($contacts, Contact::find($contact->contact));
     }
 
@@ -95,7 +95,13 @@ class CompanyController extends Controller
       }
     }
 
-    $notes = Note::whereIn('contact', $company->contacts()->get()->toArray())->get();
+    $notes = Note::whereIn(
+      'contact',
+      $company
+        ->contacts()
+        ->get()
+        ->toArray()
+    )->get();
 
     return view('company.show')
       ->with('company', $company)
