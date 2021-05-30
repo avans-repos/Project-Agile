@@ -27,7 +27,7 @@ class CompanyRequest extends FormRequest
       'name' => 'required|string|max:50',
       'phonenumber' => 'string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
       'email' => 'required|email|max:320',
-      'size' => 'min:0',
+      'size' => 'nullable|min:0|integer|max:2147483646',
       'website' => 'max:255',
       'streetname1' => 'required|max:100',
       'number1' => 'required|max:11',
