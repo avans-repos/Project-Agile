@@ -79,18 +79,20 @@ class CompanyController extends Controller
     if ($company->visiting_address != $company->mailing_address) {
       $address2 = Address::find($company->mailing_address);
     }
+    $contacts = [];
+    foreach ($company->contacts()->get() as $contact) {
+      array_push($contacts, Contact::where('id', $contact->contact)->first());
+    }
 
-    $contacts = DB::select(
-      'SELECT id FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = ' . $company->id
-    );
-    $contacts = DB::table('company_has_contacts')
-      ->rightJoin('contacts', 'contactid', '=', 'id')
-      ->where('companyid', '=', $company->id)
-      ->get();
+    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts, 'id'));
 
-    $newContacts = DB::select(
-      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != ' . $company->id
-    );
+    foreach ($newContacts as $contactKey => $newContact) {
+      $newContact->company = [];
+
+      foreach ($newContact->companies()->get() as $contact_company) {
+        $newContact->company = array_merge($newContact->company, [Company::where('id', $contact_company->company)->first()->name]);
+      }
+    }
 
     $newContacts = DB::table('company_has_contacts')
       ->rightJoin('contacts', 'contactid', '=', 'id')
@@ -111,9 +113,10 @@ class CompanyController extends Controller
 
   public function addcontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')->insert([
-      'companyid' => $companyid,
-      'contactid' => $contactid,
+    DB::table('company_has_contacts_has_contacttypes')->insert([
+      'company' => $companyid,
+      'contact' => $contactid,
+      'contacttype' => 'warm',
     ]);
 
     return redirect()->route('company.show', [$companyid]);
@@ -121,9 +124,11 @@ class CompanyController extends Controller
 
   public function removecontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')
-      ->where('companyid', $companyid)
-      ->where('contactid', $contactid)
+    DB::table('company_has_contacts_has_contacttypes')
+      ->where([
+        'company' => $companyid,
+        'contact' => $contactid,
+      ])
       ->delete();
 
     return redirect()->route('company.show', [$companyid]);

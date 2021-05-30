@@ -60,17 +60,6 @@
             <a href="{{$company->website}}">{{$company->website}}</a>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-6">
-            Notitie
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <p>{{$company->note}}</p>
-          </div>
-        </div>
       </fieldset>
       <fieldset class="col-sm-6" id="companyAddresses">
         <legend>Adres</legend>
@@ -170,7 +159,7 @@
                 <b>{{$contact->firstname}} {{$contact->lastname}}</b>
                 <a class="ml-1" href="{{$company->id}}/removecontact/{{ $contact->id }}">x</a>
               </div>
-
+              
               <div>
                 {{ $contact->gender }}
               </div>
@@ -237,34 +226,54 @@
         @endforeach
       </div>
       <button onClick="showTable()" class="btn btn-primary mt-4">Contactpersoon toevoegen</button>
-
-      <table class="table mt-4 d-none" id="add-contact-table">
-        <tr>
-          <th>Naam</th>
-          <th>E-mail</th>
-          <th>Telefoonnummer</th>
-          <th></th>
-        </tr>
-        @foreach($newContacts as $contact)
+      <div class="mt-4 d-none" id="add-contact-table">
+        <input class="form-control rounded w-25 my-4" type="text" id="searchInput" placeholder="Zoeken..." />
+        <table class="table" id="searchTable">
+          <thead>
           <tr>
-            <td>
-              <b>{{$contact->firstname}} {{$contact->lastname}}</b>
-            </td>
-
-            <td>
-              <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
-            </td>
-
-            <td>
-              {{ $contact->phonenumber }}
-            </td>
-
-            <td>
-              <a href="{{$company->id}}/addcontact/{{ $contact->id }}" class="btn btn-secondary">Toevoegen</a>
-            </td>
+            <th>Naam</th>
+            <th>E-mail</th>
+            <th>Telefoonnummer</th>
+            <th>Bedrijf</th>
+            <th></th>
           </tr>
-        @endforeach
-      </table>
+          </thead>
+          <tbody>
+          @foreach($newContacts as $contact)
+            <tr>
+              <td>
+                <b>{{$contact->getName()}}</b>
+              </td>
+
+              <td>
+                <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
+              </td>
+
+              <td>
+                {{ $contact->phonenumber }}
+              </td>
+
+              <td>
+                @empty($contact->company)
+                  Geen Bedrijf
+                @else
+                  @foreach($contact->company as $key=>$contactcompany)
+                    @if(count($contact->company) == $key + 1)
+                      {{$contactcompany}}
+                    @else
+                      {{$contactcompany}},
+                    @endif
+                  @endforeach
+                @endempty
+              </td>
+
+              <td>
+                <a href="{{ route('company.addContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}" class="btn btn-secondary">Toevoegen</a>
+              </td>
+            </tr>
+          @endforeach
+          </tbody>
+        </table>
     </fieldset>
   </div>
 
@@ -293,4 +302,6 @@
       }
     }
   </script>
+
+  <script src="{{ asset('js/search.js')}}"></script>
 @endsection
