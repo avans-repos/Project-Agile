@@ -66,6 +66,10 @@ class Contact extends Model
 
   public function projectgroups()
   {
-    return $this->hasManyThrough(Projectgroup::class, projectgroup_has_contacts::class,'contactid','projectgroupid','contactid','contactid');
+    return $this->hasManyThrough(Projectgroup::class, projectgroup_has_contacts::class,'contactid','id','contactid','contactid');
+  }
+
+  public function latestProjectgroup() {
+    return $this->hasManyThrough(Projectgroup::class, projectgroup_has_contacts::class,'contactid','id','contactid','contactid')->latest();
   }
 }
