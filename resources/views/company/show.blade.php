@@ -211,7 +211,7 @@
                   Geen Bedrijf
                 @else
                   @foreach($contact->companies()->get() as $contactCompany)
-                    @if($loop->last > 0)
+                    @if($loop->last)
                       {{$contactCompany->company()->first()->name}}
                     @else
                       {{$contactCompany->company()->first()->name}},
