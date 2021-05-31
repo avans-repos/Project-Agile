@@ -25,10 +25,10 @@ class CompanyRequest extends FormRequest
   {
     return [
       'name' => 'required|string|max:50',
-      'phonenumber' => 'string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
+      'phonenumber' => 'nullable|string|max:15|regex:/^([0-9\s\-\+\(\)]*)$/',
       'email' => 'required|email|max:320',
-      'size' => 'min:0',
-      'website' => 'max:255',
+      'size' => 'nullable|min:0|integer|max:2147483646',
+      'website' => 'nullable|string|max:255',
       'streetname1' => 'required|max:100',
       'number1' => 'required|max:11',
       'addition1' => 'max:5',
@@ -61,14 +61,23 @@ class CompanyRequest extends FormRequest
   public function attributes()
   {
     return [
-      'initials' => 'voorletters',
-      'firstname' => 'voornaam',
-      'insertion' => 'tussenvoegsel',
-      'lastname' => 'achternaam',
-      'gender' => 'geslacht',
-      'email' => 'e-mail',
+      'name' => 'bedrijfsnaam',
       'phonenumber' => 'telefoonnummer',
-      'type' => 'contactsoort',
+      'email' => 'e-mail',
+      'size' => 'aantal medewerkers',
+      'website' => 'website',
+      'streetname1' => 'bezoekadres - straatnaam',
+      'number1' => 'bezoekadres - huisnummer',
+      'addition1' => 'bezoekadres - toevoeging',
+      'zipcode1' => 'bezoekadres - postcode',
+      'city1' => 'bezoekadres - plaatsnaam',
+      'country1' => 'bezoekadres - land',
+      'streetname2' => 'postadres - straatnaam',
+      'number2' => 'postadres - huisnummer',
+      'addition2' => 'postadres - toevoeging',
+      'zipcode2' => 'postadres - postcode',
+      'city2' => 'postadres - plaatsnaam',
+      'country2' => 'land',
     ];
   }
 }

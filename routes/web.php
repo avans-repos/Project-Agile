@@ -77,8 +77,12 @@ Route::get('notificationController/markall', [NotificationController::class, 'ma
 
 // API Example controller using the avans API
 
-Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, 'addcontact'])->middleware(['auth']);
-Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, 'removecontact'])->middleware(['auth']);
+Route::get('company/{companyid}/addcontact/{contactid}', [CompanyController::class, 'addcontact'])
+  ->name('company.addContact')
+  ->middleware(['auth']);
+Route::get('company/{companyid}/removecontact/{contactid}', [CompanyController::class, 'removecontact'])
+  ->name('company.removeContact')
+  ->middleware(['auth']);
 Route::resource('company', CompanyController::class)->middleware(['auth']);
 
 Route::resource('contactpoint', ContactpointController::class)

@@ -2,6 +2,7 @@
 
 namespace App\Models\contact;
 
+use App\Models\Company_has_contacts;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,5 +54,10 @@ class Contact extends Model
     $fullname .= $this->lastname;
 
     return $fullname;
+  }
+
+  public function companies()
+  {
+    return $this->hasMany(Company_has_contacts::class, 'contact');
   }
 }
