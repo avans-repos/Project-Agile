@@ -5,14 +5,9 @@ namespace Tests\Feature;
 use App\Http\Requests\ProjectgroupRequest;
 use App\Models\Project;
 use App\Models\User;
-use Database\Seeders\ProjectgroupSeeder;
-use Database\Seeders\RoleSeeder;
 use Database\Seeders\UsersSeeder;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Spatie\Permission\Models\Role;
 use Tests\CreatesApplication;
 use Tests\TestCase;
 
@@ -41,7 +36,7 @@ class ProjectgroupCreateTest extends TestCase
   public function test_projectgroup_create_screen_can_be_rendered()
   {
     $this->assertAuthenticated();
-    $response = $this->get('/projectgroup/create');
+    $response = $this->get(route('projectgroup.create'));
     $response->assertStatus(200);
   }
 
@@ -86,7 +81,7 @@ class ProjectgroupCreateTest extends TestCase
     ]);
     $response->assertSessionHasNoErrors();
 
-    $this->assertDatabaseHas('projectgroups', [
+    $this->assertDatabaseHas('project_groups', [
       'name' => $name,
     ]);
   }

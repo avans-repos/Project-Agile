@@ -2,9 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Address;
-use App\Models\Company;
-use App\Models\contact\Contact;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;

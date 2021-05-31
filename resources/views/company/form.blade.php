@@ -21,7 +21,7 @@
     </div>
     <div>
       <div class="mb-1">
-        <label for="phonenumber" class="form-label">Telefoonnummer</label>
+        <label for="phonenumber" class="form-label">Telefoonnummer *</label>
         <input name="phonenumber" value="{{old('phonenumber',$company->phonenumber)}}" type="tel"
                class="form-control"
                id="phonenumber" placeholder="06 - 12345678" maxlength="15">
@@ -144,7 +144,7 @@
           <label for="city1" class="form-label">Plaatsnaam *</label>
           <input name="city1" value="{{old('city1',$address1->city)}}" type="text"
                  class="form-control"
-                 id="city1" placeholder="Amsterdam" maxlength="100">
+                 id="city1" placeholder="Amsterdam" maxlength="100" required>
 
         </div>
       </div>

@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Events\NoteAdded;
 use App\Http\Requests\NoteRequest;
-use App\Listeners\SendNewNoteNotification;
-use App\Models\Actionpoint;
 use App\Models\contact\Contact;
 use App\Models\Note;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Notification;
 
 class NoteController extends Controller
 {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentHasClassRoomsTable extends Migration
+class CreateProjectGroupHasContacts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateStudentHasClassRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_class_user', function (Blueprint $table) {
-            $table->foreignId('user_id')
+        Schema::create('contact_project_group', function (Blueprint $table) {
+            $table->foreignId('contact_id')
               ->constrained()
               ->cascadeOnDelete();
-            $table->foreignId('student_class_id')
+            $table->foreignId('project_group_id')
               ->constrained()
-              ->cascadeOnDelete();;
+              ->cascadeOnDelete();
+            $table->primary(['contact_id', 'project_group_id']);
         });
     }
 
@@ -30,6 +31,6 @@ class CreateStudentHasClassRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_class_user');
+        Schema::dropIfExists('project_group_contact');
     }
 }

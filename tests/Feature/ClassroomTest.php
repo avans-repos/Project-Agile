@@ -5,7 +5,6 @@ use App\Http\Requests\ClassRoomRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Str;
 use Tests\CreatesApplication;
 use Tests\TestCase;
 
@@ -64,7 +63,7 @@ class ClassroomTest extends TestCase
 
     $response->assertSessionDoesntHaveErrors();
 
-    $this->assertDatabaseHas('class_rooms', [
+    $this->assertDatabaseHas('student_classes', [
       'name' => 'TestKlas',
       'year' => Carbon::now()->year,
     ]);
