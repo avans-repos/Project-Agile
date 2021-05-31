@@ -52,3 +52,9 @@
 .table-layout-fixed {
   table-layout: fixed;
 }
+
+.notes-height {
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}

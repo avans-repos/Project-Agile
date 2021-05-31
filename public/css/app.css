@@ -18720,7 +18720,6 @@ select {
 }
 
 .sticky {
-  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -31484,6 +31483,12 @@ select {
 
 .table-layout-fixed {
   table-layout: fixed;
+}
+
+.notes-height {
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 @media (min-width: 640px) {
@@ -49459,7 +49464,6 @@ select {
   }
 
   .sm\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -80067,7 +80071,6 @@ select {
   }
 
   .md\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -110675,7 +110678,6 @@ select {
   }
 
   .lg\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -141283,7 +141285,6 @@ select {
   }
 
   .xl\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -171891,7 +171892,6 @@ select {
   }
 
   .\32xl\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
