@@ -24,8 +24,5 @@
     "prettier": "^2.3.0",
     "sweetalert2": "^10.15.7",
     "tailwindcss": "^2.0.2"
-  },
-  "dependencies": {
-    "@popperjs/core": "^2.9.2"
   }
 }
