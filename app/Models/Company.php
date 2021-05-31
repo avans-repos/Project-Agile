@@ -17,6 +17,6 @@ class Company extends Model
 
   public function contacts()
   {
-    return $this->hasMany(Company_has_contacts::class, 'company');
+    return $this->hasMany(company_contact::class);
   }
 }

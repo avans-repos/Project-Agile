@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Models\Address;
 use App\Models\Company;
-use App\Models\Company_has_contacts;
+use App\Models\company_contact;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
@@ -89,7 +89,7 @@ class ContactController extends Controller
             ->get('id')
             ->first();
 
-          $company_has_contact = new Company_has_contacts();
+          $company_has_contact = new company_contact();
           $company_has_contact->contact = $contactId;
           $company_has_contact->company = $company->id;
           $company_has_contact->contacttype = $data['contacttype-' . $id];
@@ -203,7 +203,7 @@ class ContactController extends Controller
             ->get('id')
             ->first();
 
-          $company_has_contact = new Company_has_contacts();
+          $company_has_contact = new company_contact();
           $company_has_contact->contact = $contact->id;
           $company_has_contact->company = $company->id;
           $company_has_contact->contacttype = $data['contacttype-' . $id];

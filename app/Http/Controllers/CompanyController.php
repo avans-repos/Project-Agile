@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use App\Models\Address;
+use App\Models\company_contact;
 use App\Models\contact\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 
 class CompanyController extends Controller
 {
@@ -80,19 +83,11 @@ class CompanyController extends Controller
     }
 
     $contacts = [];
-    foreach ($company->contacts()->get() as $contact) {
-      array_push($contacts, Contact::where('id', $contact->contact)->first());
+    foreach ($company->contacts()->get() as $company_contact) {
+      array_push($contacts, $company_contact->contact()->first());
     }
 
     $newContacts = Contact::all()->whereNotIn('id', array_column($contacts, 'id'));
-
-    foreach ($newContacts as $newContact) {
-      $newContact->company = [];
-
-      foreach ($newContact->companies()->get() as $contact_company) {
-        $newContact->company = array_merge($newContact->company, [Company::where('id', $contact_company->company)->first()->name]);
-      }
-    }
 
     return view('company.show')
       ->with('company', $company)
@@ -104,23 +99,25 @@ class CompanyController extends Controller
 
   public function addcontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts_has_contacttypes')->insert([
-      'company' => $companyid,
-      'contact' => $contactid,
-      'contacttype' => 'warm',
-    ]);
+    try { // This prevents and error in case the user "mashes" the submit button
+      company_contact::create([
+        'company_id' => $companyid,
+        'contact_id' => $contactid,
+        'contacttype' => 'warm',
+      ]);
+    } catch (Exception $e) {
+
+    }
 
     return redirect()->route('company.show', [$companyid]);
   }
 
   public function removecontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts_has_contacttypes')
-      ->where([
-        'company' => $companyid,
-        'contact' => $contactid,
-      ])
-      ->delete();
+    company_contact::where([
+      ['company_id', '=', $companyid],
+      ['contact_id', '=', $contactid],
+    ])->delete();
 
     return redirect()->route('company.show', [$companyid]);
   }

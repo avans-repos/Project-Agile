@@ -155,7 +155,7 @@
       @foreach($contacts as $contact)
       <div class="row">
         <div>
-          <b>{{$contact->firstname}} {{$contact->lastname}}</b> 
+          <b>{{$contact->getName()}}</b>
           <a class="ml-1" href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}">x</a>
         </div>
 

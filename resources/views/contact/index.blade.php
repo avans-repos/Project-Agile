@@ -34,12 +34,16 @@
             <td>{{$contact->insertion}}</td>
             <td>{{$contact->lastname}}</td>
             <td>{{$contact->type}}</td>
-            @if(defined($contact->latestProjectgroup()->id))
-              {{dd(json_encode($contact->latestProjectgroup()))}}
-              @if($contact->latestProjectgroup()->project())
-                <td>{{$contact->latestProjectgroup()->project()}}</td>
+            <td>
+              @if($contact->companies()->first() !== null)
+                {{$contact->companies()->first()->name}}
               @endif
-            @endif
+            </td>
+            <td>
+              @if($contact->projectgroups()->first() !== null)
+              {{$contact->projectgroups()->first()->project()->first()->name}}
+              @endif
+            </td>
             <td>
               <div class="d-md-flex align-items-center">
                 <div class="m-1 d-flex justify-content-center align-items-center">
