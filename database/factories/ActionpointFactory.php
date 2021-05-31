@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Actionpoint;
-use App\Models\Address;
 use App\Models\Company;
 use App\Models\User;
 use Carbon\Carbon;

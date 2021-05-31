@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Http\Requests\ProjectRequest;
-use App\Models\Project;
 use App\Models\User;
 use DateTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;

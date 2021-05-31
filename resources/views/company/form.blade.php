@@ -21,7 +21,7 @@
     </div>
     <div>
       <div class="mb-1">
-        <label for="phonenumber" class="form-label">Telefoonnummer</label>
+        <label for="phonenumber" class="form-label">Telefoonnummer *</label>
         <input name="phonenumber" value="{{old('phonenumber',$company->phonenumber)}}" type="tel"
                class="form-control"
                id="phonenumber" placeholder="06 - 12345678" maxlength="15"

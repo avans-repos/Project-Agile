@@ -41,16 +41,16 @@
 
     <ul class="list-group mt-2 mb-2" id="selectedStudents">
       @foreach($addedStudents as $student)
-        <li class="list-group-item list-group-item-action" id="selectedStudent-{{$student->student()->id}}">
+        <li class="list-group-item list-group-item-action" id="selectedStudent-{{$student->id}}">
           <div class="container">
             <div class="row">
               <div class="col">
-                <span>{{$student->student()->name}}</span>
+                <span>{{$student->name}}</span>
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
-                <a class="col-sm btn btn-danger" onclick="deleteStudent({{$student->student()->id}})">Verwijderen</a>
-                <input name="student[]" value="{{$student->student()->id}}" hidden>
+                <a class="col-sm btn btn-danger" onclick="deleteStudent({{$student->id}})">Verwijderen</a>
+                <input name="student[]" value="{{$student->id}}" hidden>
               </div>
             </div>
           </div>
