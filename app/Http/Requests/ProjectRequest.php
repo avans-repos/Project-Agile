@@ -37,4 +37,14 @@ class ProjectRequest extends FormRequest
       'deadline.after' => 'De deadline moet minstens een dag in de toekomst liggen',
     ];
   }
+
+  public function attributes()
+  {
+    return [
+      'name' => 'projectnaam',
+      'description' => 'omschrijving',
+      'deadline' => 'deadline',
+      'notes' => 'notities',
+    ];
+  }
 }

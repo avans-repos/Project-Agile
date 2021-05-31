@@ -24,8 +24,7 @@ class ProjectgroupRequest extends FormRequest
   public function rules()
   {
     return [
-      'name' => 'required|max:100',
-      'project' => 'required',
+      'name' => 'required|string|max:100',
     ];
   }
 }
