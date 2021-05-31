@@ -11,7 +11,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ProjectgroupController;
+use App\Http\Controllers\ProjectGroupController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -103,10 +103,10 @@ Route::post('/mailformat/send', [MailFormatController::class, 'sendMail'])
   ->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
-Route::get('projectgroup/{projectgroupid}/addContact/{contactid}', [ProjectgroupController::class, 'addContact'])
+Route::get('projectgroup/{projectgroupid}/addContact/{contactid}', [ProjectGroupController::class, 'addContact'])
   ->name('projectgroup.addContact')
   ->middleware(['auth']);
-Route::get('projectgroup/{projectgroupid}/removeContact/{contactid}', [ProjectgroupController::class, 'removeContact'])
+Route::get('projectgroup/{projectgroupid}/removeContact/{contactid}', [ProjectGroupController::class, 'removeContact'])
   ->name('projectgroup.removeContact')
   ->middleware(['auth']);
-Route::resource('projectgroup', ProjectgroupController::class)->middleware(['auth']);
+Route::resource('projectgroup', ProjectGroupController::class)->middleware(['auth']);

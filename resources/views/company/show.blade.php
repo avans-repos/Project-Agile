@@ -3,249 +3,297 @@
 @section('title','Bedrijf details')
 
 @section('content')
-  <div class="container">
-    <div class="w-auto mt-3">
-      <a class="btn btn-primary" href="{{route('company.index')}}">Terug naar overzicht</a>
-    </div>
-    <div class="d-md-flex justify-content-between">
-      <h1 class="fs-1">{{$company->name}}</h1>
-      <div class="align-self-center">
-        <a class="btn btn-secondary" href="{{route('company.edit',$company)}}">Bedrijf aanpassen</a>
-      </div>
-    </div>
-    <div class="d-md-flex">
-      <fieldset class="col-sm-6" id="companyDetails">
-        <legend>Algemene informatie</legend>
-        <div class="row">
-          <div class="col-6">
-            Bedrijfsnaam
-          </div>
-          <div class="col-6">
-            {{$company->name}}
-          </div>
+    <div class="container">
+        <div class="w-auto mt-3">
+            <a class="btn btn-primary" href="{{route('company.index')}}">Terug naar overzicht</a>
         </div>
+        <div class="d-md-flex justify-content-between">
+            <h1 class="fs-1">{{$company->name}}</h1>
+            <div class="align-self-center">
+                <a class="btn btn-secondary" href="{{route('company.edit',$company)}}">Bedrijf aanpassen</a>
+            </div>
+        </div>
+        <div class="d-md-flex">
+            <fieldset class="col-sm-6" id="companyDetails">
+                <legend>Algemene informatie</legend>
+                <div class="row">
+                    <div class="col-6">
+                        Bedrijfsnaam
+                    </div>
+                    <div class="col-6">
+                        {{$company->name}}
+                    </div>
+                </div>
 
-        <div class="row">
-          <div class="col-6">
-            Telefoonnummer
-          </div>
-          <div class="col-6">
-            {{$company->phonenumber}}
-          </div>
-        </div>
+                <div class="row">
+                    <div class="col-6">
+                        Telefoonnummer
+                    </div>
+                    <div class="col-6">
+                        {{$company->phonenumber}}
+                    </div>
+                </div>
 
-        <div class="row">
-          <div class="col-6">
-            Email
-          </div>
-          <div class="col-6">
-            <a href="mailto:{{$company->email}}">{{$company->email}}</a>
-          </div>
-        </div>
+                <div class="row">
+                    <div class="col-6">
+                        Email
+                    </div>
+                    <div class="col-6">
+                        <a href="mailto:{{$company->email}}">{{$company->email}}</a>
+                    </div>
+                </div>
 
-        <div class="row">
-          <div class="col-6">
-            Bedrijfsgrote
-          </div>
-          <div class="col-6">
-            {{$company->size}}
-          </div>
-        </div>
+                <div class="row">
+                    <div class="col-6">
+                        Bedrijfsgrote
+                    </div>
+                    <div class="col-6">
+                        {{$company->size}}
+                    </div>
+                </div>
 
-        <div class="row">
-          <div class="col-6">
-            Website
-          </div>
-          <div class="col-6">
-            <a href="{{$company->website}}">{{$company->website}}</a>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset class="col-sm-6" id="companyAddresses">
-        <legend>Adres</legend>
-        <div id="adres1">
+                <div class="row">
+                    <div class="col-6">
+                        Website
+                    </div>
+                    <div class="col-6">
+                        <a href="{{$company->website}}">{{$company->website}}</a>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="col-sm-6" id="companyAddresses">
+                <legend>Adres</legend>
+                <div id="adres1">
           <span class="text-decoration-underline">
         @if($address2 == null)
-              Bezoekadres & postadres
-            @else
-              Bezoekadres
-            @endif
+                  Bezoekadres & postadres
+              @else
+                  Bezoekadres
+              @endif
           </span>
-          <div class="row">
-            <div class="col-6">
-              Straatnaam
-            </div>
-            <div class="col-6">
-              {{$address1->streetname}}
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-6">
+                            Straatnaam
+                        </div>
+                        <div class="col-6">
+                            {{$address1->streetname}}
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-6">
-              Huisnummer + toevoeging
-            </div>
-            <div class="col-6">
-              {{$address1->number . $address1->addition}}
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-6">
+                            Huisnummer + toevoeging
+                        </div>
+                        <div class="col-6">
+                            {{$address1->number . $address1->addition}}
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-6">
-              Postcode
-            </div>
-            <div class="col-6">
-              {{$address1->zipcode}}
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-6">
+                            Postcode
+                        </div>
+                        <div class="col-6">
+                            {{$address1->zipcode}}
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-6">
-              Plaats
-            </div>
-            <div class="col-6">
-              {{$address1->city}}
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-6">
+                            Plaats
+                        </div>
+                        <div class="col-6">
+                            {{$address1->city}}
+                        </div>
+                    </div>
+                </div>
+                @if($address2 != null)
+                    <div id="address2">
+                        <span class="text-decoration-underline">Postadres</span>
+                        <div class="row">
+                            <div class="col-6">
+                                Straatnaam
+                            </div>
+                            <div class="col-6">
+                                {{$address2->streetname}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                Huisnummer + toevoeging
+                            </div>
+                            <div class="col-6">
+                                {{$address2->number . $address2->addition}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                Postcode
+                            </div>
+                            <div class="col-6">
+                                {{$address2->zipcode}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                Plaats
+                            </div>
+                            <div class="col-6">
+                                {{$address2->city}}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </fieldset>
         </div>
-        @if($address2 != null)
-          <div id="address2">
-            <span class="text-decoration-underline">Postadres</span>
-            <div class="row">
-              <div class="col-6">
-                Straatnaam
-              </div>
-              <div class="col-6">
-                {{$address2->streetname}}
-              </div>
-            </div>
+        <fieldset class="col-sm-12 mt-4" id="companyDetails">
+            <legend>Contactpersonen</legend>
 
-            <div class="row">
-              <div class="col-6">
-                Huisnummer + toevoeging
-              </div>
-              <div class="col-6">
-                {{$address2->number . $address2->addition}}
-              </div>
-            </div>
+            @foreach($contacts as $contact)
+                <div class="my-3 p-3 bg-white rounded shadow-sm  d-flex">
+                    <div>
+                        <div>
+                            <b>{{$contact->getName()}}</b>
+                            <a class="ml-1"
+                               href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}">x</a>
+                        </div>
 
-            <div class="row">
-              <div class="col-6">
-                Postcode
-              </div>
-              <div class="col-6">
-                {{$address2->zipcode}}
-              </div>
-            </div>
+                        <div>
+                            {{ $contact->gender }}
+                        </div>
 
-            <div class="row">
-              <div class="col-6">
-                Plaats
-              </div>
-              <div class="col-6">
-                {{$address2->city}}
-              </div>
-            </div>
-          </div>
-        @endif
-      </fieldset>
-    </div>
-    <fieldset class="col-sm-12 mt-4" id="companyDetails">
-      <legend>Contactpersonen</legend>
+                        <div>
+                            <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
+                        </div>
 
-      @foreach($contacts as $contact)
-      <div class="row">
-        <div>
-          <b>{{$contact->getName()}}</b>
-          <a class="ml-1" href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}">x</a>
-        </div>
+                        <div>
+                            {{ $contact->phonenumber }}
+                        </div>
 
-        <div>
-          {{ $contact->gender }}
-        </div>
+                        <div>
+                            {{ $contact->type }}
+                        </div>
+                    </div>
+                    <div class="w-100 ml-3">
+                        <div
+                                class="d-flex w-100 justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
+                            <h6 class="">Notities | {{$notes->where('contact',$contact->id)->count()}}</h6>
+                        </div>
+                        @php
+                            $firstNote = $notes->where('contact',$contact->id)[0]
+                        @endphp
 
-        <div>
-          <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
-        </div>
+                        <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
+                            <div class="media text-muted pt-3">
+                                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">Gemaakt door: {{$firstNote->name}}
+                                            op {{date('d-m-Y H:i:s', strtotime($firstNote->creation))}}</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center w-100 mt-2">
+                                        <span class="d-block text-break">{{$firstNote->description}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="read-more-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target=".extra-notes">
+                            Meer lezen...
+                        </button>
+                        <div class="collapse extra-notes" id="notes-{{$contact->id}}">
+                            <div class="w-100 h-50 notes-height">
+                                @foreach($notes->where('contact',$contact->id) as $note)
+                                    @continue($loop->index == 0)
+                                    <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
+                                        <div class="media text-muted pt-3">
+                                            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                                <div class="d-flex justify-content-between align-items-center w-100">
+                                                    <strong class="text-gray-dark">Gemaakt door: {{$note->name}}
+                                                        op {{date('d-m-Y H:i:s', strtotime($note->creation))}}</strong>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center w-100 mt-2">
+                                                    <span class="d-block text-break">{{$note->description}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+    <button onClick="showTable()" class="btn btn-primary mt-4">Contactpersoon toevoegen</button>
 
-        <div>
-          {{ $contact->phonenumber }}
-        </div>
-
-        <div>
-          {{ $contact->type }}
-        </div>
-      </div>
-      @endforeach
-
-      <button onClick="showTable()" class="btn btn-primary mt-4">Contactpersoon toevoegen</button>
-
-      <div class="mt-4 d-none" id="add-contact-table">
-        <input class="form-control rounded w-25 my-4" type="text" id="searchInput" placeholder="Zoeken..." />
+    <div class="mt-4 d-none" id="add-contact-table">
+        <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
+               placeholder="Zoeken..."/>
         <table class="table" id="searchTable">
-          <thead>
-          <tr>
-            <th>Naam</th>
-            <th>E-mail</th>
-            <th>Telefoonnummer</th>
-            <th>Bedrijf</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          @foreach($newContacts as $contact)
+            <thead>
             <tr>
-              <td>
-                <b>{{$contact->getName()}}</b>
-              </td>
-
-              <td>
-                <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
-              </td>
-
-              <td>
-                {{ $contact->phonenumber }}
-              </td>
-
-              <td>
-                @empty($contact->company)
-                  Geen Bedrijf
-                @else
-                  @foreach($contact->company as $key=>$contactcompany)
-                    @if(count($contact->company) == $key + 1)
-                      {{$contactcompany}}
-                    @else
-                      {{$contactcompany}},
-                    @endif
-                  @endforeach
-                @endempty
-              </td>
-
-              <td>
-                <a href="{{ route('company.addContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}" class="btn btn-secondary">Toevoegen</a>
-              </td>
+                <th>Naam</th>
+                <th>E-mail</th>
+                <th>Telefoonnummer</th>
+                <th>Bedrijf</th>
+                <th></th>
             </tr>
-          @endforeach
-          </tbody>
+            </thead>
+            <tbody>
+            @foreach($newContacts as $contact)
+                <tr>
+                    <td>
+                        <b>{{$contact->getName()}}</b>
+                    </td>
+
+                    <td>
+                        <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
+                    </td>
+
+                    <td>
+                        {{ $contact->phonenumber }}
+                    </td>
+
+                    <td>
+                        @empty($contact->company)
+                            Geen Bedrijf
+                        @else
+                            @foreach($contact->company as $key=>$contactcompany)
+                                @if(count($contact->company) == $key + 1)
+                                    {{$contactcompany}}
+                                @else
+                                    {{$contactcompany}},
+                                @endif
+                            @endforeach
+                        @endempty
+                    </td>
+
+                    <td>
+                        <a href="{{ route('company.addContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}"
+                           class="btn btn-secondary">Toevoegen</a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
         </table>
-      </div>
+    </div>
+    </div>
     </fieldset>
-  </div>
+    </div>
 
-  <script>
-    let table = document.getElementById("add-contact-table");
+    <script>
+        let table = document.getElementById("add-contact-table");
 
-    function showTable()
-    {
-      if (table.classList.contains("d-none"))
-      {
-        table.classList.remove("d-none");
-      }
-      else
-      {
-        table.classList.add("d-none");
-      }
-    }
-  </script>
+        function showTable() {
+            if (table.classList.contains("d-none")) {
+                table.classList.remove("d-none");
+            } else {
+                table.classList.add("d-none");
+            }
+        }
+    </script>
 
-  <script src="{{ asset('js/search.js')}}"></script>
+    <script src="{{ asset('js/search.js')}}"></script>
 @endsection

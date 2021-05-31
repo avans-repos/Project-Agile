@@ -87,7 +87,7 @@ class CompanyController extends Controller
 
     $newContacts = Contact::whereNotIn('id', array_column($contacts, 'id'))->get();
 
-    foreach ($newContacts as $contactKey => $newContact) {
+    foreach ($newContacts as $newContact) {
       $newContact->company = [];
 
       foreach ($newContact->companies()->get() as $contact_company) {
