@@ -8,7 +8,7 @@
             <div class="mb-1">
                 <label for="deadline" class="form-label">Deadline *</label>
                 <input type="datetime-local" id="deadline" value="{{old('deadline',isset($actionpoint->deadline) ? date('Y-m-d\TH:i', strtotime($actionpoint->deadline)) : null)}}" required name="deadline" class="form-control"
-                       data-bs-toggle="tooltip" data-bs-placement="right" title="Een datum in de toekomst met een format van dd/mm/yyyy, druk op het calender icoontje om een datum te kiezen">
+                       data-bs-toggle="tooltip" data-bs-placement="right" title="Een datum in de toekomst met een format van dd/mm/yyyy, druk op het kalender icoontje om een datum te kiezen">
             </div>
             <div class="col">
                 @error('deadline')

@@ -76,7 +76,7 @@
                       (in_array($contact->id, old("assignedContacts", $assignedContacts))) ? 'checked' : null
                    : null
               }} type="checkbox" name="assignedContacts[]" value="{{$contact->id}}" ><span class="ms-2"
-                                                                                           data-bs-toggle="tooltip" data-bs-placement="right" title="Druk op de contactpersoon om een student te selecteren">{{$contact->firstname}} {{$contact->insertion}} {{$contact->lastname}}</span>
+                                                                                           data-bs-toggle="tooltip" data-bs-placement="right" title="Druk op de checkbox om een contactpersoon te selecteren">{{$contact->firstname}} {{$contact->insertion}} {{$contact->lastname}}</span>
           </label>
         @endforeach
       </div>
