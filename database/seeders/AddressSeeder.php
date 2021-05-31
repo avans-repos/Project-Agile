@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Address;
-use App\Models\Company;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class AddressSeeder extends Seeder
 {

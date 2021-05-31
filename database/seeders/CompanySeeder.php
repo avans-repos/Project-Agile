@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
-use App\Models\contact\Contact;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CompanySeeder extends Seeder
 {
