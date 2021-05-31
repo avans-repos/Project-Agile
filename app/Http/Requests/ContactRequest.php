@@ -60,7 +60,7 @@ class ContactRequest extends FormRequest
       'number1' => 'huisnummer',
       'addition1' => 'toevoeging',
       'zipcode1' => 'postcode',
-      'city1' => 'stad',
+      'city1' => 'plaatsnaam',
       'country1' => 'land',
     ];
   }

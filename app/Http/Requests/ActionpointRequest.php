@@ -38,8 +38,8 @@ class ActionpointRequest extends FormRequest
       'deadline' => 'deadline',
       'title' => 'titel',
       'description' => 'beschrijving',
-      'reminderdate' => 'Herinneringsdatum',
-      'assigned' => 'Docenten',
+      'reminderdate' => 'herinneringsdatum',
+      'assigned' => 'docenten',
     ];
   }
 }

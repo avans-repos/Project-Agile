@@ -144,7 +144,7 @@
           <label for="city1" class="form-label">Plaatsnaam *</label>
           <input name="city1" value="{{old('city1',$address1->city)}}" type="text"
                  class="form-control"
-                 id="city1" placeholder="Amsterdam" maxlength="100">
+                 id="city1" placeholder="Amsterdam" maxlength="100" required>
 
         </div>
       </div>
