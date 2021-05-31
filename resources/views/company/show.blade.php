@@ -207,14 +207,14 @@
               </td>
 
               <td>
-                @empty($contact->company)
+                @if($contact->companies()->first() == null)
                   Geen Bedrijf
                 @else
-                  @foreach($contact->company as $key=>$contactcompany)
-                    @if(count($contact->company) == $key + 1)
-                      {{$contactcompany}}
+                  @foreach($contact->companies()->get() as $contactCompany)
+                    @if($loop->last > 0)
+                      {{$contactCompany->company()->first()->name}}
                     @else
-                      {{$contactcompany}},
+                      {{$contactCompany->company()->first()->name}},
                     @endif
                   @endforeach
                 @endempty
