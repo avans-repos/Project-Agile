@@ -69,7 +69,8 @@ class Contact extends Model
     return $this->belongsToMany(ProjectGroup::class);
   }
 
-  public function notes() {
-    return $this->hasMany(Note::class,'contact');
+  public function notes()
+  {
+    return $this->hasMany(Note::class, 'contact');
   }
 }

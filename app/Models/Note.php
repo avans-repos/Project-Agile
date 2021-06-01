@@ -36,7 +36,8 @@ class Note extends Model
   protected $fillable = ['creation', 'description', 'creator', 'contact'];
   public $timestamps = false;
 
-  public function contact() {
-    return $this->hasOne(Contact::class,'id','contact');
+  public function contact()
+  {
+    return $this->hasOne(Contact::class, 'id', 'contact');
   }
 }
