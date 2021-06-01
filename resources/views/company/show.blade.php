@@ -197,7 +197,7 @@
                 </div>
               </div>
               @if($contact->notes()->get()->count() > 1)
-                <button class="read-more-button" type="button" data-bs-toggle="collapse"
+                <button class="read-more-button mb-1" type="button" data-bs-toggle="collapse"
                         data-bs-target=".extra-notes-{{$contact->id}}">Meer lezen...</button>
                 <div class="collapse extra-notes-{{$contact->id}}" id="notes-{{$contact->id}}">
                   <div class="w-100 h-50 notes-height">
