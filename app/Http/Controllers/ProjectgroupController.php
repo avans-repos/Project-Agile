@@ -8,10 +8,9 @@ use App\Models\Company;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
-use App\Models\ClassRoom;
-use App\Models\student_has_class_room;
 use App\Models\Project;
 use App\Models\Projectgroup;
+use App\Models\StudentClass;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -33,10 +32,10 @@ class ProjectgroupController extends Controller
     $projectgroups = [];
 
     foreach (Projectgroup::all() as $projectgroup) {
-      $assigned_to_group = DB::table('projectgroup_has_users')
-        ->select('userid')
-        ->where('projectgroupid', $projectgroup->id)
-        ->pluck('userid');
+      $assigned_to_group = DB::table('project_group_user')
+        ->select('user_id')
+        ->where('project_group_id', $projectgroup->id)
+        ->pluck('user_id');
 
       $teachers = User::whereIn('id', $assigned_to_group)
         ->whereHas('roles', function ($q) {
@@ -71,14 +70,16 @@ class ProjectgroupController extends Controller
   private function addClassToStudent($students)
   {
     foreach ($students as $student) {
-      $student_has_class_room = student_has_class_room::where('student', $student->id)->first();
+      $student_has_class_room = DB::table('student_class_user')
+        ->where('user_id', '=', $student->id)
+        ->first();
 
       if (is_null($student_has_class_room)) {
         $student->classroom = 'Geen Klas';
         continue;
       }
 
-      $class = ClassRoom::where('id', $student_has_class_room->class_room)->first();
+      $class = StudentClass::where('id', $student_has_class_room->student_class_id)->first();
 
       $student->classroom = $class->name;
     }
@@ -137,9 +138,9 @@ class ProjectgroupController extends Controller
     // fill in all the users (students and teachers)
     if (isset($request->assignedUsers)) {
       foreach ($request->assignedUsers as $assignedUser) {
-        DB::table('projectgroup_has_users')->insert([
-          'userid' => $assignedUser,
-          'projectgroupid' => $id,
+        DB::table('project_group_user')->insert([
+          'user_id' => $assignedUser,
+          'project_group_id' => $id,
         ]);
       }
     }
@@ -147,9 +148,9 @@ class ProjectgroupController extends Controller
     // fill in all the contactpersons
     if (isset($request->assignedContacts)) {
       foreach ($request->assignedContacts as $assignedContact) {
-        DB::table('projectgroup_has_contacts')->insert([
-          'contactid' => $assignedContact,
-          'projectgroupid' => $id,
+        DB::table('contact_project_group')->insert([
+          'contact_id' => $assignedContact,
+          'project_group_id' => $id,
         ]);
       }
     }
@@ -159,9 +160,9 @@ class ProjectgroupController extends Controller
 
   public function show(Projectgroup $projectgroup)
   {
-    $assignedUsers = DB::table('projectgroup_has_users')
-      ->where('projectgroupid', '=', $projectgroup->id)
-      ->join('users', 'projectgroup_has_users.userid', '=', 'users.id')
+    $assignedUsers = DB::table('project_group_user')
+      ->where('project_group_id', '=', $projectgroup->id)
+      ->join('users', 'project_group_user.user_id', '=', 'users.id')
       ->get('users.id')
       ->pluck('id');
 
@@ -178,9 +179,9 @@ class ProjectgroupController extends Controller
       ->get()
       ->first();
 
-    $assignedContacts = DB::table('projectgroup_has_contacts')
-      ->where('projectgroupid', '=', $projectgroup->id)
-      ->join('contacts', 'projectgroup_has_contacts.contactid', '=', 'contacts.id')
+    $assignedContacts = DB::table('contact_project_group')
+      ->where('project_group_id', '=', $projectgroup->id)
+      ->join('contacts', 'contact_project_group.contact_id', '=', 'contacts.id')
       ->get('contacts.id')
       ->pluck('id');
 
@@ -223,9 +224,9 @@ class ProjectgroupController extends Controller
 
   public function removecontact($projectgroupid, $contactid)
   {
-    DB::table('projectgroup_has_contacts')
-      ->where('projectgroupid', '=', $projectgroupid)
-      ->where('contactid', '=', $contactid)
+    DB::table('contact_project_group')
+      ->where('project_group_id', '=', $projectgroupid)
+      ->where('contact_id', '=', $contactid)
       ->delete();
 
     return redirect()->route('projectgroup.show', [$projectgroupid]);
@@ -245,9 +246,9 @@ class ProjectgroupController extends Controller
     $projects = Project::all();
 
     $assignedUsers =
-      DB::table('projectgroup_has_users')
-        ->where('projectgroupid', '=', $projectgroup->id)
-        ->join('users', 'projectgroup_has_users.userid', '=', 'users.id')
+      DB::table('project_group_user')
+        ->where('project_group_id', '=', $projectgroup->id)
+        ->join('users', 'project_group_user.user_id', '=', 'users.id')
         ->get('users.id') ?? [];
 
     $assignedUsers = array_map(function ($teacher) {
@@ -255,9 +256,9 @@ class ProjectgroupController extends Controller
     }, json_decode($assignedUsers));
 
     $assignedContacts =
-      DB::table('projectgroup_has_contacts')
-        ->where('projectgroupid', '=', $projectgroup->id)
-        ->join('contacts', 'projectgroup_has_contacts.contactid', '=', 'contacts.id')
+      DB::table('contact_project_group')
+        ->where('project_group_id', '=', $projectgroup->id)
+        ->join('contacts', 'contact_project_group.contact_id', '=', 'contacts.id')
         ->get('contacts.id') ?? [];
 
     $assignedContacts = array_map(function ($contact) {
@@ -292,14 +293,14 @@ class ProjectgroupController extends Controller
     if (isset($request->assignedUsers)) {
       foreach ($request->assignedUsers as $assignedUser) {
         if (
-          !DB::table('projectgroup_has_users')
-            ->where('userid', $assignedUser)
-            ->where('projectgroupid', $projectgroup->id)
+          !DB::table('project_group_user')
+            ->where('user_id', $assignedUser)
+            ->where('project_group_id', $projectgroup->id)
             ->exists()
         ) {
-          DB::table('projectgroup_has_users')->insert([
-            'userid' => $assignedUser,
-            'projectgroupid' => $projectgroup->id,
+          DB::table('project_group_user')->insert([
+            'user_id' => $assignedUser,
+            'project_group_id' => $projectgroup->id,
           ]);
         }
       }
@@ -309,14 +310,14 @@ class ProjectgroupController extends Controller
     if (isset($request->assignedContacts)) {
       foreach ($request->assignedContacts as $assignedContact) {
         if (
-          !DB::table('projectgroup_has_contacts')
-            ->where('contactid', $assignedContact)
-            ->where('projectgroupid', $projectgroup->id)
+          !DB::table('project_group_user')
+            ->where('contact_id', $assignedContact)
+            ->where('project_group_id', $projectgroup->id)
             ->exists()
         ) {
-          DB::table('projectgroup_has_contacts')->insert([
-            'contactid' => $assignedContact,
-            'projectgroupid' => $projectgroup->id,
+          DB::table('contact_project_group')->insert([
+            'contact_id' => $assignedContact,
+            'project_group_id' => $projectgroup->id,
           ]);
         }
       }
@@ -324,32 +325,32 @@ class ProjectgroupController extends Controller
 
     // removing unnecessary connections with users (students and teachers
     foreach (
-      DB::table('projectgroup_has_users')
-        ->where('projectgroupid', $projectgroup->id)
+      DB::table('project_group_user')
+        ->where('project_group_id', $projectgroup->id)
         ->get()
       as $dbvalue
     ) {
       if (!isset($request->assignedUsers) || !in_array($dbvalue->userid, $request->assignedUsers)) {
         //DB::delete('DELETE FROM projectgroup_has_users WHERE userid = ? AND projectgroupid = ?', [$dbvalue->userid, $dbvalue->projectgroupid]);
-        DB::table('projectgroup_has_users')
-          ->where('userid', $dbvalue->userid)
-          ->where('projectgroupid', $dbvalue->projectgroupid)
+        DB::table('project_group_user')
+          ->where('user_id', $dbvalue->userid)
+          ->where('project_group_id', $dbvalue->projectgroupid)
           ->delete();
       }
     }
 
     // removing unnecessary connections with contactpersons
     foreach (
-      DB::table('projectgroup_has_contacts')
-        ->where('projectgroupid', $projectgroup->id)
+      DB::table('contact_project_group')
+        ->where('project_group_id', $projectgroup->id)
         ->get()
       as $dbvalue
     ) {
       if (!isset($request->assignedContacts) || !in_array($dbvalue->contactid, $request->assignedContacts)) {
         //DB::delete('DELETE FROM projectgroup_has_contacts WHERE contactid = ? AND projectgroupid = ?', [$dbvalue->contactid, $dbvalue->projectgroupid]);
-        DB::table('projectgroup_has_contacts')
-          ->where('contactid', $dbvalue->contactid)
-          ->where('projectgroupid', $dbvalue->projectgroupid)
+        DB::table('contact_project_group')
+          ->where('contact_id', $dbvalue->contactid)
+          ->where('project_group_id', $dbvalue->projectgroupid)
           ->delete();
       }
     }
