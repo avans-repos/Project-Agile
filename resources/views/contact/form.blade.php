@@ -96,7 +96,8 @@
                 <label for="phonenumber" class="form-label">Telefoonnummer</label>
                 <input name="phonenumber" value="{{old('phonenumber',$contact->phonenumber)}}" type="tel"
                        class="form-control"
-                       id="phonenumber" placeholder="06-12345678" maxlength="15">
+                       id="phonenumber" placeholder="06-12345678" maxlength="15"
+                       data-bs-toggle="tooltip" data-bs-placement="right" title="Een telefoonnummer kan zowel in het +31... formaat als het 06-... formaat, een max van 15 tekens">
 
             </div>
             <div class="col">
@@ -157,7 +158,8 @@
           <label for="zipcode1" class="form-label">Postcode</label>
           <input name="zipcode1" value="{{old('zipcode1',$address->zipcode)}}" type="text"
                  class="form-control"
-                 id="zipcode1" placeholder="1234 AB" maxlength="10">
+                 id="zipcode1" placeholder="1234 AB" maxlength="10"
+                 data-bs-toggle="tooltip" data-bs-placement="right" title="Een postcode met 4 cijfers, een spatie en 2 hoofdletters">
 
         </div>
         <div class="col-sm-6">
