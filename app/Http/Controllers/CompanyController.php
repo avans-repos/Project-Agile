@@ -80,7 +80,16 @@ class CompanyController extends Controller
    */
   public function show(Company $company)
   {
-    $newContacts = Contact::whereNotIn('id', array_column($company->contacts()->get()->toArray(), 'contact_id'))->get();
+    $newContacts = Contact::whereNotIn(
+      'id',
+      array_column(
+        $company
+          ->contacts()
+          ->get()
+          ->toArray(),
+        'contact_id'
+      )
+    )->get();
 
     return view('company.show')
       ->with('company', $company)
@@ -89,15 +98,15 @@ class CompanyController extends Controller
 
   public function addcontact($companyid, $contactid)
   {
-    try { // This prevents and error in case the user "mashes" the submit button
+    try {
+      // This prevents and error in case the user "mashes" the submit button
       company_contact::create([
         'company_id' => $companyid,
         'contact_id' => $contactid,
         'contacttype' => 'warm',
-        'added' => Carbon::now()->format('Y-m-d H:i:s')
+        'added' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
     } catch (Exception $e) {
-
     }
 
     return redirect()->route('company.show', [$companyid]);
@@ -105,10 +114,7 @@ class CompanyController extends Controller
 
   public function removecontact($companyid, $contactid)
   {
-    company_contact::where([
-      ['company_id', '=', $companyid],
-      ['contact_id', '=', $contactid],
-    ])->delete();
+    company_contact::where([['company_id', '=', $companyid], ['contact_id', '=', $contactid]])->delete();
 
     return redirect()->route('company.show', [$companyid]);
   }

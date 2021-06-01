@@ -78,6 +78,6 @@ class Contact extends Model
 
   public function address()
   {
-    return $this->hasOne(Address::class,'id','address');
+    return $this->hasOne(Address::class, 'id', 'address');
   }
 }

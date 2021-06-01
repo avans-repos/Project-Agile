@@ -9,7 +9,7 @@ use App\Models\contact\Contact;
 class company_contact extends Model
 {
   use HasFactory;
-  protected $fillable = ['contact_id', 'company_id', 'contacttype','added'];
+  protected $fillable = ['contact_id', 'company_id', 'contacttype', 'added'];
   public $timestamps = false;
 
   public function contact()

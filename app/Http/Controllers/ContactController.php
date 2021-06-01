@@ -110,8 +110,7 @@ class ContactController extends Controller
    */
   public function show(Contact $contact)
   {
-    return view('contact.show')
-      ->with('contact', $contact);
+    return view('contact.show')->with('contact', $contact);
   }
 
   /**
