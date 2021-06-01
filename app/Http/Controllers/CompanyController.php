@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Exception;
 
@@ -162,7 +163,9 @@ class CompanyController extends Controller
    */
   public function destroy(Company $company)
   {
-    $company->delete();
+    if (Auth::user()->isAdmin()) {
+      $company->delete();
+    }
     return redirect()->route('company.index');
   }
 

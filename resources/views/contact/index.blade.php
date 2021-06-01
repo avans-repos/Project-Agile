@@ -57,6 +57,7 @@
                        href="{{route('contact.edit',$contact)}}">Aanpassen</a>
                   </div>
                 </div>
+                @role('Admin')
                 <div class="m-1">
                   <form method="POST" id="delete-product-form-{{$contact->id}}"
                         action="{{ route('contact.destroy', $contact) }}">
@@ -68,6 +69,7 @@
                     </div>
                   </form>
                 </div>
+                @endrole
               </div>
 
             </td>

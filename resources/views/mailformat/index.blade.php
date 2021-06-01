@@ -47,6 +47,7 @@
                        href="{{route('mailformat.edit',$mailFormat)}}">Aanpassen</a>
                   </div>
                 </div>
+                @role('Admin')
                 <div class="m-1">
                   <form method="POST" id="delete-product-form-{{$mailFormat->id}}"
                         action="{{ route('mailformat.destroy', $mailFormat) }}">
@@ -58,6 +59,7 @@
                     </div>
                   </form>
                 </div>
+                @endrole
               </div>
 
             </td>
