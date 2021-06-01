@@ -27,8 +27,6 @@
         </thead>
         <tbody>
         @foreach($contacts as $contact)
-          @if($contact->projectgroups)
-          @endif
           <tr>
             <td>{{$contact->firstname}}</td>
             <td>{{$contact->insertion}}</td>
@@ -57,7 +55,7 @@
                        href="{{route('contact.edit',$contact)}}">Aanpassen</a>
                   </div>
                 </div>
-                @role('Admin')
+                @role('admin')
                 <div class="m-1">
                   <form method="POST" id="delete-product-form-{{$contact->id}}"
                         action="{{ route('contact.destroy', $contact) }}">
@@ -71,7 +69,6 @@
                 </div>
                 @endrole
               </div>
-
             </td>
           </tr>
         @endforeach

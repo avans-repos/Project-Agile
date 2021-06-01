@@ -151,18 +151,25 @@
     </div>
     <fieldset class="col-sm-12 mt-4" id="companyDetails">
       <legend>Contactpersonen</legend>
-      @foreach($company->contacts()->get() as $contact)
+      @foreach($company->contacts() as $contact)
         <div class="my-3 p-3 bg-white rounded shadow-sm  d-flex">
           <div class="col-sm-3">
             <div>
-              <b>{{$contact->contact()->first()->getName()}}</b>
+              <b>{{$contact->getName()}}</b>
               <a class="ml-1"
-                 href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->contact]) }}">x</a>
+                 href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}">x</a>
             </div>
 
-            <div>
-              {{ $contact->gender }}
-            </div>
+      @foreach($contacts as $contact)
+      <div class="row">
+        <div>
+          <b>{{$contact->getName()}}</b>
+          <a class="ml-1" href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}">x</a>
+        </div>
+
+        <div>ø
+          {{ $contact->gender }}
+        </div>
 
             <div>
               <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
@@ -179,29 +186,29 @@
           <div class="col-sm-9 ml-3">
             <div
               class="d-flex w-100 justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
-              <h6 class="">Notities | {{$contact->contact()->first()->notes()->get()->count()}}</h6>
+              <h6 class="">Notities | {{$contact->notes()->get()->count()}}</h6>
             </div>
-            @if($contact->contact()->first()->notes()->get()->count() > 0)
+            @if($contact->notes()->get()->count() > 0)
               <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
                 <div class="media text-muted pt-3">
                   <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
                       <strong class="text-gray-dark">Gemaakt
-                        door: {{$contact->contact()->get()->first()->notes()->orderByDesc('creation')->first()->contact()->first()->getName()}}
-                        op {{date('d-m-Y H:i', strtotime($contact->contact()->get()->first()->notes()->orderByDesc('creation')->first()->creation))}}</strong>
+                        door: {{$contact->notes()->orderByDesc('creation')->first()->contact()->first()->getName()}}
+                        op {{date('d-m-Y H:i', strtotime($contact->notes()->orderByDesc('creation')->first()->creation))}}</strong>
                     </div>
                     <div class="d-flex justify-content-between align-items-center w-100 mt-2">
-                      <span class="d-block text-break">{{$contact->contact()->get()->first()->notes()->orderByDesc('creation')->first()->description}}</span>
+                      <span class="d-block text-break">{{$contact->notes()->orderByDesc('creation')->first()->description}}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              @if($contact->contact()->first()->notes()->get()->count() > 1)
+              @if($contact->notes()->get()->count() > 1)
                 <button class="read-more-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#notes-{{$contact->id}}">Meer lezen...</button>
                 <div class="collapse extra-notes" id="notes-{{$contact->id}}">
                   <div class="w-100 h-50 notes-height">
-                    @foreach($contact->contact()->get()->first()->notes()->orderByDesc('creation')->get() as $note)
+                    @foreach($contact->notes()->orderByDesc('creation')->get() as $note)
                       @continue($loop->index == 0)
                       <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
                         <div class="media text-muted pt-3">
@@ -255,14 +262,14 @@
               </td>
 
               <td>
-                @empty($contact->company)
+                @if($contact->companies()->first() == null)
                   Geen Bedrijf
                 @else
-                  @foreach($contact->company as $key=>$contactcompany)
-                    @if(count($contact->company) == $key + 1)
-                      {{$contactcompany}}
+                  @foreach($contact->companies()->get() as $contactCompany)
+                    @if($loop->last)
+                      {{$contactCompany->company()->first()->name}}
                     @else
-                      {{$contactcompany}},
+                      {{$contactCompany->company()->first()->name}},
                     @endif
                   @endforeach
                 @endempty
