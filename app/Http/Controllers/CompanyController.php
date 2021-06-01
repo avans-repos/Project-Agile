@@ -80,7 +80,7 @@ class CompanyController extends Controller
    */
   public function show(Company $company)
   {
-    $newContacts = Contact::whereNotIn('id', array_column($company->contacts()->get()->toArray(), 'contact'))->get();
+    $newContacts = Contact::whereNotIn('id', array_column($company->contacts()->get()->toArray(), 'contact_id'))->get();
 
     return view('company.show')
       ->with('company', $company)

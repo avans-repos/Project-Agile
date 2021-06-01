@@ -151,25 +151,18 @@
     </div>
     <fieldset class="col-sm-12 mt-4" id="companyDetails">
       <legend>Contactpersonen</legend>
-      @foreach($company->contacts() as $contact)
+      @foreach($company->contacts()->get() as $contact)
         <div class="my-3 p-3 bg-white rounded shadow-sm  d-flex">
           <div class="col-sm-3">
             <div>
-              <b>{{$contact->getName()}}</b>
+              <b>{{$contact->contact()->first()->getName()}}</b>
               <a class="ml-1"
-                 href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}">x</a>
+                 href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->contact()->first()->id]) }}">x</a>
             </div>
 
-      @foreach($contacts as $contact)
-      <div class="row">
-        <div>
-          <b>{{$contact->getName()}}</b>
-          <a class="ml-1" href="{{ route('company.removeContact', ['companyid'=>$company->id, 'contactid'=>$contact->id]) }}">x</a>
-        </div>
-
-        <div>ø
-          {{ $contact->gender }}
-        </div>
+            <div>
+              {{ $contact->gender }}
+            </div>
 
             <div>
               <a href="mailto: {{ $contact->email }}">{{ $contact->email }}</a>
@@ -186,29 +179,31 @@
           <div class="col-sm-9 ml-3">
             <div
               class="d-flex w-100 justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
-              <h6 class="">Notities | {{$contact->notes()->get()->count()}}</h6>
+              <h6 class="">Notities | {{$contact->contact()->first()->notes()->get()->count()}}</h6>
             </div>
-            @if($contact->notes()->get()->count() > 0)
+            @if($contact->contact()->first()->notes()->get()->count() > 0)
               <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
                 <div class="media text-muted pt-3">
                   <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
                       <strong class="text-gray-dark">Gemaakt
-                        door: {{$contact->notes()->orderByDesc('creation')->first()->contact()->first()->getName()}}
-                        op {{date('d-m-Y H:i', strtotime($contact->notes()->orderByDesc('creation')->first()->creation))}}</strong>
+                        door: {{$contact->contact()->first()->notes()->orderByDesc('creation')->first()->contact()->first()->getName()}}
+                        op {{date('d-m-Y H:i', strtotime($contact->contact()->first()->notes()->orderByDesc('creation')->first()->creation))}}</strong>
                     </div>
                     <div class="d-flex justify-content-between align-items-center w-100 mt-2">
-                      <span class="d-block text-break">{{$contact->notes()->orderByDesc('creation')->first()->description}}</span>
+                      <span
+                        class="d-block text-break">{{$contact->contact()->first()->notes()->orderByDesc('creation')->first()->description}}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              @if($contact->notes()->get()->count() > 1)
+              @if($contact->contact()->first()->notes()->get()->count() > 1)
                 <button class="read-more-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#notes-{{$contact->id}}">Meer lezen...</button>
+                        data-bs-target="#notes-{{$contact->id}}">Meer lezen...
+                </button>
                 <div class="collapse extra-notes" id="notes-{{$contact->id}}">
                   <div class="w-100 h-50 notes-height">
-                    @foreach($contact->notes()->orderByDesc('creation')->get() as $note)
+                    @foreach($contact->contact()->first()->notes()->orderByDesc('creation')->get() as $note)
                       @continue($loop->index == 0)
                       <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
                         <div class="media text-muted pt-3">
@@ -305,7 +300,7 @@
 
     readMoreButtons.forEach(button => {
       button.addEventListener('click', () => {
-        if(!button.classList.contains('collapsed')) {
+        if (!button.classList.contains('collapsed')) {
           button.innerHTML = "Minder lezen..."
         } else {
           button.innerHTML = "Meer lezen..."
