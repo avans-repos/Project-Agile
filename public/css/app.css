@@ -31485,6 +31485,12 @@ select {
   table-layout: fixed;
 }
 
+.notes-height {
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
