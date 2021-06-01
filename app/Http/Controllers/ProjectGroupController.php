@@ -270,7 +270,7 @@ class ProjectGroupController extends Controller
    */
   public function destroy(Projectgroup $projectgroup)
   {
-    if(Auth::user()->isAdmin()) {
+    if (Auth::user()->isAdmin()) {
       $projectgroup->delete();
     }
     return redirect()->route('projectgroup.index');
