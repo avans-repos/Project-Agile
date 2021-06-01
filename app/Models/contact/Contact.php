@@ -3,6 +3,7 @@
 namespace App\Models\contact;
 
 use App\Models\Company_has_contacts;
+use App\Models\Note;
 use App\Models\ProjectGroup;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -66,5 +67,9 @@ class Contact extends Model
   public function projectGroups(): BelongsToMany
   {
     return $this->belongsToMany(ProjectGroup::class);
+  }
+
+  public function notes() {
+    return $this->hasMany(Note::class,'contact');
   }
 }
