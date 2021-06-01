@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Eloquent;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -38,6 +38,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @method static role(string $string)
+ * @method static where(string $string, string $string1, int $creator)
  * @mixin Eloquent
  */
 class User extends Authenticatable
@@ -78,5 +79,19 @@ class User extends Authenticatable
     }
 
     return false;
+  }
+  public function projectGroups(): BelongsToMany
+  {
+    return $this->belongsToMany(ProjectGroup::class);
+  }
+
+  public function classrooms(): BelongsToMany
+  {
+    return $this->belongsToMany(StudentClass::class);
+  }
+
+  public function Actionpoints(): BelongsToMany
+  {
+    return $this->belongsToMany(Actionpoint::class);
   }
 }

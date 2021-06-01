@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
-use App\Models\Projectgroup;
-use Illuminate\Http\Request;
+use App\Models\ProjectGroup;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +30,7 @@ class ProjectController extends Controller
       ->with('action', 'store');
   }
 
-  public function store(ProjectRequest $request)
+  public function store(ProjectRequest $request): RedirectResponse
   {
     $request->validated();
 
@@ -36,7 +39,7 @@ class ProjectController extends Controller
     return redirect()->route('project.edit', [$project->id]);
   }
 
-  public function destroy(Project $project)
+  public function destroy(Project $project): RedirectResponse
   {
     if (Auth::user()->isAdmin()) {
       $project->delete();
@@ -48,12 +51,12 @@ class ProjectController extends Controller
    * Show the form for editing the specified resource.
    *
    * @param Project $project
-   * @return Response
+   * @return Application|Factory|View
    */
   public function edit(Project $project)
   {
-    $currentProjectgroups = Projectgroup::where('project', $project->id)->get();
-    $availableProjectgroups = Projectgroup::where('project', null)->get();
+    $currentProjectgroups = ProjectGroup::where('project', $project->id)->get();
+    $availableProjectgroups = ProjectGroup::where('project', null)->get();
 
     return view('project.manage')
       ->with('project', $project)
@@ -69,7 +72,7 @@ class ProjectController extends Controller
    * @param Project $project
    * @return Response
    */
-  public function update(ProjectRequest $request, Project $project)
+  public function update(ProjectRequest $request, Project $project): Response
   {
     $request->validated();
     $project->update($request->all());
@@ -78,7 +81,7 @@ class ProjectController extends Controller
 
   public function addGroup($projectid, $groupid)
   {
-    $group = Projectgroup::find($groupid);
+    $group = ProjectGroup::find($groupid);
     $group->project = $projectid;
     $group->save();
 
@@ -87,7 +90,7 @@ class ProjectController extends Controller
 
   public function removeGroup($projectid, $groupid)
   {
-    $group = Projectgroup::find($groupid);
+    $group = ProjectGroup::find($groupid);
     $group->project = null;
     $group->save();
 

@@ -8,9 +8,7 @@ use App\Mail\BaseEmail;
 use App\Models\contact\Contact;
 use App\Models\EmailTag;
 use App\Models\Mail_format;
-use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -45,7 +43,12 @@ class MailFormatController extends Controller
           'achternaam' => $contact->lastname,
           'datum' => Carbon::now()->format('Y-m-d'),
         ]);
-        $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $request->get('name')];
+        $subject = $this->getReplacedText($request->get('name'), [
+          'voornaam' => $contact->firstname,
+          'achternaam' => $contact->lastname,
+          'datum' => Carbon::now()->format('Y-m-d'),
+        ]);
+        $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $subject];
         Mail::to($contact->email)->queue(new BaseEmail($data));
       }
     }

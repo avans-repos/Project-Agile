@@ -11,14 +11,16 @@
                     <input name="name" value="{{old('name',$classroom->name)}}" type="text"
                            class="form-control"
                            id="name"
-                           placeholder="42IN4SOa" minlength="3" maxlength="10" required>
+                           placeholder="42IN4SOa" minlength="3" maxlength="10" required
+                           data-bs-toggle="tooltip" data-bs-placement="bottom" title="Vul hier de code van de klas in">
 
                 </div>
                 <div class="col-sm-3">
                     <label for="year" class="form-label">Start Schooljaar *</label>
                     <input name="year" value="{{old('year',$classroom->year)}}" type="number"
                            class="form-control"
-                           id="year" placeholder="2020" min="1901" max="2150" maxlength="4" required>
+                           id="year" placeholder="2020" min="1901" max="2150" maxlength="4" required
+                           data-bs-toggle="tooltip" data-bs-placement="bottom" title="Vul hier het jaar in van de klas">
 
                 </div>
 
@@ -39,16 +41,16 @@
 
     <ul class="list-group mt-2 mb-2" id="selectedStudents">
       @foreach($addedStudents as $student)
-        <li class="list-group-item list-group-item-action" id="selectedStudent-{{$student->student()->id}}">
+        <li class="list-group-item list-group-item-action" id="selectedStudent-{{$student->id}}">
           <div class="container">
             <div class="row">
               <div class="col">
-                <span>{{$student->student()->name}}</span>
+                <span>{{$student->name}}</span>
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
-                <a class="col-sm btn btn-danger" onclick="deleteStudent({{$student->student()->id}})">Verwijderen</a>
-                <input name="student[]" value="{{$student->student()->id}}" hidden>
+                <a class="col-sm btn btn-danger" onclick="deleteStudent({{$student->id}})">Verwijderen</a>
+                <input name="student[]" value="{{$student->id}}" hidden>
               </div>
             </div>
           </div>
@@ -64,7 +66,8 @@
 
   <fieldset class="mt-5">
     <legend>Studenten toevoegen</legend>
-    <input type="text" id="filterStudentInput" onkeyup="filterStudents()" placeholder="Zoek naar studenten" title="Typ een naam">
+    <input type="text" id="filterStudentInput" onkeyup="filterStudents()" placeholder="Zoek naar studenten" title="Typ een naam om op te zoeken"
+           data-bs-toggle="tooltip" data-bs-placement="right">
     <ul class="list-group mt-2 mb-2 scroll max-h-screen" id="studentList">
       @foreach($students as $student)
         <li class="list-group-item list-group-item-action" id="{{$student->id}}">

@@ -4,12 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\contact\Contact;
 use App\Models\Project;
-use App\Models\Projectgroup;
-use App\Models\projectgroup_has_contacts;
-use App\Models\projectgroup_has_users;
+use App\Models\ProjectGroup;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ProjectgroupSeeder extends Seeder
 {
@@ -21,29 +18,40 @@ class ProjectgroupSeeder extends Seeder
   public function run()
   {
     for ($i = 0; $i < 50; $i++) {
-      $projectGroup = projectgroup::create([
+      $projectId = Project::all()
+        ->random(1)
+        ->first()->id;
+      $group = ProjectGroup::create([
         'name' => 'IN01 - Groep A' . $i,
-        'project' => Project::all()->random(1)[0]->id,
+        'project' => $projectId,
       ]);
 
       for ($i2 = 0; $i2 < random_int(0, 3); $i2++) {
-        projectgroup_has_users::firstOrCreate([
-          'userid' => User::role('Student')
-            ->get()
-            ->random(1)[0]->id,
-          'projectgroupid' => $projectGroup->id,
-        ]);
-      }
-      projectgroup_has_users::firstOrCreate([
-        'userid' => User::role('Teacher')
+        $userId = User::role('Student')
           ->get()
-          ->random(1)[0]->id,
-        'projectgroupid' => $projectGroup->id,
-      ]);
-      projectgroup_has_contacts::firstOrCreate([
-        'contactid' => Contact::all()->random(1)[0]->id,
-        'projectgroupid' => $projectGroup->id,
-      ]);
+          ->random(1)
+          ->first()->id;
+        if (
+          !$group
+            ->users()
+            ->where('user_id', $userId)
+            ->exists()
+        ) {
+          $group->users()->attach($userId);
+        }
+      }
+      $group->users()->attach(
+        User::role('Teacher')
+          ->get()
+          ->random(1)
+          ->first()->id
+      );
+
+      $group->contacts()->attach(
+        Contact::all()
+          ->random(1)
+          ->first()->id
+      );
     }
   }
 }

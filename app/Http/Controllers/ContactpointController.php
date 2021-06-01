@@ -5,16 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactpointRequest;
 use App\Models\contact\Contact;
 use App\Models\Contactpoint;
-use App\Models\User;
 use App\Service\AuthenticationService;
-use DateTime;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ContactpointController extends Controller
 {

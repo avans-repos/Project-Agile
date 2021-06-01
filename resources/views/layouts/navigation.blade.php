@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Druk hier om naar de home pagina te gaan">
                       <img src="/img/avans-white.png" style="height: 30px">
 {{--                        <x-application-logo class="block h-10 w-auto fill-current text-white" />--}}
                     </a>

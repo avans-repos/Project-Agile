@@ -33,7 +33,8 @@
     <div>
       <div class="mb-1">
         <label for="deadline" class="form-label">Deadline</label>
-        <input type="datetime-local" id="deadline" value="{{old('deadline',isset($project->deadline) ? date('Y-m-d\TH:i', strtotime($project->deadline)) : null)}}" name="deadline" class="form-control">
+        <input type="datetime-local" id="deadline" value="{{old('deadline',isset($project->deadline) ? date('Y-m-d\TH:i', strtotime($project->deadline)) : null)}}" name="deadline" class="form-control"
+               data-bs-toggle="tooltip" data-bs-placement="right" title="Een datum in de toekomst met een format van dd/mm/yyyy, druk op het kalender icoontje om een datum te kiezen">
 
       </div>
       <div class="col">

@@ -27,8 +27,8 @@
           <tr>
             <td class="w-25">{{$classroom->name}}</td>
             <td class="w-12">{{$classroom->year}}</td>
-            <td class="w-25">@foreach($classroom->students() as $student)
-               {{$student->student()->name}}<br>
+            <td class="w-25">@foreach($classroom->students()->get() as $student)
+               {{$student->name}}<br>
               @endforeach
             </td>
             <td>
