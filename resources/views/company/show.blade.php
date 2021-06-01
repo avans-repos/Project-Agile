@@ -298,7 +298,7 @@
 
     readMoreButtons.forEach(button => {
       button.addEventListener('click', () => {
-        if(button.innerHTML === "Meer lezen...") {
+        if(!button.classList.contains('collapsed')) {
           button.innerHTML = "Minder lezen..."
         } else {
           button.innerHTML = "Meer lezen..."
