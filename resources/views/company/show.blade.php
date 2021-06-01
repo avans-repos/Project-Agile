@@ -187,21 +187,21 @@
                   <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
                       <strong class="text-gray-dark">Gemaakt
-                        door: {{$contact->notes()->first()->contact()->first()->getName()}}
-                        op {{date('d-m-Y H:i', strtotime($contact->notes()->first()->creation))}}</strong>
+                        door: {{$contact->notes()->orderBy('creation')->first()->contact()->first()->getName()}}
+                        op {{date('d-m-Y H:i', strtotime($contact->notes()->orderBy('creation')->first()->creation))}}</strong>
                     </div>
                     <div class="d-flex justify-content-between align-items-center w-100 mt-2">
-                      <span class="d-block text-break">{{$contact->notes()->first()->description}}</span>
+                      <span class="d-block text-break">{{$contact->notes()->orderBy('creation')->first()->description}}</span>
                     </div>
                   </div>
                 </div>
               </div>
               @if($contact->notes()->get()->count() > 1)
                 <button class="read-more-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target=".extra-notes-{{$contact->id}}">Meer lezen...</button>
+                        data-bs-target="#notes-{{$contact->id}}">Meer lezen...</button>
                 <div class="collapse extra-notes" id="notes-{{$contact->id}}">
                   <div class="w-100 h-50 notes-height">
-                    @foreach($contact->notes()->get() as $note)
+                    @foreach($contact->notes()->orderBy('creation')->get() as $note)
                       @continue($loop->index == 0)
                       <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7 w-100">
                         <div class="media text-muted pt-3">
