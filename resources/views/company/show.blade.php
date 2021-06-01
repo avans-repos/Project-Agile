@@ -188,7 +188,7 @@
                     <div class="d-flex justify-content-between align-items-center w-100">
                       <strong class="text-gray-dark">Gemaakt
                         door: {{$contact->notes()->first()->contact()->first()->getName()}}
-                        op {{date('d-m-Y H:i:s', strtotime($contact->notes()->first()->creation))}}</strong>
+                        op {{date('d-m-Y H:i', strtotime($contact->notes()->first()->creation))}}</strong>
                     </div>
                     <div class="d-flex justify-content-between align-items-center w-100 mt-2">
                       <span class="d-block text-break">{{$contact->notes()->first()->description}}</span>
@@ -198,9 +198,7 @@
               </div>
               @if($contact->notes()->get()->count() > 1)
                 <button class="read-more-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target=".extra-notes">
-                  Meer lezen...
-                </button>
+                        data-bs-target=".extra-notes">Meer lezen...</button>
                 <div class="collapse extra-notes" id="notes-{{$contact->id}}">
                   <div class="w-100 h-50 notes-height">
                     @foreach($contact->notes()->get() as $note)
@@ -210,7 +208,7 @@
                           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                             <div class="d-flex justify-content-between align-items-center w-100">
                               <strong class="text-gray-dark">Gemaakt door: {{$note->contact()->first()->getName()}}
-                                op {{date('d-m-Y H:i:s', strtotime($note->creation))}}</strong>
+                                op {{date('d-m-Y H:i', strtotime($note->creation))}}</strong>
                             </div>
                             <div class="d-flex justify-content-between align-items-center w-100 mt-2">
                               <span class="d-block text-break">{{$note->description}}</span>
@@ -293,6 +291,20 @@
         table.classList.add("d-none");
       }
     }
+
+    let readMoreButtons = document.querySelectorAll('.read-more-button');
+
+    console.log(readMoreButtons);
+
+    readMoreButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if(button.innerHTML === "Meer lezen...") {
+          button.innerHTML = "Minder lezen..."
+        } else {
+          button.innerHTML = "Meer lezen..."
+        }
+      })
+    })
   </script>
 
   <script src="{{ asset('js/search.js')}}"></script>
