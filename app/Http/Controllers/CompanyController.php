@@ -8,6 +8,7 @@ use App\Models\Address;
 use App\Models\company_contact;
 use App\Models\contact\Contact;
 use App\Models\User;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -76,24 +77,10 @@ class CompanyController extends Controller
    */
   public function show(Company $company)
   {
-    $address1 = Address::find($company->visiting_address);
-    $address2 = null;
-    if ($company->visiting_address != $company->mailing_address) {
-      $address2 = Address::find($company->mailing_address);
-    }
-
-    $contacts = [];
-    foreach ($company->contacts()->get() as $company_contact) {
-      array_push($contacts, $company_contact->contact()->first());
-    }
-
-    $newContacts = Contact::all()->whereNotIn('id', array_column($contacts, 'id'));
+    $newContacts = Contact::whereNotIn('id', array_column($company->contacts()->toArray(), 'id'))->get();
 
     return view('company.show')
       ->with('company', $company)
-      ->with('address1', $address1)
-      ->with('address2', $address2)
-      ->with('contacts', $contacts)
       ->with('newContacts', $newContacts);
   }
 
