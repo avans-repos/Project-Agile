@@ -110,25 +110,8 @@ class ContactController extends Controller
    */
   public function show(Contact $contact)
   {
-    $notes =
-      Note::where('contact', '=', $contact->id)
-        ->join('users', 'notes.creator', '=', 'users.id')
-        ->select('notes.id', 'notes.creation', 'notes.description', 'users.name')
-        ->orderBy('notes.creation', 'desc')
-        ->get() ?? [];
-    $contactTypes =
-      DB::Table('company_has_contacts_has_contacttypes')
-        ->where('contact', '=', $contact->id)
-        ->join('companies', 'company_has_contacts_has_contacttypes.company', '=', 'companies.id')
-        ->select('company_has_contacts_has_contacttypes.contacttype', 'companies.name')
-        ->get() ?? [];
-    $address = Address::find($contact->address);
-
     return view('contact.show')
-      ->with('contact', $contact)
-      ->with('address', $address)
-      ->with('notes', $notes)
-      ->with('contactTypes', $contactTypes);
+      ->with('contact', $contact);
   }
 
   /**

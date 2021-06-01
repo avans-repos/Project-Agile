@@ -16,12 +16,12 @@
 
         <thead>
         <tr>
-          <td class="w-50">Voornaam</td>
+          <td>Voornaam</td>
           <td>Tussenvoegsel</td>
-          <td class="w-50">Achternaam</td>
-          <td class="w-50">Type</td>
-          <td class="w-50">Huidige werkgever</td>
-          <td class="w-50">Laatste project</td>
+          <td>Achternaam</td>
+          <td>Type</td>
+          <td class="text-nowrap">Huidige werkgever</td>
+          <td>Laatste project</td>
           <td>Acties</td>
         </tr>
         </thead>
@@ -36,7 +36,7 @@
             <td>{{$contact->type}}</td>
             <td>
               @if($contact->companies()->first() !== null)
-                {{$contact->companies()->first()->name}}
+                {{$contact->companies()->latest('added')->first()->company()->first()->name}}
               @endif
             </td>
             <td>

@@ -9,6 +9,8 @@ use App\Models\company_contact;
 use App\Models\contact\Contact;
 use App\Models\User;
 use App\Models\Note;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -78,7 +80,7 @@ class CompanyController extends Controller
    */
   public function show(Company $company)
   {
-    $newContacts = Contact::whereNotIn('id', array_column($company->contacts()->toArray(), 'id'))->get();
+    $newContacts = Contact::whereNotIn('id', array_column($company->contacts()->get()->toArray(), 'contact'))->get();
 
     return view('company.show')
       ->with('company', $company)
@@ -92,6 +94,7 @@ class CompanyController extends Controller
         'company_id' => $companyid,
         'contact_id' => $contactid,
         'contacttype' => 'warm',
+        'added' => Carbon::now()->format('Y-m-d H:i:s')
       ]);
     } catch (Exception $e) {
 

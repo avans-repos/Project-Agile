@@ -27,6 +27,9 @@ class CreateContactHasContacttypesTable extends Migration
             ->references('name')
             ->on('contact_types')
             ->onDelete('cascade');
+
+          $table->dateTime('added');
+
           $table->primary(['contact_id', 'company_id']);
         });
     }
