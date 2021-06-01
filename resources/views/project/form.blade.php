@@ -117,22 +117,27 @@
     </div>
   </fieldset>
 
-  <fieldset>
-    <a class="btn btn-secondary" onClick="ajaxTest()" >
-      Voeg nieuwe projectgroep toe.
-    </a>
 
-    <div id="ajaxField"></div>
 
   <input class="btn btn-primary" type="submit" value="Project {{$formActionViewName}}">
 </form>
 
+<fieldset>
+  <a class="btn btn-secondary" onClick="ajaxTest()" >
+    Voeg nieuwe projectgroep toe.
+  </a>
+
+  <div id="ajaxField"></div>
+
+  {{--    <iframe src="{{route('projectgroup.createForm')}}" title="Projectgroep aanmaken">--}}
+  {{--    </iframe>--}}
+</fieldset>
+
 <script>
 
   function ajaxTest() {
-    $.get("{{route('projectgroup.create')}}",
+    $.get("{{route('projectgroup.createForm')}}",
       function(data){
-      //alert("Data: " + data);
         document.getElementById('ajaxField').innerHTML = data;
     });
   }
