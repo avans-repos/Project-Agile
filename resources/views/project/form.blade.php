@@ -72,7 +72,7 @@
               <div class="container">
                 <div class="d-flex justify-content-between">
                   <div class="d-inline-flex">
-                    <span>{{$assignedProjectGroup->name}}</span>
+                    <span id="addedProjectgroupName-{{$assignedProjectGroup->id}}">{{$assignedProjectGroup->name}}</span>
                   </div>
                   <div class="d-inline-flex">
                     <a class="col-sm btn btn-danger" onclick="deleteProjectGroup({{$assignedProjectGroup->id}})">Verwijderen</a>
@@ -117,36 +117,79 @@
     </div>
   </fieldset>
 
+  <fieldset>
+    <a href="{{route('projectgroup.create')}}"  class="btn btn-secondary mb-3" onclick="saveToSessionStorage()">
+      Nieuwe projectgroep aanmaken
+    </a>
+
+  </fieldset>
 
 
-  <input class="btn btn-primary" type="submit" value="Project {{$formActionViewName}}">
+  <input class="btn btn-primary" type="submit" onclick="clearSessionData()" value="Project {{$formActionViewName}}">
 </form>
-
-<fieldset>
-  <a class="btn btn-secondary" onClick="ajaxTest()" >
-    Voeg nieuwe projectgroep toe.
-  </a>
-
-  <div id="ajaxField"></div>
-
-  {{--    <iframe src="{{route('projectgroup.createForm')}}" title="Projectgroep aanmaken">--}}
-  {{--    </iframe>--}}
-</fieldset>
 
 <script>
 
-  function ajaxTest() {
-    $.get("{{route('projectgroup.createForm')}}",
-      function(data){
-        document.getElementById('ajaxField').innerHTML = data;
-    });
-  }
+  {{--function ajaxTest() {--}}
+  {{--  $.get("{{route('projectgroup.createForm')}}",--}}
+  {{--    function(data){--}}
+  {{--      document.getElementById('ajaxField').innerHTML = data;--}}
+  {{--  });--}}
+  {{--}--}}
 
   const projectGroupDiv = document.getElementById('selectedProjectGroups');
   const addedGroupsDiv = document.getElementById('addedGroups');
 
+
+
   function displayNotFoundAddedGroupsText() {
     document.getElementById('noAddedProjectGroupsFound').style.display = (document.getElementById('selectedProjectGroups').getElementsByTagName('li').length == 0 ? "" : "none");
+  }
+
+  function clearSessionData(){
+    sessionStorage.removeItem('projectFormData');
+  }
+
+  function saveToSessionStorage(){
+    let storageObject = {groups: getAddedProjectGroups(), name: document.getElementById('name').value, description: document.getElementById('description').value, deadline: document.getElementById('deadline').value, notes: document.getElementById('notes').value};
+    sessionStorage.setItem('projectFormData', JSON.stringify(storageObject));
+  }
+
+  function removeAllProjectGroups(){
+    let addedProjectGroupObjects = document.getElementById('selectedProjectGroups').getElementsByTagName('li');
+    while(addedProjectGroupObjects.length > 0) {
+      addedProjectGroupObjects = document.getElementById('selectedProjectGroups').getElementsByTagName('li');
+      for (let i = 0; i < addedProjectGroupObjects.length; i++) {
+        const id = addedProjectGroupObjects[i].id.split('selectedProjectGroup-')[1];
+        deleteProjectGroup(id);
+      }
+    }
+  }
+
+  function loadFromLocalStorage(){
+    let storageObject = sessionStorage.getItem('projectFormData');
+    if(!storageObject) return;
+    removeAllProjectGroups();
+    storageObject = JSON.parse(storageObject);
+    for(let i = 0; i < storageObject.groups.length; i++){
+      let group = storageObject.groups[i];
+      addProjectGroup(group.id, group.name);
+    }
+    document.getElementById('name').value = storageObject.name;
+    document.getElementById('description').value = storageObject.description;
+    document.getElementById('deadline').value = storageObject.deadline;
+    document.getElementById('notes').value = storageObject.notes;
+  }
+
+  function getAddedProjectGroups(){
+    const addedProjectGroupObjects = document.getElementById('selectedProjectGroups').getElementsByTagName('li');
+    let returnValue = [];
+    for(let i = 0; i < addedProjectGroupObjects.length; i++){
+      const id = addedProjectGroupObjects[i].id.split('selectedProjectGroup-')[1];
+      const projectgroupObject = {id: id, name:document.getElementById(`addedProjectgroupName-${id}`).innerText};
+      returnValue.push(projectgroupObject);
+    }
+    return returnValue;
   }
 
   function addProjectGroup(projectGroupId, projectGroupName) {
@@ -155,7 +198,7 @@
         <div class="container">
           <div class="d-flex justify-content-between">
             <div class="d-inline-flex">
-              <span>${projectGroupName}</span>
+              <span id=addedProjectgroupName-${projectGroupId}>${projectGroupName}</span>
             </div>
             <div class="d-inline-flex">
               <a class="btn btn-danger" onclick="deleteProjectGroup(${projectGroupId})">Verwijderen</a>
@@ -202,6 +245,7 @@
   }
 
   window.onload = function (e) {
+    loadFromLocalStorage();
     filterProjectGroups();
     displayNotFoundAddedGroupsText();
   }

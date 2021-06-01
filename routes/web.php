@@ -102,7 +102,4 @@ Route::get('projectgroup/{projectgroupid}/addContact/{contactid}', [Projectgroup
 Route::get('projectgroup/{projectgroupid}/removeContact/{contactid}', [ProjectgroupController::class, 'removeContact'])
   ->name('projectgroup.removeContact')
   ->middleware(['auth']);
-Route::get('projectgroup/createForm', [ProjectgroupController::class, 'createForm'])
-  ->name('projectgroup.createForm')
-  ->middleware(['auth']);
 Route::resource('projectgroup', ProjectgroupController::class)->middleware(['auth']);

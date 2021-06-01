@@ -1,4 +1,4 @@
-<form action="{{route('projectgroup.'.$formAction, ['projectgroup' => $projectgroup])}}" method="POST">
+<form action="{{route('projectgroup.'.$formAction, ['projectgroup' => $projectgroup, 'redirectUrl' => $redirectUrl])}}" method="POST">
   @csrf
   @if($formAction == "update")
     @method('PATCH')
@@ -36,7 +36,7 @@
     </div>
     <div class="mb-1">
       <label class="form-label">Selecteer studenten</label>
-      
+
       <table class="table" id="student-table">
         <thead>
           <tr>

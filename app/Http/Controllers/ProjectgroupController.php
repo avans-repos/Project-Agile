@@ -89,6 +89,7 @@ class ProjectgroupController extends Controller
    */
   public function create()
   {
+    $redirectURL = request()->headers->get('referer');
     $projectgroup = new Projectgroup();
 
     $students = User::role('Student')->get();
@@ -109,36 +110,12 @@ class ProjectgroupController extends Controller
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
+      ->with('redirectUrl', $redirectURL)
       ->with('action', 'store');
 
     //return \response('Hello World!');
   }
 
-  public function createForm()
-  {
-    $projectgroup = new Projectgroup();
-
-    $students = User::role('Student')->get();
-    $teachers = User::role('Teacher')->get();
-    $contacts = Contact::all();
-    $projects = Project::all();
-
-    $this->addClassToStudent($students);
-
-    $assignedUsers = null;
-    $assignedContacts = null;
-
-    return view('projectgroup.form')
-      ->with('formActionViewName', 'toevoegen')
-      ->with('projectgroup', $projectgroup)
-      ->with('teachers', $teachers)
-      ->with('students', $students)
-      ->with('contacts', $contacts)
-      ->with('assignedUsers', $assignedUsers)
-      ->with('assignedContacts', $assignedContacts)
-      ->with('projects', $projects)
-      ->with('formAction', 'store');
-  }
 
   /**
    * Store a newly created resource in storage.
@@ -149,6 +126,8 @@ class ProjectgroupController extends Controller
   public function store(ProjectgroupRequest $request)
   {
     $request->validated();
+
+    $redirectUrl = $request->get('redirectUrl') ?? route('projectgroup.index');
 
     $group = new Projectgroup();
     $group->name = $request->name;
@@ -180,7 +159,9 @@ class ProjectgroupController extends Controller
       }
     }
 
-    return redirect()->route('projectgroup.index');
+
+
+    return redirect($redirectUrl);
   }
 
   public function show(Projectgroup $projectgroup)
@@ -287,6 +268,7 @@ class ProjectgroupController extends Controller
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
+      ->with('redirectUrl', null)
       ->with('action', 'update');
   }
 
