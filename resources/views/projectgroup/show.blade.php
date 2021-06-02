@@ -58,9 +58,8 @@
         @foreach($projectgroup->contacts()->get() as $contact)
           <div class="row">
             <div>
-              <b>{{ $contact->firstname . ' ' . $contact->insertion . ' ' . $contact->lastname }}</b>
-              <a class="ml-1"
-                 href="{{route('projectgroup.removeContact', ['projectgroupid'=>$projectgroup->id, 'contactid' => $contact->id ])}}">x</a>
+              <b>{{ $contact->getName() }}</b>
+              <a class="ml-1" href="{{route('projectgroup.removeContact', ['projectgroupid'=>$projectgroup->id, 'contactid' => $contact->id ])}}">x</a>
             </div>
 
             <div>
