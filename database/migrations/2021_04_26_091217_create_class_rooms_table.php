@@ -13,7 +13,7 @@ class CreateClassRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_rooms', function (Blueprint $table) {
+        Schema::create('student_classes', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
             $table->year('year');
@@ -28,6 +28,6 @@ class CreateClassRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_rooms');
+        Schema::dropIfExists('student_classes');
     }
 }

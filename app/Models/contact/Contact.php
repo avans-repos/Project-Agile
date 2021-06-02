@@ -2,10 +2,14 @@
 
 namespace App\Models\contact;
 
+use App\Models\Company_has_contacts;
+use App\Models\Note;
+use App\Models\ProjectGroup;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -53,5 +57,20 @@ class Contact extends Model
     $fullname .= $this->lastname;
 
     return $fullname;
+  }
+
+  public function companies()
+  {
+    return $this->hasMany(Company_has_contacts::class, 'contact');
+  }
+
+  public function projectGroups(): BelongsToMany
+  {
+    return $this->belongsToMany(ProjectGroup::class);
+  }
+
+  public function notes()
+  {
+    return $this->hasMany(Note::class, 'contact');
   }
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use App\Models\Address;
 use App\Models\contact\Contact;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +59,7 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
+      'note' => $request->input('note'),
       'visiting_address' => $addressIds[0],
       'mailing_address' => $addressIds[1],
     ]);
@@ -72,32 +74,19 @@ class CompanyController extends Controller
    */
   public function show(Company $company)
   {
-    $address1 = Address::find($company->visiting_address);
-    $address2 = null;
-    if ($company->visiting_address != $company->mailing_address) {
-      $address2 = Address::find($company->mailing_address);
-    }
-
-    $contacts = DB::select(
-      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid = ' . $company->id
-    );
-    $newContacts = DB::select(
-      'SELECT * FROM company_has_contacts RIGHT JOIN contacts ON contactid = contacts.id WHERE companyid IS NULL OR companyid != ' . $company->id
-    );
+    $newContacts = Contact::whereNotIn('id', array_column($company->contacts()->toArray(), 'id'))->get();
 
     return view('company.show')
       ->with('company', $company)
-      ->with('address1', $address1)
-      ->with('address2', $address2)
-      ->with('contacts', $contacts)
       ->with('newContacts', $newContacts);
   }
 
   public function addcontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')->insert([
-      'companyid' => $companyid,
-      'contactid' => $contactid,
+    DB::table('company_has_contacts_has_contacttypes')->insert([
+      'company' => $companyid,
+      'contact' => $contactid,
+      'contacttype' => 'warm',
     ]);
 
     return redirect()->route('company.show', [$companyid]);
@@ -105,9 +94,11 @@ class CompanyController extends Controller
 
   public function removecontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts')
-      ->where('companyid', $companyid)
-      ->where('contactid', $contactid)
+    DB::table('company_has_contacts_has_contacttypes')
+      ->where([
+        'company' => $companyid,
+        'contact' => $contactid,
+      ])
       ->delete();
 
     return redirect()->route('company.show', [$companyid]);
@@ -150,6 +141,7 @@ class CompanyController extends Controller
       'email' => $request->input('email'),
       'size' => $request->input('size'),
       'website' => $request->input('website'),
+      'note' => $request->input('note'),
       'visiting_address' => $addressIds[0],
       'mailing_address' => $addressIds[1],
     ]);

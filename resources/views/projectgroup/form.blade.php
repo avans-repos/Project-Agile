@@ -24,12 +24,13 @@
 
       <div class="d-flex flex-column">
         @foreach($teachers as $teacher)
-          <label class="radio-inline">
+          <label class="radio-inline"
+                 data-bs-toggle="tooltip" data-bs-placement="left" title="Druk op de checkbox om een docent te selecteren">
             <input
               {{ (is_array(old("assignedUsers",$assignedUsers))) ?
                       (in_array($teacher->id, old("assignedUsers", $assignedUsers))) ? 'checked' : null
                    : null
-              }} type="checkbox" name="assignedUsers[]" value="{{$teacher->id}}" ><span class="ms-2">{{$teacher->name}}</span>
+              }} type="checkbox" name="assignedUsers[]" value="{{$teacher->id}}"><span class="ms-2">{{$teacher->name}}</span>
           </label>
         @endforeach
       </div>
@@ -41,13 +42,15 @@
         <thead>
           <tr>
             <th>Selecteren</th>
-            <th><input type="text" id="student-search" placeholder="Naam"/></th>
-            <th><input type="text" id="class-search" placeholder="Klas"/></th>
+            <th><input type="text" id="student-search" placeholder="Naam"
+                       data-bs-toggle="tooltip" data-bs-placement="top" title="Vul hier de naam in om te kunnen filteren"/></th>
+            <th><input type="text" id="class-search" placeholder="Klas"
+                       data-bs-toggle="tooltip" data-bs-placement="top" title="Vul hier de klas code in om te kunnen filteren"/></th>
           </tr>
         </thead>
         <tbody>
           @foreach($students as $student)
-            <tr>
+            <tr data-bs-toggle="tooltip" data-bs-placement="left" title="Druk op de checkbox om een student te selecteren">
               <td>
               <input
               {{ (is_array(old("assignedUsers",$assignedUsers))) ?
@@ -72,7 +75,8 @@
               {{ (is_array(old("assignedContacts",$assignedContacts))) ?
                       (in_array($contact->id, old("assignedContacts", $assignedContacts))) ? 'checked' : null
                    : null
-              }} type="checkbox" name="assignedContacts[]" value="{{$contact->id}}" ><span class="ms-2">{{$contact->firstname}} {{$contact->insertion}} {{$contact->lastname}}</span>
+              }} type="checkbox" name="assignedContacts[]" value="{{$contact->id}}" ><span class="ms-2"
+                                                                                           data-bs-toggle="tooltip" data-bs-placement="right" title="Druk op de checkbox om een contactpersoon te selecteren">{{$contact->getName()}}</span>
           </label>
         @endforeach
       </div>
@@ -109,7 +113,7 @@ function search() {
   let tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
+  for (let i = 0; i < tr.length; i++) {
     let studenttd = tr[i].getElementsByTagName("td")[1];
     let classtd = tr[i].getElementsByTagName("td")[2];
 

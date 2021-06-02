@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
-use App\Models\Projectgroup;
-use Illuminate\Http\Request;
+use App\Models\ProjectGroup;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -33,7 +35,7 @@ class ProjectController extends Controller
       ->with('assignedProjectGroups', $assignedProjectGroups);
   }
 
-  public function store(ProjectRequest $request)
+  public function store(ProjectRequest $request): RedirectResponse
   {
     $request->validated();
 
@@ -50,7 +52,7 @@ class ProjectController extends Controller
     return redirect()->route('project.index');
   }
 
-  public function destroy(Project $project)
+  public function destroy(Project $project): RedirectResponse
   {
     $project->delete();
     return redirect()->route('project.index');
@@ -84,7 +86,7 @@ class ProjectController extends Controller
    * @param Project $project
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function update(ProjectRequest $request, Project $project)
+  public function update(ProjectRequest $request, Project $project): Response
   {
     $request->validated();
     $project->update($request->all());
@@ -105,7 +107,7 @@ class ProjectController extends Controller
 
   public function addGroup($projectid, $groupid)
   {
-    $group = Projectgroup::find($groupid);
+    $group = ProjectGroup::find($groupid);
     $group->project = $projectid;
     $group->save();
 
@@ -114,7 +116,7 @@ class ProjectController extends Controller
 
   public function removeGroup($projectid, $groupid)
   {
-    $group = Projectgroup::find($groupid);
+    $group = ProjectGroup::find($groupid);
     $group->project = null;
     $group->save();
 
