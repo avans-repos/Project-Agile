@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectGroupController extends Controller
 {
@@ -274,7 +275,9 @@ class ProjectGroupController extends Controller
    */
   public function destroy(Projectgroup $projectgroup)
   {
-    $projectgroup->delete();
+    if (Auth::user()->isAdmin()) {
+      $projectgroup->delete();
+    }
     return redirect()->route('projectgroup.index');
   }
 
