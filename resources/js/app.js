@@ -3,10 +3,11 @@ require('./contact');
 require('alpinejs');
 import Swal from 'sweetalert2';
 
-window.deleteConfirm = function (formId) {
+window.deleteConfirm = function (formId, removeText='') {
   Swal.fire({
-    icon: 'warning',
     title: 'Weet u zeker dat u dit wilt verwijderen?',
+    text: `${removeText}`,
+    icon: 'warning',
     showCancelButton: true,
     cancelButtonText: 'Annuleren',
     confirmButtonText: 'Verwijder',

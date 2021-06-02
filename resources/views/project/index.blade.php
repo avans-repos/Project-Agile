@@ -44,7 +44,7 @@
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
-                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$project->id}}')">Verwijderen </a>
+                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$project->id}}', '{{$project->getDeleteText()}}')">Verwijderen </a>
                     </div>
                   </form>
                 </div>
@@ -57,5 +57,4 @@
       </table>
     </div>
   </div>
-
 @endsection
