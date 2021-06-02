@@ -125,7 +125,7 @@ class ContactController extends Controller
     $genders = Gender::all();
     $contactTypes = ContactType::all();
     $companies = Company::all();
-    if($contact->address()->first() == null) {
+    if ($contact->address()->first() == null) {
       $address = new Address();
     } else {
       $address = $contact->address()->first();
@@ -136,7 +136,7 @@ class ContactController extends Controller
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
       ->with('companies', $companies)
-      ->with('address',$address)
+      ->with('address', $address)
       ->with('action', 'update');
   }
 
