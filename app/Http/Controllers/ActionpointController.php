@@ -42,9 +42,13 @@ class ActionpointController extends Controller
       ->select('actionpoints.*', 'users.name')
       ->get();
 
-    //die($actionPoints);
+    $finishedActionPoints = Auth::user()
+      ->actionpoints()
+      ->where('finished', 1)
+      ->orderBy('actionpoints.deadline')
+      ->get();
 
-    return view('actionPoints.index', compact('actionPoints'));
+    return view('actionPoints.index', compact(['actionPoints', 'finishedActionPoints']));
   }
 
   /**
@@ -174,5 +178,12 @@ class ActionpointController extends Controller
     $actionpoint->finished = true;
     $actionpoint->save();
     return redirect()->route('dashboard');
+  }
+
+  public function undoComplete(Actionpoint $actionpoint)
+  {
+    $actionpoint->finished = null;
+    $actionpoint->save();
+    return redirect()->route('actionpoints.index');
   }
 }

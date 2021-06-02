@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a49dbbd3d507de80d40734d1d9f10ab4",
+    "content-hash": "d21b7b769ebe66d53404b1578240616f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5351,16 +5351,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "69742118c037f34ee1ef86dc605be4a105d9e984"
+                "reference": "47b639dc02bcfdfc4ebb83de703856fa01e35f5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/69742118c037f34ee1ef86dc605be4a105d9e984",
-                "reference": "69742118c037f34ee1ef86dc605be4a105d9e984",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/47b639dc02bcfdfc4ebb83de703856fa01e35f5f",
+                "reference": "47b639dc02bcfdfc4ebb83de703856fa01e35f5f",
                 "shasum": ""
             },
             "require": {
@@ -5404,7 +5404,7 @@
             ],
             "support": {
                 "issues": "https://github.com/facade/flare-client-php/issues",
-                "source": "https://github.com/facade/flare-client-php/tree/1.8.0"
+                "source": "https://github.com/facade/flare-client-php/tree/1.8.1"
             },
             "funding": [
                 {
@@ -5412,7 +5412,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-30T11:11:50+00:00"
+            "time": "2021-05-31T19:23:29+00:00"
         },
         {
             "name": "facade/ignition",
@@ -5668,16 +5668,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "40444821ebfc781b91281048e18f06193d388f4a"
+                "reference": "35bde0b8c49d4168545d9c4b8b28832ededc5bfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/40444821ebfc781b91281048e18f06193d388f4a",
-                "reference": "40444821ebfc781b91281048e18f06193d388f4a",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/35bde0b8c49d4168545d9c4b8b28832ededc5bfb",
+                "reference": "35bde0b8c49d4168545d9c4b8b28832ededc5bfb",
                 "shasum": ""
             },
             "require": {
@@ -5721,7 +5721,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2021-05-25T16:27:09+00:00"
+            "time": "2021-06-01T15:02:26+00:00"
         },
         {
             "name": "laravel/sail",
@@ -7779,7 +7779,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8"
+        "php": "^7.3|^8",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
