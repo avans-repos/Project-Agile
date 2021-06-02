@@ -212,7 +212,7 @@ class ProjectGroupController extends Controller
       ->with('projectgroup', $projectgroup)
       ->with('teachers', User::role('teacher')->get())
       ->with('students', User::role('student')->get())
-      ->with('contacts', Contact::all())
+      ->with('newContacts', Contact::all())
       ->with('projects', Project::all())
       ->with('redirectUrl', null)
       ->with(
@@ -228,8 +228,6 @@ class ProjectGroupController extends Controller
         $projectgroup
           ->contacts()
           ->get()
-          ->pluck('id')
-          ->toArray()
       )
       ->with('action', 'update');
   }
