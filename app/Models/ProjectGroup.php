@@ -27,7 +27,7 @@ class ProjectGroup extends Model
     $project = Project::where('id',$this->project)->pluck('name')->first();
     $text = "";
     if ($project !== null){
-      $text .= "Er is een project aan deze projectgroep gekoppeld: ";
+      $text .= "<br>Er is een project aan deze projectgroep gekoppeld: ";
       $text .= ' ' . $project;
     }
     $students = $this->users()->pluck('name');

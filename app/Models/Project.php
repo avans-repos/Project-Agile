@@ -21,7 +21,7 @@ class Project extends Model
     $projectgroups = $this->projectGroups()->pluck('name');
     $text = "";
     if (count($projectgroups)>0){
-      $text = "Er zijn projectgroepen die aan dit project zijn gekoppeld: ";
+      $text = "<br>Er zijn projectgroepen die aan dit project zijn gekoppeld: ";
       foreach ($projectgroups as $index => $projectgroup){
         if ($index !== 0){
           $text .= ',';
