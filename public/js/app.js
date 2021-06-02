@@ -3812,12 +3812,9 @@ __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 window.deleteConfirm = function (formId) {
   var removeText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  // if(removeText === "undefined"){
-  //   removeText = "";
-  // }
   sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
     title: 'Weet u zeker dat u dit wilt verwijderen?',
-    text: "".concat(removeText),
+    html: "".concat(removeText),
     icon: 'warning',
     showCancelButton: true,
     cancelButtonText: 'Annuleren',
