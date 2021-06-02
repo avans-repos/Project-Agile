@@ -72,9 +72,15 @@ class ProjectGroupController extends Controller
   {
     $projectgroup = new Projectgroup();
 
-    $students = User::role('Student')->orderBy('name')->get();
-    $teachers = User::role('Teacher')->orderBy('name')->get();
-    $contacts = Contact::all()->sortBy(function ($contact) {return $contact->getName(); });
+    $students = User::role('Student')
+      ->orderBy('name')
+      ->get();
+    $teachers = User::role('Teacher')
+      ->orderBy('name')
+      ->get();
+    $contacts = Contact::all()->sortBy(function ($contact) {
+      return $contact->getName();
+    });
     $projects = Project::all()->sortBy('name');
 
     $this->addClassToStudent($students);
