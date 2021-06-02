@@ -26,7 +26,7 @@
             Project
           </div>
           <div class="col-6">
-            {{$project->name}}
+            {{$projectgroup->project()->first()->name}}
           </div>
         </div>
         <div class="row">
@@ -34,7 +34,7 @@
             Docenten
           </div>
           <div class="col-6">
-            @foreach($teachers as $teacher)
+            @foreach($projectgroup->users()->role('Teacher')->get() as $teacher)
               <div>{{ $teacher->name }}</div>
             @endforeach
           </div>
@@ -44,7 +44,7 @@
             Studenten
           </div>
           <div class="col-6">
-            @foreach($students as $student)
+            @foreach($projectgroup->users()->role('Student')->get() as $student)
               <div>{{ $student->name }}</div>
             @endforeach
           </div>
@@ -53,7 +53,7 @@
       <fieldset class="col-sm-12 mt-5">
         <legend>Contactpersonen</legend>
 
-        @foreach($contacts as $contact)
+        @foreach($projectgroup->contacts()->get() as $contact)
           <div class="row">
             <div>
               <b>{{ $contact->firstname . ' ' . $contact->insertion . ' ' . $contact->lastname }}</b>

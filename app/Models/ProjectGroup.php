@@ -31,6 +31,6 @@ class ProjectGroup extends Model
 
   public function project()
   {
-    return $this->belongsTo(Project::class, 'project');
+    return $this->belongsTo(Project::class, 'project','id');
   }
 }
