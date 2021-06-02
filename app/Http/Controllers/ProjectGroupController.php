@@ -127,7 +127,6 @@ class ProjectGroupController extends Controller
 
   public function show(Projectgroup $projectgroup)
   {
-
     $contacts = $projectgroup->contacts()->get();
 
     $newContacts = Contact::all()->wherenotin('id', $contacts->pluck('id'));
