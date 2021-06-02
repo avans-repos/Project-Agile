@@ -36,6 +36,10 @@ Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class
   ->middleware(['auth'])
   ->name('actionpoints.complete');
 
+Route::get('/actionpoints/{actionpoint}/undocomplete', [ActionpointController::class, 'undoComplete'])
+  ->middleware(['auth'])
+  ->name('actionpoints.undoComplete');
+
 Route::resource('contact', ContactController::class)->middleware(['auth']);
 
 Route::get('project/{projectid}/addgroup/{groupid}', [ProjectController::class, 'addGroup'])

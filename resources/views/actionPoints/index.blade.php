@@ -6,7 +6,7 @@
   <main role="main" class="container">
     <div class="mt-5">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="fs-1">Actiepunten</h1>
+        <h1 class="fs-1">Mijn aangemaakte actiepunten</h1>
         <div class="align-self-center">
           <a class="btn btn-primary" href="{{ route('actionpoints.create') }}">Nieuw actiepunt aanmaken</a>
         </div>
@@ -55,6 +55,31 @@
                   </form>
                 </div>
               </div>
+            </td>
+          </tr>
+        @endforeach
+        </tbody>
+      </table>
+
+      <h1 class="mt-5 fs-1">Mijn afgeronde actiepunten</h1>
+
+      <table class="mb-5 table table-striped mt-3">
+        <thead>
+        <tr>
+          <td>Deadline</td>
+          <td>Titel</td>
+          <td>Omschrijving</td>
+          <td>Acties</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($finishedActionPoints as $actionPoint)
+          <tr>
+            <td>{{$actionPoint->deadline}}</td>
+            <td>{{$actionPoint->title}}</td>
+            <td>{{$actionPoint->description}}</td>
+            <td>
+              <a class="btn btn-danger" href="{{route('actionpoints.undoComplete',$actionPoint->id)}}">Niet Voltooid</a>
             </td>
           </tr>
         @endforeach

@@ -10,6 +10,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -39,7 +41,9 @@ class ProjectController extends Controller
 
   public function destroy(Project $project): RedirectResponse
   {
-    $project->delete();
+    if (Auth::user()->isAdmin()) {
+      $project->delete();
+    }
     return redirect()->route('project.index');
   }
 
