@@ -69,6 +69,7 @@ class ProjectGroupController extends Controller
    */
   public function create()
   {
+    $redirectURL = request()->headers->get('referer');
     $projectgroup = new Projectgroup();
 
     $students = User::role('Student')->get();
@@ -89,6 +90,7 @@ class ProjectGroupController extends Controller
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
+      ->with('redirectUrl', $redirectURL)
       ->with('action', 'store');
   }
 
@@ -101,6 +103,8 @@ class ProjectGroupController extends Controller
   public function store(ProjectgroupRequest $request): RedirectResponse
   {
     $request->validated();
+
+    $redirectUrl = $request->get('redirectUrl') ?? route('projectgroup.index');
 
     $projectGroup = new Projectgroup();
     $projectGroup->name = $request->name;
@@ -121,7 +125,7 @@ class ProjectGroupController extends Controller
       $projectGroup->contacts()->sync($request->assignedContacts);
     }
 
-    return redirect()->route('projectgroup.index');
+    return redirect($redirectUrl);
   }
 
   public function show(Projectgroup $projectgroup)
@@ -210,6 +214,7 @@ class ProjectGroupController extends Controller
       ->with('students', User::role('student')->get())
       ->with('contacts', Contact::all())
       ->with('projects', Project::all())
+      ->with('redirectUrl', null)
       ->with(
         'assignedUsers',
         $projectgroup
