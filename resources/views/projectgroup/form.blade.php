@@ -34,6 +34,7 @@
         @endforeach
       </div>
     </div>
+
     <div class="mb-1">
       <label class="form-label">Selecteer studenten</label>
 
@@ -61,22 +62,72 @@
           @endforeach
         </tbody>
       </table>
-
-    <div class="mb-1">
-      <label class="form-label">Selecteer contactpersonen</label>
-
-      <div class="d-flex flex-column">
-        @foreach($contacts as $contact)
-          <label class="radio-inline">
-            <input
-              {{ (is_array(old("assignedContacts",$assignedContacts))) ?
-                      (in_array($contact->id, old("assignedContacts", $assignedContacts))) ? 'checked' : null
-                   : null
-              }} type="checkbox" name="assignedContacts[]" value="{{$contact->id}}" ><span class="ms-2">{{$contact->firstname}} {{$contact->insertion}} {{$contact->lastname}}</span>
-          </label>
-        @endforeach
-      </div>
     </div>
+
+    <fieldset>
+      <legend>Contactpersonen</legend>
+      <div class="row d-flex flex-column">
+        <div id="addedContacts">
+          <h3>Toegevoegd</h3>
+          <ul class="list-group mt-2 mb-2" id="selectedContacts">
+            @foreach($assignedContacts as $assignedContact)
+              <li class="list-group-item list-group-item-action"
+                  id="selectedContact-{{$assignedContact->id}}">
+                <div class="container">
+                  <div class="d-flex justify-content-between">
+                    <div class="d-inline-flex">
+                      <span id="addedContactName-{{$assignedContact->id}}">{{$assignedContact->firstname . ' ' . $assignedContact->insertion . ' ' . $assignedContact->lastname}}</span>
+                    </div>
+                    <div class="d-inline-flex">
+                      <a class="col-sm btn btn-danger" onclick="deleteContact({{$assignedContact->id}})">Verwijderen</a>
+                      <input name="Contact[]" value="{{$assignedContact->id}}" hidden>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            @endforeach
+          </ul>
+          <h1 id="noAddedContactsFound">Geen contactpersonen gekoppeld.</h1>
+          <div class="col">
+            @error('Contact')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <h3>Toevoegen</h3>
+          <input type="text" id="filterContactInput" onkeyup="filterContacts()"
+                 placeholder="Zoek naar contactpersonen" title="Typ een naam">
+          <ul class="list-group mt-2 mb-2 scroll max-h-screen" id="contactList">
+            @foreach($newContacts as $newContact)
+              <li class="list-group-item list-group-item-action" id="{{$newContact->id}}">
+                <div class="container">
+                  <div class="d-flex justify-content-between">
+                    <div class="d-inline-flex">
+                      <span>{{$newContact->firstname . ' ' . $newContact->insertion . ' ' . $newContact->lastname}}</span>
+                    </div>
+                    <div class="d-inline-flex">
+                      <a class="col-sm btn btn-primary"
+                         onclick="addContact({{$newContact->id}}, '{{$newContact->firstname . ' ' . $newContact->insertion . ' ' . $newContact->lastname}}')">Toevoegen</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            @endforeach
+          </ul>
+          <h1 id="noContactsFound">Geen contactpersonen om mee te koppelen.</h1>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <a href="{{route('contact.create')}}"  class="btn btn-secondary mb-3" onclick="saveToSessionStorage()">
+        Nieuw contactpersoon aanmaken
+      </a>
+
+    </fieldset>
+
     <div class="mb-1">
       <label class="form-label">Selecteer project</label>
 
@@ -124,5 +175,126 @@ function search() {
       }
     }
   }
+}
+
+
+
+
+
+
+
+
+
+
+const contactDiv = document.getElementById('selectedContacts');
+const addedContactsDiv = document.getElementById('addedContacts');
+
+function displayNotFoundAddedContactsText() {
+  document.getElementById('noAddedContactsFound').style.display = (document.getElementById('selectedContacts').getElementsByTagName('li').length == 0 ? "" : "none");
+}
+
+function clearSessionData(){
+  sessionStorage.removeItem('projectGroupFormData');
+}
+
+function saveToSessionStorage(){
+  let storageObject = {
+    name: document.getElementById('name').value,
+
+  };
+  sessionStorage.setItem('projectGroupFormData', JSON.stringify(storageObject));
+}
+
+function removeAllContacts(){
+  let addedContactObjects = document.getElementById('selectedContacts').getElementsByTagName('li');
+  while(addedContactObjects.length > 0) {
+    addedContactObjects = document.getElementById('selectedContacts').getElementsByTagName('li');
+    for (let i = 0; i < addedContactObjects.length; i++) {
+      const id = addedContactObjects[i].id.split('selectedContact-')[1];
+      deleteContact(id);
+    }
+  }
+}
+
+function loadFromLocalStorage(){
+  let storageObject = sessionStorage.getItem('projectGroupFormData');
+  if(!storageObject) return;
+  removeAllContacts();
+  storageObject = JSON.parse(storageObject);
+  for(let i = 0; i < storageObject.groups.length; i++){
+    let group = storageObject.groups[i];
+    addContact(group.id, group.name);
+  }
+  document.getElementById('name').value = storageObject.name;
+
+}
+
+function getAddedContacts(){
+  const addedContactObjects = document.getElementById('selectedContacts').getElementsByTagName('li');
+  let returnValue = [];
+  for(let i = 0; i < addedContactObjects.length; i++){
+    const id = addedContactObjects[i].id.split('selectedContact-')[1];
+    const addedContactObjects = {id: id, name:document.getElementById(`addedContactName-${id}`).innerText};
+    returnValue.push(addedContactObjects);
+  }
+  return returnValue;
+}
+
+function addContact(contactId, contactName) {
+  let contactTemplate = `
+      <li class="list-group-item list-group-item-action" id=selectedContact-${contactId}>
+        <div class="container">
+          <div class="d-flex justify-content-between">
+            <div class="d-inline-flex">
+              <span id=addedContactName-${contactId}>${contactName}</span>
+            </div>
+            <div class="d-inline-flex">
+              <a class="btn btn-danger" onclick="deleteContact(${contactId})">Verwijderen</a>
+                <input name="contact[]" value="${contactId}" hidden>
+            </div>
+          </div>
+        </div>
+      </li>
+      `;
+  contactDiv.innerHTML += contactTemplate;
+
+  if (contactDiv.childNodes.length > 0) {
+    addedContactsDiv.style.display = 'block';
+  }
+  filterContacts();
+  displayNotFoundAddedContactsText();
+}
+
+function deleteContact(contactId) {
+  document.getElementById(`selectedContact-${contactId}`).remove();
+  filterContacts();
+  displayNotFoundAddedContactsText();
+}
+
+function filterContacts() {
+  let input, filter, ul, li, a, i, txtValue, selectableContacts = 0;
+  input = document.getElementById("filterContactInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("contactList");
+  li = ul.getElementsByTagName("li");
+
+  for (i = 0; i < li.length; i++) {
+    txtValue = li[i].innerText;
+    let isSelected = document.getElementById(`selectedContact-${li[i].id}`) != null;
+    if (txtValue.toUpperCase().indexOf(filter) > -1 && !isSelected) {
+      li[i].style.display = "";
+      selectableContacts++;
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+
+  document.getElementById('noContactsFound').style.display = (selectableContacts == 0 ? "" : "none");
+}
+
+window.onload = function (e) {
+  loadFromLocalStorage();
+  filterContacts();
+  displayNotFoundAddedContactsText();
 }
 </script>

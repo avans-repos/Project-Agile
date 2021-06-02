@@ -90,6 +90,7 @@ class ProjectgroupController extends Controller
   public function create()
   {
     $redirectURL = request()->headers->get('referer');
+
     $projectgroup = new Projectgroup();
 
     $students = User::role('Student')->get();
@@ -100,13 +101,16 @@ class ProjectgroupController extends Controller
     $this->addClassToStudent($students);
 
     $assignedUsers = null;
-    $assignedContacts = null;
+
+    $newContacts = Contact::all();
+    $assignedContacts = [];
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', $teachers)
       ->with('students', $students)
-      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts)
+      ->with('assignedContacts', $assignedContacts)
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
@@ -149,15 +153,13 @@ class ProjectgroupController extends Controller
       }
     }
 
-    // fill in all the contactpersons
-    if (isset($request->assignedContacts)) {
-      foreach ($request->assignedContacts as $assignedContact) {
-        DB::table('projectgroup_has_contacts')->insert([
-          'contactid' => $assignedContact,
-          'projectgroupid' => $id,
-        ]);
-      }
+    $newContacts = $request->all()['contact'] ?? [];
+
+    foreach ($newContacts as $newContact) {
+      Contact::where('id', $newContact)
+        ->first()
     }
+
 
 
 
@@ -235,7 +237,8 @@ class ProjectgroupController extends Controller
   {
     $students = User::role('student')->get();
     $teachers = User::role('teacher')->get();
-    $contacts = Contact::all();
+    $newContacts = Contact::all();
+    //$assignedContacts = ;
     $projects = Project::all();
 
     $assignedUsers =
@@ -252,11 +255,7 @@ class ProjectgroupController extends Controller
       DB::table('projectgroup_has_contacts')
         ->where('projectgroupid', '=', $projectgroup->id)
         ->join('contacts', 'projectgroup_has_contacts.contactid', '=', 'contacts.id')
-        ->get('contacts.id') ?? [];
-
-    $assignedContacts = array_map(function ($contact) {
-      return $contact->id;
-    }, json_decode($assignedContacts));
+        ->get() ?? [];
 
     $this->addClassToStudent($students);
 
@@ -264,7 +263,8 @@ class ProjectgroupController extends Controller
       ->with('projectgroup', $projectgroup)
       ->with('teachers', $teachers)
       ->with('students', $students)
-      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts)
+      ->with('assignedContacts', $assignedContacts)
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
