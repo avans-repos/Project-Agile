@@ -59,27 +59,26 @@ class Contact extends Model
 
     return $fullname;
   }
-  public function getDeleteText() : string
+  public function getDeleteText(): string
   {
     $companies = $this->companies()->get();
-    $text = "";
-//    if (count($companies)>0){
-//      $text = "<br>Er zijn bedrijven die aan deze contactpersoon zijn gekoppeld: ";
-//      foreach ($companies as $index => $company){
-//        if ($index !== 0){
-//          $text .= ',';
-//        }
-//        $text .= ' ' . $company->company();
-//      }
-//
-//    }
+    $text = '';
+    //    if (count($companies)>0){
+    //      $text = "<br>Er zijn bedrijven die aan deze contactpersoon zijn gekoppeld: ";
+    //      foreach ($companies as $index => $company){
+    //        if ($index !== 0){
+    //          $text .= ',';
+    //        }
+    //        $text .= ' ' . $company->company();
+    //      }
+    //
+    //    }
     return $text;
   }
   public function companies()
   {
     return $this->hasMany(Company_has_contacts::class, 'contact');
   }
-
 
   public function projectGroups(): BelongsToMany
   {

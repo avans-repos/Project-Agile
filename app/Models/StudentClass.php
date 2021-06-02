@@ -27,19 +27,18 @@ class StudentClass extends Model
   {
     return $this->belongsToMany(User::class);
   }
-  public function getDeleteText() : string
+  public function getDeleteText(): string
   {
-    $text = "";
+    $text = '';
     $students = $this->students()->pluck('name');
-    if (count($students)>0){
-      $text .= "<br>Er zijn studenten die aan deze klas zijn gekoppeld: ";
-      foreach ($students as $index => $student){
-        if ($index !== 0){
+    if (count($students) > 0) {
+      $text .= '<br>Er zijn studenten die aan deze klas zijn gekoppeld: ';
+      foreach ($students as $index => $student) {
+        if ($index !== 0) {
           $text .= ',';
         }
         $text .= ' ' . $student;
       }
-
     }
     return $text;
   }

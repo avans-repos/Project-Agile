@@ -22,24 +22,25 @@ class ProjectGroup extends Model
   protected $fillable = ['name', 'project'];
   protected $dates = ['deleted_at'];
 
-  public function getDeleteText() : string
+  public function getDeleteText(): string
   {
-    $project = Project::where('id',$this->project)->pluck('name')->first();
-    $text = "";
-    if ($project !== null){
-      $text .= "<br>Er is een project aan deze projectgroep gekoppeld: ";
+    $project = Project::where('id', $this->project)
+      ->pluck('name')
+      ->first();
+    $text = '';
+    if ($project !== null) {
+      $text .= '<br>Er is een project aan deze projectgroep gekoppeld: ';
       $text .= ' ' . $project;
     }
     $students = $this->users()->pluck('name');
-    if (count($students)>0){
-      $text .= "<br>Er zijn studenten die aan deze projectgroep zijn gekoppeld: ";
-      foreach ($students as $index => $student){
-        if ($index !== 0){
+    if (count($students) > 0) {
+      $text .= '<br>Er zijn studenten die aan deze projectgroep zijn gekoppeld: ';
+      foreach ($students as $index => $student) {
+        if ($index !== 0) {
           $text .= ',';
         }
         $text .= ' ' . $student;
       }
-
     }
     return $text;
   }
