@@ -127,14 +127,6 @@
 </form>
 
 <script>
-
-  {{--function ajaxTest() {--}}
-  {{--  $.get("{{route('projectgroup.createForm')}}",--}}
-  {{--    function(data){--}}
-  {{--      document.getElementById('ajaxField').innerHTML = data;--}}
-  {{--  });--}}
-  {{--}--}}
-
   const projectGroupDiv = document.getElementById('selectedProjectGroups');
   const addedGroupsDiv = document.getElementById('addedGroups');
 

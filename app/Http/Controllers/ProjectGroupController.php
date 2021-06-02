@@ -74,19 +74,19 @@ class ProjectGroupController extends Controller
 
     $students = User::role('Student')->get();
     $teachers = User::role('Teacher')->get();
-    $contacts = Contact::all();
+    $newContacts = Contact::all();
     $projects = Project::all();
 
     $this->addClassToStudent($students);
 
-    $assignedUsers = null;
-    $assignedContacts = null;
+    $assignedUsers = [];
+    $assignedContacts = [];
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', $teachers)
       ->with('students', $students)
-      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts)
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
@@ -207,6 +207,10 @@ class ProjectGroupController extends Controller
     $students = User::role('student')->get();
     $this->addClassToStudent($students);
 
+    $assignedContacts = $projectgroup
+      ->contacts()
+      ->get();
+
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', User::role('teacher')->get())
@@ -222,12 +226,7 @@ class ProjectGroupController extends Controller
           ->pluck('id')
           ->toArray()
       )
-      ->with(
-        'assignedContacts',
-        $projectgroup
-          ->contacts()
-          ->get()
-      )
+      ->with('assignedContacts', $assignedContacts)
       ->with('action', 'update');
   }
 
@@ -235,7 +234,7 @@ class ProjectGroupController extends Controller
    * Update the specified resource in storage.
    *
    * @param ProjectgroupRequest $request
-   * @param Projectgroup $group
+   * @param ProjectGroup $projectgroup
    * @return Response
    */
   public function update(ProjectgroupRequest $request, Projectgroup $projectgroup)
