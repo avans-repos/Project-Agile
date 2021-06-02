@@ -86,7 +86,7 @@ class ProjectController extends Controller
    * @param Project $project
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function update(ProjectRequest $request, Project $project): Response
+  public function update(ProjectRequest $request, Project $project)
   {
     $request->validated();
     $project->update($request->all());

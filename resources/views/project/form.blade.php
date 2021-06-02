@@ -130,8 +130,6 @@
   const projectGroupDiv = document.getElementById('selectedProjectGroups');
   const addedGroupsDiv = document.getElementById('addedGroups');
 
-
-
   function displayNotFoundAddedGroupsText() {
     document.getElementById('noAddedProjectGroupsFound').style.display = (document.getElementById('selectedProjectGroups').getElementsByTagName('li').length == 0 ? "" : "none");
   }
