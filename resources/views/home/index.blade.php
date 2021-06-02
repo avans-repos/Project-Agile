@@ -15,11 +15,19 @@
           <div class="media text-muted pt-3">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
-                <strong class="text-gray-dark">Herinnering contactmoment</strong>
+                @if($notification->type == "App\Notifications\ActionpointNotification")
+                  <strong class="text-gray-dark">Herinnering Actiepunt</strong>
+                @elseif($notification->type == "App\Notifications\NewNoteNotification")
+                  <strong class="text-gray-dark">Herinnering contactmoment</strong>
+                @endif
                 <span class="d-block">{{$notification->data['reminderdate']}}</span>
               </div>
               <div class="d-flex justify-content-between align-items-center w-100">
-                <span class="d-block">{{$notification->data['description']}}</span>
+                @if($notification->type == "App\Notifications\ActionpointNotification")
+                  <span class="d-block"><a href="{{route('actionpoints.show', ['actionpoint' => $notification->data['actionpoint']])}}">{{$notification->data['title']}}</a></span>
+                @elseif($notification->type == "App\Notifications\NewNoteNotification")
+                  <span class="d-block">{{$notification->data['description']}}</span>
+                @endif
                 <a
                   href="{{route('notification.mark',['notificationId' => $notification->id])}}">Markeer als gelezen</a>
               </div>

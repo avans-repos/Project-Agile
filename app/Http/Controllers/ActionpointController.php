@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ActionpointReminder;
 use App\Http\Requests\ActionpointRequest;
 use App\Models\Actionpoint;
 use App\Models\User;
@@ -85,6 +86,14 @@ class ActionpointController extends Controller
         $actionPoint->teachers()->attach($assigned);
       }
     }
+
+    $notificationData = [
+      'reminderdate' => $actionPoint->reminderdate,
+      'title' => $actionPoint->title,
+      'actionpoint' => $actionPoint->id,
+      'user' => Auth::user(),
+    ];
+    event(new ActionpointReminder($notificationData));
 
     return redirect()->route('actionpoints.index');
   }
