@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CreateCompaniesTable extends Migration
 {
@@ -22,6 +21,7 @@ class CreateCompaniesTable extends Migration
       $table->string('email', 320);
       $table->integer('size')->nullable();
       $table->string('website', 255)->nullable();
+      $table->longText('note')->nullable();
       $table->unsignedBigInteger('visiting_address')->unsigned();
       $table->foreign('visiting_address')->references('id')->on('addresses');
       $table->unsignedBigInteger('mailing_address')->unsigned()->nullable();

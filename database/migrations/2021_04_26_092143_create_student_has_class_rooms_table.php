@@ -13,19 +13,13 @@ class CreateStudentHasClassRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_has_class_rooms', function (Blueprint $table) {
-            $table->unsignedBigInteger('student');
-            $table->unsignedBigInteger('class_room');
-
-          $table->foreign('student')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
-
-          $table->foreign('class_room')
-            ->references('id')
-            ->on('class_rooms')
-            ->onDelete('cascade');
+        Schema::create('student_class_user', function (Blueprint $table) {
+            $table->foreignId('user_id')
+              ->constrained()
+              ->cascadeOnDelete();
+            $table->foreignId('student_class_id')
+              ->constrained()
+              ->cascadeOnDelete();;
         });
     }
 
@@ -36,6 +30,6 @@ class CreateStudentHasClassRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_has_class_rooms');
+        Schema::dropIfExists('student_class_user');
     }
 }

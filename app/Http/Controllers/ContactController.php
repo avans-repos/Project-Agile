@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Models\Address;
 use App\Models\Company;
+use App\Models\Company_has_contacts;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
+use App\Models\Note;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -82,15 +84,15 @@ class ContactController extends Controller
       if (starts_with($key, 'company-')) {
         $id = explode('-', $key)[1];
         if (isset($data['contacttype-' . $id])) {
-          $company = DB::table('companies')
-            ->where('name', '=', $data[$key])
+          $company = Company::where('name', '=', $data[$key])
             ->get('id')
             ->first();
-          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
-            $contactId,
-            $company->id,
-            $data['contacttype-' . $id],
-          ]);
+
+          $company_has_contact = new Company_has_contacts();
+          $company_has_contact->contact = $contactId;
+          $company_has_contact->company = $company->id;
+          $company_has_contact->contacttype = $data['contacttype-' . $id];
+          $company_has_contact->save();
         }
       }
     }
@@ -107,17 +109,16 @@ class ContactController extends Controller
   public function show(Contact $contact)
   {
     $notes =
-      DB::Table('notes')
-        ->where('contact', '=', $contact->id)
+      Note::where('contact', '=', $contact->id)
         ->join('users', 'notes.creator', '=', 'users.id')
         ->select('notes.id', 'notes.creation', 'notes.description', 'users.name')
         ->orderBy('notes.creation', 'desc')
         ->get() ?? [];
     $contactTypes =
-      DB::Table('contact_has_contacttypes')
+      DB::Table('company_has_contacts_has_contacttypes')
         ->where('contact', '=', $contact->id)
-        ->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')
-        ->select('contact_has_contacttypes.contacttype', 'companies.name')
+        ->join('companies', 'company_has_contacts_has_contacttypes.company', '=', 'companies.id')
+        ->select('company_has_contacts_has_contacttypes.contacttype', 'companies.name')
         ->get() ?? [];
     $address = Address::find($contact->address);
 
@@ -140,10 +141,10 @@ class ContactController extends Controller
     $contactTypes = ContactType::all();
     $companies = Company::all();
     $contactTypesAssigned =
-      DB::Table('contact_has_contacttypes')
+      DB::Table('company_has_contacts_has_contacttypes')
         ->where('contact', '=', $contact->id)
-        ->join('companies', 'contact_has_contacttypes.company', '=', 'companies.id')
-        ->select('contact_has_contacttypes.contacttype', 'companies.name')
+        ->join('companies', 'company_has_contacts_has_contacttypes.company', '=', 'companies.id')
+        ->select('company_has_contacts_has_contacttypes.contacttype', 'companies.name')
         ->get() ?? [];
     $address = Address::find($contact->address);
 
@@ -172,7 +173,7 @@ class ContactController extends Controller
   {
     $data = $request->all();
 
-    DB::table('contact_has_contacttypes')
+    DB::table('company_has_contacts_has_contacttypes')
       ->where('contact', $contact->id)
       ->delete();
 
@@ -197,15 +198,15 @@ class ContactController extends Controller
       if (starts_with($key, 'company-')) {
         $id = explode('-', $key)[1];
         if (isset($data['contacttype-' . $id]) && $data['contacttype-' . $id] != 'n.v.t.') {
-          $company = DB::table('companies')
-            ->where('name', '=', $data[$key])
+          $company = Company::where('name', '=', $data[$key])
             ->get('id')
             ->first();
-          DB::insert('INSERT INTO contact_has_contacttypes (contact,company,contacttype) VALUES (?,?,?)', [
-            $contact->id,
-            $company->id,
-            $data['contacttype-' . $id],
-          ]);
+
+          $company_has_contact = new Company_has_contacts();
+          $company_has_contact->contact = $contact->id;
+          $company_has_contact->company = $company->id;
+          $company_has_contact->contacttype = $data['contacttype-' . $id];
+          $company_has_contact->save();
         }
       }
     }

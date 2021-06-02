@@ -21,10 +21,11 @@
     </div>
     <div>
       <div class="mb-1">
-        <label for="phonenumber" class="form-label">Telefoonnummer</label>
+        <label for="phonenumber" class="form-label">Telefoonnummer *</label>
         <input name="phonenumber" value="{{old('phonenumber',$company->phonenumber)}}" type="tel"
                class="form-control"
-               id="phonenumber" placeholder="06 - 12345678" maxlength="15">
+               id="phonenumber" placeholder="06 - 12345678" maxlength="15"
+               data-bs-toggle="tooltip" data-bs-placement="right" title="Een telefoonnummer kan zowel in het +31... formaat als het 06-... formaat, een max van 15 tekens">
 
       </div>
       <div class="col">
@@ -71,6 +72,17 @@
       </div>
       <div class="col">
         @error('website')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+    <div>
+      <div class="mb-1">
+        <label for="note" class="form-label">Notitie</label>
+        <textarea placeholder="Een kleine notitie over het bedrijf." name="note" rows="5" class="form-control" id="note">{{old('note',$company->note)}}</textarea>
+      </div>
+      <div class="col">
+        @error('note')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
       </div>
@@ -126,14 +138,15 @@
           <label for="zipcode1" class="form-label">Postcode *</label>
           <input name="zipcode1" value="{{old('zipcode1',$address1->zipcode)}}" type="text"
                  class="form-control"
-                 id="zipcode1" placeholder="1234 AB" maxlength="10" required>
+                 id="zipcode1" placeholder="1234 AB" maxlength="10" required
+                 data-bs-toggle="tooltip" data-bs-placement="right" title="Een postcode met 4 cijfers, een spatie en 2 hoofdletters">
 
         </div>
         <div class="col-sm-6">
           <label for="city1" class="form-label">Plaatsnaam *</label>
           <input name="city1" value="{{old('city1',$address1->city)}}" type="text"
                  class="form-control"
-                 id="city1" placeholder="Amsterdam" maxlength="100">
+                 id="city1" placeholder="Amsterdam" maxlength="100" required>
 
         </div>
       </div>

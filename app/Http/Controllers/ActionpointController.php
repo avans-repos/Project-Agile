@@ -13,7 +13,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ActionpointController extends Controller
 {
@@ -55,7 +54,7 @@ class ActionpointController extends Controller
    */
   public function create()
   {
-    $teachers = json_decode(User::all('id', 'name'));
+    $teachers = User::role('Teacher')->get();
 
     $actionpoint = new Actionpoint();
     $assigned = null;
@@ -79,11 +78,11 @@ class ActionpointController extends Controller
 
     $request->validated();
 
-    $id = Actionpoint::create(array_merge($request->all(), ['creator' => $creator]))->id;
+    $actionPoint = Actionpoint::create(array_merge($request->all(), ['creator' => $creator]));
 
     if (isset($request->assigned)) {
       foreach ($request->assigned as $assigned) {
-        DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $id]);
+        $actionPoint->teachers()->attach($assigned);
       }
     }
 
@@ -98,16 +97,12 @@ class ActionpointController extends Controller
    */
   public function show(Actionpoint $actionpoint)
   {
-    $assigned =
-      DB::table('teacher_has_actionpoints')
-        ->where('actionpointid', '=', $actionpoint->id)
-        ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
-        ->get('users.name') ?? [];
-    //die(json_encode($assigned));
+    $assigned = Actionpoint::where('id', $actionpoint->id)
+      ->first()
+      ->teachers()
+      ->get();
 
-    $creator = DB::table('users')
-      ->where('id', '=', $actionpoint->creator)
-      ->first();
+    $creator = User::where('id', '=', $actionpoint->creator)->first();
 
     return view('actionPoints.show')
       ->with('actionpoint', $actionpoint)
@@ -123,17 +118,16 @@ class ActionpointController extends Controller
    */
   public function edit(Actionpoint $actionpoint)
   {
-    $assigned =
-      DB::table('teacher_has_actionpoints')
-        ->where('actionpointid', '=', $actionpoint->id)
-        ->join('users', 'teacher_has_actionpoints.userid', '=', 'users.id')
-        ->get('users.id') ?? [];
+    $assigned = Actionpoint::where('id', $actionpoint->id)
+      ->first()
+      ->teachers()
+      ->get();
 
     $assigned = array_map(function ($teacher) {
       return $teacher->id;
     }, json_decode($assigned));
 
-    $teachers = json_decode(User::all('id', 'name'));
+    $teachers = User::role('Teacher')->get();
     return view('actionPoints.manage', compact('actionpoint'))
       ->with('teachers', $teachers)
       ->with('assigned', $assigned)
@@ -156,27 +150,7 @@ class ActionpointController extends Controller
     if (!isset($request->assigned)) {
       $request->assigned = [];
     }
-    foreach ($request->assigned as $assigned) {
-      if (
-        !DB::table('teacher_has_actionpoints')
-          ->where('userid', $assigned)
-          ->where('actionpointid', $actionpoint->id)
-          ->exists()
-      ) {
-        DB::insert('INSERT INTO teacher_has_actionpoints (userid,actionpointid) VALUES (?,?)', [$assigned, $actionpoint->id]);
-      }
-    }
-    foreach (
-      DB::table('teacher_has_actionpoints')
-        ->where('actionpointid', $actionpoint->id)
-        ->get()
-      as $dbvalue
-    ) {
-      if (!in_array($dbvalue->userid, $request->assigned)) {
-        DB::delete('DELETE FROM teacher_has_actionpoints WHERE userid = ? AND actionpointid = ?', [$dbvalue->userid, $dbvalue->actionpointid]);
-      }
-    }
-
+    $actionpoint->teachers()->sync($request->assigned);
     $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
 
     return redirect()->route('actionpoints.index');
