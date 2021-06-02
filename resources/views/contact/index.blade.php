@@ -38,7 +38,7 @@
               @endif
             </td>
             <td>
-              @if($contact->projectgroups()->first() !== null)
+              @if($contact->projectgroups()->first() != null && $contact->projectgroups()->first()->project()->first() != null)
               {{$contact->projectgroups()->first()->project()->first()->name}}
               @endif
             </td>
