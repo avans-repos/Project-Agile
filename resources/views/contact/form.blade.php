@@ -113,7 +113,7 @@
     <div>
       <div class="mb-1">
         <label for="streetname1" class="form-label">Straatnaam</label>
-        <input name="streetname1" value="{{old('streetname1',$address->streetname)}}" type="text"
+        <input name="streetname1" value="{{old('streetname1',$contact->address()->first()->streetname)}}" type="text"
                class="form-control"
                id="streetname1"
                placeholder="Sintjanstraat" maxlength="100">
@@ -130,14 +130,14 @@
       <div class="mb-1 row d-sm-flex">
         <div class="col-sm-4">
           <label for="number1" class="form-label">Huisnummer</label>
-          <input name="number1" value="{{old('number1',$address->number)}}" type="number"
+          <input name="number1" value="{{old('number1',$contact->address()->first()->number)}}" type="number"
                  class="form-control"
                  id="number1" placeholder="123" maxlength="11" min="0">
 
         </div>
         <div class="col-sm-4">
           <label for="addition1" class="form-label">Toevoeging</label>
-          <input name="addition1" value="{{old('addition1',$address->addition)}}" type="text"
+          <input name="addition1" value="{{old('addition1',$contact->address()->first()->addition)}}" type="text"
                  class="form-control"
                  id="addition1" placeholder="123" maxlength="5">
 
@@ -156,7 +156,7 @@
       <div class="mb-1 row d-sm-flex">
         <div class="col-sm-6">
           <label for="zipcode1" class="form-label">Postcode</label>
-          <input name="zipcode1" value="{{old('zipcode1',$address->zipcode)}}" type="text"
+          <input name="zipcode1" value="{{old('zipcode1',$contact->address()->first()->zipcode)}}" type="text"
                  class="form-control"
                  id="zipcode1" placeholder="1234 AB" maxlength="10"
                  data-bs-toggle="tooltip" data-bs-placement="right" title="Een postcode met 4 cijfers, een spatie en 2 hoofdletters">
@@ -164,7 +164,7 @@
         </div>
         <div class="col-sm-6">
           <label for="city1" class="form-label">Plaatsnaam</label>
-          <input name="city1" value="{{old('city1',$address->city)}}" type="text"
+          <input name="city1" value="{{old('city1',$contact->address()->first()->city)}}" type="text"
                  class="form-control"
                  id="city1" placeholder="Amsterdam" maxlength="100">
 
@@ -185,7 +185,7 @@
   <fieldset class="mb-3">
     <legend>Contacttype per bedrijf</legend>
     <div id="companies">
-      @if(!isset($contactTypesAssigned) || count($contactTypesAssigned) == 0)
+      @if($contact->companies()->get() == null)
     <div id="company-1" class="mt-3.5">
     <div>
       <div class="mb-1">
@@ -228,16 +228,16 @@
     </div>
     </div>
     @endif
-    @for($i = 0; $i < count($contactTypesAssigned); $i++)
-      <div id="company-{{$i + 1}}" class="mt-3.5">
+    @foreach($contact->companies()->get() as $contactcompany)
+      <div id="company-{{$loop->index + 1}}" class="mt-3.5">
         <div>
           <div class="mb-1">
             <label for="company" class="form-label">Bedrijf</label>
-            <select class="form-control" name="company-{{$i + 1}}" id="companySelector-1">
+            <select class="form-control" name="company-{{$loop->index + 1}}" id="companySelector-1">
               <option disabled selected>Selecteer Bedrijf</option>
               @foreach ($companies as $company)
                 <option
-                  {{ ($company->name == $contactTypesAssigned[$i]->name ? 'selected':'') }} value="{{ $company->name }}">
+                  {{ ($company->name == $contactcompany->company()->first()->name ? 'selected':'') }} value="{{ $company->name }}">
                   {{ ucfirst(trans($company->name)) }}
                 </option>
               @endforeach
@@ -252,11 +252,11 @@
         <div>
           <div class="mb-1">
             <label for="contactType" class="form-label">Contactsoort</label>
-            <select class="form-control" name="contacttype-{{$i + 1}}" id="contactTypeSelector-1">
+            <select class="form-control" name="contacttype-{{$loop->index + 1}}" id="contactTypeSelector-1">
               <option disabled selected>Selecteer contactsoort</option>
               @foreach ($contactTypes as $contactType)
                 <option
-                  {{ ($contactType->name == $contactTypesAssigned[$i]->contacttype ? 'selected':'') }} value="{{ $contactType->name }}">
+                  {{ ($contactType->name == $contactcompany->contacttype ? 'selected':'') }} value="{{ $contactType->name }}">
                   {{ ucfirst(trans($contactType->name)) }}
                 </option>
               @endforeach
@@ -269,7 +269,7 @@
           </div>
         </div>
       </div>
-    @endfor
+    @endforeach
   </fieldset>
   <div class="mt-3 mb-3">
     <p class="btn btn-primary" onclick="AddContactType()">Contacttype toevoegen</p>

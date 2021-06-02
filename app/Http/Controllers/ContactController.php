@@ -10,6 +10,7 @@ use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
 use App\Models\Note;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -124,25 +125,12 @@ class ContactController extends Controller
     $genders = Gender::all();
     $contactTypes = ContactType::all();
     $companies = Company::all();
-    $contactTypesAssigned =
-      DB::Table('company_has_contacts_has_contacttypes')
-        ->where('contact', '=', $contact->id)
-        ->join('companies', 'company_has_contacts_has_contacttypes.company', '=', 'companies.id')
-        ->select('company_has_contacts_has_contacttypes.contacttype', 'companies.name')
-        ->get() ?? [];
-    $address = Address::find($contact->address);
-
-    if ($address == null) {
-      $address = new Address();
-    }
 
     return view('contact.manage')
       ->with('contact', $contact)
-      ->with('address', $address)
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
       ->with('companies', $companies)
-      ->with('contactTypesAssigned', $contactTypesAssigned)
       ->with('action', 'update');
   }
 
@@ -157,9 +145,7 @@ class ContactController extends Controller
   {
     $data = $request->all();
 
-    DB::table('company_has_contacts_has_contacttypes')
-      ->where('contact', $contact->id)
-      ->delete();
+    company_contact::where('contact_id', $contact->id)->delete();
 
     $request->validated();
 
@@ -185,12 +171,18 @@ class ContactController extends Controller
           $company = Company::where('name', '=', $data[$key])
             ->get('id')
             ->first();
-
-          $company_has_contact = new company_contact();
-          $company_has_contact->contact = $contact->id;
-          $company_has_contact->company = $company->id;
-          $company_has_contact->contacttype = $data['contacttype-' . $id];
-          $company_has_contact->save();
+          if (
+            company_contact::where('contact_id', '=', $contact->id)
+              ->where('company_id', '=', $company->id)
+              ->first() != null
+          ) {
+            $company_has_contact = new company_contact();
+            $company_has_contact->contact_id = $contact->id;
+            $company_has_contact->company_id = $company->id;
+            $company_has_contact->contacttype = $data['contacttype-' . $id];
+            $company_has_contact->added = Carbon::now()->format('Y-m-d H:i:s');
+            $company_has_contact->save();
+          }
         }
       }
     }
