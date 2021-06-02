@@ -61,7 +61,7 @@
         </tbody>
       </table>
 
-      <h1 class="mt-5 fs-1">Mijn afgeronden actiepunten</h1>
+      <h1 class="mt-5 fs-1">Mijn afgeronde actiepunten</h1>
 
       <table class="mb-5 table table-striped mt-3">
         <thead>
