@@ -62,7 +62,9 @@ class ClassRoomController extends Controller
 
   public function destroy(StudentClass $classroom)
   {
-    $classroom->delete();
+    if (Auth::user()->isAdmin()) {
+      $classroom->delete();
+    }
     return redirect(route('classroom.index'));
   }
 }

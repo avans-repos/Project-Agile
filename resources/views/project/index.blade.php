@@ -20,6 +20,7 @@
           <td>Omschrijving</td>
           <td>Opleverdatum</td>
           <td>Notities</td>
+          <td>Acties</td>
         </tr>
         </thead>
         <tbody>
@@ -37,6 +38,7 @@
                        href="{{route('project.edit',$project)}}">Aanpassen</a>
                   </div>
                 </div>
+                @role('Admin')
                 <div class="m-1">
                   <form method="POST" id="delete-product-form-{{$project->id}}" action="{{ route('project.destroy', $project) }}">
                     {{ method_field('DELETE') }}
@@ -46,6 +48,7 @@
                     </div>
                   </form>
                 </div>
+                @endrole
               </div>
             </td>
           </tr>

@@ -23,6 +23,7 @@
                  href="{{route('contactpoint.edit',$contactpoint->id, $contact)}}">Aanpassen</a>
             </div>
           </div>
+          @role('Admin')
           <div class="m-1">
             <form method="POST" class="m-0" action="{{ route('contactpoint.destroy', $contactpoint->id) }}">
               {{ method_field('DELETE') }}
@@ -32,6 +33,7 @@
               </div>
             </form>
           </div>
+          @endrole
         </div>
       </td>
     </tr>

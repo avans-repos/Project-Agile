@@ -11,6 +11,14 @@ class UserSeeder extends Seeder
   public function run()
   {
     $tanja = new User([
+      'name' => 'Admin',
+      'email' => 'admin@avans.nl',
+      'password' => bcrypt('admin@avans.nl'),
+    ]);
+    $tanja->assignRole('Admin');
+    $tanja->save($tanja->toArray());
+
+    $tanja = new User([
       'name' => 'Tanja Gielen',
       'email' => 't.gielen@avans.nl',
       'password' => bcrypt('t.gielen@avans.nl'),
