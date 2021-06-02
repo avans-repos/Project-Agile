@@ -120,7 +120,6 @@ class ProjectGroupController extends Controller
       $projectGroup->users()->sync($request->assignedUsers);
     }
 
-    // fill in all the contactpersons
     if (isset($request->assignedContacts)) {
       $projectGroup->contacts()->sync($request->assignedContacts);
     }
