@@ -36,8 +36,4 @@ class Project extends Model
     }
     return $text;
   }
-  public function projectGroups()
-  {
-    return $this->hasMany(ProjectGroup::class, 'project');
-  }
 }
