@@ -16,6 +16,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use function request;
 
 class ProjectGroupController extends Controller
 {
@@ -70,8 +71,10 @@ class ProjectGroupController extends Controller
    */
   public function create()
   {
-    $redirectURL = request()->headers->get('referer');
+    $redirectURL = \request()->headers->get('referer');
     $projectgroup = new Projectgroup();
+
+    $projects = Project::all();
 
     $students = User::role('Student')
       ->orderBy('name')
@@ -79,21 +82,22 @@ class ProjectGroupController extends Controller
     $teachers = User::role('Teacher')
       ->orderBy('name')
       ->get();
-    $contacts = Contact::all()->sortBy(function ($contact) {
+    $newContacts = Contact::all()->sortBy(function ($contact) {
       return $contact->getName();
     });
+
     $projects = Project::all()->sortBy('name');
 
     $this->addClassToStudent($students);
 
-    $assignedUsers = null;
-    $assignedContacts = null;
+    $assignedUsers = [];
+    $assignedContacts = [];
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', $teachers)
       ->with('students', $students)
-      ->with('contacts', $contacts)
+      ->with('newContacts', $newContacts)
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
@@ -113,6 +117,13 @@ class ProjectGroupController extends Controller
 
     $redirectUrl = $request->get('redirectUrl') ?? route('projectgroup.index');
 
+    $uri_parts = explode('/', $redirectUrl);
+    $request_url = $uri_parts[count($uri_parts) - 1] . '-' . $uri_parts[count($uri_parts) - 2];
+
+    if ($request_url == 'create-contact') {
+      $redirectUrl = route('projectgroup.index');
+    }
+
     $projectGroup = new Projectgroup();
     $projectGroup->name = $request->name;
 
@@ -127,9 +138,10 @@ class ProjectGroupController extends Controller
       $projectGroup->users()->sync($request->assignedUsers);
     }
 
-    // fill in all the contactpersons
-    if (isset($request->assignedContacts)) {
-      $projectGroup->contacts()->sync($request->assignedContacts);
+    $newContacts = $request->all()['contact'] ?? [];
+
+    foreach ($newContacts as $newContact) {
+      $projectGroup->contacts()->attach($newContact);
     }
 
     return redirect($redirectUrl);
@@ -178,13 +190,16 @@ class ProjectGroupController extends Controller
   public function edit(Projectgroup $projectgroup)
   {
     $students = User::role('student')->get();
-    $this->addClassToStudent($students);
+    self::addClassToStudent($students);
+
+    $assignedContacts = $projectgroup->contacts()->get();
+
+    $newContacts = Contact::all()->whereNotIn('id', $assignedContacts->pluck('id'));
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', User::role('teacher')->get())
       ->with('students', User::role('student')->get())
-      ->with('contacts', Contact::all())
       ->with('projects', Project::all())
       ->with('redirectUrl', null)
       ->with(
@@ -195,14 +210,8 @@ class ProjectGroupController extends Controller
           ->pluck('id')
           ->toArray()
       )
-      ->with(
-        'assignedContacts',
-        $projectgroup
-          ->contacts()
-          ->get()
-          ->pluck('id')
-          ->toArray()
-      )
+      ->with('assignedContacts', $assignedContacts)
+      ->with('newContacts', $newContacts)
       ->with('action', 'update');
   }
 
@@ -210,7 +219,7 @@ class ProjectGroupController extends Controller
    * Update the specified resource in storage.
    *
    * @param ProjectgroupRequest $request
-   * @param Projectgroup $group
+   * @param ProjectGroup $projectgroup
    * @return Response
    */
   public function update(ProjectgroupRequest $request, Projectgroup $projectgroup)
@@ -223,8 +232,13 @@ class ProjectGroupController extends Controller
     }
 
     // insert the connections with contactpersons
-    if (isset($request->assignedContacts)) {
-      $projectgroup->contacts()->sync($request->assignedContacts);
+    $projectgroup->contacts()->sync([]);
+
+    $newContacts = $request->all()['contact'] ?? [];
+    //dd($newContacts);
+    foreach ($newContacts as $newContact) {
+      //dd($newContact - 0);
+      $projectgroup->contacts()->attach($newContact - 0);
     }
 
     $projectgroup->name = $request->name;
