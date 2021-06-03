@@ -83,8 +83,9 @@ class ProjectGroupController extends Controller
       ->get();
     $newContacts = Contact::all()->sortBy(function ($contact) {
       return $contact->getName();
+    });
 
-      $projects = Project::all()->sortBy('name');
+    $projects = Project::all()->sortBy('name');
 
     $this->addClassToStudent($students);
 
@@ -181,7 +182,7 @@ class ProjectGroupController extends Controller
   public function edit(Projectgroup $projectgroup)
   {
     $students = User::role('student')->get();
-    $this->addClassToStudent($students);
+    self::addClassToStudent($students);
 
     $assignedContacts = $projectgroup->contacts()->get();
 
