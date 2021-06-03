@@ -30,4 +30,19 @@ class Company extends Model
   {
     return $this->hasOne(Address::class, 'id', 'mailing_address')->first();
   }
+  public function getDeleteText(): string
+  {
+    $text = '';
+    $contacts = $this->contacts();
+    if (count($contacts) > 0) {
+      $text .= '<br>Er zijn contactpersonen die aan dit bedrijf zijn gekoppeld: ';
+      foreach ($contacts as $index => $contact) {
+        if ($index !== 0) {
+          $text .= ',';
+        }
+        $text .= ' ' . $contact->getName();
+      }
+    }
+    return $text;
+  }
 }
