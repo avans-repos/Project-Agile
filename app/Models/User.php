@@ -70,6 +70,16 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
   ];
 
+  public function isAdmin(): bool
+  {
+    foreach ($this->roles()->get() as $role) {
+      if ($role->name == 'Admin') {
+        return true;
+      }
+    }
+
+    return false;
+  }
   public function projectGroups(): BelongsToMany
   {
     return $this->belongsToMany(ProjectGroup::class);

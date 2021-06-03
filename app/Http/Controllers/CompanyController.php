@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use App\Models\Address;
+use App\Models\company_contact;
 use App\Models\contact\Contact;
+use App\Models\User;
 use App\Models\Note;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 
 class CompanyController extends Controller
 {
@@ -74,7 +80,16 @@ class CompanyController extends Controller
    */
   public function show(Company $company)
   {
-    $newContacts = Contact::whereNotIn('id', array_column($company->contacts()->toArray(), 'id'))->get();
+    $newContacts = Contact::whereNotIn(
+      'id',
+      array_column(
+        $company
+          ->contacts()
+          ->get()
+          ->toArray(),
+        'contact_id'
+      )
+    )->get();
 
     return view('company.show')
       ->with('company', $company)
@@ -83,23 +98,23 @@ class CompanyController extends Controller
 
   public function addcontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts_has_contacttypes')->insert([
-      'company' => $companyid,
-      'contact' => $contactid,
-      'contacttype' => 'warm',
-    ]);
+    try {
+      // This prevents and error in case the user "mashes" the submit button
+      company_contact::create([
+        'company_id' => $companyid,
+        'contact_id' => $contactid,
+        'contacttype' => 'warm',
+        'added' => Carbon::now()->format('Y-m-d H:i:s'),
+      ]);
+    } catch (Exception $e) {
+    }
 
     return redirect()->route('company.show', [$companyid]);
   }
 
   public function removecontact($companyid, $contactid)
   {
-    DB::table('company_has_contacts_has_contacttypes')
-      ->where([
-        'company' => $companyid,
-        'contact' => $contactid,
-      ])
-      ->delete();
+    company_contact::where([['company_id', '=', $companyid], ['contact_id', '=', $contactid]])->delete();
 
     return redirect()->route('company.show', [$companyid]);
   }
@@ -157,7 +172,9 @@ class CompanyController extends Controller
    */
   public function destroy(Company $company)
   {
-    $company->delete();
+    if (Auth::user()->isAdmin()) {
+      $company->delete();
+    }
     return redirect()->route('company.index');
   }
 

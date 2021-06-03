@@ -31,7 +31,7 @@
             </div>
             <div class="mb-1">
                 <label for="reminderdate" class="form-label">Herinneringsdatum</label>
-                <input type="datetime-local" id="reminderdate" value="{{old('reminderdate', isset($actionpoint->reminderdate) ? date('Y-m-d\TH:i', strtotime($actionpoint->reminderdate)) : null)}}" name="reminderdate" class="form-control"
+                <input type="date" id="reminderdate" value="{{old('reminderdate', isset($actionpoint->reminderdate) ? date('Y-m-d', strtotime($actionpoint->reminderdate)) : null)}}" name="reminderdate" class="form-control"
                        data-bs-toggle="tooltip" data-bs-placement="right" title="De datum waarop u een herinnering wilt ontvangen, het invullen werkt hetzelfde als bij de deadline datum">
             </div>
             <div class="col">

@@ -18,7 +18,7 @@ class Company extends Model
 
   public function contacts()
   {
-    return $this->belongsToMany(Contact::class, 'company_has_contacts_has_contacttypes', 'company', 'contact', 'id', 'id')->get();
+    return $this->hasMany(company_contact::class);
   }
 
   public function visiting_address()
@@ -29,5 +29,20 @@ class Company extends Model
   public function mailing_address()
   {
     return $this->hasOne(Address::class, 'id', 'mailing_address')->first();
+  }
+  public function getDeleteText(): string
+  {
+    $text = '';
+    $contacts = $this->contacts();
+    if (count($contacts) > 0) {
+      $text .= '<br>Er zijn contactpersonen die aan dit bedrijf zijn gekoppeld: ';
+      foreach ($contacts as $index => $contact) {
+        if ($index !== 0) {
+          $text .= ',';
+        }
+        $text .= ' ' . $contact->getName();
+      }
+    }
+    return $text;
   }
 }

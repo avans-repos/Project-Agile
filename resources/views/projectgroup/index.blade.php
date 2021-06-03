@@ -54,15 +54,17 @@
                        href="{{route('projectgroup.edit',$projectgroup['group'])}}">Aanpassen</a>
                   </div>
                 </div>
+                @role('Admin')
                 <div class="m-1">
                   <form method="POST" id="delete-product-form-{{ $projectgroup['group']->id}}" action="{{ route('projectgroup.destroy', $projectgroup['group']) }}">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
-                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$projectgroup['group']->id}}')">Verwijderen </a>
+                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$projectgroup['group']->id}}', '{{$projectgroup['group']->getDeleteText()}}')">Verwijderen </a>
                     </div>
                   </form>
                 </div>
+                @endrole
               </div>
             </td>
           </tr>

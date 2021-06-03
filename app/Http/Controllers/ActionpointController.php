@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ActionpointReminder;
 use App\Http\Requests\ActionpointRequest;
 use App\Models\Actionpoint;
 use App\Models\User;
+use App\Models\Notifications;
 use App\Service\AuthenticationService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -13,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ActionpointController extends Controller
 {
@@ -90,6 +93,14 @@ class ActionpointController extends Controller
       }
     }
 
+    $notificationData = [
+      'reminderdate' => $actionPoint->reminderdate,
+      'title' => $actionPoint->title,
+      'actionpoint' => $actionPoint->id,
+      'user' => Auth::user(),
+    ];
+    event(new ActionpointReminder($notificationData));
+
     return redirect()->route('actionpoints.index');
   }
 
@@ -156,6 +167,16 @@ class ActionpointController extends Controller
     }
     $actionpoint->teachers()->sync($request->assigned);
     $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
+
+    Notifications::where('data->actionpoint', $actionpoint->id)->delete();
+
+    $notificationData = [
+      'reminderdate' => $actionpoint->reminderdate,
+      'title' => $actionpoint->title,
+      'actionpoint' => $actionpoint->id,
+      'user' => Auth::user(),
+    ];
+    event(new ActionpointReminder($notificationData));
 
     return redirect()->route('actionpoints.index');
   }

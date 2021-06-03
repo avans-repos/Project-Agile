@@ -34,7 +34,7 @@
             Docenten
           </div>
           <div class="col-6">
-            @foreach($teachers as $teacher)
+            @foreach($projectgroup->users()->role('Teacher')->get() as $teacher)
               <div>{{ $teacher->name }}</div>
             @endforeach
           </div>
@@ -44,7 +44,7 @@
             Studenten
           </div>
           <div class="col-6">
-            @foreach($students as $student)
+            @foreach($projectgroup->users()->role('Student')->get() as $student)
               <div>{{ $student->name }}</div>
             @endforeach
           </div>
@@ -53,10 +53,10 @@
       <fieldset class="col-sm-12 mt-5">
         <legend>Contactpersonen</legend>
 
-        @foreach($contacts as $contact)
+        @foreach($projectgroup->contacts()->get() as $contact)
           <div class="row">
             <div>
-              <b>{{ $contact->firstname . ' ' . $contact->insertion . ' ' . $contact->lastname }}</b>
+              <b>{{ $contact->getName() }}</b>
               <a class="ml-1" href="{{route('projectgroup.removeContact', ['projectgroupid'=>$projectgroup->id, 'contactid' => $contact->id ])}}">x</a>
             </div>
 
@@ -81,7 +81,7 @@
         <button onClick="showTable()" class="btn btn-primary mt-4">Contactpersoon toevoegen</button>
 
         <div class="mt-4 d-none" id="add-contact-table">
-          <input class="form-control rounded w-25 my-4" type="text" id="searchInput" placeholder="Zoeken..." />
+          <input class="form-control rounded w-25 my-4" type="text" id="searchInput" placeholder="Zoeken..."/>
           <table class="table" id="searchTable">
             <thead>
             <tr>
@@ -122,7 +122,9 @@
                 </td>
 
                 <td>
-                  <a href="{{route('projectgroup.addContact', ['projectgroupid'=>$projectgroup->id, 'contactid' => $contact->id ])}}" class="btn btn-secondary">Toevoegen</a>
+                  <a
+                    href="{{route('projectgroup.addContact', ['projectgroupid'=>$projectgroup->id, 'contactid' => $contact->id ])}}"
+                    class="btn btn-secondary">Toevoegen</a>
                 </td>
               </tr>
             @endforeach
@@ -135,18 +137,14 @@
     <script>
       let table = document.getElementById("add-contact-table");
 
-      function showTable()
-      {
-        if (table.classList.contains("d-none"))
-        {
+      function showTable() {
+        if (table.classList.contains("d-none")) {
           table.classList.remove("d-none");
-        }
-        else
-        {
+        } else {
           table.classList.add("d-none");
         }
       }
     </script>
 
-  <script src="{{ asset('js/search.js')}}"></script>
+    <script src="{{ asset('js/search.js')}}"></script>
 @endsection

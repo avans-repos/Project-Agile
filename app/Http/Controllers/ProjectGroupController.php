@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectGroupController extends Controller
 {
@@ -72,16 +73,23 @@ class ProjectGroupController extends Controller
     $redirectURL = request()->headers->get('referer');
     $projectgroup = new Projectgroup();
 
-    $students = User::role('Student')->get();
-    $teachers = User::role('Teacher')->get();
     $projects = Project::all();
+
+    $students = User::role('Student')
+      ->orderBy('name')
+      ->get();
+    $teachers = User::role('Teacher')
+      ->orderBy('name')
+      ->get();
+    $newContacts = Contact::all()->sortBy(function ($contact) {
+      return $contact->getName();
+
+      $projects = Project::all()->sortBy('name');
 
     $this->addClassToStudent($students);
 
     $assignedUsers = [];
     $assignedContacts = [];
-
-    $newContacts = Contact::all();
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
@@ -132,47 +140,12 @@ class ProjectGroupController extends Controller
 
   public function show(Projectgroup $projectgroup)
   {
-    $assignedUsers = $projectgroup
-      ->users()
-      ->get()
-      ->pluck('id');
-
-    $students = User::role('Student')
-      ->whereIn('id', $assignedUsers)
-      ->get();
-
-    $teachers = User::role('Teacher')
-      ->whereIn('id', $assignedUsers)
-      ->get();
-
-    $project = Project::all()
-      ->where('id', '=', $projectgroup->project)
-      ->first();
-
     $contacts = $projectgroup->contacts()->get();
-
-    $contacts = self::matchAdressWithContacts($contacts);
 
     $newContacts = Contact::all()->wherenotin('id', $contacts->pluck('id'));
 
-    foreach ($newContacts as $newContact) {
-      $newContact->company = [];
-
-      $contactCompanies = Company::leftJoin('company_has_contacts_has_contacttypes', 'companies.id', '=', 'company')
-        ->where('contact', '=', $newContact->id)
-        ->get();
-
-      foreach ($contactCompanies as $contactCompany) {
-        $newContact->company = array_merge($newContact->company, [$contactCompany->name]);
-      }
-    }
-
     return view('projectgroup.show')
       ->with('projectgroup', $projectgroup)
-      ->with('project', $project)
-      ->with('students', $students)
-      ->with('teachers', $teachers)
-      ->with('contacts', $contacts)
       ->with('newContacts', $newContacts);
   }
 
@@ -278,7 +251,9 @@ class ProjectGroupController extends Controller
    */
   public function destroy(Projectgroup $projectgroup)
   {
-    $projectgroup->delete();
+    if (Auth::user()->isAdmin()) {
+      $projectgroup->delete();
+    }
     return redirect()->route('projectgroup.index');
   }
 
