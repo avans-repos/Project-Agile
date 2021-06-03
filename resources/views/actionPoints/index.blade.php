@@ -60,6 +60,31 @@
         @endforeach
         </tbody>
       </table>
+
+      <h1 class="mt-5 fs-1">Mijn afgeronde actiepunten</h1>
+
+      <table class="mb-5 table table-striped mt-3">
+        <thead>
+        <tr>
+          <td>Deadline</td>
+          <td>Titel</td>
+          <td>Omschrijving</td>
+          <td>Acties</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($finishedActionPoints as $actionPoint)
+          <tr>
+            <td>{{$actionPoint->deadline}}</td>
+            <td>{{$actionPoint->title}}</td>
+            <td>{{$actionPoint->description}}</td>
+            <td>
+              <a class="btn btn-danger" href="{{route('actionpoints.undoComplete',$actionPoint->id)}}">Niet Voltooid</a>
+            </td>
+          </tr>
+        @endforeach
+        </tbody>
+      </table>
     </div>
   </main>
 @endsection

@@ -185,7 +185,7 @@
   <fieldset class="mb-3">
     <legend>Contacttype per bedrijf</legend>
     <div id="companies">
-      @if(!isset($contactTypesAssigned) || count($contactTypesAssigned) == 0)
+      @if($contact->companies()->get() == null)
     <div id="company-1" class="mt-3.5">
     <div>
       <div class="mb-1">
@@ -228,16 +228,16 @@
     </div>
     </div>
     @endif
-    @for($i = 0; $i < count($contactTypesAssigned); $i++)
-      <div id="company-{{$i + 1}}" class="mt-3.5">
+    @foreach($contact->companies()->get() as $contactcompany)
+      <div id="company-{{$loop->index + 1}}" class="mt-3.5">
         <div>
           <div class="mb-1">
             <label for="company" class="form-label">Bedrijf</label>
-            <select class="form-control" name="company-{{$i + 1}}" id="companySelector-1">
+            <select class="form-control" name="company-{{$loop->index + 1}}" id="companySelector-1">
               <option disabled selected>Selecteer Bedrijf</option>
               @foreach ($companies as $company)
                 <option
-                  {{ ($company->name == $contactTypesAssigned[$i]->name ? 'selected':'') }} value="{{ $company->name }}">
+                  {{ ($company->name == $contactcompany->company()->first()->name ? 'selected':'') }} value="{{ $company->name }}">
                   {{ ucfirst(trans($company->name)) }}
                 </option>
               @endforeach
@@ -252,11 +252,11 @@
         <div>
           <div class="mb-1">
             <label for="contactType" class="form-label">Contactsoort</label>
-            <select class="form-control" name="contacttype-{{$i + 1}}" id="contactTypeSelector-1">
+            <select class="form-control" name="contacttype-{{$loop->index + 1}}" id="contactTypeSelector-1">
               <option disabled selected>Selecteer contactsoort</option>
               @foreach ($contactTypes as $contactType)
                 <option
-                  {{ ($contactType->name == $contactTypesAssigned[$i]->contacttype ? 'selected':'') }} value="{{ $contactType->name }}">
+                  {{ ($contactType->name == $contactcompany->contacttype ? 'selected':'') }} value="{{ $contactType->name }}">
                   {{ ucfirst(trans($contactType->name)) }}
                 </option>
               @endforeach
@@ -269,7 +269,7 @@
           </div>
         </div>
       </div>
-    @endfor
+    @endforeach
   </fieldset>
   <div class="mt-3 mb-3">
     <p class="btn btn-primary" onclick="AddContactType()">Contacttype toevoegen</p>

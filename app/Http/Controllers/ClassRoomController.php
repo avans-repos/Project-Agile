@@ -6,6 +6,7 @@ use App\Http\Requests\ClassRoomRequest;
 use App\Models\StudentClass;
 use App\Models\student_has_class_room;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ClassRoomController extends Controller
 {
@@ -62,7 +63,9 @@ class ClassRoomController extends Controller
 
   public function destroy(StudentClass $classroom)
   {
-    $classroom->delete();
+    if (Auth::user()->isAdmin()) {
+      $classroom->delete();
+    }
     return redirect(route('classroom.index'));
   }
 }

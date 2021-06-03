@@ -26,7 +26,7 @@ class ActionpointRequest extends FormRequest
     return [
       'deadline' => 'required|after:tomorrow',
       'title' => 'required',
-      'reminderdate' => 'nullable|after:tomorrow',
+      'reminderdate' => 'nullable|after:today',
       'assigned' => 'array|required',
       'assigned.*' => 'integer|required',
     ];
@@ -40,6 +40,13 @@ class ActionpointRequest extends FormRequest
       'description' => 'beschrijving',
       'reminderdate' => 'herinneringsdatum',
       'assigned' => 'docenten',
+    ];
+  }
+
+  public function messages()
+  {
+    return [
+      'reminderdate.after' => 'De herinneringsdatum moet later zijn dan vandaag.',
     ];
   }
 }
