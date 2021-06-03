@@ -54,4 +54,9 @@ class ProjectGroup extends Model
   {
     return $this->belongsToMany(Contact::class);
   }
+
+  public function project()
+  {
+    return $this->belongsTo(Project::class);
+  }
 }

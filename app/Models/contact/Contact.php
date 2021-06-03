@@ -2,6 +2,8 @@
 
 namespace App\Models\contact;
 
+use App\Models\Address;
+use App\Models\company_contact;
 use App\Models\Company;
 use App\Models\Company_has_contacts;
 use App\Models\Note;
@@ -77,7 +79,7 @@ class Contact extends Model
   }
   public function companies()
   {
-    return $this->hasMany(Company_has_contacts::class, 'contact');
+    return $this->hasMany(company_contact::class);
   }
 
   public function projectGroups(): BelongsToMany
@@ -88,5 +90,10 @@ class Contact extends Model
   public function notes()
   {
     return $this->hasMany(Note::class, 'contact');
+  }
+
+  public function address()
+  {
+    return $this->hasOne(Address::class, 'id', 'address');
   }
 }

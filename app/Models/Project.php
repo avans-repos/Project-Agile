@@ -16,6 +16,11 @@ class Project extends Model
   protected $table = 'projects';
   protected $fillable = ['name', 'description', 'deadline', 'notes'];
 
+  public function projectgroups()
+  {
+    return $this->hasMany(Projectgroup::class, 'project');
+  }
+
   public function getDeleteText(): string
   {
     $projectgroups = $this->projectGroups()->pluck('name');
