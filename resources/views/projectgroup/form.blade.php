@@ -1,4 +1,4 @@
-<form action="{{route('projectgroup.'.$formAction, ['projectgroup' => $projectgroup])}}" method="POST">
+<form action="{{route('projectgroup.'.$formAction, ['projectgroup' => $projectgroup, 'redirectUrl' => $redirectUrl])}}" method="POST">
   @csrf
   @if($formAction == "update")
     @method('PATCH')

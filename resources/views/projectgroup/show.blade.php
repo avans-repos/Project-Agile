@@ -26,9 +26,7 @@
             Project
           </div>
           <div class="col-6">
-            @if($projectgroup->project()->first() != null)
-              {{$projectgroup->project()->first()->name}}
-            @endif
+            {{$project->name ?? 'Nog geen project'}}
           </div>
         </div>
         <div class="row">
