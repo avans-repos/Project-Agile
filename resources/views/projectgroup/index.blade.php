@@ -7,7 +7,8 @@
     <div class="d-flex justify-content-between mb-3 align-items-center">
       <h1 class="fs-1">Projectgroepen</h1>
       <div class="align-self-center">
-        <a class="btn btn-primary" href="{{route('projectgroup.create')}}">Projectgroep toevoegen</a>
+        <a class="btn btn-primary" onclick="clearSessionData()"
+          href="{{route('projectgroup.create')}}">Projectgroep toevoegen</a>
       </div>
     </div>
 
