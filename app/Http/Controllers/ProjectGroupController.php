@@ -73,30 +73,27 @@ class ProjectGroupController extends Controller
     $redirectURL = request()->headers->get('referer');
     $projectgroup = new Projectgroup();
 
-    $projects = Project::all();
-
     $students = User::role('Student')
       ->orderBy('name')
       ->get();
     $teachers = User::role('Teacher')
       ->orderBy('name')
       ->get();
-    $newContacts = Contact::all()->sortBy(function ($contact) {
+    $contacts = Contact::all()->sortBy(function ($contact) {
       return $contact->getName();
     });
-
     $projects = Project::all()->sortBy('name');
 
     $this->addClassToStudent($students);
 
-    $assignedUsers = [];
-    $assignedContacts = [];
+    $assignedUsers = null;
+    $assignedContacts = null;
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', $teachers)
       ->with('students', $students)
-      ->with('newContacts', $newContacts)
+      ->with('contacts', $contacts)
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('projects', $projects)
@@ -130,10 +127,9 @@ class ProjectGroupController extends Controller
       $projectGroup->users()->sync($request->assignedUsers);
     }
 
-    $newContacts = $request->all()['contact'] ?? [];
-
-    foreach ($newContacts as $newContact) {
-      $projectGroup->contacts()->attach($newContact);
+    // fill in all the contactpersons
+    if (isset($request->assignedContacts)) {
+      $projectGroup->contacts()->sync($request->assignedContacts);
     }
 
     return redirect($redirectUrl);
@@ -182,16 +178,13 @@ class ProjectGroupController extends Controller
   public function edit(Projectgroup $projectgroup)
   {
     $students = User::role('student')->get();
-    self::addClassToStudent($students);
-
-    $assignedContacts = $projectgroup->contacts()->get();
-
-    $newContacts = Contact::all()->whereNotIn('id', $assignedContacts->pluck('id'));
+    $this->addClassToStudent($students);
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', User::role('teacher')->get())
       ->with('students', User::role('student')->get())
+      ->with('contacts', Contact::all())
       ->with('projects', Project::all())
       ->with('redirectUrl', null)
       ->with(
@@ -202,8 +195,14 @@ class ProjectGroupController extends Controller
           ->pluck('id')
           ->toArray()
       )
-      ->with('assignedContacts', $assignedContacts)
-      ->with('newContacts', $newContacts)
+      ->with(
+        'assignedContacts',
+        $projectgroup
+          ->contacts()
+          ->get()
+          ->pluck('id')
+          ->toArray()
+      )
       ->with('action', 'update');
   }
 
@@ -211,7 +210,7 @@ class ProjectGroupController extends Controller
    * Update the specified resource in storage.
    *
    * @param ProjectgroupRequest $request
-   * @param ProjectGroup $projectgroup
+   * @param Projectgroup $group
    * @return Response
    */
   public function update(ProjectgroupRequest $request, Projectgroup $projectgroup)
