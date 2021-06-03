@@ -210,12 +210,9 @@ class ProjectGroupController extends Controller
     $students = User::role('student')->get();
     $this->addClassToStudent($students);
 
-    $assignedContacts = $projectgroup
-      ->contacts()
-      ->get();
+    $assignedContacts = $projectgroup->contacts()->get();
 
     $newContacts = Contact::all()->whereNotIn('id', $assignedContacts->pluck('id'));
-
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
