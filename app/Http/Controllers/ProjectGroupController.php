@@ -71,7 +71,6 @@ class ProjectGroupController extends Controller
    */
   public function create()
   {
-
     $redirectURL = \request()->headers->get('referer');
     $projectgroup = new Projectgroup();
 
