@@ -49,7 +49,7 @@
                     </div>
                   </div>
                   <div>
-                    <a class="btn btn-secondary"
+                    <a class="btn btn-secondary" onclick="clearSessionData()"
                        href="{{route('projectgroup.edit',$projectgroup['group'])}}">Aanpassen</a>
                   </div>
                 </div>
@@ -70,4 +70,10 @@
       </table>
     </div>
   </div>
+
+  <script>
+    function clearSessionData(){
+      sessionStorage.removeItem('projectFormData');
+    }
+  </script>
 @endsection

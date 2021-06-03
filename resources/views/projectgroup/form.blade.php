@@ -59,7 +59,7 @@
           <tr data-bs-toggle="tooltip" data-bs-placement="left"
               title="Druk op de checkbox om een student te selecteren">
             <td>
-              <input
+              <input data-student-id="{{$student->id}}"
                 {{ (is_array(old("assignedUsers",$assignedUsers))) ?
                         (in_array($student->id, old("assignedUsers",$assignedUsers))) ? 'checked' : null
                      : null
@@ -73,6 +73,8 @@
       </table>
     </div>
 
+{{--    {{dd(json_decode($assignedContacts))}}--}}
+
     <fieldset>
       <legend>Contactpersonen</legend>
       <div class="row d-flex flex-column">
@@ -80,8 +82,9 @@
           <h3>Toegevoegd</h3>
           <ul class="list-group mt-2 mb-2" id="selectedContacts">
             @foreach($assignedContacts as $assignedContact)
+
               <li class="list-group-item list-group-item-action"
-                  id="selectedContact-{{$assignedContact->id}}">
+                 id="{{'selectedContact-'.$assignedContact->id}}">
                 <div class="container">
                   <div class="d-flex justify-content-between">
                     <div class="d-inline-flex">
@@ -90,7 +93,7 @@
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-danger" onclick="deleteContact({{$assignedContact->id}})">Verwijderen</a>
-                      <input name="Contact[]" value="{{$assignedContact->id}}" hidden>
+                      <input name="contact[]" value="{{$assignedContact->id}}" hidden>
                     </div>
                   </div>
                 </div>
@@ -152,7 +155,7 @@
       </div>
     </div>
   </fieldset>
-  <input class="btn btn-primary" type="submit" value="Projectgroep {{$formActionViewName}}">
+  <input class="btn btn-primary" type="submit" onclick="clearSessionData()" value="Projectgroep {{$formActionViewName}}">
 </form>
 
 <script>
@@ -164,15 +167,16 @@
   function clearSessionData() {
     sessionStorage.removeItem('projectGroupFormData');
   }
-  function saveToSessionStorage() {
-    // Get selected teachers
-    let selectedTeacherIds = getSelectedTeachers();
 
-    let storageObject = {
-      name: document.getElementById('name').value,
-
-    };
-    sessionStorage.setItem('projectGroupFormData', JSON.stringify(storageObject));
+  function getAddedContacts() {
+    const addedContactObjects = document.getElementById('selectedContacts').getElementsByTagName('li');
+    let returnValue = [];
+    for (let i = 0; i < addedContactObjects.length; i++) {
+      const id = addedContactObjects[i].id.split('selectedContact-')[1];
+      const contactObject = {id: id, name: document.getElementById(`addedContactName-${id}`).innerText};
+      returnValue.push(contactObject);
+    }
+    return returnValue;
   }
 
   // Student search logic
@@ -211,7 +215,7 @@
 
   // On load triggers
   window.onload = function (e) {
-    loadFromLocalStorage();
+    loadFromSessionStorage();
     filterContacts();
     displayNotFoundAddedContactsText();
   }
@@ -232,28 +236,37 @@
     }
   }
 
-  function loadFromLocalStorage() {
+  function saveToSessionStorage() {
+    let storageObject = {
+      name: document.getElementById('name').value,
+      teachers: getSelectedTeachers(),
+      students: getSelectedStudents(),
+      contacts: getAddedContacts()
+    };
+    sessionStorage.setItem('projectGroupFormData', JSON.stringify(storageObject));
+  }
+
+  function loadFromSessionStorage() {
     let storageObject = sessionStorage.getItem('projectGroupFormData');
     if (!storageObject) return;
     removeAllContacts();
     storageObject = JSON.parse(storageObject);
-    for (let i = 0; i < storageObject.groups.length; i++) {
-      let group = storageObject.groups[i];
-      addContact(group.id, group.name);
-    }
+    // contacts
+    // for (let i = 0; i < storageObject.contacts.length; i++) {
+    //   let contact = storageObject.contacts[i];
+    //   addContact(contact.id, contact.name);
+    // }
+
+    // name
     document.getElementById('name').value = storageObject.name;
 
-  }
-
-  function getAddedContacts() {
-    const addedContactObjects = document.getElementById('selectedContacts').getElementsByTagName('li');
-    let returnValue = [];
-    for (let i = 0; i < addedContactObjects.length; i++) {
-      const id = addedContactObjects[i].id.split('selectedContact-')[1];
-      const addedContactObjects = {id: id, name: document.getElementById(`addedContactName-${id}`).innerText};
-      returnValue.push(addedContactObjects);
+    // teachers
+    for (let i = 0; i < storageObject.teachers.length; i++) {
+      let teacher = storageObject.teachers[i];
+      document.querySelector(['data-teacher-id'.valueOf() = teacher.id]);
     }
-    return returnValue;
+
+
   }
 
   function addContact(contactId, contactName) {
@@ -317,5 +330,16 @@
     });
 
     return teacherIds;
+  }
+
+  function getSelectedStudents() {
+    const inputElements = document.querySelectorAll('[data-student-id]:checked');
+
+    let studentIds = [];
+    inputElements.forEach(element => {
+      studentIds.push(element.dataset.studentId - 0);
+    });
+
+    return studentIds;
   }
 </script>

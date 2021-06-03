@@ -74,13 +74,14 @@ class ProjectGroupController extends Controller
 
     $students = User::role('Student')->get();
     $teachers = User::role('Teacher')->get();
-    $newContacts = Contact::all();
     $projects = Project::all();
 
     $this->addClassToStudent($students);
 
     $assignedUsers = [];
     $assignedContacts = [];
+
+    $newContacts = Contact::all();
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
@@ -120,8 +121,10 @@ class ProjectGroupController extends Controller
       $projectGroup->users()->sync($request->assignedUsers);
     }
 
-    if (isset($request->assignedContacts)) {
-      $projectGroup->contacts()->sync($request->assignedContacts);
+    $newContacts = $request->all()['contact'] ?? [];
+
+    foreach ($newContacts as $newContact) {
+      $projectGroup->contacts()->attach($newContact);
     }
 
     return redirect($redirectUrl);
@@ -211,11 +214,13 @@ class ProjectGroupController extends Controller
       ->contacts()
       ->get();
 
+    $newContacts = Contact::all()->whereNotIn('id', $assignedContacts->pluck('id'));
+
+
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', User::role('teacher')->get())
       ->with('students', User::role('student')->get())
-      ->with('newContacts', Contact::all())
       ->with('projects', Project::all())
       ->with('redirectUrl', null)
       ->with(
@@ -227,6 +232,7 @@ class ProjectGroupController extends Controller
           ->toArray()
       )
       ->with('assignedContacts', $assignedContacts)
+      ->with('newContacts', $newContacts)
       ->with('action', 'update');
   }
 
@@ -247,8 +253,13 @@ class ProjectGroupController extends Controller
     }
 
     // insert the connections with contactpersons
-    if (isset($request->assignedContacts)) {
-      $projectgroup->contacts()->sync($request->assignedContacts);
+    $projectgroup->contacts()->sync([]);
+
+    $newContacts = $request->all()['contact'] ?? [];
+    //dd($newContacts);
+    foreach ($newContacts as $newContact) {
+      //dd($newContact - 0);
+      $projectgroup->contacts()->attach($newContact - 0);
     }
 
     $projectgroup->name = $request->name;

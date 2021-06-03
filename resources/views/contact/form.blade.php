@@ -1,4 +1,4 @@
-<form action="{{route('contact.'.$formAction, ['contact' => $contact])}}" method="POST">
+<form action="{{route('contact.'.$formAction, ['contact' => $contact, 'redirectUrl' => $redirectUrl])}}" method="POST">
     @csrf
     @if($formAction == 'update')
         @method('PATCH')
