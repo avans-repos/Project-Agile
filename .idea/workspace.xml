@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69ab1444-d693-4584-911a-37a14e3fcfb1" name="Default Changelist" comment="">
+    <list default="true" id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectGroupController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact/manage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/manage.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +191,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WEBFS" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/Javascript/vue/first" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -284,7 +287,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="69ab1444-d693-4584-911a-37a14e3fcfb1" name="Default Changelist" comment="" />
+      <changelist id="661db3e5-a8f1-4d6e-afdb-f8067118b0b5" name="Default Changelist" comment="" />
       <created>1612446090694</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -342,7 +345,11 @@
       <workItem from="1621539774177" duration="7016000" />
       <workItem from="1621553323316" duration="1624000" />
       <workItem from="1621594444169" duration="3522000" />
-      <workItem from="1622699261473" duration="8024000" />
+      <workItem from="1622473670184" duration="998000" />
+      <workItem from="1622475612325" duration="4242000" />
+      <workItem from="1622629128964" duration="2146000" />
+      <workItem from="1622638697360" duration="2950000" />
+      <workItem from="1622645142322" duration="165000" />
     </task>
     <servers />
   </component>

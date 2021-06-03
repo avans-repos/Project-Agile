@@ -42,7 +42,6 @@ class ContactController extends Controller
    */
   public function create()
   {
-    $redirectURL = \request()->headers->get('referer');
     $contact = new Contact();
     $genders = Gender::all();
     $contactTypes = ContactType::all();
@@ -56,7 +55,6 @@ class ContactController extends Controller
       ->with('companies', $companies)
       ->with('address', $address)
       ->with('contactTypesAssigned', [])
-      ->with('redirectUrl', $redirectURL)
       ->with('action', 'store');
   }
 
@@ -69,8 +67,6 @@ class ContactController extends Controller
   public function store(ContactRequest $request)
   {
     $request->validated();
-
-    $redirectUrl = $request->get('redirectUrl') ?? route('contact.index');
 
     $addressId = self::createAddressAndReturnId($request);
 
@@ -104,7 +100,7 @@ class ContactController extends Controller
       }
     }
 
-    return redirect($redirectUrl);
+    return redirect()->route('contact.index');
   }
 
   /**
@@ -140,8 +136,6 @@ class ContactController extends Controller
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
       ->with('companies', $companies)
-      ->with('contactTypesAssigned', $contactTypesAssigned)
-      ->with('redirectUrl', null)
       ->with('address', $address)
       ->with('action', 'update');
   }
