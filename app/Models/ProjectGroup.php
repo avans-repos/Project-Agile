@@ -34,7 +34,7 @@ class ProjectGroup extends Model
     }
     $students = $this->users()->pluck('name');
     if (count($students) > 0) {
-      $text .= '<br>Er zijn studenten die aan deze projectgroep zijn gekoppeld: ';
+      $text .= '<br>Er zijn studenten/docenten die aan deze projectgroep zijn gekoppeld: ';
       foreach ($students as $index => $student) {
         if ($index !== 0) {
           $text .= ',';
