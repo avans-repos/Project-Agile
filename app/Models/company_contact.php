@@ -6,20 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\contact\Contact;
 
-class Company_has_contacts extends Model
+class company_contact extends Model
 {
   use HasFactory;
-  protected $table = 'company_has_contacts_has_contacttypes';
-  protected $fillable = ['contact', 'company', 'contacttype'];
+  protected $fillable = ['contact_id', 'company_id', 'contacttype', 'added'];
   public $timestamps = false;
 
   public function contact()
   {
-    return $this->hasOne(Contact::class, 'id');
+    return $this->belongsTo(Contact::class);
   }
 
   public function company()
   {
-    return $this->hasOne(Company::class, 'id');
+    return $this->belongsTo(Company::class);
   }
 }

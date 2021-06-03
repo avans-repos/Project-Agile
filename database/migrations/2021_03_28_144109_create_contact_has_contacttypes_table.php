@@ -13,21 +13,24 @@ class CreateContactHasContacttypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_has_contacttypes', function (Blueprint $table) {
-            $table->id();
-          $table->unsignedBigInteger('contact');
-          $table->foreign('contact')
+        Schema::create('company_contacts', function (Blueprint $table) {
+          $table->foreignId('contact_id')
             ->references('id')
             ->on('contacts')
             ->onDelete('cascade');
 
-          $table->foreignId('company')->constrained('companies');
+          $table->foreignId('company_id')
+            ->constrained('companies');
 
           $table->string('contacttype');
           $table->foreign('contacttype')
             ->references('name')
             ->on('contact_types')
             ->onDelete('cascade');
+
+          $table->dateTime('added');
+
+          $table->primary(['contact_id', 'company_id']);
         });
     }
 
@@ -38,6 +41,6 @@ class CreateContactHasContacttypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_has_contacttypes');
+        Schema::dropIfExists('company_contacts');
     }
 }
