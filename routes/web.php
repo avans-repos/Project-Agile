@@ -35,6 +35,9 @@ Route::resource('actionpoints', ActionpointController::class)->middleware(['auth
 Route::get('/actionpoints/{actionpoint}/complete', [ActionpointController::class, 'complete'])
   ->middleware(['auth'])
   ->name('actionpoints.complete');
+Route::get('/actionpoints/{actionpoint}/undo', [ActionpointController::class, 'undoComplete'])
+  ->middleware(['auth'])
+  ->name('actionpoints.undoComplete');
 
 Route::resource('contact', ContactController::class)->middleware(['auth']);
 

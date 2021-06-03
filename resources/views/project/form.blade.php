@@ -59,7 +59,7 @@
   </fieldset>
 
   <fieldset>
-    <legend>projectgroepen</legend>
+    <legend>Projectgroepen</legend>
     <div class="row d-flex flex-column">
       <div id="addedGroups">
         <h3>Toegevoegd</h3>
