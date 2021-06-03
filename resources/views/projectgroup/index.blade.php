@@ -73,7 +73,7 @@
 
   <script>
     function clearSessionData(){
-      sessionStorage.removeItem('projectFormData');
+      sessionStorage.removeItem('projectGroupFormData');
     }
   </script>
 @endsection

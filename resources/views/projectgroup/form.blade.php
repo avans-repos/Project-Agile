@@ -251,11 +251,12 @@
     if (!storageObject) return;
     removeAllContacts();
     storageObject = JSON.parse(storageObject);
+
     // contacts
-    // for (let i = 0; i < storageObject.contacts.length; i++) {
-    //   let contact = storageObject.contacts[i];
-    //   addContact(contact.id, contact.name);
-    // }
+    for (let i = 0; i < storageObject.contacts.length; i++) {
+      let contact = storageObject.contacts[i];
+      addContact(contact.id, contact.name);
+    }
 
     // name
     document.getElementById('name').value = storageObject.name;
@@ -263,10 +264,20 @@
     // teachers
     for (let i = 0; i < storageObject.teachers.length; i++) {
       let teacher = storageObject.teachers[i];
-      document.querySelector(['data-teacher-id'.valueOf() = teacher.id]);
+      const boxToToggle = document.querySelector('input[data-teacher-id="' + teacher + '"]');
+      if (boxToToggle != null) {
+        boxToToggle:checked = true;
+        }
+      }
+
+    // students
+    for (let i = 0; i < storageObject.students.length; i++) {
+      let student = storageObject.students[i];
+      const boxToToggle = document.querySelector('input[data-student-id="' + student + '"]');
+      if (boxToToggle != null) {
+        boxToToggle:checked = true;
+      }
     }
-
-
   }
 
   function addContact(contactId, contactName) {
