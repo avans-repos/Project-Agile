@@ -106,7 +106,7 @@
   </div>
     <fieldset class="col-sm-6" id="companyAddresses">
       <legend>Adres</legend>
-      @if($contact->address() != null)
+      @if($contact->address() != null && $contact->address()->first() != null)
         <div id="adres1">
           <div class="row">
             <div class="col-6">

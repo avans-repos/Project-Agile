@@ -60,6 +60,14 @@
             <a href="{{$company->website}}">{{$company->website}}</a>
           </div>
         </div>
+        <div class="row">
+          <div class="col-6">
+            Notitie
+          </div>
+          <div class="col-6">
+            <span>{{$company->note}}</span>
+          </div>
+        </div>
       </fieldset>
       <fieldset class="col-sm-6" id="companyAddresses">
         <legend>Adres</legend>
@@ -199,9 +207,9 @@
               </div>
               @if($contact->contact()->first()->notes()->get()->count() > 1)
                 <button class="read-more-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#notes-{{$contact->id}}">Meer lezen...
+                        data-bs-target="#notes-{{$contact->contact()->first()->id}}">Meer lezen...
                 </button>
-                <div class="collapse extra-notes" id="notes-{{$contact->id}}">
+                <div class="collapse extra-notes" id="notes-{{$contact->contact()->first()->id}}">
                   <div class="w-100 h-50 notes-height">
                     @foreach($contact->contact()->first()->notes()->orderByDesc('creation')->get() as $note)
                       @continue($loop->index == 0)
