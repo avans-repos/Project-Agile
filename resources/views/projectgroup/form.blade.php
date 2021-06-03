@@ -266,7 +266,7 @@
       let teacher = storageObject.teachers[i];
       const boxToToggle = document.querySelector('input[data-teacher-id="' + teacher + '"]');
       if (boxToToggle != null) {
-        boxToToggle:checked = true;
+        boxToToggle.checked = true;
         }
       }
 
@@ -275,7 +275,7 @@
       let student = storageObject.students[i];
       const boxToToggle = document.querySelector('input[data-student-id="' + student + '"]');
       if (boxToToggle != null) {
-        boxToToggle:checked = true;
+        boxToToggle.checked = true;
       }
     }
   }
