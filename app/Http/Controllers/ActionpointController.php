@@ -6,6 +6,7 @@ use App\Events\ActionpointReminder;
 use App\Http\Requests\ActionpointRequest;
 use App\Models\Actionpoint;
 use App\Models\User;
+use App\Models\Notifications;
 use App\Service\AuthenticationService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -167,9 +168,7 @@ class ActionpointController extends Controller
     $actionpoint->teachers()->sync($request->assigned);
     $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
 
-    DB::table('notifications')
-      ->where('data->actionpoint', $actionpoint->id)
-      ->delete();
+    Notifications::where('data->actionpoint', $actionpoint->id)->delete();
 
     $notificationData = [
       'reminderdate' => $actionpoint->reminderdate,
