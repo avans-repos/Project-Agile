@@ -73,8 +73,6 @@
       </table>
     </div>
 
-{{--    {{dd(json_decode($assignedContacts))}}--}}
-
     <fieldset>
       <legend>Contactpersonen</legend>
       <div class="row d-flex flex-column">

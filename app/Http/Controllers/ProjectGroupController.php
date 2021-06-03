@@ -227,9 +227,7 @@ class ProjectGroupController extends Controller
     $projectgroup->contacts()->sync([]);
 
     $newContacts = $request->all()['contact'] ?? [];
-    //dd($newContacts);
     foreach ($newContacts as $newContact) {
-      //dd($newContact - 0);
       $projectgroup->contacts()->attach($newContact - 0);
     }
 
