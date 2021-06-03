@@ -84,7 +84,7 @@
 
 <div class="mt-5 mb-5 d-md-flex">
   <div class="col-sm-6">
-  <legend>Contact Types</legend>
+  <legend>Werk</legend>
     <fieldset class="row">
       <div class="col-6">
         <strong>Bedrijf</strong>
@@ -93,27 +93,27 @@
         <strong>Contact type</strong>
       </div>
     </fieldset>
-  @foreach($contactTypes as $contactType)
+  @foreach($contact->companies()->get() as $company)
     <fieldset class="row">
       <div class="col-6">
-        {{$contactType->name}}
+        {{$company->company()->first()->name}}
       </div>
       <div class="col-6">
-        {{ucfirst($contactType->contacttype) }}
+        {{ucfirst($company->contacttype) }}
       </div>
     </fieldset>
   @endforeach
   </div>
     <fieldset class="col-sm-6" id="companyAddresses">
       <legend>Adres</legend>
-      @if($address != null)
+      @if($contact->address() != null)
         <div id="adres1">
           <div class="row">
             <div class="col-6">
               Straatnaam
             </div>
             <div class="col-6">
-              {{$address->streetname}}
+              {{$contact->address()->first()->streetname}}
             </div>
           </div>
 
@@ -122,7 +122,7 @@
               Huisnummer + toevoeging
             </div>
             <div class="col-6">
-              {{$address->number . $address->addition}}
+              {{$contact->address()->first()->number . $contact->address()->first()->addition}}
             </div>
           </div>
 
@@ -131,7 +131,7 @@
               Postcode
             </div>
             <div class="col-6">
-              {{$address->zipcode}}
+              {{$contact->address()->first()->zipcode}}
             </div>
           </div>
 
@@ -140,7 +140,7 @@
               Plaats
             </div>
             <div class="col-6">
-              {{$address->city}}
+              {{$contact->address()->first()->city}}
             </div>
           </div>
         </div>
@@ -152,10 +152,10 @@
 
       <div class="my-3 p-3 bg-white rounded shadow-sm col-sm-7">
         <div class="d-flex justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
-          <h6 class="">Notities |  {{count($notes)}}</h6>
+          <h6 class="">Notities |  {{$contact->notes()->get()->count()}}</h6>
           <a type="button" class="btn btn-primary" href="{{route('notes.create', $contact)}}">Notitie aanmaken ></a>
         </div>
-        @foreach($notes as $note)
+        @foreach($contact->notes()->get() as $note)
           <div class="media text-muted pt-3">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
