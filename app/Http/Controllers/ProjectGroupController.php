@@ -16,6 +16,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use function request;
 
 class ProjectGroupController extends Controller
 {
@@ -70,7 +71,8 @@ class ProjectGroupController extends Controller
    */
   public function create()
   {
-    $redirectURL = request()->headers->get('referer');
+
+    $redirectURL = \request()->headers->get('referer');
     $projectgroup = new Projectgroup();
 
     $projects = Project::all();
@@ -83,8 +85,9 @@ class ProjectGroupController extends Controller
       ->get();
     $newContacts = Contact::all()->sortBy(function ($contact) {
       return $contact->getName();
+    });
 
-      $projects = Project::all()->sortBy('name');
+    $projects = Project::all()->sortBy('name');
 
     $this->addClassToStudent($students);
 
@@ -114,6 +117,13 @@ class ProjectGroupController extends Controller
     $request->validated();
 
     $redirectUrl = $request->get('redirectUrl') ?? route('projectgroup.index');
+
+    $uri_parts = explode('/', $redirectUrl);
+    $request_url = $uri_parts[count($uri_parts) - 1] . '-' . $uri_parts[count($uri_parts) - 2];
+
+    if ($request_url == 'create-contact') {
+      $redirectUrl = route('projectgroup.index');
+    }
 
     $projectGroup = new Projectgroup();
     $projectGroup->name = $request->name;
@@ -181,7 +191,7 @@ class ProjectGroupController extends Controller
   public function edit(Projectgroup $projectgroup)
   {
     $students = User::role('student')->get();
-    $this->addClassToStudent($students);
+    self::addClassToStudent($students);
 
     $assignedContacts = $projectgroup->contacts()->get();
 
@@ -226,7 +236,9 @@ class ProjectGroupController extends Controller
     $projectgroup->contacts()->sync([]);
 
     $newContacts = $request->all()['contact'] ?? [];
+    //dd($newContacts);
     foreach ($newContacts as $newContact) {
+      //dd($newContact - 0);
       $projectgroup->contacts()->attach($newContact - 0);
     }
 
