@@ -31515,14 +31515,11 @@ select{
   display: flex;
   -webkit-animation: fade-in 1s;
           animation: fade-in 1s;
+  justify-content: space-between;
 }
 
 .avans-split div:last-child {
   text-align: right;
-}
-
-.avans-split div {
-  width: 50%;
 }
 
 .avans-red {
@@ -31593,6 +31590,11 @@ h2 {
 
 .avans-menu ul a .avans-flex-center {
   display: flex;
+}
+
+.avans-scrollbox {
+  height: 900px;
+  overflow-y: scroll;
 }
 
 .btn-danger {
