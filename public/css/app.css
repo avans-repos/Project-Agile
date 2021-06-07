@@ -31501,15 +31501,15 @@ select{
   background-color: rgb(242, 242, 242);
   width: 100vw;
   height: 100vh;
+  z-index: -1;
   margin-left: -50vw;
   transform: skew(-11deg);
-  position: absolute;
+  position: fixed;
   transition: transform 0.5s, margin-left 0.5s;
 }
 
 .avans-split {
-  position: absolute;
-  padding: 120px 100px;
+  padding: 30px 100px;
   box-sizing: border-box;
   width: 100vw;
   display: flex;
@@ -31533,9 +31533,11 @@ h1 {
   font-weight: 900;
   font-size: 5em;
   text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
 }
 
 h2 {
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 1.8em;
 }

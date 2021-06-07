@@ -1,8 +1,26 @@
 @extends('layouts.app')
 
+<div class="avans-split-background"></div>
+
 @section('title','Home')
 
 @section('content')
+
+<div class="avans-split">
+  <div>
+    <h1>Welkom <span class="avans-red">
+      @php
+        echo strtok(Auth::user()->name, " ");
+      @endphp</span>,</h1>
+    <h2>Dit heb je gemist sinds je laatste bezoek.</h2>
+    <h2 class="avans-bold avans-red avans-margin-large">Meldingen</h2>
+  </div>
+
+  <div>
+    <h2 class="avans-bold">Actiepunten</h2>
+  </div>
+</div>
+
   <main role="main" class="container">
     <div class="row">
       {{--Meldingen--}}
