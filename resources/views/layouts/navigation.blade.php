@@ -1,5 +1,5 @@
 <div class="avans-menu" id="avans-menu">
-    <a class="avans-menu-user" href="{{ route('dashboard') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Druk hier om naar de home pagina te gaan"><img src="img/logo.png" class="avans-menu-logo"/></a>
+    <a class="avans-menu-user" href="{{ route('dashboard') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Druk hier om naar de home pagina te gaan"><img src="{{ URL::to('/') }}/img/logo.png" class="avans-menu-logo"/></a>
 
     <ul>
         <a href="{{ route('actionpoints.index') }}"><li>Actiepunten Beheren</li></a>

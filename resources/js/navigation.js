@@ -34,10 +34,10 @@ function expand(list, anchor)
         list.style.left = Math.round(position.left) + "px";
         list.style.top = Math.round(position.bottom) + "px";
         list.style.display = 'flex';
-        if (parseInt(list.style.height) < 63*2)
+        if (parseInt(list.style.height) < 75*2)
             list.style.height = parseInt(list.style.height) + 20 + "px";
         else
-            list.style.height = 63*2;
+            list.style.height = 75*2;
     }, 16);
 }
 
