@@ -1,5 +1,6 @@
 require('./bootstrap');
 require('./contact');
+require('./navigation');
 require('alpinejs');
 import Swal from 'sweetalert2';
 

@@ -1,6 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import './avans.css';
 
 .btn-danger {
   background-color: rgb(198, 0, 42) !important;
