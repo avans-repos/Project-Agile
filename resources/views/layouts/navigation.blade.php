@@ -13,9 +13,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('actionpoints.index')" class="avans-white" :active="request()->routeIs('actionpoints')">
-                        {{ __('Actiepunten Beheren') }}
-                    </x-nav-link>
+                  <x-nav-link :href="route('actionpoints.index')" class="avans-white" :active="request()->routeIs('actionpoints')">
+                      {{ __('Actiepunten Beheren') }}
+                  </x-nav-link>
                   <x-nav-link :href="route('contact.index')" class="avans-white"  :active="request()->routeIs('contact')">
                     {{ __('Contacten') }}
                   </x-nav-link>
@@ -108,9 +108,38 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+              {{ __('Dashboard') }}
+          </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('actionpoints.index')" class="avans-white" :active="request()->routeIs('actionpoints')">
+            {{ __('Actiepunten Beheren') }}
+          </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('contact.index')" class="avans-white"  :active="request()->routeIs('contact')">
+            {{ __('Contacten') }}
+          </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('company.index')" class="avans-white"  :active="request()->routeIs('company')">
+            {{ __('Bedrijven') }}
+          </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('projectgroup.index')" class="avans-white"  :active="request()->routeIs('projectgroup')">
+            {{ __('Projectgroepen') }}
+          </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('project.index')" class="avans-white"  :active="request()->routeIs('project')">
+            {{ __('Projecten') }}
+          </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('classroom.index')" class="avans-white"  :active="request()->routeIs('classroom')">
+            {{ __('Klassen') }}
+          </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('mailformat.index')" class="avans-white"  :active="request()->routeIs('mailformat.index')">
+            {{ __('Mail Templates') }}
+          </x-responsive-nav-link>
+          <x-responsive-nav-link :href="route('mailformat.mailSetup')" class="avans-white"  :active="request()->routeIs('mailformat.mailSetup')">
+            {{ __('Mail Versturen') }}
+          </x-responsive-nav-link>
+          @role('Admin')
+          <x-responsive-nav-link :href="route('user.index')" class="avans-white"  :active="request()->routeIs('user')">
+            {{ __('Gebruikers') }}
+          </x-responsive-nav-link>
+          @endrole
         </div>
 
         <!-- Responsive Settings Options -->
@@ -123,8 +152,8 @@
                 </div>
 
                 <div class="ml-3">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <div class="font-medium text-base">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm">{{ Auth::user()->email }}</div>
                 </div>
             </div>
 
