@@ -36,7 +36,15 @@ window.sendEmailConfirm = function (formId, emailRecipients) {
   });
 };
 
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl);
 });
+
+window.stripHTML = function(str){
+  if ((str===null) || (str===''))
+    return str;
+  else
+    str = str.toString();
+  return str.replace( /(<([^>]+)>|`)/ig, '');
+};

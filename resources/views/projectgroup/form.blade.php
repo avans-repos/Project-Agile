@@ -89,7 +89,7 @@
                   <div class="d-flex justify-content-between">
                     <div class="d-inline-flex">
                       <span
-                        id="addedContactName-{{$assignedContact->id}}">{{$assignedContact->firstname . ' ' . $assignedContact->insertion . ' ' . $assignedContact->lastname}}</span>
+                        id="addedContactName-{{$assignedContact->id}}">{{$assignedContact->getName()}}</span>
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-danger" onclick="deleteContact({{$assignedContact->id}})">Verwijderen</a>
@@ -118,11 +118,11 @@
                 <div class="container">
                   <div class="d-flex justify-content-between">
                     <div class="d-inline-flex">
-                      <span>{{$newContact->firstname . ' ' . $newContact->insertion . ' ' . $newContact->lastname}}</span>
+                      <span>{{$newContact->getName()}}</span>
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-primary"
-                         onclick="addContact({{$newContact->id}}, '{{$newContact->firstname . ' ' . $newContact->insertion . ' ' . $newContact->lastname}}')">Toevoegen</a>
+                         onclick="addContact({{$newContact->id}}, `{{$newContact->getName()}}`)">Toevoegen</a>
                     </div>
                   </div>
                 </div>
@@ -286,7 +286,7 @@
         <div class="container">
           <div class="d-flex justify-content-between">
             <div class="d-inline-flex">
-              <span id=addedContactName-${contactId}>${contactName}</span>
+              <span id=addedContactName-${contactId}>${stripHTML(contactName)}</span>
             </div>
             <div class="d-inline-flex">
               <a class="btn btn-danger" onclick="deleteContact(${contactId})">Verwijderen</a>
