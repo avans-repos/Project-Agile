@@ -51,6 +51,10 @@ class UserController extends Controller
    */
   public function update(Request $request, User $user)
   {
+    $request->validate([
+      'roles' => 'required',
+    ]);
+
     if (Auth::user()->isAdmin()) {
       $roleIds = $request->roles;
 
