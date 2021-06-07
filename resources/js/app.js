@@ -40,9 +40,3 @@ let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl);
 });
-
-window.stripHTML = function (str) {
-  if (str === null || str === '') return str;
-  else str = str.toString();
-  return str.replace(/(<([^>]+)>|`)/gi, '');
-};

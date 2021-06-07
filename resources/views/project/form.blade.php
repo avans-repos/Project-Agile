@@ -103,7 +103,7 @@
                   </div>
                   <div class="d-inline-flex">
                     <a class="col-sm btn btn-primary"
-                       onclick="addProjectGroup({{$newProjectGroup->id}}, `{{$newProjectGroup->name}}`)">Toevoegen</a>
+                       onclick="addProjectGroup({{$newProjectGroup->id}}, `{{e($newProjectGroup->name)}}`)">Toevoegen</a>
                   </div>
                 </div>
               </div>
@@ -186,7 +186,7 @@
         <div class="container">
           <div class="d-flex justify-content-between">
             <div class="d-inline-flex">
-              <span id=addedProjectgroupName-${projectGroupId}>${stripHTML(projectGroupName)}</span>
+              <span id=addedProjectgroupName-${projectGroupId}>${projectGroupName}</span>
             </div>
             <div class="d-inline-flex">
               <a class="btn btn-danger" onclick="deleteProjectGroup(${projectGroupId})">Verwijderen</a>

@@ -127,7 +127,7 @@
                 </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
-                <a class="col-sm btn btn-primary" onclick="addContact({{$contact->id}}, `{{$contact->getName()}}`, `{{$contact->email}}`)">Toevoegen</a>
+                <a class="col-sm btn btn-primary" onclick="addContact({{$contact->id}}, `{{e($contact->getName())}}`, `{{e($contact->email)}}`)">Toevoegen</a>
               </div>
             </div>
           </div>
@@ -187,10 +187,10 @@
           <div class="container">
             <div class="row">
               <div class="col">
-                <span id='recipientName'>${stripHTML(contactName)}</span>
+                <span id='recipientName'>${contactName}</span>
               </div>
               <div class="col">
-             <span id='recipientMail'>${stripHTML(email)}</span>
+             <span id='recipientMail'>${email}</span>
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
