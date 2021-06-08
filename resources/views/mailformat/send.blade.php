@@ -139,7 +139,24 @@
               {{$project->name}}
             </button>
 
-            <button type="button" class="col col-lg-3 btn btn-primary">
+            <button type="button"
+                    class="col col-lg-3 btn btn-primary"
+                    onclick="addContacts(
+                    {{
+                      // Get all project groups and map each project group's contact
+                      $project->projectGroups()->get()->map(
+                        function($projectGroup) {
+                          return  $projectGroup->contacts()->get()->map(function($contact) {
+                            // Map each contact to the expected values (this returns an array)
+                            return [
+                              'id' => $contact->id,
+                              'name' => $contact->getName(),
+                              'email' => $contact->email
+                            ];
+                          });
+                      // Flatten the array as it would normally return contacts in one array per project (i.e. a 2 dimensional array)
+                      })->flatten(1)
+                    }})">
               Project toevoegen
             </button>
           </h2>
