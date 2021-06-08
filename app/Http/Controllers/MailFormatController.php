@@ -60,8 +60,7 @@ class MailFormatController extends Controller
           $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $subject];
           Mail::to($contact->email)->queue(new BaseEmail($data));
         }
-      }
-      catch(Exception $e){
+      } catch (Exception $e) {
       }
     }
     return redirect(route('dashboard'));
