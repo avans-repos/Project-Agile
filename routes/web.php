@@ -113,3 +113,12 @@ Route::get('projectgroup/{projectgroupid}/removeContact/{contactid}', [ProjectGr
   ->name('projectgroup.removeContact')
   ->middleware(['auth']);
 Route::resource('projectgroup', ProjectGroupController::class)->middleware(['auth']);
+
+
+Route::get('excel/import', [\App\Http\Controllers\ExcelController::class, 'importScreen'])
+  ->name('excel.importScreen')
+  ->middleware(['auth']);
+
+Route::post('excel/import', [\App\Http\Controllers\ExcelController::class, 'importFile'])
+  ->name('excel.importFile')
+  ->middleware(['auth']);
