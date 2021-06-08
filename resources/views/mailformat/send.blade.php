@@ -6,6 +6,13 @@
   @csrf
   <fieldset class="mb-3">
     <legend  class="mb-3">E-mail Template</legend>
+    <div class="mb-1">
+      <div class="col">
+        @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
     <table class="table-layout-fixed table table-striped">
 
       <thead>
@@ -62,13 +69,6 @@
     </div>
     <div class="mb-1">
       <div class="col">
-        @error('name')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-      </div>
-    </div>
-    <div class="mb-1">
-      <div class="col">
         <div class="mt-3">
           <div class="d-flex align-items-end justify-content-between mb-1">
             <label for="body" class="form-label mb-1">Inhoud *</label>
@@ -91,24 +91,13 @@
                   id="mail-body" placeholder="Inhoud van de mail." rows="10" required
         >{{old('body')}}</textarea>
       </div>
-      <div class="col">
-        @error('body')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-      </div>
     </div>
   </fieldset>
 
   <fieldset class="mt-5">
     <legend>Toegevoegde contacten</legend>
-
     <ul class="list-group mt-2 mb-2 scroll max-h-96" id="selectedContacts">
     </ul>
-    <div class="col">
-      @error('contact')
-      <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-    </div>
   </fieldset>
 
   <fieldset class="mt-5">
@@ -137,7 +126,7 @@
   </fieldset>
 
   <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
-</form>
+    </form>
   </div>
 
   <script>
@@ -229,7 +218,5 @@
         }
       }
     }
-
-
   </script>
 @endsection
