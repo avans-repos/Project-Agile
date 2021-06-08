@@ -317,5 +317,5 @@
     })
   </script>
 
-  <script src="{{ asset('js/search.js')}}"></script>
+  <script src="{{ mix('/js/search.js') }}"></script>
 @endsection

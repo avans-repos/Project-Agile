@@ -11,7 +11,10 @@
           <a class="btn btn-primary" href="{{ route('actionpoints.create') }}">Nieuw actiepunt aanmaken</a>
         </div>
       </div>
-      <table class="table table-striped mt-3">
+      <div class="table-responsive">
+        <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
+               placeholder="Zoeken..."/>
+      <table class="table table-striped mt-3" id="searchTable">
         <thead>
         <tr>
           <td>Deadline</td>
@@ -62,7 +65,8 @@
       </table>
 
       <h1 class="mt-5 fs-1">Mijn afgeronde actiepunten</h1>
-
+        <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
+               placeholder="Zoeken..."/>
       <table class="mb-5 table table-striped mt-3">
         <thead>
         <tr>
@@ -87,4 +91,5 @@
       </table>
     </div>
   </main>
+  <script src="{{ mix('/js/search.js') }}"></script>
 @endsection
