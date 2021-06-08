@@ -218,7 +218,7 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.watch">
+  <component name="RunManager" selected="npm.prod">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
@@ -243,11 +243,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="production" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="prod" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="production" />
+        <script value="prod" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -275,11 +275,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.prod" />
         <item itemvalue="npm.watch" />
         <item itemvalue="npm.hot" />
         <item itemvalue="npm.watch-poll" />
         <item itemvalue="npm.format" />
-        <item itemvalue="npm.production" />
       </list>
     </recent_temporary>
   </component>
