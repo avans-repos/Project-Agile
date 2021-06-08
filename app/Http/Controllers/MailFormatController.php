@@ -8,6 +8,7 @@ use App\Mail\BaseEmail;
 use App\Models\contact\Contact;
 use App\Models\EmailTag;
 use App\Models\Mail_format;
+use App\Models\Project;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -27,12 +28,14 @@ class MailFormatController extends Controller
   {
     $mailFormats = Mail_format::all();
     $contacts = Contact::all();
+    $projects = Project::all();
     $tags = EmailTag::all();
 
     return view('mailformat.send')
       ->with('mailformats', $mailFormats)
       ->with('tags', $tags)
-      ->with('contacts', $contacts);
+      ->with('contacts', $contacts)
+      ->with('projects', $projects);
   }
 
   public function sendMail(SendMailRequest $request)
