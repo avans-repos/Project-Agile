@@ -9,6 +9,7 @@ use App\Models\contact\Contact;
 use App\Models\EmailTag;
 use App\Models\Mail_format;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -34,22 +35,32 @@ class MailFormatController extends Controller
 
   public function sendMail(SendMailRequest $request)
   {
-    $contactIds = $request->get('contact') ?? [];
+    $request->validate([
+      'contact' => 'required',
+    ]);
+
+    $contactIds = $request->get('contact');
     foreach ($contactIds as $contactId) {
-      $contact = Contact::whereId($contactId)->first();
-      if ($contact != null && $contact->email != null) {
-        $body = $this->getReplacedText($request->get('body'), [
-          'voornaam' => $contact->firstname,
-          'achternaam' => $contact->lastname,
-          'datum' => Carbon::now()->format('Y-m-d'),
-        ]);
-        $subject = $this->getReplacedText($request->get('name'), [
-          'voornaam' => $contact->firstname,
-          'achternaam' => $contact->lastname,
-          'datum' => Carbon::now()->format('Y-m-d'),
-        ]);
-        $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $subject];
-        Mail::to($contact->email)->queue(new BaseEmail($data));
+      // Do not break for each loop if one email fails
+      try {
+        $contact = Contact::whereId($contactId)->first();
+        if ($contact != null && $contact->email != null) {
+          $body = $this->getReplacedText($request->get('body'), [
+            'voornaam' => $contact->firstname,
+            'achternaam' => $contact->lastname,
+            'datum' => Carbon::now()->format('Y-m-d'),
+          ]);
+          $subject = $this->getReplacedText($request->get('name'), [
+            'voornaam' => $contact->firstname,
+            'achternaam' => $contact->lastname,
+            'datum' => Carbon::now()->format('Y-m-d'),
+          ]);
+          $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $subject];
+          Mail::to($contact->email)->queue(new BaseEmail($data));
+        }
+      }
+      catch(Exception $e){
+
       }
     }
     return redirect(route('dashboard'));
