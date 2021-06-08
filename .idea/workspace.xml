@@ -10,7 +10,11 @@
     <list default="true" id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MailFormatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MailFormatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/mailformat/send.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mailformat/send.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -220,19 +224,9 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.format">
+  <component name="RunManager" selected="npm.watch">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
-      <method v="2" />
-    </configuration>
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
       <method v="2" />
     </configuration>
     <configuration name="format" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -245,11 +239,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="format:check" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="hot" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="format:check" />
+        <script value="hot" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -260,6 +254,16 @@
       <command value="run" />
       <scripts>
         <script value="production" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="watch-poll" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch-poll" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -277,11 +281,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.watch" />
+        <item itemvalue="npm.hot" />
+        <item itemvalue="npm.watch-poll" />
         <item itemvalue="npm.format" />
         <item itemvalue="npm.production" />
-        <item itemvalue="npm.watch" />
-        <item itemvalue="npm.format:check" />
-        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -346,7 +350,7 @@
       <workItem from="1621539774177" duration="7016000" />
       <workItem from="1621553323316" duration="1624000" />
       <workItem from="1621594444169" duration="3522000" />
-      <workItem from="1623154154047" duration="2071000" />
+      <workItem from="1623154154047" duration="11353000" />
     </task>
     <servers />
   </component>
