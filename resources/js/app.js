@@ -45,7 +45,7 @@ window.sortTable = function (table, col, reverse) {
   let tb = table.tBodies[0], // use `<tbody>` to ignore `<thead>` and `<tfoot>` rows
     tr = Array.prototype.slice.call(tb.rows, 0), // put rows into array
     i;
-  reverse = -(+reverse || -1);
+  reverse = -(reverse || -1);
   tr = tr.sort(function (a, b) {
     // sort rows
     return (
