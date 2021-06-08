@@ -11,8 +11,9 @@
       </div>
     </div>
     <div>
+      <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
+             placeholder="Zoeken..."/>
       <table class="table-layout-fixed table table-striped">
-
         <thead>
         <tr>
           <td>Naam</td>
@@ -61,7 +62,6 @@
                 </div>
                 @endrole
               </div>
-
             </td>
           </tr>
         @endforeach
@@ -69,4 +69,5 @@
       </table>
     </div>
   </div>
+  <script src="{{ mix('/js/search.js') }}"></script>
 @endsection

@@ -6,6 +6,8 @@
   @csrf
   <fieldset class="mb-3">
     <legend  class="mb-3">E-mail Template</legend>
+    <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
+           placeholder="Zoeken..."/>
     <table class="table-layout-fixed table table-striped">
 
       <thead>
@@ -113,7 +115,7 @@
 
   <fieldset class="mt-5">
     <legend>Contacten toevoegen</legend>
-    <input type="text" id="filterContactInput" onkeyup="filterContacts()" placeholder="Zoek naar contacten" title="Typ een naam">
+    <input type="text" id="filterContactInput" class="rounded" onkeyup="filterContacts()" placeholder="Zoek naar contacten" title="Typ een naam">
     <ul class="list-group mt-2 mb-2 scroll max-h-96" id="contactList">
       @foreach($contacts as $contact)
         <li class="list-group-item list-group-item-action" id="{{$contact->id}}">
@@ -139,7 +141,7 @@
   <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
 </form>
   </div>
-
+  <script src="{{ mix('/js/search.js') }}"></script>
   <script>
 
       function showConfirm(){

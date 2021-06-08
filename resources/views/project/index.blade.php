@@ -13,7 +13,8 @@
 
     <div class="table-responsive">
       <table class="table table-striped">
-
+        <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
+               placeholder="Zoeken..."/>
         <thead>
         <tr>
           <td>Naam</td>
@@ -57,6 +58,7 @@
       </table>
     </div>
   </div>
+  <script src="{{ mix('/js/search.js') }}"></script>
   <script>
     function clearSessionData(){
       sessionStorage.removeItem('projectFormData');

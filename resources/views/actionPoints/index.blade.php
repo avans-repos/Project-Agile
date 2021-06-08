@@ -14,7 +14,7 @@
       <div class="table-responsive">
         <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
                placeholder="Zoeken..."/>
-      <table class="table table-striped mt-3" id="searchTable">
+      <table class="table table-striped mt-3">
         <thead>
         <tr>
           <td>Deadline</td>
