@@ -1,4 +1,4 @@
-document.querySelectorAll('[id=searchInput]').forEach(input => {
+document.querySelectorAll('[id=searchInput]').forEach(function (input) {
   input.addEventListener('keyup', function () {
     singleSearch(input);
   });
