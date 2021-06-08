@@ -215,8 +215,19 @@
     </div>
   </fieldset>
 
-  <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
+    <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
     </form>
+  </div>
+
+
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+    <div id="mailContactConfirmationToast" class="toast hide bg-white" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">De contacten zijn toegevoegd</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -260,7 +271,10 @@
     }
 
     function addContacts(contacts) {
-      contacts.forEach(contact => addContact(contact.id, contact.name, contact.email))
+      contacts.forEach(contact => addContact(contact.id, contact.name, contact.email));
+
+      const toastElement = new bootstrap.Toast(document.getElementById('mailContactConfirmationToast'));
+      toastElement.show();
     }
 
     function addContact(contactId, contactName, email){
