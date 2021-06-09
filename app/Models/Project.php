@@ -23,10 +23,12 @@ class Project extends Model
 
   public function getDeleteText(): string
   {
-    $projectgroups = $this->projectGroups()->pluck('name');
     $text = '';
+    $text .= 'Weet u zeker dat u "' . $this->name . '" wilt verwijderen<br>' ;
+
+    $projectgroups = $this->projectGroups()->pluck('name');
     if (count($projectgroups) > 0) {
-      $text = '<br>Er zijn projectgroepen die aan dit project zijn gekoppeld: ';
+      $text .= '<br>Er zijn projectgroepen die aan dit project zijn gekoppeld: ';
       foreach ($projectgroups as $index => $projectgroup) {
         if ($index !== 0) {
           $text .= ',';

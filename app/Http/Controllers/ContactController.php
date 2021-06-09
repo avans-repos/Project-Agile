@@ -48,7 +48,6 @@ class ContactController extends Controller
     $contactTypes = ContactType::all();
     $companies = Company::all();
     $address = new Address();
-
     return view('contact.manage')
       ->with('contact', $contact)
       ->with('genders', $genders)

@@ -54,7 +54,7 @@
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
                       <a class="btn btn-danger" href="#"
-                         onclick="deleteConfirm('delete-product-form-{{$mailFormat->id}}')">Verwijderen </a>
+                         onclick="deleteConfirm('delete-product-form-{{$mailFormat->id}}', '{{$mailFormat->getDeleteText()}}')">Verwijderen </a>
                     </div>
                   </form>
                 </div>

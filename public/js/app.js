@@ -3849,10 +3849,6 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl);
 });
 
-window.stripHTML = function (str) {
-  if (str === null || str === '') return str;else str = str.toString();
-  return str.replace(/(<([^>]+)>|`)/ig, '');
-}
 window.makeSortable = function (table) {
   var _table$getElementsByT, _tableHeadElements, _tableHeadElements2, _tableHeadElements3;
 
