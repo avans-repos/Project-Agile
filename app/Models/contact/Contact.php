@@ -65,16 +65,16 @@ class Contact extends Model
   {
     $companies = $this->companies()->get();
     $text = '';
-    //    if (count($companies)>0){
-    //      $text = "<br>Er zijn bedrijven die aan deze contactpersoon zijn gekoppeld: ";
-    //      foreach ($companies as $index => $company){
-    //        if ($index !== 0){
-    //          $text .= ',';
-    //        }
-    //        $text .= ' ' . $company->company();
-    //      }
-    //
-    //    }
+        if (count($companies)>0){
+          $text = "<br>Er zijn bedrijven die aan deze contactpersoon zijn gekoppeld: ";
+          foreach ($companies as $index => $company){
+            if ($index !== 0){
+              $text .= ',';
+            }
+            $text .= ' ' . $company->company();
+          }
+
+        }
     return $text;
   }
   public function companies()

@@ -33,7 +33,7 @@ class Company extends Model
   public function getDeleteText(): string
   {
     $text = '';
-    $contacts = $this->contacts();
+    $contacts = $this->contacts()->get();
     if (count($contacts) > 0) {
       $text .= '<br>Er zijn contactpersonen die aan dit bedrijf zijn gekoppeld: ';
       foreach ($contacts as $index => $contact) {
@@ -43,6 +43,7 @@ class Company extends Model
         $text .= ' ' . $contact->getName();
       }
     }
+//    $text .= `<br>Weet u zeker dat u ${$this->name} wilt verwijderen`;
     return $text;
   }
 }
