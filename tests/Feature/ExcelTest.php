@@ -62,13 +62,7 @@ class ExcelTest extends TestCase
   {
     $this->assertAuthenticated();
     $response = $this->post(route('excel.importFile'), [
-      'file' => new \Symfony\Component\HttpFoundation\File\UploadedFile(
-        Storage::path('../testFiles/wrongFile.png'),
-        'wrongFile.png',
-        false,
-        false,
-        true
-      ),
+      'file' => new UploadedFile(Storage::path('../testFiles/wrongFile.png'), 'wrongFile.png', false, false, true),
     ]);
 
     $response->assertSessionHasErrors();

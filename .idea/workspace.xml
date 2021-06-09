@@ -8,14 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6801c60-3755-412f-ac1e-effa5c65cc13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExcelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExcelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ExcelRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ExcelRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Imports/ContactImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/ContactImport.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/company/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/company/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/excel/importExcel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/excel/importExcel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/AdminTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AdminTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ExcelTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ExcelTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
