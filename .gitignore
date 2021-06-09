@@ -86,4 +86,5 @@ fabric.properties
 
 # Excelfiles
 storage/framework/laravel-excel
-storage\testFiles\~$**.*
+storage\testFiles\~$normalImport.xlsx
+storage\testFiles\~$wrongHeaderImport.xlsx
