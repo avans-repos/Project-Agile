@@ -28,7 +28,7 @@ class MailFormatController extends Controller
   {
     $mailFormats = Mail_format::all();
     $contacts = Contact::all();
-    $projects = Project::all();
+    $projects = Project::withCount(['projectgroups'])->having('projectgroups_count', '>', 0)->get();
     $tags = EmailTag::all();
 
     return view('mailformat.send')
