@@ -6,22 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Actionpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Actionpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Company.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Mail_format.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Mail_format.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProjectGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProjectGroup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/StudentClass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StudentClass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/contact/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/contact/Contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/CompanySeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/actionPoints/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/actionPoints/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mailformat/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mailformat/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +214,15 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="PHPUnit.ProjectTest.test_getDeleteText">
+    <configuration name="ProjectTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ProjectTest" file="$PROJECT_DIR$/tests/Unit/ProjectTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ProjectTest.test_getDeleteText" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ProjectTest" file="$PROJECT_DIR$/tests/Unit/ProjectTest.php" method="test_getDeleteText" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
@@ -255,16 +247,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="format:check" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="format:check" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="production" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -275,23 +257,13 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="watch" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.ProjectTest.test_getDeleteText" />
+        <item itemvalue="PHPUnit.ProjectTest" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.format" />
         <item itemvalue="npm.production" />
-        <item itemvalue="npm.watch" />
-        <item itemvalue="npm.format:check" />
       </list>
     </recent_temporary>
   </component>
