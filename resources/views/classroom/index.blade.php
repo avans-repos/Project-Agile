@@ -12,16 +12,14 @@
     </div>
 
     <div class="table-responsive">
-      <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
-             placeholder="Zoeken..."/>
-      <table class="table table-striped">
+      <table class="table table-striped" id="TABLE">
 
         <thead>
         <tr>
           <td class="w-50">Klas</td>
           <td>Startjaar</td>
           <td class="w-25">Studenten</td>
-          <td>Acties</td>
+          <td id="acties">Acties</td>
         </tr>
         </thead>
         <tbody>

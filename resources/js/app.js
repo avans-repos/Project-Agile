@@ -41,39 +41,30 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl);
 });
 
-window.sortTable = function (table, col, reverse) {
-  let tb = table.tBodies[0], // use `<tbody>` to ignore `<thead>` and `<tfoot>` rows
-    tr = Array.prototype.slice.call(tb.rows, 0), // put rows into array
-    i;
-  reverse = -(reverse || -1);
-  tr = tr.sort(function (a, b) {
-    // sort rows
-    return (
-      reverse * // `-1 *` if want opposite order
-      a.cells[col].textContent
-        .trim() // using `.textContent.trim()` for test
-        .localeCompare(b.cells[col].textContent.trim())
-    );
-  });
-  for (i = 0; i < tr.length; ++i) tb.appendChild(tr[i]); // append each row in order
-};
-
 window.makeSortable = function (table) {
-  let th = table.tHead,
-    i;
-  th && (th = th.rows[0]) && (th = th.cells);
-  if (th) i = th.length;
-  else return; // if no `<thead>` then do nothing
-  while (--i >= 0)
-    (function (i) {
-      let dir = 1;
-      if (th[i].innerText.toLowerCase() !== 'acties') {
-        th[i].addEventListener('click', function () {
-          sortTable(table, i, (dir = 1 - dir));
-        });
-        th[i].classList.add('cursor-pointer');
-      }
-    })(i);
+  const tdElements = table.getElementsByTagName('thead')[0]?.getElementsByTagName('tr')[0]?.getElementsByTagName('td');
+  let tableData = {
+    language: {
+      lengthMenu: 'Laat _MENU_ velden per pagina zien',
+      zeroRecords: 'Er is niks gevonden.',
+      info: 'Pagina _PAGE_ van _PAGES_',
+      infoEmpty: 'Er is geen data beschikbaar',
+      infoFiltered: '(gefiltert van _MAX_ totale velden)',
+      search: 'Zoeken',
+      sLoadingRecords: 'Laden..',
+      sProcessing: 'Even geduld aub..',
+      oPaginate: {
+        sFirst: 'Eerste',
+        sPrevious: 'Terug',
+        sNext: 'Volgende',
+        sLast: 'Laatste',
+      },
+    },
+  };
+  if (tdElements && tdElements[tdElements.length - 1].innerText.toLowerCase() === 'acties') {
+    tableData.columnDefs = [{ orderable: false, targets: tdElements.length - 1 }];
+  }
+  $(table).DataTable(tableData);
 };
 
 window.makeAllSortable = function (parent) {
