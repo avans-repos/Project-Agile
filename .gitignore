@@ -85,6 +85,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # Excelfiles
-storage/framework/laravel-excel
+storage/framework/laravel-excel/
 storage/testFiles/~$normalImport.xlsx
 storage/testFiles/~$wrongHeaderImport.xlsx
