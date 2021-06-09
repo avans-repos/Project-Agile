@@ -8,9 +8,13 @@ use App\Mail\BaseEmail;
 use App\Models\contact\Contact;
 use App\Models\EmailTag;
 use App\Models\Mail_format;
+use App\Models\Project;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Validator;
 
 class MailFormatController extends Controller
 {
@@ -24,32 +28,40 @@ class MailFormatController extends Controller
   {
     $mailFormats = Mail_format::all();
     $contacts = Contact::all();
+    $projects = Project::withCount(['projectgroups'])
+      ->having('projectgroups_count', '>', 0)
+      ->get();
     $tags = EmailTag::all();
 
     return view('mailformat.send')
       ->with('mailformats', $mailFormats)
       ->with('tags', $tags)
-      ->with('contacts', $contacts);
+      ->with('contacts', $contacts)
+      ->with('projects', $projects);
   }
 
   public function sendMail(SendMailRequest $request)
   {
-    $contactIds = $request->get('contact') ?? [];
+    $contactIds = $request->get('contact');
     foreach ($contactIds as $contactId) {
-      $contact = Contact::whereId($contactId)->first();
-      if ($contact != null && $contact->email != null) {
-        $body = $this->getReplacedText($request->get('body'), [
-          'voornaam' => $contact->firstname,
-          'achternaam' => $contact->lastname,
-          'datum' => Carbon::now()->format('Y-m-d'),
-        ]);
-        $subject = $this->getReplacedText($request->get('name'), [
-          'voornaam' => $contact->firstname,
-          'achternaam' => $contact->lastname,
-          'datum' => Carbon::now()->format('Y-m-d'),
-        ]);
-        $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $subject];
-        Mail::to($contact->email)->queue(new BaseEmail($data));
+      // Do not break for each loop if one email fails
+      try {
+        $contact = Contact::whereId($contactId)->first();
+        if ($contact != null && $contact->email != null) {
+          $body = $this->getReplacedText($request->get('body'), [
+            'voornaam' => $contact->firstname,
+            'achternaam' => $contact->lastname,
+            'datum' => Carbon::now()->format('Y-m-d'),
+          ]);
+          $subject = $this->getReplacedText($request->get('name'), [
+            'voornaam' => $contact->firstname,
+            'achternaam' => $contact->lastname,
+            'datum' => Carbon::now()->format('Y-m-d'),
+          ]);
+          $data = ['message' => $body, 'replyTo' => Auth::user()->email, 'replyToName' => Auth::user()->name, 'subject' => $subject];
+          Mail::to($contact->email)->queue(new BaseEmail($data));
+        }
+      } catch (Exception $e) {
       }
     }
     return redirect(route('dashboard'));
