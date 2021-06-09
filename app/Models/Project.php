@@ -18,12 +18,12 @@ class Project extends Model
 
   public function projectgroups()
   {
-    return $this->hasMany(Projectgroup::class, 'project');
+    return $this->belongsToMany(ProjectGroup::class, 'projectgroup_project', 'projectid', 'projectgroupid');
   }
 
   public function getDeleteText(): string
   {
-    $projectgroups = $this->projectGroups()->pluck('name');
+    $projectgroups = $this->projectgroups()->pluck('name');
     $text = '';
     if (count($projectgroups) > 0) {
       $text = '<br>Er zijn projectgroepen die aan dit project zijn gekoppeld: ';

@@ -85,22 +85,23 @@ class ProjectGroupController extends Controller
     $newContacts = Contact::all()->sortBy(function ($contact) {
       return $contact->getName();
     });
-
-    $projects = Project::all()->sortBy('name');
+    $newProjects = Project::all()->sortBy('name');
 
     $this->addClassToStudent($students);
 
     $assignedUsers = [];
     $assignedContacts = [];
+    $assignedProjects = [];
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', $teachers)
       ->with('students', $students)
-      ->with('newContacts', $newContacts)
       ->with('assignedUsers', $assignedUsers)
+      ->with('newContacts', $newContacts)
       ->with('assignedContacts', $assignedContacts)
-      ->with('projects', $projects)
+      ->with('newProjects', $newProjects)
+      ->with('assignedProjects', $assignedProjects)
       ->with('redirectUrl', $redirectURL)
       ->with('action', 'store');
   }
@@ -127,8 +128,10 @@ class ProjectGroupController extends Controller
     $projectGroup = new Projectgroup();
     $projectGroup->name = $request->name;
 
-    if ($request->project != -1) {
-      $projectGroup->project = $request->project;
+    $newProjects = $request->all()['project'] ?? [];
+
+    foreach ($newProjects as $newProject) {
+      $projectGroup->projects()->attach($newProject);
     }
 
     $projectGroup->save();
@@ -196,20 +199,19 @@ class ProjectGroupController extends Controller
 
     $newContacts = Contact::all()->whereNotIn('id', $assignedContacts->pluck('id'));
 
+    $assignedUsers = $projectgroup
+      ->users()
+      ->get()
+      ->pluck('id')
+      ->toArray();
+
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', User::role('teacher')->get())
       ->with('students', User::role('student')->get())
       ->with('projects', Project::all())
       ->with('redirectUrl', null)
-      ->with(
-        'assignedUsers',
-        $projectgroup
-          ->users()
-          ->get()
-          ->pluck('id')
-          ->toArray()
-      )
+      ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
       ->with('newContacts', $newContacts)
       ->with('action', 'update');
@@ -235,18 +237,19 @@ class ProjectGroupController extends Controller
     $projectgroup->contacts()->sync([]);
 
     $newContacts = $request->all()['contact'] ?? [];
-    //dd($newContacts);
     foreach ($newContacts as $newContact) {
-      //dd($newContact - 0);
       $projectgroup->contacts()->attach($newContact - 0);
     }
 
     $projectgroup->name = $request->name;
-    if ($request->project == -1) {
-      $projectgroup->project = null;
-    } else {
-      $projectgroup->project = $request->project;
+
+    $projectgroup->projects()->sync();
+
+    $newProjects = $request->all()['project'] ?? [];
+    foreach ($newProjects as $newProject) {
+      $projectgroup->projects()->attach($newProject);
     }
+
     $projectgroup->save();
 
     return redirect()->route('projectgroup.index');

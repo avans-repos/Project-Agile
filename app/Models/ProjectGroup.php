@@ -22,11 +22,14 @@ class ProjectGroup extends Model
   protected $fillable = ['name', 'project'];
   protected $dates = ['deleted_at'];
 
+  public function projects()
+  {
+    return $this->belongsToMany(Project::class, 'projectgroup_project', 'projectgroupid', 'projectid');
+  }
+
   public function getDeleteText(): string
   {
-    $project = Project::where('id', $this->project)
-      ->pluck('name')
-      ->first();
+    $project = $this->projects()->pluck('name');
     $text = '';
     if ($project !== null) {
       $text .= '<br>Er is een project aan deze projectgroep gekoppeld: ';
