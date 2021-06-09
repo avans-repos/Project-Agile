@@ -78,7 +78,7 @@
               </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
-                <a class="col-sm btn btn-primary" onclick="addStudent({{$student->id}}, '{{$student->name}}')">Toevoegen</a>
+                <a class="col-sm btn btn-primary" onclick="addStudent({{$student->id}}, `{{e($student->name)}}`)">Toevoegen</a>
               </div>
             </div>
           </div>
