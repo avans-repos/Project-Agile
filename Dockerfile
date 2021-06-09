@@ -4,7 +4,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends openssl zip 
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions @composer curl gd mbstring openssl fileinfo mysqli pdo_mysql
+    install-php-extensions @composer curl gd mbstring openssl fileinfo mysqli pdo_mysql zip
 
 WORKDIR /app
 COPY . /app
