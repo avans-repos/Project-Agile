@@ -46,12 +46,8 @@
         <thead>
         <tr>
           <th>Selecteren</th>
-          <th><input type="text" id="student-search" placeholder="Naam"
-                     data-bs-toggle="tooltip" data-bs-placement="top"
-                     title="Vul hier de naam in om te kunnen filteren"/></th>
-          <th><input type="text" id="class-search" placeholder="Klas"
-                     data-bs-toggle="tooltip" data-bs-placement="top"
-                     title="Vul hier de klas code in om te kunnen filteren"/></th>
+          <th>Naam</th>
+          <th>Klas</th>
         </tr>
         </thead>
         <tbody>

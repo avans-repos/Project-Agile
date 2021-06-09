@@ -4,13 +4,16 @@
   /*!********************************!*\
   !*** ./resources/js/search.js ***!
   \********************************/
-  document.getElementById('searchInput').addEventListener('keyup', singleSearch);
+  document.querySelectorAll('[id=searchInput]').forEach(function (input) {
+    input.addEventListener('keyup', function () {
+      singleSearch(input);
+    });
+  });
 
-  function singleSearch() {
+  function singleSearch(input) {
     // Declare variables
-    var input = document.getElementById('searchInput');
     var filter = input.value.toUpperCase();
-    var table = document.getElementById('searchTable');
+    var table = input.nextElementSibling;
     var trs = table.tBodies[0].getElementsByTagName('tr'); // Loop through first tbody's rows
 
     for (var i = 0; i < trs.length; i++) {
@@ -23,9 +26,7 @@
         // if there's a match
         if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
           // show the row
-          trs[i].style.display = ''; // skip to the next row
-
-          continue;
+          trs[i].style.display = '';
         }
       }
     }

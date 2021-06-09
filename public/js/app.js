@@ -3852,6 +3852,53 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 window.stripHTML = function (str) {
   if (str === null || str === '') return str;else str = str.toString();
   return str.replace(/(<([^>]+)>|`)/ig, '');
+}
+window.makeSortable = function (table) {
+  var _table$getElementsByT, _tableHeadElements, _tableHeadElements2, _tableHeadElements3;
+
+  var tableHeadElements = (_table$getElementsByT = table.getElementsByTagName('thead')[0]) === null || _table$getElementsByT === void 0 ? void 0 : _table$getElementsByT.getElementsByTagName('tr')[0];
+  tableHeadElements = ((_tableHeadElements = tableHeadElements) === null || _tableHeadElements === void 0 ? void 0 : _tableHeadElements.getElementsByTagName('td').length) > 0 ? (_tableHeadElements2 = tableHeadElements) === null || _tableHeadElements2 === void 0 ? void 0 : _tableHeadElements2.getElementsByTagName('td') : (_tableHeadElements3 = tableHeadElements) === null || _tableHeadElements3 === void 0 ? void 0 : _tableHeadElements3.getElementsByTagName('th');
+  var tableData = {
+    language: {
+      lengthMenu: 'Laat _MENU_ velden per pagina zien',
+      zeroRecords: 'Er is niks gevonden.',
+      info: 'Pagina _PAGE_ van _PAGES_',
+      infoEmpty: 'Er is geen data beschikbaar',
+      infoFiltered: '(gefilterd uit _MAX_ velden)',
+      search: 'Zoeken',
+      sLoadingRecords: 'Laden..',
+      sProcessing: 'Even geduld aub..',
+      oPaginate: {
+        sFirst: 'Eerste',
+        sPrevious: 'Terug',
+        sNext: 'Volgende',
+        sLast: 'Laatste'
+      }
+    }
+  };
+
+  if (tableHeadElements && tableHeadElements.length > 0 && tableHeadElements[tableHeadElements.length - 1].innerText.toLowerCase() === 'acties') {
+    tableData.columnDefs = [{
+      orderable: false,
+      targets: tableHeadElements.length - 1
+    }];
+  }
+
+  $(table).DataTable(tableData);
+};
+
+window.makeAllSortable = function (parent) {
+  parent = parent || document.body;
+  var t = parent.getElementsByTagName('table'),
+      i = t.length;
+
+  while (--i >= 0) {
+    makeSortable(t[i]);
+  }
+};
+
+window.onload = function () {
+  makeAllSortable(document.getElementsByTagName('main')[0]);
 };
 
 /***/ }),

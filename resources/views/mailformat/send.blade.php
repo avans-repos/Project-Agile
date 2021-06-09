@@ -113,7 +113,7 @@
 
   <fieldset class="mt-5">
     <legend>Contacten toevoegen</legend>
-    <input type="text" id="filterContactInput" onkeyup="filterContacts()" placeholder="Zoek naar contacten" title="Typ een naam">
+    <input type="text" id="filterContactInput" class="rounded" onkeyup="filterContacts()" placeholder="Zoek naar contacten" title="Typ een naam">
     <ul class="list-group mt-2 mb-2 scroll max-h-96" id="contactList">
       @foreach($contacts as $contact)
         <li class="list-group-item list-group-item-action" id="{{$contact->id}}">
@@ -139,7 +139,6 @@
   <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
 </form>
   </div>
-
   <script>
 
       function showConfirm(){
