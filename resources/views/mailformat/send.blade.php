@@ -135,7 +135,7 @@
     </ul>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="mb-3">
     <legend>Projecten en projectgroepen toevoegen</legend>
     <div class="accordion" id="mail-project-accordion">
     @foreach($projects as $i=>$project)
