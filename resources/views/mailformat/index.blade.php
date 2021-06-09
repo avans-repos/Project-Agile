@@ -12,7 +12,6 @@
     </div>
     <div>
       <table class="table-layout-fixed table table-striped">
-
         <thead>
         <tr>
           <td>Naam</td>
@@ -61,7 +60,6 @@
                 </div>
                 @endrole
               </div>
-
             </td>
           </tr>
         @endforeach
