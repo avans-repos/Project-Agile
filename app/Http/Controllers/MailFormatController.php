@@ -42,10 +42,6 @@ class MailFormatController extends Controller
 
   public function sendMail(SendMailRequest $request)
   {
-    $request->validate([
-      'contact' => 'required',
-    ]);
-
     $contactIds = $request->get('contact');
     foreach ($contactIds as $contactId) {
       // Do not break for each loop if one email fails

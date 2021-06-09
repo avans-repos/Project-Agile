@@ -225,7 +225,7 @@
     </div>
   </fieldset>
 
-    <a class="btn btn-primary float-right" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
+    <a class="btn btn-primary float-right mb-3" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
     </form>
   </div>
 
