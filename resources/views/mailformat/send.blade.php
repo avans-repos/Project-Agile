@@ -92,12 +92,22 @@
         >{{old('body')}}</textarea>
       </div>
     </div>
+    <div class="col">
+      @error('body')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+    </div>
   </fieldset>
 
   <fieldset class="mt-5">
     <legend>Toegevoegde contacten</legend>
     <ul class="list-group mt-2 mb-2 scroll max-h-96" id="selectedContacts">
     </ul>
+    <div class="col">
+      @error('contact')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+    </div>
   </fieldset>
 
   <fieldset class="mt-5">
@@ -215,7 +225,7 @@
     </div>
   </fieldset>
 
-    <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
+    <a class="btn btn-primary float-right" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
     </form>
   </div>
 
