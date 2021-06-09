@@ -41,8 +41,6 @@ class ContactImport implements ToModel, WithHeadingRow
     ]);
 
     if ($row['bedrijfsnaam'] != null || $row['bedrijfsnaam'] != '') {
-
-
       $company = Company::where('name', $row['bedrijfsnaam'])->first();
 
       if ($company != null) {
@@ -54,7 +52,7 @@ class ContactImport implements ToModel, WithHeadingRow
         ]);
       } else {
         $company = Company::create([
-          'name' => $row['bedrijfsnaam']
+          'name' => $row['bedrijfsnaam'],
         ]);
 
         company_contact::create([
@@ -66,12 +64,10 @@ class ContactImport implements ToModel, WithHeadingRow
       }
     }
 
-
     return $contact;
   }
 
-  protected
-  function createAddressAndReturnId($addressArray)
+  protected function createAddressAndReturnId($addressArray)
   {
     $address = new Address([
       'streetname' => $addressArray['street'],
@@ -82,12 +78,7 @@ class ContactImport implements ToModel, WithHeadingRow
     ]);
     $returnId = null;
     // check if there is usable info in the result as the info is nullable
-    if (
-      $address->streetname != null &&
-      $address->number != null &&
-      $address->zipcode != null &&
-      $address->city != null
-    ) {
+    if ($address->streetname != null && $address->number != null && $address->zipcode != null && $address->city != null) {
       $existing = Address::where('zipcode', $address->zipcode)
         ->where('number', $address->number)
         ->where('city', $address->city)

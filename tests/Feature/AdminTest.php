@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Tests\CreatesApplication;
 use Tests\TestCase;
 
-
 class AdminTest extends TestCase
 {
   /**

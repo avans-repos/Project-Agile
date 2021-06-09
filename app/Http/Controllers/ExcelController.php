@@ -9,7 +9,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelController extends Controller
 {
-
   public function __construct()
   {
     $this->excel = new Excel();
@@ -23,8 +22,8 @@ class ExcelController extends Controller
   public function importFile(ExcelRequest $request)
   {
     try {
-      Excel::import(new ContactImport, $request->file('file'));
-    } catch(\Exception $e) {
+      Excel::import(new ContactImport(), $request->file('file'));
+    } catch (\Exception $e) {
       return back()->withErrors(['file' => 'Uw bestand heeft niet het correcte formaat. Controleer de eerste rij op spel- of typfouten.']);
     }
     return redirect(route('contact.index'));
