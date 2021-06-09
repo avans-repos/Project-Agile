@@ -12,7 +12,7 @@
     </div>
 
     <div class="table-responsive">
-      <table class="table table-striped" id="searchTable">
+      <table class="table table-striped">
 
         <thead>
         <tr>
@@ -64,5 +64,4 @@
       </table>
     </div>
   </div>
-  <script src="{{ mix('/js/search.js') }}"></script>
 @endsection

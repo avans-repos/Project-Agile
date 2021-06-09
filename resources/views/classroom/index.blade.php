@@ -12,14 +12,14 @@
     </div>
 
     <div class="table-responsive">
-      <table class="table table-striped" id="TABLE">
+      <table class="table table-striped">
 
         <thead>
         <tr>
           <td class="w-50">Klas</td>
           <td>Startjaar</td>
           <td class="w-25">Studenten</td>
-          <td id="acties">Acties</td>
+          <td>Acties</td>
         </tr>
         </thead>
         <tbody>
@@ -64,5 +64,4 @@
       </table>
     </div>
   </div>
-  <script src="{{ mix('/js/search.js') }}"></script>
 @endsection
