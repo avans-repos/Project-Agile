@@ -43,7 +43,10 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 window.makeSortable = function (table) {
   let tableHeadElements = table.getElementsByTagName('thead')[0]?.getElementsByTagName('tr')[0];
-  tableHeadElements = tableHeadElements?.getElementsByTagName('td').length > 0 ? tableHeadElements?.getElementsByTagName('td') : tableHeadElements?.getElementsByTagName('th');
+  tableHeadElements =
+    tableHeadElements?.getElementsByTagName('td').length > 0
+      ? tableHeadElements?.getElementsByTagName('td')
+      : tableHeadElements?.getElementsByTagName('th');
 
   let tableData = {
     language: {
@@ -63,7 +66,11 @@ window.makeSortable = function (table) {
       },
     },
   };
-  if (tableHeadElements && tableHeadElements.length > 0 && tableHeadElements[tableHeadElements.length - 1].innerText.toLowerCase() === 'acties') {
+  if (
+    tableHeadElements &&
+    tableHeadElements.length > 0 &&
+    tableHeadElements[tableHeadElements.length - 1].innerText.toLowerCase() === 'acties'
+  ) {
     tableData.columnDefs = [{ orderable: false, targets: tableHeadElements.length - 1 }];
   }
   $(table).DataTable(tableData);
