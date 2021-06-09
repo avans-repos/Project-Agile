@@ -1,13 +1,34 @@
-document.getElementById('searchInput').addEventListener('keyup', function () {
-  for (
-    var e = document.getElementById('searchInput').value.toUpperCase(),
-      t = document.getElementById('searchTable').tBodies[0].getElementsByTagName('tr'),
-      n = 0;
-    n < t.length;
-    n++
-  ) {
-    var a = t[n].getElementsByTagName('td');
-    t[n].style.display = 'none';
-    for (var d = 0; d < a.length; d++) a[d].innerHTML.toUpperCase().indexOf(e) > -1 && (t[n].style.display = '');
+/******/ (() => {
+  // webpackBootstrap
+  var __webpack_exports__ = {};
+  /*!********************************!*\
+  !*** ./resources/js/search.js ***!
+  \********************************/
+  document.querySelectorAll('[id=searchInput]').forEach(function (input) {
+    input.addEventListener('keyup', function () {
+      singleSearch(input);
+    });
+  });
+
+  function singleSearch(input) {
+    // Declare variables
+    var filter = input.value.toUpperCase();
+    var table = input.nextElementSibling;
+    var trs = table.tBodies[0].getElementsByTagName('tr'); // Loop through first tbody's rows
+
+    for (var i = 0; i < trs.length; i++) {
+      // define the row's cells
+      var tds = trs[i].getElementsByTagName('td'); // hide the row
+
+      trs[i].style.display = 'none'; // loop through row cells
+
+      for (var i2 = 0; i2 < tds.length; i2++) {
+        // if there's a match
+        if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+          // show the row
+          trs[i].style.display = '';
+        }
+      }
+    }
   }
 });
