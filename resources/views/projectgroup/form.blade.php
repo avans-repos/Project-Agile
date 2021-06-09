@@ -85,7 +85,7 @@
                   <div class="d-flex justify-content-between">
                     <div class="d-inline-flex">
                       <span
-                        id="addedContactName-{{$assignedContact->id}}">{{$assignedContact->firstname . ' ' . $assignedContact->insertion . ' ' . $assignedContact->lastname}}</span>
+                        id="addedContactName-{{$assignedContact->id}}">{{$assignedContact->getName()}}</span>
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-danger" onclick="deleteContact({{$assignedContact->id}})">Verwijderen</a>
