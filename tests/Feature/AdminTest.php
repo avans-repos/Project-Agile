@@ -9,7 +9,9 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 use Symfony\Component\HttpFoundation\Request;
+use Tests\CreatesApplication;
 use Tests\TestCase;
+
 
 class AdminTest extends TestCase
 {
@@ -17,6 +19,9 @@ class AdminTest extends TestCase
    * @var User
    */
   private $user;
+
+  use CreatesApplication;
+  use RefreshDatabase;
 
   public function setUp(): void
   {

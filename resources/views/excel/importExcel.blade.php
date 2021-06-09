@@ -12,6 +12,11 @@
           @csrf
           <div class="col-sm-6 mb-3">
             <input type="file" name="file" class="form-control">
+            <div class="col mt-2">
+              @error('file')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+            </div>
           </div>
           <button class="btn btn-primary">Importeer Excel bestand</button>
         </form>

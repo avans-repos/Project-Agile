@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\company_contact;
 use App\Models\contact\Contact;
 use Carbon\Carbon;
+use ErrorException;
 use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -40,7 +41,10 @@ class ContactImport implements ToModel, WithHeadingRow
     ]);
 
     if ($row['bedrijfsnaam'] != null || $row['bedrijfsnaam'] != '') {
-      $company = Company::where('name', '==', $row['bedrijfsnaam'])->first();
+
+
+      $company = Company::where('name', $row['bedrijfsnaam'])->first();
+
       if ($company != null) {
         company_contact::create([
           'company_id' => $company->id,
@@ -61,6 +65,7 @@ class ContactImport implements ToModel, WithHeadingRow
         ]);
       }
     }
+
 
     return $contact;
   }

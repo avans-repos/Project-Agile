@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6801c60-3755-412f-ac1e-effa5c65cc13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/excel/importExcel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Project-Agile.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project-Agile.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_08_114054_create_addresses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_08_114054_create_addresses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_08_114055_create_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_08_114055_create_companies_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contact/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExcelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExcelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ExcelRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ExcelRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Imports/ContactImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/ContactImport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/company/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/company/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/excel/importExcel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/excel/importExcel.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/AdminTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AdminTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -362,6 +360,7 @@
       <workItem from="1621594444169" duration="3522000" />
       <workItem from="1623153616594" duration="2130000" />
       <workItem from="1623155782107" duration="6425000" />
+      <workItem from="1623262504625" duration="6973000" />
     </task>
     <servers />
   </component>

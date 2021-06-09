@@ -24,7 +24,7 @@ class ExcelRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'file' => 'required|mimes:xlsx'
         ];
     }
 }
