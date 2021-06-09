@@ -64,18 +64,18 @@ class Contact extends Model
   public function getDeleteText(): string
   {
     $text = '';
-    $text .= '<br>Weet u zeker dat u "' . $this->getName() . '" wilt verwijderen' ;
+    $text .= '<br>Weet u zeker dat u "' . $this->getName() . '" wilt verwijderen';
 
     $companies = $this->companies()->get();
-        if (count($companies)>0){
-          $text .= "<br>Er zijn bedrijven die aan deze contactpersoon zijn gekoppeld: ";
-          foreach ($companies as $index => $company){
-            if ($index !== 0){
-              $text .= ',';
-            }
-            $text .= ' ' . $company->company();
-          }
+    if (count($companies) > 0) {
+      $text .= '<br>Er zijn bedrijven die aan deze contactpersoon zijn gekoppeld: ';
+      foreach ($companies as $index => $company) {
+        if ($index !== 0) {
+          $text .= ',';
         }
+        $text .= ' ' . $company->company();
+      }
+    }
     return $text;
   }
   public function companies()

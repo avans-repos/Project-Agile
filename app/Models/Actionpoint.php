@@ -34,6 +34,6 @@ class Actionpoint extends Model
   }
   public function getDeleteText(): string
   {
-    return 'Weet u zeker dat u "' . $this->title . '" wilt verwijderen<br>' ;
+    return 'Weet u zeker dat u "' . $this->title . '" wilt verwijderen<br>';
   }
 }

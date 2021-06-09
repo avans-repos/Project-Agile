@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/ProjectTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ProjectTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +214,7 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.ProjectTest.test_getDeleteText">
+  <component name="RunManager" selected="npm.format">
     <configuration name="ProjectTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Unit\ProjectTest" file="$PROJECT_DIR$/tests/Unit/ProjectTest.php" scope="Class" />
       <method v="2" />
@@ -260,10 +259,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.format" />
         <item itemvalue="PHPUnit.ProjectTest.test_getDeleteText" />
         <item itemvalue="PHPUnit.ProjectTest" />
         <item itemvalue="npm.dev" />
-        <item itemvalue="npm.format" />
         <item itemvalue="npm.production" />
       </list>
     </recent_temporary>

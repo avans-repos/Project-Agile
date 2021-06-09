@@ -13,6 +13,6 @@ class Mail_format extends Model
 
   public function getDeleteText(): string
   {
-    return 'Weet u zeker dat u "' . $this->name . '" wilt verwijderen<br>' ;
+    return 'Weet u zeker dat u "' . $this->name . '" wilt verwijderen<br>';
   }
 }

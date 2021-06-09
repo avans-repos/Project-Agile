@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class ActionpointTest extends TestCase
 {
-
   use RefreshDatabase;
 
   public function test_getDeleteText()

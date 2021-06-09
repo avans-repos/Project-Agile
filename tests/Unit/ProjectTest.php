@@ -34,5 +34,4 @@ class ProjectTest extends TestCase
     $newProject->name = 'test1';
     $this->assertEquals('Weet u zeker dat u "test1" wilt verwijderen<br>', $newProject->getDeleteText());
   }
-
 }
