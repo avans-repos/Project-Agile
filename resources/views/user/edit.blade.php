@@ -52,7 +52,7 @@
           @endif
 
           <legend>Rollen aanpassen</legend>
-          <select class="form-select overflow-auto" name="roles[]" multiple>
+          <select class="form-select overflow-auto" name="roles[]" multiple required>
             @foreach($roles as $role)
                 <option
                   value="{{$role->id}}"
