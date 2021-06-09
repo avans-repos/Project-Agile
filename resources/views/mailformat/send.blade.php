@@ -6,8 +6,6 @@
   @csrf
   <fieldset class="mb-3">
     <legend  class="mb-3">E-mail Template</legend>
-    <input class="form-control rounded w-25 my-4" type="text" id="searchInput"
-           placeholder="Zoeken..."/>
     <table class="table-layout-fixed table table-striped">
 
       <thead>
@@ -141,7 +139,6 @@
   <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
 </form>
   </div>
-  <script src="{{ mix('/js/search.js') }}"></script>
   <script>
 
       function showConfirm(){

@@ -42,14 +42,16 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 });
 
 window.makeSortable = function (table) {
-  const tdElements = table.getElementsByTagName('thead')[0]?.getElementsByTagName('tr')[0]?.getElementsByTagName('td');
+  let tableHeadElements = table.getElementsByTagName('thead')[0]?.getElementsByTagName('tr')[0];
+  tableHeadElements = tableHeadElements?.getElementsByTagName('td').length > 0 ? tableHeadElements?.getElementsByTagName('td') : tableHeadElements?.getElementsByTagName('th');
+
   let tableData = {
     language: {
       lengthMenu: 'Laat _MENU_ velden per pagina zien',
       zeroRecords: 'Er is niks gevonden.',
       info: 'Pagina _PAGE_ van _PAGES_',
       infoEmpty: 'Er is geen data beschikbaar',
-      infoFiltered: '(gefiltert van _MAX_ totale velden)',
+      infoFiltered: '(gefilterd uit _MAX_ velden)',
       search: 'Zoeken',
       sLoadingRecords: 'Laden..',
       sProcessing: 'Even geduld aub..',
@@ -61,8 +63,8 @@ window.makeSortable = function (table) {
       },
     },
   };
-  if (tdElements && tdElements[tdElements.length - 1].innerText.toLowerCase() === 'acties') {
-    tableData.columnDefs = [{ orderable: false, targets: tdElements.length - 1 }];
+  if (tableHeadElements && tableHeadElements.length > 0 && tableHeadElements[tableHeadElements.length - 1].innerText.toLowerCase() === 'acties') {
+    tableData.columnDefs = [{ orderable: false, targets: tableHeadElements.length - 1 }];
   }
   $(table).DataTable(tableData);
 };
@@ -75,5 +77,5 @@ window.makeAllSortable = function (parent) {
 };
 
 window.onload = function () {
-  makeAllSortable(document.rootElement);
+  makeAllSortable(document.getElementsByTagName('main')[0]);
 };
