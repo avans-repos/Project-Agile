@@ -122,7 +122,7 @@
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-primary"
-                         onclick="addContact({{$newContact->id}}, '{{$newContact->firstname . ' ' . $newContact->insertion . ' ' . $newContact->lastname}}')">Toevoegen</a>
+                         onclick="addContact({{$newContact->id}}, `{{$newContact->firstname . ' ' . $newContact->insertion . ' ' . $newContact->lastname}}`)">Toevoegen</a>
                     </div>
                   </div>
                 </div>
@@ -140,14 +140,6 @@
       </a>
 
     </fieldset>
-
-
-
-
-
-
-
-
 
     <fieldset>
       <legend>Projecten</legend>
@@ -195,7 +187,7 @@
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-primary"
-                         onclick="addProject({{$newProject->id}}, '{{$newProject->name}}')">Toevoegen</a>
+                         onclick="addProject({{$newProject->id}}, `{{$newProject->name}}`)">Toevoegen</a>
                     </div>
                   </div>
                 </div>
@@ -285,6 +277,7 @@
   window.onload = function (e) {
     loadFromSessionStorage();
     filterContacts();
+    filterProjects();
     displayNotFoundAddedContactsText();
     displayNotFoundAddedProjectsText();
   }

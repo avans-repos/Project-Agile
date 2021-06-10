@@ -234,8 +234,8 @@
 
   window.onload = function (e) {
     loadFromLocalStorage();
-    filterProjectGroups();
     displayNotFoundAddedGroupsText();
+    filterProjectGroups();
   }
 </script>
 

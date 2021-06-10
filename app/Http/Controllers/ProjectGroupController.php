@@ -130,11 +130,11 @@ class ProjectGroupController extends Controller
 
     $newProjects = $request->all()['project'] ?? [];
 
+    $projectGroup->save();
+
     foreach ($newProjects as $newProject) {
       $projectGroup->projects()->attach($newProject);
     }
-
-    $projectGroup->save();
 
     // fill in all the users (students and teachers)
     if (isset($request->assignedUsers)) {
@@ -156,7 +156,10 @@ class ProjectGroupController extends Controller
 
     $newContacts = Contact::all()->wherenotin('id', $contacts->pluck('id'));
 
+    $projects = $projectgroup->projects()->get();
+
     return view('projectgroup.show')
+      ->with('projects', $projects)
       ->with('projectgroup', $projectgroup)
       ->with('newContacts', $newContacts);
   }
@@ -197,19 +200,22 @@ class ProjectGroupController extends Controller
 
     $assignedContacts = $projectgroup->contacts()->get();
 
-    $newContacts = Contact::all()->whereNotIn('id', $assignedContacts->pluck('id'));
+    $newContacts = Contact::all();
 
     $assignedUsers = $projectgroup
       ->users()
-      ->get()
-      ->pluck('id')
-      ->toArray();
+      ->get();
+
+    $assignedProjects = $projectgroup->projects()->get();
+
+    $newProjects = Project::all();
 
     return view('projectgroup.manage')
       ->with('projectgroup', $projectgroup)
       ->with('teachers', User::role('teacher')->get())
       ->with('students', User::role('student')->get())
-      ->with('projects', Project::all())
+      ->with('newProjects', $newProjects)
+      ->with('assignedProjects', $assignedProjects)
       ->with('redirectUrl', null)
       ->with('assignedUsers', $assignedUsers)
       ->with('assignedContacts', $assignedContacts)
@@ -222,7 +228,7 @@ class ProjectGroupController extends Controller
    *
    * @param ProjectgroupRequest $request
    * @param ProjectGroup $projectgroup
-   * @return Response
+   * @return RedirectResponse
    */
   public function update(ProjectgroupRequest $request, Projectgroup $projectgroup)
   {
@@ -243,14 +249,14 @@ class ProjectGroupController extends Controller
 
     $projectgroup->name = $request->name;
 
-    $projectgroup->projects()->sync();
+    $projectgroup->projects()->sync([]);
 
     $newProjects = $request->all()['project'] ?? [];
     foreach ($newProjects as $newProject) {
       $projectgroup->projects()->attach($newProject);
     }
 
-    $projectgroup->save();
+    $projectgroup->update();
 
     return redirect()->route('projectgroup.index');
   }
