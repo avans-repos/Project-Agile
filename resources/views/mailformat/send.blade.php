@@ -6,6 +6,13 @@
   @csrf
   <fieldset class="mb-3">
     <legend  class="mb-3">E-mail Template</legend>
+    <div class="mb-1">
+      <div class="col">
+        @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
     <table class="table-layout-fixed table table-striped">
 
       <thead>
@@ -62,13 +69,6 @@
     </div>
     <div class="mb-1">
       <div class="col">
-        @error('name')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-      </div>
-    </div>
-    <div class="mb-1">
-      <div class="col">
         <div class="mt-3">
           <div class="d-flex align-items-end justify-content-between mb-1">
             <label for="body" class="form-label mb-1">Inhoud *</label>
@@ -91,17 +91,16 @@
                   id="mail-body" placeholder="Inhoud van de mail." rows="10" required
         >{{old('body')}}</textarea>
       </div>
-      <div class="col">
-        @error('body')
+    </div>
+    <div class="col">
+      @error('body')
         <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-      </div>
+      @enderror
     </div>
   </fieldset>
 
   <fieldset class="mt-5">
     <legend>Toegevoegde contacten</legend>
-
     <ul class="list-group mt-2 mb-2 scroll max-h-96" id="selectedContacts">
     </ul>
     <div class="col">
@@ -113,7 +112,7 @@
 
   <fieldset class="mt-5">
     <legend>Contacten toevoegen</legend>
-    <input type="text" id="filterContactInput" onkeyup="filterContacts()" placeholder="Zoek naar contacten" title="Typ een naam">
+    <input type="text" id="filterContactInput" class="rounded" onkeyup="filterContacts()" placeholder="Zoek naar contacten" title="Typ een naam">
     <ul class="list-group mt-2 mb-2 scroll max-h-96" id="contactList">
       @foreach($contacts as $contact)
         <li class="list-group-item list-group-item-action" id="{{$contact->id}}">
@@ -127,7 +126,7 @@
                 </div>
               <div class="col-md-auto"></div>
               <div class="col col-lg-2">
-                <a class="col-sm btn btn-primary" onclick="addContact({{$contact->id}}, '{{$contact->getName()}}', '{{$contact->email}}')">Toevoegen</a>
+                <a class="col-sm btn btn-primary" onclick="addContact({{$contact->id}}, `{{e($contact->getName())}}`, `{{e($contact->email)}}`)">Toevoegen</a>
               </div>
             </div>
           </div>
@@ -136,10 +135,110 @@
     </ul>
   </fieldset>
 
-  <a class="btn btn-primary" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
-</form>
+  <fieldset class="mb-3">
+    <legend>Projecten en projectgroepen toevoegen</legend>
+    <div class="accordion" id="mail-project-accordion">
+    @foreach($projects as $i=>$project)
+        <div class="accordion-item">
+          <h2 class="accordion-header mail-accordion">
+            <button type="button"
+                    class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mail-project-accordion .accordion-item:nth-child({{$i + 1}}) .accordion-collapse"
+                    aria-expanded="false">
+              {{$project->name}}
+            </button>
+
+            <button type="button"
+                    class="col col-lg-3 btn btn-primary"
+                    onclick="addContacts(
+                    {{
+                      // Get all project groups and map each project group's contact
+                      $project->projectGroups()->get()->map(
+                        function($projectGroup) {
+                          return  $projectGroup->contacts()->get()->map(function($contact) {
+                            // Map each contact to the expected values (this returns an array)
+                            return [
+                              'id' => $contact->id,
+                              'name' => $contact->getName(),
+                              'email' => $contact->email
+                            ];
+                          });
+                      // Flatten the array as it would normally return contacts in one array per project (i.e. a 2 dimensional array)
+                      })->flatten(1)
+                    }})">
+              Project toevoegen
+            </button>
+          </h2>
+          <div class="accordion-collapse collapse" data-bs-parent="#mail-project-accordion">
+            <div class="accordion-body">
+                @foreach($project->projectgroups()->get() as $projectGroup)
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col fw-bold">
+                        <span>{{$projectGroup->name}}</span>
+                      </div>
+                      <div class="col-md-auto"></div>
+                      <div class="col col-lg-3">
+                        <button type="button"
+                                class="btn btn-outline-secondary float-right"
+                                onclick="addContacts(
+                                  {{
+                                    $projectGroup->contacts()->get()->map(function($contact) {
+                                        return [
+                                            'id' => $contact->id,
+                                            'name' => $contact->getName(),
+                                            'email' => $contact->email
+                                        ];
+                                    })
+                                  }})">
+                          Projectgroep toevoegen
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    @foreach($projectGroup->contacts()->get() as $contact)
+                      <div class="row">
+                        <div class="col">
+                          <span>{{$contact->getName()}}</span>
+                        </div>
+                        <div class="col">
+                          <span>{{$contact->email}}</span>
+                        </div>
+                        <div class="col-md-auto"></div>
+                        <div class="col col-lg-3">
+                          <button type="button" class="btn btn-outline-secondary float-right" onclick="addContact({{$contact->id}}, '{{$contact->getName()}}', '{{$contact->email}}')">Contact toevoegen</button>
+                        </div>
+                      </div>
+                      <br>
+                    @endforeach
+                  </li>
+                </ul>
+                <br>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endforeach
+    </div>
+  </fieldset>
+
+    <a class="btn btn-primary float-right mb-3" type="submit" href="#" onclick="showConfirm()" >Versturen</a>
+    </form>
   </div>
 
+
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+    <div id="mailContactConfirmationToast" class="toast hide bg-white" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">De contacten zijn toegevoegd</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
   <script>
 
       function showConfirm(){
@@ -180,32 +279,42 @@
       document.getElementById('mail-body').value = body;
     }
 
-    function addContact(contactId, contactName, email){
+    function addContacts(contacts) {
+      contacts.forEach(contact => addContact(contact.id, contact.name, contact.email));
 
-    let contactTemplate = `
-            <li class="list-group-item list-group-item-action" id="selectedContact-${contactId}">
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <span id='recipientName'>${contactName}</span>
-              </div>
-              <div class="col">
-             <span id='recipientMail'>${email}</span>
-              </div>
-              <div class="col-md-auto"></div>
-              <div class="col col-lg-2">
-                <a class="col-sm btn btn-danger" onclick="deleteContact(${contactId})">Verwijderen</a>
-                <input name="contact[]" value="${contactId}" hidden>
+      const toastElement = new bootstrap.Toast(document.getElementById('mailContactConfirmationToast'));
+      toastElement.show();
+    }
+
+    function addContact(contactId, contactName, email){
+      // Check if contact has already been added and return if true
+      const selectedIds = [...document.querySelectorAll('#selectedContacts input')].map(elem => elem.value - 0);
+      if(selectedIds.includes(contactId)) return;
+
+      let contactTemplate = `
+              <li class="list-group-item list-group-item-action" id="selectedContact-${contactId}">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <span id='recipientName'>${contactName}</span>
+                </div>
+                <div class="col">
+               <span id='recipientMail'>${email}</span>
+                </div>
+                <div class="col-md-auto"></div>
+                <div class="col col-lg-2">
+                  <a class="col-sm btn btn-danger" onclick="deleteContact(${contactId})">Verwijderen</a>
+                  <input name="contact[]" value="${contactId}" hidden>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-        `;
+          </li>
+          `;
 
-    const contactDiv = document.getElementById('selectedContacts');
-      contactDiv.innerHTML += contactTemplate;
+      const contactDiv = document.getElementById('selectedContacts');
+        contactDiv.innerHTML += contactTemplate;
 
-    filterContacts();
+      filterContacts();
     }
 
     function deleteContact(contactId){
@@ -229,7 +338,5 @@
         }
       }
     }
-
-
   </script>
 @endsection

@@ -103,7 +103,7 @@
                   </div>
                   <div class="d-inline-flex">
                     <a class="col-sm btn btn-primary"
-                       onclick="addProjectGroup({{$newProjectGroup->id}}, '{{$newProjectGroup->name}}')">Toevoegen</a>
+                       onclick="addProjectGroup({{$newProjectGroup->id}}, `{{e($newProjectGroup->name)}}`)">Toevoegen</a>
                   </div>
                 </div>
               </div>

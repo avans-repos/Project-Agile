@@ -88,7 +88,6 @@
         <button onClick="showTable()" class="btn btn-primary mt-4">Contactpersoon toevoegen</button>
 
         <div class="mt-4 d-none" id="add-contact-table">
-          <input class="form-control rounded w-25 my-4" type="text" id="searchInput" placeholder="Zoeken..."/>
           <table class="table" id="searchTable">
             <thead>
             <tr>
@@ -152,6 +151,4 @@
         }
       }
     </script>
-
-    <script src="{{ asset('js/search.js')}}"></script>
 @endsection

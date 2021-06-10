@@ -11,6 +11,7 @@
           <a class="btn btn-primary" href="{{ route('actionpoints.create') }}">Nieuw actiepunt aanmaken</a>
         </div>
       </div>
+      <div class="table-responsive">
       <table class="table table-striped mt-3">
         <thead>
         <tr>
@@ -62,7 +63,6 @@
       </table>
 
       <h1 class="mt-5 fs-1">Mijn afgeronde actiepunten</h1>
-
       <table class="mb-5 table table-striped mt-3">
         <thead>
         <tr>
