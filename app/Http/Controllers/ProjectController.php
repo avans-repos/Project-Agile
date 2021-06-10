@@ -74,6 +74,8 @@ class ProjectController extends Controller
 
     $assignedProjectGroups = $project->projectgroups()->get();
 
+    dd(json_encode($assignedProjectGroups));
+
     return view('project.manage')
       ->with('project', $project)
       ->with('newProjectGroups', $newProjectGroups)
@@ -94,13 +96,15 @@ class ProjectController extends Controller
     $project->update($request->all());
     $newProjectGroups = $request->all()['projectGroup'] ?? [];
 
-    // remove all references to $project in all the ProjectGroups
-    $project->projectgroups()->sync([]);
+//    // remove all references to $project in all the ProjectGroups
+//    $project->projectgroups()->sync([]);
+//
+//    // add the given references to $project in all the ProjectGroups
+//    foreach ($newProjectGroups as $newProjectGroup) {
+//      $project->projectgroups()->attach($newProjectGroup);
+//    }
 
-    // add the given references to $project in all the ProjectGroups
-    foreach ($newProjectGroups as $newProjectGroup) {
-      $project->projectgroups()->attach($newProjectGroup);
-    }
+    $project->projectgroups()->sync($newProjectGroups);
 
     return redirect()->route('project.index');
   }

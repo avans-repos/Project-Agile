@@ -15,10 +15,16 @@ class ProjectgroupHasProject extends Migration
     {
         Schema::create('projectgroup_project', function (Blueprint $table) {
             $table->unsignedBigInteger('projectgroupid');
-            $table->foreign('projectgroupid')->references('id')->on('project_groups');
+            $table->foreign('projectgroupid')
+              ->references('id')
+              ->on('project_groups')
+              ->onDelete('cascade');
 
             $table->unsignedBigInteger('projectid');
-            $table->foreign('projectid')->references('id')->on('projects');
+            $table->foreign('projectid')
+              ->references('id')
+              ->on('projects')
+              ->onDelete('cascade');
         });
     }
 

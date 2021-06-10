@@ -296,6 +296,17 @@
     }
   }
 
+  function removeAllProjects() {
+    let addedProjectObjects = document.getElementById('selectedProjects').getElementsByTagName('li');
+    while(addedProjectObjects.length>0) {
+      addedProjectObjects = document.getElementById('selectedContacts').getElementsByTagName('li');
+      for (let i = 0; i < addedProjectObjects.length; i++) {
+        const id = addedProjectObjects[i].id.split('selectedProject-')[1];
+        deleteProject(id);
+      }
+    }
+  }
+
   function saveToSessionStorage() {
     let storageObject = {
       name: document.getElementById('name').value,
@@ -311,6 +322,7 @@
     let storageObject = sessionStorage.getItem('projectGroupFormData');
     if (!storageObject) return;
     removeAllContacts();
+    removeAllProjects();
     storageObject = JSON.parse(storageObject);
 
     // contacts
