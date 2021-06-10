@@ -16,6 +16,11 @@
             </svg>
           </li>
         </a>
+        @role('Admin')
+          <a href="{{ route('user.index') }}">
+            <li>Gebruikers</li>
+          </a>
+        @endrole
     </ul>
 
     <a class="avans-menu-user avans-flex-center" id="avans-user-dropdown-button" href="#">
