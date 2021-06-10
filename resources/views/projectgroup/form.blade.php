@@ -46,12 +46,8 @@
         <thead>
         <tr>
           <th>Selecteren</th>
-          <th><input type="text" id="student-search" placeholder="Naam"
-                     data-bs-toggle="tooltip" data-bs-placement="top"
-                     title="Vul hier de naam in om te kunnen filteren"/></th>
-          <th><input type="text" id="class-search" placeholder="Klas"
-                     data-bs-toggle="tooltip" data-bs-placement="top"
-                     title="Vul hier de klas code in om te kunnen filteren"/></th>
+          <th>Naam</th>
+          <th>Klas</th>
         </tr>
         </thead>
         <tbody>
@@ -89,7 +85,7 @@
                   <div class="d-flex justify-content-between">
                     <div class="d-inline-flex">
                       <span
-                        id="addedContactName-{{$assignedContact->id}}">{{$assignedContact->firstname . ' ' . $assignedContact->insertion . ' ' . $assignedContact->lastname}}</span>
+                        id="addedContactName-{{$assignedContact->id}}">{{$assignedContact->getName()}}</span>
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-danger" onclick="deleteContact({{$assignedContact->id}})">Verwijderen</a>
@@ -118,11 +114,11 @@
                 <div class="container">
                   <div class="d-flex justify-content-between">
                     <div class="d-inline-flex">
-                      <span>{{$newContact->firstname . ' ' . $newContact->insertion . ' ' . $newContact->lastname}}</span>
+                      <span>{{$newContact->getName()}}</span>
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-primary"
-                         onclick="addContact({{$newContact->id}}, '{{$newContact->firstname . ' ' . $newContact->insertion . ' ' . $newContact->lastname}}')">Toevoegen</a>
+                         onclick="addContact({{$newContact->id}}, `{{e($newContact->getName())}}`)">Toevoegen</a>
                     </div>
                   </div>
                 </div>

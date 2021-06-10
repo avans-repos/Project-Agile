@@ -3,6 +3,17 @@
 @import 'tailwindcss/utilities';
 @import './avans.css';
 
+/* Mail page styling */
+#mail-project-accordion .mail-accordion {
+  display: flex;
+}
+#mail-project-accordion .accordion-header button.btn {
+  margin: 1rem 2.5rem 1rem 1.25rem;
+}
+#mail-project-accordion button.btn {
+  width: 13em;
+}
+
 .btn-danger {
   background-color: rgb(198, 0, 42) !important;
   border-color: rgb(198, 0, 42) !important;
