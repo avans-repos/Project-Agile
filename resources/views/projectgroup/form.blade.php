@@ -199,8 +199,8 @@
 
 <script>
   // Add eventlisteners
-  document.getElementById("student-search").addEventListener("keyup", search);
-  document.getElementById("class-search").addEventListener("keyup", search);
+  // document.getElementById("student-search").addEventListener("keyup", search);
+  // document.getElementById("class-search").addEventListener("keyup", search);
 
   // Session storage manager
   function clearSessionData() {
@@ -267,14 +267,7 @@
   const projectDiv = document.getElementById('selectedProjects');
   const addedProjectsDiv = document.getElementById('addedProjects');
 
-  // On load triggers
-  window.onload = function (e) {
-    loadFromSessionStorage();
-    filterContacts();
-    filterProjects();
-    displayNotFoundAddedContactsText();
-    displayNotFoundAddedProjectsText();
-  }
+
 
   // Contact logic
   function displayNotFoundAddedContactsText() {
@@ -483,5 +476,14 @@
     });
 
     return studentIds;
+  }
+
+  // On load triggers
+  window.onload = function (e) {
+    loadFromSessionStorage();
+    filterContacts();
+    filterProjects();
+    displayNotFoundAddedContactsText();
+    displayNotFoundAddedProjectsText();
   }
 </script>
