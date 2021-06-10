@@ -105,12 +105,14 @@ h1 {
   font-size: 5em;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
+  transition: font-size 0.5s;
 }
 
 h2 {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 1.8em;
+  transition: font-size 0.5s;
 }
 
 .avans-margin-large {
@@ -158,6 +160,7 @@ h2 {
 .avans-scrollbox {
   height: 900px;
   overflow-y: scroll;
+  transition: height 0.5s;
 }
 
 @media only screen and (max-width: 1920px) {
@@ -171,6 +174,18 @@ h2 {
 
   .avans-menu {
     font-size: 1.1em;
+  }
+
+  h1 {
+    font-size: 4em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  .avans-scrollbox {
+    height: 650px;
   }
 }
 

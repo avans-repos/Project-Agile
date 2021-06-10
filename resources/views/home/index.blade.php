@@ -54,7 +54,7 @@
     <div class="avans-scrollbox my-4 p-3 bg-white rounded shadow-sm col-sm ms-5">
       <div class="d-flex justify-content-between align-items-center w-100 border-bottom border-gray pb-2 mb-0">
         <h6 class="">Mijn Actiepunten | {{count($actionpoints)}}</h6>
-        <a type="button" class="btn btn-primary" href="{{route('actionpoints.index')}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Druk op deze knop om een nieuw actiepunt aan te maken">Actiepunt aanmaken ></a>
+        <a type="button" class="ml-20 btn btn-primary" href="{{route('actionpoints.index')}}" data-bs-toggle="tooltip" data-bs-placement="right" title="Druk op deze knop om een nieuw actiepunt aan te maken">Actiepunt aanmaken ></a>
       </div>
       @foreach($actionpoints as $actionpoint)
         <div class="media text-muted pt-3">
