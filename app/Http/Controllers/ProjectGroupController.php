@@ -202,9 +202,7 @@ class ProjectGroupController extends Controller
 
     $newContacts = Contact::all();
 
-    $assignedUsers = $projectgroup
-      ->users()
-      ->get();
+    $assignedUsers = $projectgroup->users()->get();
 
     $assignedProjects = $projectgroup->projects()->get();
 
