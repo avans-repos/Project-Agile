@@ -180,5 +180,23 @@
         @endforeach
       </div>
 
+      <h2 class="fs-2 my-4">Projecten</h2>
+      <table class="table">
+        <thead>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Deadline</th>
+        </thead>
+        <tbody>
+          @foreach($projects as $project)
+          <tr>
+            <td>{{ $project->name}}</td>
+            <td>{{ $project->description}}</td>
+            <td>{{ $project->deadline}}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+
     </div>
 @endsection

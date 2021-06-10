@@ -6,6 +6,7 @@ use App\Http\Requests\ContactRequest;
 use App\Models\Address;
 use App\Models\Company;
 use App\Models\company_contact;
+use App\Models\Project;
 use App\Models\contact\Contact;
 use App\Models\contact\ContactType;
 use App\Models\contact\Gender;
@@ -115,7 +116,21 @@ class ContactController extends Controller
    */
   public function show(Contact $contact)
   {
-    return view('contact.show')->with('contact', $contact);
+    $projects = [];
+
+    foreach ($contact->projectGroups()->get() as $key => $value) {
+      foreach ($projects as $project) {
+        if ($project->id == $value->project) {
+          continue 2;
+        }
+      }
+
+      array_push($projects, Project::where('id', $value->project)->first());
+    }
+
+    return view('contact.show')
+      ->with('contact', $contact)
+      ->with('projects', $projects);
   }
 
   /**
