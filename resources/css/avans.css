@@ -2,6 +2,7 @@
 
 .avans-menu-logo {
   height: 45px;
+  max-width: initial;
 }
 
 .avans-menu {
@@ -14,6 +15,7 @@
   font-size: 1.2em;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+  transition: font-size 0.5s;
 }
 
 .avans-menu ul {
@@ -54,6 +56,14 @@
 }
 
 .avans-menu-user {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0px 100px;
+}
+
+.avans-menu-logo-container {
   text-decoration: none;
   color: white;
   display: flex;
@@ -148,4 +158,36 @@ h2 {
 .avans-scrollbox {
   height: 900px;
   overflow-y: scroll;
+}
+
+@media only screen and (max-width: 1920px) {
+  .avans-menu-user {
+    padding: 0px 100px 0px 20px;
+  }
+
+  .avans-menu-logo-container {
+    padding: 0px 20px 0px 100px;
+  }
+
+  .avans-menu {
+    font-size: 1.1em;
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .avans-menu-user {
+    padding: 0px 30px;
+  }
+
+  .avans-menu-logo-container {
+    padding: 0px 20px;
+  }
+
+  .avans-menu ul a {
+    padding: 25px 10px;
+  }
+
+  .avans-menu:hover ul a {
+    padding: 40px 10px;
+  }
 }
