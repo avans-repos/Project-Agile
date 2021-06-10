@@ -8,10 +8,9 @@
 
 <div class="avans-split">
   <div>
-    <h1 class="avans-h1">Welkom <span class="avans-red">
-      @php
-        echo strtok(Auth::user()->name, " ");
-      @endphp</span>,</h1>
+    <h1 class="avans-h1">Welkom
+      <span class="avans-red">{{ strtok(Auth::user()->name, " ") }}</span>,
+    </h1>
     <h2 class="avans-h2">Dit heb je gemist sinds je laatste bezoek.</h2>
     <h2 class="avans-h2 avans-bold avans-red avans-margin-large">Meldingen</h2>
 
