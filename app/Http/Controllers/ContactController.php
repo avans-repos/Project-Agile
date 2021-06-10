@@ -139,7 +139,6 @@ class ContactController extends Controller
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
       ->with('companies', $companies)
-      ->with('contactTypesAssigned', $contactTypesAssigned)
       ->with('redirectUrl', null)
       ->with('address', $address)
       ->with('action', 'update');
