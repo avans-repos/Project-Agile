@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap');
 
+body {
+  overflow-x: hidden;
+}
+
 .avans-menu-logo {
   height: 45px;
   max-width: initial;
@@ -20,8 +24,8 @@
 
 .avans-menu ul {
   display: flex;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
@@ -31,7 +35,7 @@
   transform: skew(-11deg);
   flex-grow: 1;
   text-align: center;
-  margin: 0px 2px;
+  margin: 0 2px;
   color: white;
   text-decoration: none;
   transition: padding 0.5s, background-color 0.3s;
@@ -60,7 +64,7 @@
   color: white;
   display: flex;
   align-items: center;
-  padding: 0px 100px;
+  padding: 0 100px;
 }
 
 .avans-menu-logo-container {
@@ -68,7 +72,7 @@
   color: white;
   display: flex;
   align-items: center;
-  padding: 0px 100px;
+  padding: 0 100px;
 }
 
 .avans-split-background {
@@ -165,11 +169,11 @@ h2 {
 
 @media only screen and (max-width: 1920px) {
   .avans-menu-user {
-    padding: 0px 100px 0px 20px;
+    padding: 0 100px 0 20px;
   }
 
   .avans-menu-logo-container {
-    padding: 0px 20px 0px 100px;
+    padding: 0 20px 0 100px;
   }
 
   .avans-menu {
@@ -191,11 +195,11 @@ h2 {
 
 @media only screen and (max-width: 1600px) {
   .avans-menu-user {
-    padding: 0px 30px;
+    padding: 0 30px;
   }
 
   .avans-menu-logo-container {
-    padding: 0px 20px;
+    padding: 0 20px;
   }
 
   .avans-menu ul a {
