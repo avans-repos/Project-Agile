@@ -118,7 +118,7 @@ class ContactController extends Controller
   {
     $projects = [];
 
-    foreach ($contact->projectGroups()->get() as $key => $value) {
+    foreach ($contact->projectGroups()->get() as $value) {
       foreach ($projects as $project) {
         if ($project->id == $value->project) {
           continue 2;
