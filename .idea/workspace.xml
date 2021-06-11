@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="3" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -223,6 +220,16 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="format" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -233,31 +240,21 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="hot" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="format:check" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="hot" />
+        <script value="format:check" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="prod" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="production" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="prod" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="watch-poll" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="watch-poll" />
+        <script value="production" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -276,10 +273,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.format" />
-        <item itemvalue="npm.prod" />
+        <item itemvalue="npm.production" />
         <item itemvalue="npm.watch" />
-        <item itemvalue="npm.hot" />
-        <item itemvalue="npm.watch-poll" />
+        <item itemvalue="npm.format:check" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
