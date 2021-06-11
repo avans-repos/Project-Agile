@@ -30,7 +30,7 @@ class ProjectGroup extends Model
   public function getDeleteText(): string
   {
     $text = 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
-    
+
     $projects = $this->projects()->pluck('name');
     $text = '';
 
