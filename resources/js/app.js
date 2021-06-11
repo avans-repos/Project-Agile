@@ -82,10 +82,6 @@ window.makeAllSortable = function (parent) {
     i = t.length;
   while (--i >= 0) makeSortable(t[i]);
 };
-//
-// window.onload = function () {
-//   makeAllSortable(document.getElementsByTagName('main')[0]);
-// };
 
 window.addEventListener('load', event => {
   makeAllSortable(document.getElementsByTagName('main')[0]);
