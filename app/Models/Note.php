@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\contact\Contact;
+use App\Traits\Encryptable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,10 +31,12 @@ use Illuminate\Support\Carbon;
 class Note extends Model
 {
   use HasFactory;
+  use Encryptable;
 
   protected $table = 'notes';
 
   protected $fillable = ['creation', 'description', 'creator', 'contact'];
+  protected $encryptable = ['creation'];
   public $timestamps = false;
 
   public function contact()
