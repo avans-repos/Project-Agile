@@ -24,7 +24,7 @@ class CompanySeeder extends Seeder
       'mailing_address' => 1,
     ]);
     company::create([
-      'name' => '\'t Arendje Verhuur en Dranken B.V.',
+      'name' => 't Arendje Verhuur en Dranken B.V.',
       'email' => 'info@arendje.nl',
       'phonenumber' => '0416373000',
       'size' => 15,
