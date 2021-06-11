@@ -238,21 +238,11 @@ class ProjectGroupController extends Controller
     }
 
     // insert the connections with contactpersons
-    $projectgroup->contacts()->sync([]);
-
-    $newContacts = $request->all()['contact'] ?? [];
-    foreach ($newContacts as $newContact) {
-      $projectgroup->contacts()->attach($newContact - 0);
-    }
+    $projectgroup->contacts()->sync($request->all()['contact']);
 
     $projectgroup->name = $request->name;
 
-    $projectgroup->projects()->sync([]);
-
-    $newProjects = $request->all()['project'] ?? [];
-    foreach ($newProjects as $newProject) {
-      $projectgroup->projects()->attach($newProject);
-    }
+    $projectgroup->projects()->sync($request->all()['project']);
 
     $projectgroup->update();
 
