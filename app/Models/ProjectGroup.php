@@ -32,7 +32,6 @@ class ProjectGroup extends Model
     $text = 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
 
     $projects = $this->projects()->pluck('name');
-    $text = '';
 
     if (count($projects) > 0) {
       $text .= '<br>Er zijn projecten die aan deze projectgroep zijn gekoppeld: ';
