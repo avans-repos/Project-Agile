@@ -38,8 +38,8 @@
               @endif
             </td>
             <td>
-              @if($contact->projectgroups()->first() != null && $contact->projectgroups()->first()->project()->first() != null)
-              {{$contact->projectgroups()->first()->project()->first()->name}}
+              @if($contact->projectgroups()->first() != null && $contact->projectgroups()->first()->projects()->first() != null)
+              {{$contact->projectgroups()->first()->projects()->first()->name}}
               @endif
             </td>
             <td>
