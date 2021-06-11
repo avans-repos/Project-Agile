@@ -94,14 +94,6 @@ class ProjectController extends Controller
     $project->update($request->all());
     $newProjectGroups = $request->all()['projectGroup'] ?? [];
 
-    // remove all references to $project in all the ProjectGroups
-    $project->projectgroups()->sync([]);
-
-    // add the given references to $project in all the ProjectGroups
-    foreach ($newProjectGroups as $newProjectGroup) {
-      $project->projectgroups()->attach($newProjectGroup);
-    }
-
     $project->projectgroups()->sync($newProjectGroups);
 
     return redirect()->route('project.index');

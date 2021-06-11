@@ -162,9 +162,9 @@
   }
 
   function loadFromLocalStorage(){
-    removeAllProjectGroups();
     let storageObject = sessionStorage.getItem('projectFormData');
     if(!storageObject) return;
+    removeAllProjectGroups();
     storageObject = JSON.parse(storageObject);
 
     for(let i = 0; i < storageObject.projectGroups.length; i++){
