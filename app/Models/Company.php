@@ -32,7 +32,7 @@ class Company extends Model
   }
   public function getDeleteText(): string
   {
-    $text = '<br>Weet u zeker dat u "' . $this->name . '" wilt verwijderen';
+    $text = '<br>Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen';
 
     $contacts = $this->contacts()->get();
     if (count($contacts) > 0) {
@@ -41,7 +41,7 @@ class Company extends Model
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . $contact->getName();
+        $text .= ' ' . e($contact->getName());
       }
     }
     return $text;

@@ -63,8 +63,7 @@ class Contact extends Model
   }
   public function getDeleteText(): string
   {
-    $text = '';
-    $text .= '<br>Weet u zeker dat u "' . $this->getName() . '" wilt verwijderen';
+    $text = '<br>Weet u zeker dat u "' . e($this->getName()) . '" wilt verwijderen';
 
     $companies = $this->companies()->get();
     if (count($companies) > 0) {
@@ -73,7 +72,7 @@ class Contact extends Model
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . $company->company();
+        $text .= ' ' . e($company->company());
       }
     }
     return $text;

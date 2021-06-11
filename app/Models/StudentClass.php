@@ -29,7 +29,7 @@ class StudentClass extends Model
   }
   public function getDeleteText(): string
   {
-    $text = 'Weet u zeker dat u "' . $this->name . '" wilt verwijderen<br>';
+    $text = 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
 
     $students = $this->students()->pluck('name');
     if (count($students) > 0) {
@@ -38,7 +38,7 @@ class StudentClass extends Model
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . $student;
+        $text .= ' ' . e($student);
       }
     }
     return $text;
