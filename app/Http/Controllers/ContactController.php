@@ -118,14 +118,14 @@ class ContactController extends Controller
   {
     $projects = [];
 
-    foreach ($contact->projectGroups()->get() as $value) {
+    foreach ($contact->projectGroups()->get() as $projectGroup) {
       foreach ($projects as $project) {
-        if ($project->id == $value->project) {
+        if ($project->id == $projectGroup->project) {
           continue 2;
         }
       }
 
-      array_push($projects, Project::where('id', $value->project)->first());
+      array_push($projects, Project::where('id', $projectGroup->project)->first());
     }
 
     return view('contact.show')
