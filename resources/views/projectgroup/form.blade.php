@@ -181,7 +181,7 @@
                     </div>
                     <div class="d-inline-flex">
                       <a class="col-sm btn btn-primary"
-                         onclick="addProject({{$newProject->id}}, `{{$newProject->name}}`)">Toevoegen</a>
+                         onclick="addProject({{$newProject->id}}, `{{e($newProject->name)}}`)">Toevoegen</a>
                     </div>
                   </div>
                 </div>
@@ -198,10 +198,6 @@
 </form>
 
 <script>
-  // Add eventlisteners
-  // document.getElementById("student-search").addEventListener("keyup", search);
-  // document.getElementById("class-search").addEventListener("keyup", search);
-
   // Session storage manager
   function clearSessionData() {
     sessionStorage.removeItem('projectGroupFormData');
@@ -229,36 +225,6 @@
     return returnValue;
   }
 
-  // Student search logic
-  function search() {
-    // Declare variables
-    let inputstudent = document.getElementById("student-search");
-    let filterstudent = inputstudent.value.toUpperCase();
-
-    let inputclass = document.getElementById("class-search");
-    let filterclass = inputclass.value.toUpperCase();
-
-    let table = document.getElementById("student-table");
-    let tr = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
-    for (let i = 0; i < tr.length; i++) {
-      let studenttd = tr[i].getElementsByTagName("td")[1];
-      let classtd = tr[i].getElementsByTagName("td")[2];
-
-      if (studenttd && classtd) {
-        let studentvalue = studenttd.textContent || studenttd.innerText;
-        let classvalue = classtd.textContent || classtd.innerText;
-
-        if (studentvalue.toUpperCase().indexOf(filterstudent) > -1 && classvalue.toUpperCase().indexOf(filterclass) > -1) {
-          tr[i].classList.remove("d-none");
-        } else {
-          tr[i].classList.add("d-none");
-        }
-      }
-    }
-  }
-
   // Contact list logic
   const contactDiv = document.getElementById('selectedContacts');
   const addedContactsDiv = document.getElementById('addedContacts');
@@ -266,8 +232,6 @@
   //Project list logic
   const projectDiv = document.getElementById('selectedProjects');
   const addedProjectsDiv = document.getElementById('addedProjects');
-
-
 
   // Contact logic
   function displayNotFoundAddedContactsText() {
@@ -479,11 +443,11 @@
   }
 
   // On load triggers
-  window.onload = function (e) {
+  window.addEventListener('load', (event) => {
     loadFromSessionStorage();
     filterContacts();
     filterProjects();
     displayNotFoundAddedContactsText();
     displayNotFoundAddedProjectsText();
-  }
+  })
 </script>

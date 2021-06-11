@@ -29,12 +29,19 @@ class ProjectGroup extends Model
 
   public function getDeleteText(): string
   {
-    $project = $this->projects()->pluck('name');
+    $projects = $this->projects()->pluck('name');
     $text = '';
-    if ($project !== null) {
-      $text .= '<br>Er is een project aan deze projectgroep gekoppeld: ';
-      $text .= ' ' . $project;
+
+    if (count($projects) > 0) {
+      $text .= '<br>Er zijn projecten die aan deze projectgroep zijn gekoppeld: ';
+      foreach ($projects as $index => $project) {
+        if ($index !== 0) {
+          $text .= ',';
+        }
+        $text .= ' ' . $project;
+      }
     }
+
     $students = $this->users()->pluck('name');
     if (count($students) > 0) {
       $text .= '<br>Er zijn studenten/docenten die aan deze projectgroep zijn gekoppeld: ';
@@ -56,10 +63,5 @@ class ProjectGroup extends Model
   public function contacts(): BelongsToMany
   {
     return $this->belongsToMany(Contact::class);
-  }
-
-  public function project()
-  {
-    return $this->belongsTo(Project::class);
   }
 }

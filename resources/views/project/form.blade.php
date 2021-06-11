@@ -240,10 +240,10 @@
     document.getElementById('noProjectGroupsFound').style.display = (selectableGroups == 0 ? "" : "none");
   }
 
-  window.onload = function (e) {
+  window.addEventListener('load', (event) => {
     loadFromLocalStorage();
     filterProjectGroups();
     displayNotFoundAddedGroupsText();
-  }
+  })
 </script>
 

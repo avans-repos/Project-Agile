@@ -40,7 +40,7 @@ class ProjectGroupController extends Controller
         ->role('Student')
         ->get();
 
-      $project = Project::find($projectgroup->project);
+      $project = $projectgroup->projects()->get()->first();
 
       $projectname = $project != null ? $project->name : 'Geen Project';
 
