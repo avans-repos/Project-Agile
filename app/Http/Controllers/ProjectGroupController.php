@@ -40,7 +40,10 @@ class ProjectGroupController extends Controller
         ->role('Student')
         ->get();
 
-      $project = $projectgroup->projects()->get()->first();
+      $project = $projectgroup
+        ->projects()
+        ->get()
+        ->first();
 
       $projectname = $project != null ? $project->name : 'Geen Project';
 

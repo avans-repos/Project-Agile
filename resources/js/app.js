@@ -87,6 +87,6 @@ window.makeAllSortable = function (parent) {
 //   makeAllSortable(document.getElementsByTagName('main')[0]);
 // };
 
-window.addEventListener('load', (event) => {
+window.addEventListener('load', event => {
   makeAllSortable(document.getElementsByTagName('main')[0]);
-})
+});

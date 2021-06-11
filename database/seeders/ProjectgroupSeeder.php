@@ -19,7 +19,7 @@ class ProjectgroupSeeder extends Seeder
   {
     for ($i = 0; $i < 50; $i++) {
       $group = ProjectGroup::create([
-        'name' => 'IN01 - Groep A' . $i
+        'name' => 'IN01 - Groep A' . $i,
       ]);
 
       for ($i2 = 0; $i2 < random_int(0, 3); $i2++) {
@@ -31,7 +31,7 @@ class ProjectgroupSeeder extends Seeder
             ->projects()
             ->where('projectid', $projectId)
             ->exists()
-        ){
+        ) {
           $group->projects()->attach($projectId);
         }
       }
