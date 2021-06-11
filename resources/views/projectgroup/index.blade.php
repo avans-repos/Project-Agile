@@ -60,7 +60,7 @@
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}
                     <div class="d-flex justify-content-center align-items-center">
-                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$projectgroup['group']->id}}', '{{$projectgroup['group']->getDeleteText()}}')">Verwijderen </a>
+                      <a class="btn btn-danger" href="#" onclick="deleteConfirm('delete-product-form-{{$projectgroup['group']->id}}', `{{$projectgroup['group']->getDeleteText()}}`)">Verwijderen </a>
                     </div>
                   </form>
                 </div>

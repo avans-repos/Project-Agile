@@ -24,10 +24,12 @@ class ProjectGroup extends Model
 
   public function getDeleteText(): string
   {
+    $text = 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
+
     $project = Project::where('id', $this->project)
       ->pluck('name')
       ->first();
-    $text = '';
+
     if ($project !== null) {
       $text .= '<br>Er is een project aan deze projectgroep gekoppeld: ';
       $text .= ' ' . $project;
@@ -39,7 +41,7 @@ class ProjectGroup extends Model
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . $student;
+        $text .= ' ' . e($student);
       }
     }
     return $text;
