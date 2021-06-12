@@ -9,6 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install npm modules
+        run: npm install
+
+      - name: Build files
+        run: npm run prod
       ## START SET CORRECT DOCKER TAG
       - name: Get branch name (merge)
         if: github.event_name != 'pull_request'
