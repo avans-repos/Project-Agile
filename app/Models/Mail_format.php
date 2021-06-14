@@ -10,4 +10,9 @@ class Mail_format extends Model
   use HasFactory;
   protected $table = 'mail_formats';
   protected $fillable = ['name', 'body'];
+
+  public function getDeleteText(): string
+  {
+    return 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
+  }
 }

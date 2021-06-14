@@ -48,7 +48,6 @@ class ContactController extends Controller
     $contactTypes = ContactType::all();
     $companies = Company::all();
     $address = new Address();
-
     return view('contact.manage')
       ->with('contact', $contact)
       ->with('genders', $genders)
@@ -140,7 +139,6 @@ class ContactController extends Controller
       ->with('genders', $genders)
       ->with('contactTypes', $contactTypes)
       ->with('companies', $companies)
-      ->with('contactTypesAssigned', $contactTypesAssigned)
       ->with('redirectUrl', null)
       ->with('address', $address)
       ->with('action', 'update');

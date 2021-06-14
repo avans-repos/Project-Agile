@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="3" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6801c60-3755-412f-ac1e-effa5c65cc13" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ExcelTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ExcelTest.php" afterDir="false" />
+    <list default="true" id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,6 +232,16 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="format" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -243,31 +252,21 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="hot" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="format:check" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="hot" />
+        <script value="format:check" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="prod" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="production" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="prod" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="watch-poll" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="watch-poll" />
+        <script value="production" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -286,10 +285,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.format" />
-        <item itemvalue="npm.prod" />
+        <item itemvalue="npm.production" />
         <item itemvalue="npm.watch" />
-        <item itemvalue="npm.hot" />
-        <item itemvalue="npm.watch-poll" />
+        <item itemvalue="npm.format:check" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
