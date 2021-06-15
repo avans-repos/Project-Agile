@@ -16,9 +16,9 @@ class MailResetPasswordNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+       $this->token = $token;
     }
 
     /**
@@ -38,13 +38,16 @@ class MailResetPasswordNotification extends Notification
      * @param  mixed  $notifiable
      * @return MailMessage
      */
-    public function toMail($token)
+    public function toMail($notifiable)
     {
-      $resetLink = url( '/password/reset/?token=' . $token );
-
+      $link = url( '/reset-password/' . $this->token );
       return (new MailMessage())
-        ->view('emails.resetPassword')
-        ->with(['resetLink' => $resetLink])
+        ->greeting('Hallo, ' . $notifiable->name)
+        ->salutation('Avans AD')
+        ->subject( 'Reset je wachtwoord' )
+        ->line( "Klik op de knop om een nieuw wachtwoord te maken." )
+        ->action( 'Wachtwoord resetten', $link )
+        ->line( 'Bedankt!' )
         ->from(env('MAIL_FROM_ADDRESS'));
     }
 

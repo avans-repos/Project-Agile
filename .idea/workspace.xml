@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/emails/resetPassword.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/forgot-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/forgot-password.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Notifications/MailResetPasswordNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/MailResetPasswordNotification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/reset-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/reset-password.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/emails/resetPassword.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/resetPassword.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -343,7 +344,7 @@
       <workItem from="1621539774177" duration="7016000" />
       <workItem from="1621553323316" duration="1624000" />
       <workItem from="1621594444169" duration="3522000" />
-      <workItem from="1623761463549" duration="2724000" />
+      <workItem from="1623761463549" duration="5017000" />
     </task>
     <servers />
   </component>

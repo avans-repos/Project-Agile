@@ -49,7 +49,7 @@
                     <span
                       style="color: rgb(161, 168, 173); font-family: Muli, &quot;Arial Narrow&quot;, Arial; font-size: 15px; text-align: center; background-color: rgb(255, 255, 255);">Klik op de knop om een nieuw wachtwoord te maken</span>
                   </p>
-                  <span class="sg-image"><a href="{{$resetLink}}" target="_blank"><button alt="Reset your Password" height="54"
+                  <span class="sg-image"><a href="#" target="_blank"><button alt="Reset your Password" height="54"
                                                                              style="border-width: 0; margin-top: 30px; margin-bottom: 50px; width: 260px; height: 54px;"
                                                                              width="260">Wachtwoord Resetten
 </button>
