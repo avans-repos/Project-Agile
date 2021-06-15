@@ -36,7 +36,7 @@ class Note extends Model
   protected $table = 'notes';
 
   protected $fillable = ['creation', 'description', 'creator', 'contact'];
-  protected $encryptable = ['creation'];
+  protected $encryptable = ['description'];
   public $timestamps = false;
 
   public function contact()
