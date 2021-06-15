@@ -43,4 +43,8 @@ class Note extends Model
   {
     return $this->hasOne(Contact::class, 'id', 'contact');
   }
+  public function creator()
+  {
+    return $this->hasOne(User::class, 'id', 'creator');
+  }
 }

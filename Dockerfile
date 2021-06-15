@@ -1,6 +1,7 @@
 FROM php:8
 
-RUN apt-get update -y && apt-get install -y --no-install-recommends openssl zip unzip git
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
+RUN apt-get update -y && apt-get install -y --no-install-recommends openssl zip unzip git nodejs
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
@@ -10,6 +11,9 @@ WORKDIR /app
 COPY . /app
 
 RUN composer install
+RUN npm install
+RUN npm run prod
+RUN rm -rf node_modules/
 
 RUN apt-get -y autoremove \
     && apt-get clean \
