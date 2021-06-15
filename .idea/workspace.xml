@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/profile/form.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/profile/manage.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/confirm-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/confirm-password.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/forgot-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/forgot-password.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,11 +211,11 @@
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\Github\Project-Agile\resources\views\profile" />
       <recent name="D:\Documents\Github\Project-Agile\database\factories" />
       <recent name="D:\xampp\agile\Project-Agile\database\factories\contact" />
       <recent name="D:\xampp\agile\Project-Agile\public\img" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
-      <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
   <component name="RunManager" selected="npm.format">
@@ -342,7 +344,7 @@
       <workItem from="1621539774177" duration="7016000" />
       <workItem from="1621553323316" duration="1624000" />
       <workItem from="1621594444169" duration="3522000" />
-      <workItem from="1623761463549" duration="5119000" />
+      <workItem from="1623761463549" duration="6809000" />
     </task>
     <servers />
   </component>
