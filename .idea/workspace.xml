@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NoteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SendNewNoteNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendNewNoteNotification.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contact/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Notifications/ActionpointNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/ActionpointNotification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Notifications/NewNoteNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/NewNoteNotification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_23_122004_create_notes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_23_122004_create_notes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +193,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JS-periode-7-herkansing" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -284,6 +289,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="" />
       <created>1612446090694</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -341,6 +347,8 @@
       <workItem from="1621539774177" duration="7016000" />
       <workItem from="1621553323316" duration="1624000" />
       <workItem from="1621594444169" duration="3522000" />
+      <workItem from="1623834277694" duration="4816000" />
+      <workItem from="1623841292027" duration="120000" />
     </task>
     <servers />
   </component>

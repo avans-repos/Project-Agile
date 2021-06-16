@@ -39,9 +39,11 @@ class NewNoteNotification extends Notification implements ShouldQueue
    * @param  mixed  $notifiable
    * @return array
    */
-  public function toArray($notifiable)
+  public function toDatabase($notifiable)
   {
+    dd($this->id);
     return [
+      'id' => $this->id,
       'reminderdate' => $this->notificationData['reminderdate'],
       'note_id' => $this->notificationData['noteId'],
       'description' => $this->notificationData['description'],

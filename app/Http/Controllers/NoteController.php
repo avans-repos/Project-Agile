@@ -6,6 +6,7 @@ use App\Events\NoteAdded;
 use App\Http\Requests\NoteRequest;
 use App\Models\contact\Contact;
 use App\Models\Note;
+use Illuminate\Queue\Jobs\Job;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +24,7 @@ class NoteController extends Controller
   public function insert(Contact $contact, NoteRequest $note)
   {
     $databaseNote = Note::create(['description' => $note->input('description'), 'creator' => Auth::user()->id, 'contact' => $contact->id]);
+
     if ($note->reminder != null && $note->reminder == 1) {
       $notificationData = [
         'reminderdate' => $note->reminderdate,
@@ -31,13 +33,19 @@ class NoteController extends Controller
         'user' => Auth::user(),
         'contactId' => $contact->id,
       ];
-      event(new noteAdded($notificationData));
+      $job = event(new noteAdded($notificationData));
+      dd($job);
+    } else {
+      $job = '';
     }
+
+    $databaseNote->update(['job' => $job]);
     return redirect()->route('contact.show', $contact);
   }
 
   public function update(Note $note, NoteRequest $noteRequest)
   {
+    Job::where('id', $note->job)->get()->delete();
     $note->description = $noteRequest->input('description');
     $note->update($noteRequest->all());
 

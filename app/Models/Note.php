@@ -33,7 +33,7 @@ class Note extends Model
 
   protected $table = 'notes';
 
-  protected $fillable = ['creation', 'description', 'creator', 'contact'];
+  protected $fillable = ['creation', 'description', 'creator', 'contact','job'];
   public $timestamps = false;
 
   public function contact()

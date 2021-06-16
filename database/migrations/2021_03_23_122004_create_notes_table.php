@@ -30,6 +30,8 @@ class CreateNotesTable extends Migration
             ->references('id')
             ->on('contacts')
             ->onDelete('cascade');
+
+          $table->unsignedBigInteger('job')->nullable();
         });
     }
 

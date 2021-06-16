@@ -13,11 +13,12 @@ class SendNewNoteNotification
    * Handle the event.
    *
    * @param  object  $event
-   * @return void
    */
   public function handle(NoteAdded $event)
   {
     $delay = Carbon::createFromFormat('Y-m-d', $event->notificationData['reminderdate']);
-    Notification::send($event->notificationData['user'], (new NewNoteNotification($event->notificationData))->delay($delay));
+    $noti = (new NewNoteNotification($event->notificationData))->delay($delay);
+    Notification::send($event->notificationData['user'], $noti);
+    return $noti;
   }
 }
