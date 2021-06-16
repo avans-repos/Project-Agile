@@ -159,7 +159,7 @@
           <div class="media text-muted pt-3">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
-                <strong class="text-gray-dark">Gemaakt door: {{$note->name}} op {{date('d-m-Y H:i', strtotime($note->creation))}}</strong>
+                <strong class="text-gray-dark">Gemaakt door: {{$note->creator()->first()->name}} op {{date('d-m-Y H:i', strtotime($note->creation))}}</strong>
                 <a href="{{route('notes.edit',$note->id)}}">Bewerken</a>
               </div>
               <div class="d-flex justify-content-between align-items-center w-100 mt-2">
@@ -179,6 +179,24 @@
           </div>
         @endforeach
       </div>
+
+      <h2 class="fs-2 my-4">Projecten</h2>
+      <table class="table">
+        <thead>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Deadline</th>
+        </thead>
+        <tbody>
+          @foreach($projects as $project)
+          <tr>
+            <td>{{ $project->name}}</td>
+            <td>{{ $project->description}}</td>
+            <td>{{ $project->deadline}}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
 
     </div>
 @endsection
