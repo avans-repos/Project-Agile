@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Encryptable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,9 +13,11 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
   use HasFactory;
+  use Encryptable;
 
   protected $table = 'projects';
   protected $fillable = ['name', 'description', 'deadline', 'notes'];
+  protected $encryptable = ['name', 'description', 'notes'];
 
   public function projectgroups()
   {
