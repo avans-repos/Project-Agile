@@ -5,6 +5,7 @@ use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactpointController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailFormatController;
 use App\Http\Controllers\NotificationController;
@@ -120,3 +121,11 @@ Route::get('projectgroup/{projectgroupid}/removeContact/{contactid}', [ProjectGr
   ->name('projectgroup.removeContact')
   ->middleware(['auth']);
 Route::resource('projectgroup', ProjectGroupController::class)->middleware(['auth']);
+
+Route::get('excel/import', [ExcelController::class, 'importScreen'])
+  ->name('excel.importScreen')
+  ->middleware(['auth']);
+
+Route::post('excel/import', [ExcelController::class, 'importFile'])
+  ->name('excel.importFile')
+  ->middleware(['auth']);

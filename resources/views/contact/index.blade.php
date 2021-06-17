@@ -8,6 +8,7 @@
       <h1 class="fs-1">Alle contactpersonen</h1>
       <div class="align-self-center">
         <a class="btn btn-primary" href="{{route('contact.create')}}">Contactpersoon toevoegen</a>
+        <a class="btn btn-secondary" href="{{route('excel.importScreen')}}">Contactpersonen importeren</a>
       </div>
     </div>
 

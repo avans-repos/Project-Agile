@@ -18,11 +18,11 @@ class CreateCompaniesTable extends Migration
       $table->id();
       $table->text('name');
       $table->text('phonenumber')->nullable();
-      $table->text('email');
+      $table->text('email')->nullable();;
       $table->integer('size')->nullable();
       $table->text('website')->nullable();
       $table->longText('note')->nullable();
-      $table->unsignedBigInteger('visiting_address')->unsigned();
+      $table->unsignedBigInteger('visiting_address')->unsigned()->nullable();;
       $table->foreign('visiting_address')->references('id')->on('addresses');
       $table->unsignedBigInteger('mailing_address')->unsigned()->nullable();
       $table->foreign('mailing_address')->references('id')->on('addresses')->nullable();
