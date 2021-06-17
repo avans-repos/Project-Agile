@@ -72,7 +72,7 @@ class Contact extends Model
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . e($company->company());
+        $text .= ' ' . e($company->company()->get());
       }
     }
     return $text;
