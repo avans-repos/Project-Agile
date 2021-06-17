@@ -235,17 +235,32 @@ class ProjectGroupController extends Controller
   {
     $request->validated();
 
+    $projectgroup->name = $request->name;
+
     // insert the connections with users (students and teachers)
     if (isset($request->assignedUsers)) {
       $projectgroup->users()->sync($request->assignedUsers);
     }
 
     // insert the connections with contactpersons
-    $projectgroup->contacts()->sync($request->all()['contact']);
+    $projectgroup->contacts()->sync([]);
 
-    $projectgroup->name = $request->name;
+    if (isset($request->all()['contact']))
+    {
+      foreach ($request->all()['contact'] as $contact) {
+        $projectgroup->contacts()->attach($contact);
+      }
+    }
 
-    $projectgroup->projects()->sync($request->all()['project']);
+    // insert the connections with projects
+    $projectgroup->projects()->sync([]);
+
+    if (isset($request->all()['project']))
+    {
+      foreach ($request->all()['project'] as $project) {
+        $projectgroup->projects()->attach($project);
+      }
+    }
 
     $projectgroup->update();
 
