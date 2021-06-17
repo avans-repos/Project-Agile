@@ -35,7 +35,8 @@ class Actionpoint extends Model
   {
     return $this->belongsToMany(User::class);
   }
-  public function creator(){
+  public function creator()
+  {
     return $this->belongsTo(User::class, 'creator', 'id');
   }
   public function getDeleteText(): string
