@@ -34,9 +34,13 @@ class Company extends Model
   {
     $text = '<br>Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen';
 
-    $contactNames = $this->contacts()->get()->map(
-      function($c) {
-        return $c->contact()->first()->getName();
+    $contactNames = $this->contacts()
+      ->get()
+      ->map(function ($c) {
+        return $c
+          ->contact()
+          ->first()
+          ->getName();
       });
 
     if (count($contactNames) > 0) {
