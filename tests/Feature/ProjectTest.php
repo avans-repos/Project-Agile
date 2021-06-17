@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Requests\ProjectRequest;
+use App\Models\Project;
 use App\Models\User;
 use DateTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -52,12 +53,13 @@ class ProjectTest extends TestCase
     ]);
     $response->assertSessionHasNoErrors();
 
-    $this->assertDatabaseHas('projects', [
-      'name' => $name,
-      'description' => $description,
-      'deadline' => $deadline,
-      'notes' => $notes,
-    ]);
+    $project = Project::all()
+      ->sortByDesc('id')
+      ->first();
+
+    $this->assertEquals($project->name, $name);
+    $this->assertEquals($project->description, $description);
+    $this->assertEquals($project->notes, $notes);
   }
 
   public function test_can_add_new_project_fails_input_too_large()
