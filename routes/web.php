@@ -9,6 +9,7 @@ use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailFormatController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProjectController;
@@ -52,6 +53,12 @@ Route::get('project/{projectid}/removegroup/{groupid}', [ProjectController::clas
 Route::resource('project', ProjectController::class)->middleware(['auth']);
 
 Route::resource('user', UserController::class)->middleware(['auth']);
+Route::get('profile', [ProfileController::class, 'edit'])
+  ->name('profile.edit')
+  ->middleware(['auth']);
+Route::post('profile', [ProfileController::class, 'update'])
+  ->name('profile.update')
+  ->middleware(['auth']);
 
 Route::get('/notes/create/{contact}', [NoteController::class, 'create'])
   ->middleware(['auth'])
