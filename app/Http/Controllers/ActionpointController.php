@@ -92,7 +92,7 @@ class ActionpointController extends Controller
         $actionPoint->teachers()->attach($assigned);
       }
     }
-    if($actionPoint->reminderdate) {
+    if ($actionPoint->reminderdate) {
       $notificationData = [
         'reminderdate' => $actionPoint->reminderdate,
         'title' => $actionPoint->title,
@@ -101,7 +101,6 @@ class ActionpointController extends Controller
       ];
       event(new ActionpointReminder($notificationData));
     }
-
 
     return redirect()->route('actionpoints.index');
   }
