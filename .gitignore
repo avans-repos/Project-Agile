@@ -14,6 +14,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.idea/workspace.xml
 
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
