@@ -72,48 +72,49 @@
       <fieldset class="col-sm-6" id="companyAddresses">
         <legend>Adres</legend>
         <div id="adres1">
-          <span class="text-decoration-underline">
-        @if($company->mailing_address()->id == $company->visiting_address()->id)
-              Bezoekadres & postadres
-            @else
-              Bezoekadres
-            @endif
+          @if($company->mailing_address() != null)
+            <span class="text-decoration-underline">
+            @if($company->mailing_address()->id == $company->visiting_address()->id)
+                Bezoekadres & postadres
+              @else
+                Bezoekadres
+              @endif
           </span>
-          <div class="row">
-            <div class="col-6">
-              Straatnaam
+            <div class="row">
+              <div class="col-6">
+                Straatnaam
+              </div>
+              <div class="col-6">
+                {{$company->visiting_address()->streetname}}
+              </div>
             </div>
-            <div class="col-6">
-              {{$company->visiting_address()->streetname}}
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-6">
-              Huisnummer + toevoeging
+            <div class="row">
+              <div class="col-6">
+                Huisnummer + toevoeging
+              </div>
+              <div class="col-6">
+                {{$company->visiting_address()->number . $company->visiting_address()->addition}}
+              </div>
             </div>
-            <div class="col-6">
-              {{$company->visiting_address()->number . $company->visiting_address()->addition}}
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-6">
-              Postcode
+            <div class="row">
+              <div class="col-6">
+                Postcode
+              </div>
+              <div class="col-6">
+                {{$company->visiting_address()->zipcode}}
+              </div>
             </div>
-            <div class="col-6">
-              {{$company->visiting_address()->zipcode}}
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-6">
-              Plaats
+            <div class="row">
+              <div class="col-6">
+                Plaats
+              </div>
+              <div class="col-6">
+                {{$company->visiting_address()->city}}
+              </div>
             </div>
-            <div class="col-6">
-              {{$company->visiting_address()->city}}
-            </div>
-          </div>
         </div>
         @if($company->mailing_address()->id != $company->visiting_address()->id)
           <div id="address2">
@@ -154,6 +155,11 @@
               </div>
             </div>
           </div>
+        @endif
+        @else
+          <span>
+            Geen adresgegevens gevonden
+          </span>
         @endif
       </fieldset>
     </div>
