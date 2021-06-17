@@ -245,8 +245,7 @@ class ProjectGroupController extends Controller
     // insert the connections with contactpersons
     $projectgroup->contacts()->sync([]);
 
-    if (isset($request->all()['contact']))
-    {
+    if (isset($request->all()['contact'])) {
       foreach ($request->all()['contact'] as $contact) {
         $projectgroup->contacts()->attach($contact);
       }
@@ -255,8 +254,7 @@ class ProjectGroupController extends Controller
     // insert the connections with projects
     $projectgroup->projects()->sync([]);
 
-    if (isset($request->all()['project']))
-    {
+    if (isset($request->all()['project'])) {
       foreach ($request->all()['project'] as $project) {
         $projectgroup->projects()->attach($project);
       }
