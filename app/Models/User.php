@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Encryptable;
+use App\Notifications\MailResetPasswordNotification;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -97,5 +98,10 @@ class User extends Authenticatable
   public function Actionpoints(): BelongsToMany
   {
     return $this->belongsToMany(Actionpoint::class);
+  }
+
+  public function sendPasswordResetNotification($token)
+  {
+    $this->notify(new MailResetPasswordNotification($token));
   }
 }

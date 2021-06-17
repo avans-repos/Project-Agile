@@ -205,11 +205,11 @@
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\Github\Project-Agile\resources\views\profile" />
       <recent name="D:\Documents\Github\Project-Agile\database\factories" />
       <recent name="D:\xampp\agile\Project-Agile\database\factories\contact" />
       <recent name="D:\xampp\agile\Project-Agile\public\img" />
       <recent name="D:\xampp\agile\Project-Agile\resources\views\company" />
-      <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.ActionpointTest.test_getDeleteText">
@@ -331,8 +331,6 @@
       <workItem from="1621539774177" duration="7016000" />
       <workItem from="1621553323316" duration="1624000" />
       <workItem from="1621594444169" duration="3522000" />
-      <workItem from="1623828967173" duration="516000" />
-      <workItem from="1623918712708" duration="5812000" />
     </task>
     <servers />
   </component>
