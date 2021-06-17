@@ -32,7 +32,7 @@
             <td>{{$actionPoint->description}}</td>
             <td>{{$actionPoint->finished == 1 ? 'Ja' : 'Nee'}}</td>
             <td>{{$actionPoint->reminderdate}}</td>
-            <td>{{$actionPoint->name}}</td>
+            <td>{{$actionPoint->creator()->get()[0]->name}}</td>
             <td>
               <div class="d-md-flex align-items-center">
                 <div class="m-1 d-flex justify-content-center align-items-center">

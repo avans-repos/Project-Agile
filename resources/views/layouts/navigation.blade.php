@@ -37,6 +37,7 @@
 
     <div id="avans-user-dropdown" class="avans-mail-dropdown">
       <a href="#" onclick="event.preventDefault(); document.getElementById('avans-logout-form').submit();">Uitloggen</a>
+      <a href="{{ route('profile.edit') }}">Profiel Aanpassen</a>
       <form method="POST" id="avans-logout-form" action="{{ route('logout') }}">
         @csrf
       </form>

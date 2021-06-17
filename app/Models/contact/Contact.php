@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Company_has_contacts;
 use App\Models\Note;
 use App\Models\ProjectGroup;
+use App\Traits\Encryptable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -48,8 +49,10 @@ use Illuminate\Support\Carbon;
 class Contact extends Model
 {
   use HasFactory;
+  use Encryptable;
 
   protected $fillable = ['initials', 'firstname', 'insertion', 'lastname', 'gender', 'email', 'phonenumber', 'type', 'address'];
+  protected $encryptable = ['initials', 'firstname', 'insertion', 'lastname', 'email', 'phonenumber'];
 
   public function getName(): string
   {
@@ -72,7 +75,7 @@ class Contact extends Model
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . e($company->company());
+        $text .= ' ' . e($company->company()->get());
       }
     }
     return $text;
