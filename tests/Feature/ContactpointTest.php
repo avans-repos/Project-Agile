@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 use App\Http\Requests\ContactpointRequest;
+use App\Models\Contactpoint;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
@@ -73,8 +74,10 @@ class ContactpointTest extends TestCase
 
     $response->assertSessionDoesntHaveErrors();
 
-    $this->assertDatabaseHas('contactpoints', [
-      'description' => $testDescription,
-    ]);
+    $contactpoint = Contactpoint::all()
+      ->sortByDesc('id')
+      ->first();
+
+    $this->assertEquals($contactpoint->description, $testDescription);
   }
 }
