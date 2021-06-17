@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Encryptable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,8 +19,10 @@ use Illuminate\Database\Eloquent\Model;
 class Contactpoint extends Model
 {
   use HasFactory;
+  use Encryptable;
 
   public $timestamps = false; // removes the 'created_at' & 'updated_at' properties
 
   protected $fillable = ['contactPerson', 'dateOfContact', 'description'];
+  protected $encryptable = ['description'];
 }

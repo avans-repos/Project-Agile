@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Encryptable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,14 +24,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Actionpoint extends Model
 {
   use HasFactory;
+  use Encryptable;
 
   public $timestamps = false; // removes the 'created_at' & 'updated_at' properties
 
   protected $fillable = ['deadline', 'title', 'description', 'finished', 'reminderdate', 'creator'];
+  protected $encryptable = ['title', 'description'];
 
   public function teachers(): BelongsToMany
   {
     return $this->belongsToMany(User::class);
+  }
+  public function creator()
+  {
+    return $this->belongsTo(User::class, 'creator', 'id');
   }
   public function getDeleteText(): string
   {
