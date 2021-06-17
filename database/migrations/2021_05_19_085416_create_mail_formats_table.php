@@ -15,7 +15,7 @@ class CreateMailFormatsTable extends Migration
     {
         Schema::create('mail_formats', function (Blueprint $table) {
             $table->id();
-            $table->string('name',45);
+            $table->text('name');
             $table->text('body');
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class Actionpoint extends Migration
         Schema::create('actionpoints', function (Blueprint $table) {
             $table->id();
             $table->DateTime('deadline');
-            $table->string('title');
+            $table->text('title');
             $table->text('description')->nullable();
             $table->boolean('finished')->nullable();
             $table->DateTime('reminderdate')->nullable();
