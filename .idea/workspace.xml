@@ -7,26 +7,7 @@
     <list default="true" id="1d38a1c8-2ae3-44cc-9adc-ce3f675a77a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Actionpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Actionpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Address.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Company.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Contactpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Contactpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Mail_format.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Mail_format.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/contact/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/contact/Contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Traits/Encryptable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/Encryptable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/confirm-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/confirm-password.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/forgot-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/forgot-password.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/reset-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/reset-password.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify-email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify-email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ContactpointTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ContactpointTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/PasswordResetTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PasswordResetTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ProjectTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ProjectTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/ActionpointTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ActionpointTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/actionPoints/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/actionPoints/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,9 +216,18 @@
       <recent name="D:\Documents\Github\Project-Agile\app" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.ActionpointTest">
+  <component name="RunManager" selected="PHPUnit.ActionpointTest.test_getDeleteText">
     <configuration name="ActionpointTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Unit\ActionpointTest" file="$PROJECT_DIR$/tests/Unit/ActionpointTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ActionpointTest.test_getDeleteText" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="Tests\Unit\ActionpointTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ActionpointTest.php" method="test_getDeleteText" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -249,16 +239,6 @@
       <command value="run" />
       <scripts>
         <script value="format" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="format:check" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="format:check" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -286,11 +266,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.ActionpointTest.test_getDeleteText" />
         <item itemvalue="PHPUnit.ActionpointTest" />
         <item itemvalue="npm.format" />
         <item itemvalue="npm.production" />
         <item itemvalue="npm.watch" />
-        <item itemvalue="npm.format:check" />
       </list>
     </recent_temporary>
   </component>
@@ -356,7 +336,7 @@
       <workItem from="1621553323316" duration="1624000" />
       <workItem from="1621594444169" duration="3522000" />
       <workItem from="1623828967173" duration="516000" />
-      <workItem from="1623918712708" duration="4254000" />
+      <workItem from="1623918712708" duration="5812000" />
     </task>
     <servers />
   </component>
@@ -382,11 +362,6 @@
           <url>file://$PROJECT_DIR$/database/seeders/CompanySeeder.php</url>
           <line>4</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/tests/Unit/ActionpointTest.php</url>
-          <line>3</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
