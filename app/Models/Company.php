@@ -37,14 +37,22 @@ class Company extends Model
   {
     $text = '<br>Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen';
 
-    $contacts = $this->contacts()->get();
-    if (count($contacts) > 0) {
+    $contactNames = $this->contacts()
+      ->get()
+      ->map(function ($c) {
+        return $c
+          ->contact()
+          ->first()
+          ->getName();
+      });
+
+    if (count($contactNames) > 0) {
       $text .= '<br>Er zijn contactpersonen die aan dit bedrijf zijn gekoppeld: ';
-      foreach ($contacts as $index => $contact) {
+      foreach ($contactNames as $index => $contactName) {
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . e($contact->getName());
+        $text .= ' ' . e($contactName);
       }
     }
     return $text;
