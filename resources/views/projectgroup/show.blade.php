@@ -17,19 +17,26 @@
           <div class="col-6">
             Naam
           </div>
-          <div class="col-6">
+          <div class="col-6 mb-2">
             {{$projectgroup->name}}
           </div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-6">
-            Project
+            Project(en)
           </div>
           <div class="col-6">
-            {{$project->name ?? 'Nog geen project'}}
+            @if($projects != [])
+              @foreach($projects as $project)
+                <div>{{$project->name}}</div>
+              @endforeach
+            @else
+              <div>Geen projecten gekoppeld</div>
+            @endif
+
           </div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-6">
             Docenten
           </div>
@@ -39,7 +46,7 @@
             @endforeach
           </div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-6">
             Studenten
           </div>

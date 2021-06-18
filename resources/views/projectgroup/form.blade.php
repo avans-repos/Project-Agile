@@ -69,8 +69,6 @@
       </table>
     </div>
 
-{{--    {{dd(json_decode($assignedContacts))}}--}}
-
     <fieldset>
       <legend>Contactpersonen</legend>
       <div class="row d-flex flex-column">
@@ -137,28 +135,69 @@
 
     </fieldset>
 
-    <div class="mb-1">
-      <label class="form-label">Selecteer project</label>
+    <fieldset>
+      <legend>Projecten</legend>
+      <div class="row d-flex flex-column">
+        <div id="addedProjects">
+          <h3>Toegevoegd</h3>
+          <ul class="list-group mt-2 mb-2" id="selectedProjects">
+            @foreach($assignedProjects as $assignedProject)
+              <li class="list-group-item list-group-item-action"
+                  id="{{'selectedProject-'.$assignedProject->id}}">
+                <div class="container">
+                  <div class="d-flex justify-content-between">
+                    <div class="d-inline-flex">
+                      <span
+                        id="addedProjectName-{{$assignedProject->id}}">{{$assignedProject->name}}</span>
+                    </div>
+                    <div class="d-inline-flex">
+                      <a class="col-sm btn btn-danger" onclick="deleteProject({{$assignedProject->id}})">Verwijderen</a>
+                      <input name="project[]" value="{{$assignedProject->id}}" hidden>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            @endforeach
+          </ul>
+          <h1 id="noAddedProjectsFound">Geen projecten gekoppeld.</h1>
+          <div class="col">
+            @error('Project')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+          </div>
+        </div>
 
-      <div class="d-flex flex-column">
-        <select name="project" id="project" class="form-control">
-          <option value="-1">Geen project</option>
-          @foreach($projects as $project)
-            <option value="{{$project->id}}"
-                    @if($project->id == $projectgroup->project) selected @endif>{{$project->name}}</option>
-          @endforeach
-        </select>
+        <div class="mb-3">
+          <h3>Toevoegen</h3>
+          <input type="text" id="filterProjectInput" onkeyup="filterProjects()"
+                 placeholder="Zoek naar projecten" title="Typ een naam">
+          <ul class="list-group mt-2 mb-2 scroll max-h-screen" id="projectList">
+            @foreach($newProjects as $newProject)
+              <li class="list-group-item list-group-item-action" id="{{$newProject->id}}">
+                <div class="container">
+                  <div class="d-flex justify-content-between">
+                    <div class="d-inline-flex">
+                      <span>{{$newProject->name}}</span>
+                    </div>
+                    <div class="d-inline-flex">
+                      <a class="col-sm btn btn-primary"
+                         onclick="addProject({{$newProject->id}}, `{{e($newProject->name)}}`)">Toevoegen</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            @endforeach
+          </ul>
+          <h1 id="noProjectsFound">Geen projecten om mee te koppelen.</h1>
+        </div>
       </div>
-    </div>
+    </fieldset>
+
   </fieldset>
   <input class="btn btn-primary" type="submit" onclick="clearSessionData()" value="Projectgroep {{$formActionViewName}}">
 </form>
 
 <script>
-  // Add eventlisteners
-  document.getElementById("student-search").addEventListener("keyup", search);
-  document.getElementById("class-search").addEventListener("keyup", search);
-
   // Session storage manager
   function clearSessionData() {
     sessionStorage.removeItem('projectGroupFormData');
@@ -175,50 +214,32 @@
     return returnValue;
   }
 
-  // Student search logic
-  function search() {
-    // Declare variables
-    let inputstudent = document.getElementById("student-search");
-    let filterstudent = inputstudent.value.toUpperCase();
-
-    let inputclass = document.getElementById("class-search");
-    let filterclass = inputclass.value.toUpperCase();
-
-    let table = document.getElementById("student-table");
-    let tr = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
-    for (let i = 0; i < tr.length; i++) {
-      let studenttd = tr[i].getElementsByTagName("td")[1];
-      let classtd = tr[i].getElementsByTagName("td")[2];
-
-      if (studenttd && classtd) {
-        let studentvalue = studenttd.textContent || studenttd.innerText;
-        let classvalue = classtd.textContent || classtd.innerText;
-
-        if (studentvalue.toUpperCase().indexOf(filterstudent) > -1 && classvalue.toUpperCase().indexOf(filterclass) > -1) {
-          tr[i].classList.remove("d-none");
-        } else {
-          tr[i].classList.add("d-none");
-        }
-      }
+  function getAddedProjects() {
+    const addedProjectObjects = document.getElementById('selectedProjects').getElementsByTagName('li');
+    let returnValue = [];
+    for (let i = 0; i < addedProjectObjects.length; i++) {
+      const id = addedProjectObjects[i].id.split('selectedProject-')[1];
+      const projectObject = {id: id, name: document.getElementById(`addedProjectName-${id}`).innerText};
+      returnValue.push(projectObject);
     }
+    return returnValue;
   }
 
   // Contact list logic
   const contactDiv = document.getElementById('selectedContacts');
   const addedContactsDiv = document.getElementById('addedContacts');
 
-  // On load triggers
-  window.onload = function (e) {
-    loadFromSessionStorage();
-    filterContacts();
-    displayNotFoundAddedContactsText();
-  }
+  //Project list logic
+  const projectDiv = document.getElementById('selectedProjects');
+  const addedProjectsDiv = document.getElementById('addedProjects');
 
   // Contact logic
   function displayNotFoundAddedContactsText() {
     document.getElementById('noAddedContactsFound').style.display = (document.getElementById('selectedContacts').getElementsByTagName('li').length == 0 ? "" : "none");
+  }
+
+  function displayNotFoundAddedProjectsText() {
+    document.getElementById('noAddedProjectsFound').style.display = (document.getElementById('selectedProjects').getElementsByTagName('li').length == 0 ? "" : "none");
   }
 
   function removeAllContacts() {
@@ -232,12 +253,24 @@
     }
   }
 
+  function removeAllProjects() {
+    let addedProjectObjects = document.getElementById('selectedProjects').getElementsByTagName('li');
+    while(addedProjectObjects.length>0) {
+      addedProjectObjects = document.getElementById('selectedContacts').getElementsByTagName('li');
+      for (let i = 0; i < addedProjectObjects.length; i++) {
+        const id = addedProjectObjects[i].id.split('selectedProject-')[1];
+        deleteProject(id);
+      }
+    }
+  }
+
   function saveToSessionStorage() {
     let storageObject = {
       name: document.getElementById('name').value,
       teachers: getSelectedTeachers(),
       students: getSelectedStudents(),
-      contacts: getAddedContacts()
+      contacts: getAddedContacts(),
+      projects: getAddedProjects()
     };
     sessionStorage.setItem('projectGroupFormData', JSON.stringify(storageObject));
   }
@@ -246,12 +279,19 @@
     let storageObject = sessionStorage.getItem('projectGroupFormData');
     if (!storageObject) return;
     removeAllContacts();
+    removeAllProjects();
     storageObject = JSON.parse(storageObject);
 
     // contacts
     for (let i = 0; i < storageObject.contacts.length; i++) {
       let contact = storageObject.contacts[i];
       addContact(contact.id, contact.name);
+    }
+
+    //projects
+    for (let i = 0; i < storageObject.projects.length; i++) {
+      let project = storageObject.projects[i];
+      addProject(project.id, project.name);
     }
 
     // name
@@ -301,10 +341,41 @@
     displayNotFoundAddedContactsText();
   }
 
+  function addProject(projectId, projectName) {
+    let projectTemplate =  `
+      <li class="list-group-item list-group-item-action" id=selectedProject-${projectId}>
+          <div class="container">
+            <div class="d-flex justify-content-between">
+              <div class="d-inline-flex">
+                <span id=addedProjectName-${projectId}>${projectName}</span>
+              </div>
+              <div class="d-inline-flex">
+                <a class="btn btn-danger" onclick="deleteProject(${projectId})">Verwijderen</a>
+                  <input name="project[]" value="${projectId}" hidden>
+              </div>
+            </div>
+          </div>
+        </li>
+    `;
+    projectDiv.innerHTML += projectTemplate;
+
+    if (projectDiv.childElementCount > 0) {
+      addedProjectsDiv.style.display = 'block';
+    }
+    filterProjects();
+    displayNotFoundAddedProjectsText();
+  }
+
   function deleteContact(contactId) {
     document.getElementById(`selectedContact-${contactId}`).remove();
     filterContacts();
-    displayNotFoundAddedContactsText();
+    displayNotFoundAddedProjectsText();
+  }
+
+  function deleteProject(projectId) {
+    document.getElementById(`selectedProject-${projectId}`).remove();
+    filterProjects();
+    displayNotFoundAddedProjectsText();
   }
 
   function filterContacts() {
@@ -328,6 +399,27 @@
     document.getElementById('noContactsFound').style.display = (selectableContacts == 0 ? "" : "none");
   }
 
+  function filterProjects() {
+    let input, filter, ul, li, a, i, txtValue, selectableProjects = 0;
+    input = document.getElementById("filterProjectInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("projectList");
+    li = ul.getElementsByTagName("li");
+
+    for (i = 0; i < li.length; i++) {
+      txtValue = li[i].innerText;
+      let isSelected = document.getElementById(`selectedProject-${li[i].id}`) != null;
+      if (txtValue.toUpperCase().indexOf(filter) > -1 && !isSelected) {
+        li[i].style.display = "";
+        selectableProjects++;
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+
+    document.getElementById('noProjectsFound').style.display = (selectableProjects == 0 ? "" : "none");
+  }
+
   function getSelectedTeachers() {
     const inputElements = document.querySelectorAll('[data-teacher-id]:checked');
 
@@ -349,4 +441,13 @@
 
     return studentIds;
   }
+
+  // On load triggers
+  window.addEventListener('load', (event) => {
+    loadFromSessionStorage();
+    filterContacts();
+    filterProjects();
+    displayNotFoundAddedContactsText();
+    displayNotFoundAddedProjectsText();
+  })
 </script>

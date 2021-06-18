@@ -22,18 +22,27 @@ class ProjectGroup extends Model
   protected $fillable = ['name', 'project'];
   protected $dates = ['deleted_at'];
 
+  public function projects()
+  {
+    return $this->belongsToMany(Project::class, 'projectgroup_project', 'projectgroupid', 'projectid');
+  }
+
   public function getDeleteText(): string
   {
     $text = 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
 
-    $project = Project::where('id', $this->project)
-      ->pluck('name')
-      ->first();
+    $projects = $this->projects()->pluck('name');
 
-    if ($project !== null) {
-      $text .= '<br>Er is een project aan deze projectgroep gekoppeld: ';
-      $text .= ' ' . $project;
+    if (count($projects) > 0) {
+      $text .= '<br>Er zijn projecten die aan deze projectgroep zijn gekoppeld: ';
+      foreach ($projects as $index => $project) {
+        if ($index !== 0) {
+          $text .= ',';
+        }
+        $text .= ' ' . $project;
+      }
     }
+
     $students = $this->users()->pluck('name');
     if (count($students) > 0) {
       $text .= '<br>Er zijn studenten/docenten die aan deze projectgroep zijn gekoppeld: ';
@@ -55,10 +64,5 @@ class ProjectGroup extends Model
   public function contacts(): BelongsToMany
   {
     return $this->belongsToMany(Contact::class);
-  }
-
-  public function project()
-  {
-    return $this->belongsTo(Project::class);
   }
 }
