@@ -83,6 +83,6 @@ window.makeAllSortable = function (parent) {
   while (--i >= 0) makeSortable(t[i]);
 };
 
-window.onload = function () {
+window.addEventListener('load', event => {
   makeAllSortable(document.getElementsByTagName('main')[0]);
-};
+});

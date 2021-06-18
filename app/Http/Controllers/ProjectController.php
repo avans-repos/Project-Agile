@@ -26,7 +26,7 @@ class ProjectController extends Controller
   {
     $project = new Project();
 
-    $newProjectGroups = Projectgroup::where('project', null)->get();
+    $newProjectGroups = Projectgroup::all();
 
     $assignedProjectGroups = [];
 
@@ -43,12 +43,12 @@ class ProjectController extends Controller
 
     $project = Project::create($request->all());
 
+    $project->save();
+
     $newProjectGroups = $request->all()['projectGroup'] ?? [];
 
     foreach ($newProjectGroups as $newProjectGroup) {
-      Projectgroup::where('id', $newProjectGroup)
-        ->first()
-        ->update(['project' => $project->id]);
+      $project->projectgroups()->attach($newProjectGroup);
     }
 
     return redirect()->route('project.index');
@@ -70,11 +70,9 @@ class ProjectController extends Controller
    */
   public function edit(Project $project)
   {
-    $newProjectGroups = Projectgroup::where('project', null)
-      ->orWhere('project', $project->id)
-      ->get();
+    $newProjectGroups = Projectgroup::all();
 
-    $assignedProjectGroups = Projectgroup::where('project', $project->id)->get();
+    $assignedProjectGroups = $project->projectgroups()->get();
 
     return view('project.manage')
       ->with('project', $project)
@@ -96,15 +94,7 @@ class ProjectController extends Controller
     $project->update($request->all());
     $newProjectGroups = $request->all()['projectGroup'] ?? [];
 
-    // remove all references to $project in all the ProjectGroups
-    Projectgroup::where('project', $project->id)->update(['project' => null]);
-
-    // add the given references to $project in all the ProjectGroups
-    foreach ($newProjectGroups as $newProjectGroup) {
-      Projectgroup::where('id', $newProjectGroup)
-        ->first()
-        ->update(['project' => $project->id]);
-    }
+    $project->projectgroups()->sync($newProjectGroups);
 
     return redirect()->route('project.index');
   }
