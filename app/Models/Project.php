@@ -21,7 +21,7 @@ class Project extends Model
 
   public function projectgroups()
   {
-    return $this->hasMany(ProjectGroup::class, 'project');
+    return $this->belongsToMany(ProjectGroup::class, 'projectgroup_project', 'projectid', 'projectgroupid');
   }
 
   public function getDeleteText(): string

@@ -139,7 +139,14 @@
   }
 
   function saveToSessionStorage(){
-    let storageObject = {groups: getAddedProjectGroups(), name: document.getElementById('name').value, description: document.getElementById('description').value, deadline: document.getElementById('deadline').value, notes: document.getElementById('notes').value};
+    let storageObject = {
+      groups: getAddedProjectGroups(),
+      name: document.getElementById('name').value,
+      description: document.getElementById('description').value,
+      deadline: document.getElementById('deadline').value,
+      notes: document.getElementById('notes').value,
+      projectGroups: getAddedProjectGroups()
+    };
     sessionStorage.setItem('projectFormData', JSON.stringify(storageObject));
   }
 
@@ -159,8 +166,9 @@
     if(!storageObject) return;
     removeAllProjectGroups();
     storageObject = JSON.parse(storageObject);
-    for(let i = 0; i < storageObject.groups.length; i++){
-      let group = storageObject.groups[i];
+
+    for(let i = 0; i < storageObject.projectGroups.length; i++){
+      let group = storageObject.projectGroups[i];
       addProjectGroup(group.id, group.name);
     }
     document.getElementById('name').value = storageObject.name;
@@ -232,10 +240,10 @@
     document.getElementById('noProjectGroupsFound').style.display = (selectableGroups == 0 ? "" : "none");
   }
 
-  window.onload = function (e) {
+  window.addEventListener('load', (event) => {
     loadFromLocalStorage();
     filterProjectGroups();
     displayNotFoundAddedGroupsText();
-  }
+  })
 </script>
 
