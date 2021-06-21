@@ -17,7 +17,7 @@ class Company extends Model
   protected $table = 'companies';
   protected $fillable = ['name', 'phonenumber', 'email', 'size', 'website', 'note', 'visiting_address', 'mailing_address'];
   protected $dates = ['deleted_at'];
-  protected $encryptable = ['name', 'phonenumber', 'email', 'website', 'note'];
+  protected $encryptable = ['phonenumber', 'email', 'website', 'note'];
 
   public function contacts()
   {
