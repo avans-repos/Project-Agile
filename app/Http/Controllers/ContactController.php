@@ -95,11 +95,12 @@ class ContactController extends Controller
             ->get('id')
             ->first();
 
-          $company_has_contact = new company_contact();
-          $company_has_contact->contact = $contactId;
-          $company_has_contact->company = $company->id;
-          $company_has_contact->contacttype = $data['contacttype-' . $id];
-          $company_has_contact->save();
+          company_contact::create([
+            'contact_id' => $contactId,
+            'company_id' => $company->id,
+            'contacttype' => $data['contacttype-' . $id],
+            'added' => Carbon::now(),
+          ]);
         }
       }
     }
