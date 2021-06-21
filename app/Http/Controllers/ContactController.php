@@ -123,8 +123,9 @@ class ContactController extends Controller
           continue 2;
         }
       }
-
-      array_push($projects, Project::where('id', $projectGroup->project)->first());
+      if($projectGroup->project != null) {
+        array_push($projects, Project::where('id', $projectGroup->project)->first());
+      }
     }
 
     return view('contact.show')
