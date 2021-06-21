@@ -36,11 +36,11 @@ class CompanyRequest extends FormRequest
       'city1' => 'required|max:100',
       'country1' => 'required|max:50',
       'streetname2' => 'required_if:address_same,1|max:100',
-      'number2' => 'required_if:address_same,1|integer|max:2147483645|min:1',
-      'addition2' => 'max:5',
-      'zipcode2' => 'required_if:address_same,1|max:10',
-      'city2' => 'required_if:address_same,1|max:100',
-      'country2' => 'required_if:address_same,1|max:50',
+      'number2' => 'required_if:address_same,1|integer|max:2147483645|min:1|nullable',
+      'addition2' => 'max:5|nullable',
+      'zipcode2' => 'required_if:address_same,1|max:10|nullable',
+      'city2' => 'required_if:address_same,1|max:100|nullable',
+      'country2' => 'required_if:address_same,1|max:50|nullable',
     ];
   }
 

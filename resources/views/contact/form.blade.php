@@ -8,7 +8,7 @@
         <div class="mb-1">
             <div class="mb-1 row d-sm-flex">
                 <div class="col-sm-3">
-                    <label for="initials" class="form-label">Initialen *</label>
+                    <label for="initials" class="form-label">Initialen</label>
                     <input name="initials" value="{{old('initials',$contact->initials)}}" type="text"
                            class="form-control"
                            id="initials"
