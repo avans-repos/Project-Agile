@@ -92,14 +92,15 @@ class ActionpointController extends Controller
         $actionPoint->teachers()->attach($assigned);
       }
     }
-
-    $notificationData = [
-      'reminderdate' => $actionPoint->reminderdate,
-      'title' => $actionPoint->title,
-      'actionpoint' => $actionPoint->id,
-      'user' => Auth::user(),
-    ];
-    event(new ActionpointReminder($notificationData));
+    if ($actionPoint->reminderdate) {
+      $notificationData = [
+        'reminderdate' => $actionPoint->reminderdate,
+        'title' => $actionPoint->title,
+        'actionpoint' => $actionPoint->id,
+        'user' => Auth::user(),
+      ];
+      event(new ActionpointReminder($notificationData));
+    }
 
     return redirect()->route('actionpoints.index');
   }
