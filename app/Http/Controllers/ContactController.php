@@ -123,7 +123,7 @@ class ContactController extends Controller
           continue 2;
         }
       }
-      if($projectGroup->project != null) {
+      if ($projectGroup->project != null) {
         array_push($projects, Project::where('id', $projectGroup->project)->first());
       }
     }
