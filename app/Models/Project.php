@@ -28,14 +28,14 @@ class Project extends Model
   {
     $text = 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
 
-    $projectgroups = $this->projectGroups()->pluck('name');
+    $projectgroups = $this->projectGroups()->get();
     if (count($projectgroups) > 0) {
       $text .= '<br>Er zijn projectgroepen die aan dit project zijn gekoppeld: ';
       foreach ($projectgroups as $index => $projectgroup) {
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . e($projectgroup);
+        $text .= ' ' . e($projectgroup->name);
       }
     }
     return $text;

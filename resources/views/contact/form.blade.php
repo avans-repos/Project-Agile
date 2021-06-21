@@ -8,7 +8,7 @@
         <div class="mb-1">
             <div class="mb-1 row d-sm-flex">
                 <div class="col-sm-3">
-                    <label for="initials" class="form-label">Initialen *</label>
+                    <label for="initials" class="form-label">Initialen</label>
                     <input name="initials" value="{{old('initials',$contact->initials)}}" type="text"
                            class="form-control"
                            id="initials"
@@ -185,7 +185,7 @@
   <fieldset class="mb-3">
     <legend>Contacttype per bedrijf</legend>
     <div id="companies">
-      @if($contact->companies()->get() == null)
+      @if(count($contact->companies()->get()) == 0)
     <div id="company-1" class="mt-3.5">
     <div>
       <div class="mb-1">

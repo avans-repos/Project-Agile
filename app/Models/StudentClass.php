@@ -31,14 +31,14 @@ class StudentClass extends Model
   {
     $text = 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
 
-    $students = $this->students()->pluck('name');
+    $students = $this->students()->get();
     if (count($students) > 0) {
       $text .= '<br>Er zijn studenten die aan deze klas zijn gekoppeld: ';
       foreach ($students as $index => $student) {
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . e($student);
+        $text .= ' ' . e($student->name);
       }
     }
     return $text;

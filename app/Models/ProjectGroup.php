@@ -31,7 +31,7 @@ class ProjectGroup extends Model
   {
     $text = 'Weet u zeker dat u "' . e($this->name) . '" wilt verwijderen<br>';
 
-    $projects = $this->projects()->pluck('name');
+    $projects = $this->projects()->get();
 
     if (count($projects) > 0) {
       $text .= '<br>Er zijn projecten die aan deze projectgroep zijn gekoppeld: ';
@@ -39,18 +39,18 @@ class ProjectGroup extends Model
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . $project;
+        $text .= ' ' . $project->name;
       }
     }
 
-    $students = $this->users()->pluck('name');
+    $students = $this->users()->get();
     if (count($students) > 0) {
       $text .= '<br>Er zijn studenten/docenten die aan deze projectgroep zijn gekoppeld: ';
       foreach ($students as $index => $student) {
         if ($index !== 0) {
           $text .= ',';
         }
-        $text .= ' ' . e($student);
+        $text .= ' ' . e($student->name);
       }
     }
     return $text;
