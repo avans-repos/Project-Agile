@@ -185,7 +185,7 @@
   <fieldset class="mb-3">
     <legend>Contacttype per bedrijf</legend>
     <div id="companies">
-      @if($contact->companies()->get() == null)
+      @if(count($contact->companies()->get()) == 0)
     <div id="company-1" class="mt-3.5">
     <div>
       <div class="mb-1">
