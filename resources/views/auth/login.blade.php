@@ -2,7 +2,7 @@
   <x-auth-card>
     <x-slot name="logo">
       <a href="/">
-        <img src="img/avans_aad_logo.png" id="login_logo" class="fill-current text-gray-500"/>
+        <img alt="logo" src="img/avans_aad_logo.png" id="login_logo" class="fill-current text-gray-500"/>
       </a>
     </x-slot>
 
