@@ -42,3 +42,4 @@ storage/framework/views/*
 storage/logs/*
 
 .env
+/docs
