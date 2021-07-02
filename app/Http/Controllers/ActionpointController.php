@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ActionpointController extends Controller
 {
@@ -161,6 +162,18 @@ class ActionpointController extends Controller
     }
     $actionpoint->teachers()->sync($request->assigned);
     $actionpoint->update(array_merge($request->all(), ['Creator' => $creator]));
+
+    DB::table('notifications')
+      ->where('data->actionpoint', $actionpoint->id)
+      ->delete();
+
+    $notificationData = [
+      'reminderdate' => $actionpoint->reminderdate,
+      'title' => $actionpoint->title,
+      'actionpoint' => $actionpoint->id,
+      'user' => Auth::user(),
+    ];
+    event(new ActionpointReminder($notificationData));
 
     return redirect()->route('actionpoints.index');
   }
